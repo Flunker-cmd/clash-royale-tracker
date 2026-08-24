@@ -19,19 +19,26 @@ def fetch_url(url):
 
 
 try:
+  # Klanens medlemslista (roller, donationer etc.)
+  clan_details = fetch_url(f"https://proxy.royaleapi.dev/v1/clans/{CLAN_TAG}")
+  with open("clan_members.json", "w", encoding="utf-8") as f:
+    json.dump(clan_details, f, ensure_ascii=False, indent=2)
+
+  # Nuvarande krig
   current_race = fetch_url(
       f"https://proxy.royaleapi.dev/v1/clans/{CLAN_TAG}/currentriverrace"
   )
   with open("clan_data.json", "w", encoding="utf-8") as f:
     json.dump(current_race, f, ensure_ascii=False, indent=2)
 
+  # Historiska krig
   race_log = fetch_url(
       f"https://proxy.royaleapi.dev/v1/clans/{CLAN_TAG}/riverracelog"
   )
   with open("history_data.json", "w", encoding="utf-8") as f:
     json.dump(race_log, f, ensure_ascii=False, indent=2)
 
-  print("Både nuvarande data och historik har sparats.")
+  print("All data (medlemmar, nuvarande krig och historik) sparades.")
 except urllib.error.HTTPError as e:
   print(f"HTTP-fel {e.code}: {e.reason}")
   print(e.read().decode())

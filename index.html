@@ -39,6 +39,12 @@
       background-color: #334155;
       color: #94a3b8;
       font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+    }
+    th:hover {
+      background-color: #475569;
+      color: #f8fafc;
     }
     tr {
       border-bottom: 1px solid #334155;
@@ -70,14 +76,14 @@
     <table>
       <thead>
         <tr>
-          <th>#</th>
-          <th>Player</th>
-          <th>Role</th>
-          <th>Donations</th>
-          <th>Avg Fame / Wk</th>
-          <th>Total Decks</th>
-          <th>War Loyalty</th>
-          <th>Action / Recommendation</th>
+          <th onclick="sortTable('index')"># <span id="sort-index"></span></th>
+          <th onclick="sortTable('name')">Player <span id="sort-name"></span></th>
+          <th onclick="sortTable('role')">Role <span id="sort-role"></span></th>
+          <th onclick="sortTable('donations')">Donations <span id="sort-donations"></span></th>
+          <th onclick="sortTable('avgFame')">Avg Fame / Wk <span id="sort-avgFame"></span></th>
+          <th onclick="sortTable('decks')">Total Decks <span id="sort-decks"></span></th>
+          <th onclick="sortTable('weeks')">War Loyalty <span id="sort-weeks"></span></th>
+          <th onclick="sortTable('recommendationWeight')">Action / Recommendation <span id="sort-recommendationWeight"></span></th>
         </tr>
       </thead>
       <tbody id="member-table">
@@ -94,6 +100,17 @@
       elder: "Elder",
       member: "Member"
     };
+
+    const roleOrder = {
+      leader: 4,
+      coLeader: 3,
+      elder: 2,
+      member: 1
+    };
+
+    let combinedData = [];
+    let currentSortColumn = 'avgFame';
+    let currentSortAsc = false;
 
     async function loadDashboard() {
       try {
@@ -123,60 +140,121 @@
           });
         });
 
-        const combined = currentMembers.map(m => {
+        combinedData = currentMembers.map(m => {
           const war = warStats[m.tag] || { fame: 0, decks: 0, weeks: 0 };
-          const avgFame = Math.round(war.fame / totalWeeks);
+          const activeWeeks = war.weeks || 1;
+          const avgFame = Math.round(war.fame / activeWeeks);
+
+          let recText = "Good Standing";
+          let recWeight = 3;
+          let recClass = "good";
+
+          if (war.weeks < Math.ceil(totalWeeks / 2)) {
+            recText = "New / Low History";
+            recWeight = 2;
+            recClass = "review";
+          } else if (m.role === 'member' && avgFame >= 1800 && (m.donations || 0) >= 100) {
+            recText = "Promote to Elder";
+            recWeight = 5;
+            recClass = "promote";
+          } else if (m.role === 'elder' && avgFame >= 2500 && (m.donations || 0) >= 250) {
+            recText = "Promote Candidate";
+            recWeight = 5;
+            recClass = "promote";
+          } else if (['coLeader', 'elder'].includes(m.role) && avgFame < 600) {
+            recText = "Demote / Review";
+            recWeight = 1;
+            recClass = "review";
+          } else if (m.role === 'member' && avgFame < 400 && (m.donations || 0) < 30) {
+            recText = "Kick Candidate";
+            recWeight = 0;
+            recClass = "kick";
+          }
+
           return {
             tag: m.tag,
             name: m.name,
             role: m.role,
+            roleWeight: roleOrder[m.role] || 0,
             donations: m.donations || 0,
-            donationsReceived: m.donationsReceived || 0,
             fame: war.fame,
             avgFame: avgFame,
             decks: war.decks,
-            weeks: war.weeks
+            weeks: war.weeks,
+            totalWeeks: totalWeeks,
+            recommendationText: recText,
+            recommendationWeight: recWeight,
+            recommendationClass: recClass
           };
-        }).sort((a, b) => b.avgFame - a.avgFame);
+        });
 
         document.getElementById('subtitle').textContent = 
           `Active Members: ${currentMembers.length} | Evaluated over last ${totalWeeks} war weeks`;
 
-        const tbody = document.getElementById('member-table');
-        tbody.innerHTML = '';
-
-        combined.forEach((m, index) => {
-          let rec = '<span class="badge good">Good Standing</span>';
-
-          if (m.role === 'member' && m.avgFame >= 1800 && m.donations >= 100) {
-            rec = '<span class="badge promote">Promote to Elder</span>';
-          } else if (m.role === 'elder' && m.avgFame >= 2500 && m.donations >= 250) {
-            rec = '<span class="badge promote">Promote Candidate</span>';
-          } else if (m.role === 'member' && m.avgFame < 400 && m.donations < 30) {
-            rec = '<span class="badge kick">Kick Candidate</span>';
-          } else if (['coLeader', 'elder'].includes(m.role) && m.avgFame < 600) {
-            rec = '<span class="badge review">Demote / Review</span>';
-          } else if (m.weeks < Math.ceil(totalWeeks / 2)) {
-            rec = '<span class="badge review">New / Inactive in War</span>';
-          }
-
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td>${index + 1}</td>
-            <td><strong>${m.name}</strong></td>
-            <td><span class="role">${roleNames[m.role] || m.role}</span></td>
-            <td>${m.donations}</td>
-            <td>${m.avgFame.toLocaleString()}</td>
-            <td>${m.decks}</td>
-            <td>${m.weeks} / ${totalWeeks} wk</td>
-            <td>${rec}</td>
-          `;
-          tbody.appendChild(tr);
-        });
+        renderTable();
 
       } catch (err) {
-        document.getElementById('subtitle').textContent = 'Error loading dashboard data. Make sure fetch action has run.';
+        document.getElementById('subtitle').textContent = 'Error loading dashboard data.';
       }
+    }
+
+    function sortTable(column) {
+      if (currentSortColumn === column) {
+        currentSortAsc = !currentSortAsc;
+      } else {
+        currentSortColumn = column;
+        currentSortAsc = (column === 'name' || column === 'role');
+      }
+      renderTable();
+    }
+
+    function renderTable() {
+      let sorted = [...combinedData];
+
+      sorted.sort((a, b) => {
+        let valA, valB;
+
+        if (currentSortColumn === 'role') {
+          valA = a.roleWeight;
+          valB = b.roleWeight;
+        } else if (currentSortColumn === 'index') {
+          valA = a.avgFame;
+          valB = b.avgFame;
+        } else {
+          valA = a[currentSortColumn];
+          valB = b[currentSortColumn];
+        }
+
+        if (typeof valA === 'string') {
+          return currentSortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        }
+        return currentSortAsc ? valA - valB : valB - valA;
+      });
+
+      ['index', 'name', 'role', 'donations', 'avgFame', 'decks', 'weeks', 'recommendationWeight'].forEach(col => {
+        const el = document.getElementById(`sort-${col}`);
+        if (el) {
+          el.textContent = col === currentSortColumn ? (currentSortAsc ? '▲' : '▼') : '';
+        }
+      });
+
+      const tbody = document.getElementById('member-table');
+      tbody.innerHTML = '';
+
+      sorted.forEach((m, index) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td><strong>${m.name}</strong></td>
+          <td><span class="role">${roleNames[m.role] || m.role}</span></td>
+          <td>${m.donations}</td>
+          <td>${m.avgFame.toLocaleString()}</td>
+          <td>${m.decks}</td>
+          <td>${m.weeks} / ${m.totalWeeks} wk</td>
+          <td><span class="badge ${m.recommendationClass}">${m.recommendationText}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
     }
 
     loadDashboard();

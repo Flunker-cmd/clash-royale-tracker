@@ -6,18 +6,32 @@ import urllib.request
 CLAN_TAG = "%23L0G0Y0JP"
 TOKEN = os.environ.get("CLASH_ROYALE_TOKEN")
 
-url = f"https://proxy.royaleapi.dev/v1/clans/{CLAN_TAG}/currentriverrace"
+headers = {
+    "Authorization": f"Bearer {TOKEN}",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+}
 
-req = urllib.request.Request(url)
-req.add_header("Authorization", f"Bearer {TOKEN}")
-req.add_header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
+
+def fetch_url(url):
+  req = urllib.request.Request(url, headers=headers)
+  with urllib.request.urlopen(req) as response:
+    return json.loads(response.read().decode())
+
 
 try:
-  with urllib.request.urlopen(req) as response:
-    data = json.loads(response.read().decode())
-    with open("clan_data.json", "w", encoding="utf-8") as f:
-      json.dump(data, f, ensure_ascii=False, indent=2)
-    print("Data sparad i clan_data.json")
+  current_race = fetch_url(
+      f"https://proxy.royaleapi.dev/v1/clans/{CLAN_TAG}/currentriverrace"
+  )
+  with open("clan_data.json", "w", encoding="utf-8") as f:
+    json.dump(current_race, f, ensure_ascii=False, indent=2)
+
+  race_log = fetch_url(
+      f"https://proxy.royaleapi.dev/v1/clans/{CLAN_TAG}/riverracelog"
+  )
+  with open("history_data.json", "w", encoding="utf-8") as f:
+    json.dump(race_log, f, ensure_ascii=False, indent=2)
+
+  print("Både nuvarande data och historik har sparats.")
 except urllib.error.HTTPError as e:
   print(f"HTTP-fel {e.code}: {e.reason}")
   print(e.read().decode())

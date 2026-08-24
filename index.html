@@ -40,7 +40,7 @@
       color: #94a3b8;
       font-weight: 600;
     }
-    tr:border-bottom {
+    tr {
       border-bottom: 1px solid #334155;
     }
     tr:nth-child(even) {
@@ -57,6 +57,7 @@
     }
     .top { background: #065f46; color: #34d399; }
     .low { background: #831843; color: #f472b6; }
+    .active { background: #1e3a8a; color: #93c5fd; }
   </style>
 </head>
 <body>
@@ -70,7 +71,7 @@
           <th>#</th>
           <th>Spelare</th>
           <th>Fame</th>
-          <th>Däck använda</th>
+          <th>Däck använda (Idag)</th>
           <th>Båtattacker</th>
           <th>Status</th>
         </tr>
@@ -87,27 +88,32 @@
         const data = await response.json();
         
         const clan = data.clan;
-        document.getElementById('clan-name').textContent = clan.name + " - Krigsstatus";
-        document.getElementById('last-updated').textContent = `Totalt klan-fame: ${clan.fame}`;
-
         const members = clan.participants.sort((a, b) => b.fame - a.fame);
+        
+        // Räkna ut klanens totala fame manuellt ifall clan.fame är 0
+        const totalFame = members.reduce((sum, m) => sum + (m.fame || 0), 0);
+        
+        document.getElementById('clan-name').textContent = clan.name + " - Krigsstatus";
+        document.getElementById('last-updated').textContent = `Totalt klan-fame: ${totalFame}`;
+
         const tbody = document.getElementById('member-table');
+        tbody.innerHTML = '';
 
         members.forEach((m, index) => {
           const tr = document.createElement('tr');
           
-          let statusBadge = '<span class="badge">Aktiv</span>';
-          if (index < 5 && m.fame > 0) {
-            statusBadge = '<span class="badge top">Toppstrid</span>';
-          } else if (m.decksUsed < 4) {
-            statusBadge = '<span class="badge low">Låg aktivitet</span>';
+          let statusBadge = '<span class="badge low">Ingen aktivitet</span>';
+          if (m.fame > 0) {
+            statusBadge = index < 5 ? '<span class="badge top">Toppstrid</span>' : '<span class="badge active">Aktiv</span>';
           }
+
+          const decksToday = m.decksUsedToday !== undefined ? m.decksUsedToday : m.decksUsed;
 
           tr.innerHTML = `
             <td>${index + 1}</td>
             <td><strong>${m.name}</strong></td>
             <td>${m.fame}</td>
-            <td>${m.decksUsed} / 16</td>
+            <td>${decksToday} / 4</td>
             <td>${m.boatAttacks}</td>
             <td>${statusBadge}</td>
           `;

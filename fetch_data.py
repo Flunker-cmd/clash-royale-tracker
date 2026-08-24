@@ -10,6 +10,7 @@ url = f"https://proxy.royaleapi.dev/v1/clans/{CLAN_TAG}/currentriverrace"
 
 req = urllib.request.Request(url)
 req.add_header("Authorization", f"Bearer {TOKEN}")
+req.add_header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
 
 try:
   with urllib.request.urlopen(req) as response:

@@ -170,16 +170,17 @@
         const totalWeeks = historyRaces.length || 1;
 
         const warStats = {};
-        historyRaces.forEach(race => {
+        historyRaces.forEach((race, weekIndex) => {
           const standing = race.standings?.find(s => s.clan.tag === CLAN_TAG);
           if (!standing) return;
           (standing.clan.participants || []).forEach(p => {
             if (!warStats[p.tag]) {
-              warStats[p.tag] = { fame: 0, decks: 0, weeks: 0 };
+              warStats[p.tag] = { fame: 0, decks: 0, weeks: 0, history: new Array(totalWeeks).fill(false) };
             }
             warStats[p.tag].fame += p.fame || 0;
             warStats[p.tag].decks += p.decksUsed || 0;
             warStats[p.tag].weeks += 1;
+            warStats[p.tag].history[weekIndex] = true;
           });
         });
 
@@ -187,20 +188,38 @@
         let activeWarriorsCount = 0;
 
         combinedData = currentMembers.map(m => {
-          const war = warStats[m.tag] || { fame: 0, decks: 0, weeks: 0 };
-          const activeWeeks = war.weeks || 1;
-          const avgFame = Math.round(war.fame / activeWeeks);
+          const war = warStats[m.tag] || { fame: 0, decks: 0, weeks: 0, history: new Array(totalWeeks).fill(false) };
+          const activeWeeks = war.weeks || 0;
+          const avgFame = activeWeeks > 0 ? Math.round(war.fame / activeWeeks) : 0;
 
           totalClanAvgFame += avgFame;
-          if (war.weeks >= Math.ceil(totalWeeks / 2)) {
+          if (activeWeeks >= Math.ceil(totalWeeks / 2)) {
             activeWarriorsCount++;
+          }
+
+          let recentStreak = 0;
+          for (let i = 0; i < totalWeeks; i++) {
+            if (war.history[i]) recentStreak++;
+            else break;
+          }
+
+          let loyaltyDisplay = "";
+          if (activeWeeks === totalWeeks) {
+            loyaltyDisplay = `${totalWeeks} / ${totalWeeks} wk`;
+          } else if (activeWeeks === 0) {
+            loyaltyDisplay = `No history`;
+          } else if (recentStreak === activeWeeks) {
+            loyaltyDisplay = `Joined ${activeWeeks} wk ago`;
+          } else {
+            const missed = totalWeeks - activeWeeks;
+            loyaltyDisplay = `Missed ${missed} war${missed > 1 ? 's' : ''}`;
           }
 
           let recText = "Good Standing";
           let recWeight = 3;
           let recClass = "good";
 
-          if (war.weeks < Math.ceil(totalWeeks / 2)) {
+          if (activeWeeks < Math.ceil(totalWeeks / 2)) {
             recText = "New / Low History";
             recWeight = 2;
             recClass = "review";
@@ -231,7 +250,8 @@
             fame: war.fame,
             avgFame: avgFame,
             decks: war.decks,
-            weeks: war.weeks,
+            weeks: activeWeeks,
+            loyaltyDisplay: loyaltyDisplay,
             totalWeeks: totalWeeks,
             recommendationText: recText,
             recommendationWeight: recWeight,
@@ -308,7 +328,7 @@
           <td>${m.donations}</td>
           <td>${m.avgFame.toLocaleString()}</td>
           <td>${m.decks}</td>
-          <td>${m.weeks} / ${m.totalWeeks} wk</td>
+          <td>${m.loyaltyDisplay}</td>
           <td><span class="badge ${m.recommendationClass}">${m.recommendationText}</span></td>
         `;
         tbody.appendChild(tr);

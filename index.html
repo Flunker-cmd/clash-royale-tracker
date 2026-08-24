@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ikea Clan Tracker</title>
+  <title>Ikea Clan Management</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -13,11 +13,11 @@
       padding: 24px;
     }
     .container {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
     }
     h1 {
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       color: #38bdf8;
     }
     .subtitle {
@@ -55,25 +55,27 @@
       font-size: 0.85em;
       font-weight: bold;
     }
-    .top { background: #065f46; color: #34d399; }
-    .low { background: #831843; color: #f472b6; }
-    .active { background: #1e3a8a; color: #93c5fd; }
+    .promote { background: #065f46; color: #34d399; }
+    .good { background: #1e3a8a; color: #93c5fd; }
+    .warning { background: #78350f; color: #fde047; }
+    .kick { background: #831843; color: #f472b6; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1 id="clan-name">Klanstatistik</h1>
-    <p class="subtitle" id="last-updated">Laddar data...</p>
+    <h1 id="title">Clan Performance History</h1>
+    <p class="subtitle" id="subtitle">Loading history data...</p>
 
     <table>
       <thead>
         <tr>
           <th>#</th>
-          <th>Spelare</th>
-          <th>Fame</th>
-          <th>Däck använda (Idag)</th>
-          <th>Båtattacker</th>
-          <th>Status</th>
+          <th>Player</th>
+          <th>Total Fame</th>
+          <th>Avg Fame / Week</th>
+          <th>Total Decks Used</th>
+          <th>Weeks Active</th>
+          <th>Recommendation</th>
         </tr>
       </thead>
       <tbody id="member-table">
@@ -82,49 +84,82 @@
   </div>
 
   <script>
-    async function loadData() {
+    const CLAN_TAG = "#L0G0Y0JP";
+
+    async function loadHistory() {
       try {
-        const response = await fetch('clan_data.json');
+        const response = await fetch('history_data.json');
         const data = await response.json();
         
-        const clan = data.clan;
-        const members = clan.participants.sort((a, b) => b.fame - a.fame);
+        const historyRaces = data.items || [];
+        const totalWeeks = historyRaces.length;
+
+        if (totalWeeks === 0) {
+          document.getElementById('subtitle').textContent = 'No historical race data found.';
+          return;
+        }
+
+        const playerStats = {};
+
+        historyRaces.forEach(race => {
+          const myClanStanding = race.standings?.find(s => s.clan.tag === CLAN_TAG);
+          if (!myClanStanding) return;
+
+          const participants = myClanStanding.clan.participants || [];
+          participants.forEach(p => {
+            if (!playerStats[p.tag]) {
+              playerStats[p.tag] = {
+                name: p.name,
+                totalFame: 0,
+                totalDecks: 0,
+                weeksParticipated: 0
+              };
+            }
+
+            playerStats[p.tag].totalFame += p.fame || 0;
+            playerStats[p.tag].totalDecks += p.decksUsed || 0;
+            playerStats[p.tag].weeksParticipated += 1;
+          });
+        });
+
+        const members = Object.values(playerStats).sort((a, b) => b.totalFame - a.totalFame);
         
-        // Räkna ut klanens totala fame manuellt ifall clan.fame är 0
-        const totalFame = members.reduce((sum, m) => sum + (m.fame || 0), 0);
-        
-        document.getElementById('clan-name').textContent = clan.name + " - Krigsstatus";
-        document.getElementById('last-updated').textContent = `Totalt klan-fame: ${totalFame}`;
+        document.getElementById('subtitle').textContent = `Aggregated statistics over the last ${totalWeeks} completed weeks.`;
 
         const tbody = document.getElementById('member-table');
         tbody.innerHTML = '';
 
         members.forEach((m, index) => {
-          const tr = document.createElement('tr');
+          const avgFame = Math.round(m.totalFame / totalWeeks);
           
-          let statusBadge = '<span class="badge low">Ingen aktivitet</span>';
-          if (m.fame > 0) {
-            statusBadge = index < 5 ? '<span class="badge top">Toppstrid</span>' : '<span class="badge active">Aktiv</span>';
+          let recommendation = '<span class="badge good">Stable</span>';
+          if (avgFame >= 2000 && m.weeksParticipated >= totalWeeks - 1) {
+            recommendation = '<span class="badge promote">Promote Candidate</span>';
+          } else if (avgFame < 500 && m.weeksParticipated >= 2) {
+            recommendation = '<span class="badge kick">Kick Candidate</span>';
+          } else if (m.weeksParticipated < Math.ceil(totalWeeks / 2)) {
+            recommendation = '<span class="badge warning">Low Attendance</span>';
           }
 
-          const decksToday = m.decksUsedToday !== undefined ? m.decksUsedToday : m.decksUsed;
-
+          const tr = document.createElement('tr');
           tr.innerHTML = `
             <td>${index + 1}</td>
             <td><strong>${m.name}</strong></td>
-            <td>${m.fame}</td>
-            <td>${decksToday} / 4</td>
-            <td>${m.boatAttacks}</td>
-            <td>${statusBadge}</td>
+            <td>${m.totalFame.toLocaleString()}</td>
+            <td>${avgFame.toLocaleString()}</td>
+            <td>${m.totalDecks}</td>
+            <td>${m.weeksParticipated} / ${totalWeeks}</td>
+            <td>${recommendation}</td>
           `;
           tbody.appendChild(tr);
         });
+
       } catch (err) {
-        document.getElementById('last-updated').textContent = 'Kunde inte ladda clan_data.json ännu.';
+        document.getElementById('subtitle').textContent = 'Error loading history_data.json.';
       }
     }
 
-    loadData();
+    loadHistory();
   </script>
 </body>
 </html>

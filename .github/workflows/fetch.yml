@@ -29,5 +29,5 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add clan_data.json
+          git add clan_data.json history_data.json
           git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update clan data" && git push)

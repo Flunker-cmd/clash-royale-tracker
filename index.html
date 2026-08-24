@@ -109,7 +109,7 @@
     };
 
     let combinedData = [];
-    let currentSortColumn = 'avgFame';
+    let currentSortColumn = 'role';
     let currentSortAsc = false;
 
     async function loadDashboard() {
@@ -203,7 +203,7 @@
         currentSortAsc = !currentSortAsc;
       } else {
         currentSortColumn = column;
-        currentSortAsc = (column === 'name' || column === 'role');
+        currentSortAsc = (column === 'name');
       }
       renderTable();
     }

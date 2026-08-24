@@ -13,7 +13,7 @@
       padding: 24px;
     }
     .container {
-      max-width: 1200px;
+      max-width: 1250px;
       margin: 0 auto;
     }
     h1 {
@@ -90,6 +90,28 @@
     .good { background: #1e3a8a; color: #93c5fd; }
     .review { background: #78350f; color: #fde047; }
     .kick { background: #831843; color: #f472b6; }
+    
+    .loyalty-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .timeline {
+      display: flex;
+      gap: 3px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+    }
+    .dot.played { background-color: #10b981; }
+    .dot.missed { background-color: #ef4444; }
+    .dot.none { background-color: #334155; opacity: 0.4; }
+    .loyalty-text {
+      font-size: 0.85em;
+      color: #cbd5e1;
+    }
   </style>
 </head>
 <body>
@@ -197,23 +219,28 @@
             activeWarriorsCount++;
           }
 
-          let recentStreak = 0;
-          for (let i = 0; i < totalWeeks; i++) {
-            if (war.history[i]) recentStreak++;
-            else break;
+          let firstSeenIndex = -1;
+          for (let i = totalWeeks - 1; i >= 0; i--) {
+            if (war.history[i]) {
+              firstSeenIndex = i;
+              break;
+            }
           }
 
-          let loyaltyDisplay = "";
-          if (activeWeeks === totalWeeks) {
-            loyaltyDisplay = `${totalWeeks} / ${totalWeeks} wk`;
-          } else if (activeWeeks === 0) {
-            loyaltyDisplay = `No history`;
-          } else if (recentStreak === activeWeeks) {
-            loyaltyDisplay = `Joined ${activeWeeks} wk ago`;
-          } else {
-            const missed = totalWeeks - activeWeeks;
-            loyaltyDisplay = `Missed ${missed} war${missed > 1 ? 's' : ''}`;
+          let tenureWeeks = firstSeenIndex !== -1 ? (totalWeeks - firstSeenIndex) : 0;
+          let loyaltyRatio = tenureWeeks > 0 ? `${activeWeeks} / ${tenureWeeks} wk` : "0 / 0 wk";
+
+          let dotsHtml = '<div class="timeline">';
+          for (let i = totalWeeks - 1; i >= 0; i--) {
+            if (war.history[i]) {
+              dotsHtml += '<div class="dot played" title="Participated"></div>';
+            } else if (firstSeenIndex !== -1 && i < firstSeenIndex) {
+              dotsHtml += '<div class="dot missed" title="Missed war"></div>';
+            } else {
+              dotsHtml += '<div class="dot none" title="Not in clan"></div>';
+            }
           }
+          dotsHtml += '</div>';
 
           let recText = "Good Standing";
           let recWeight = 3;
@@ -251,7 +278,9 @@
             avgFame: avgFame,
             decks: war.decks,
             weeks: activeWeeks,
-            loyaltyDisplay: loyaltyDisplay,
+            tenureWeeks: tenureWeeks,
+            loyaltyRatio: loyaltyRatio,
+            dotsHtml: dotsHtml,
             totalWeeks: totalWeeks,
             recommendationText: recText,
             recommendationWeight: recWeight,
@@ -328,7 +357,12 @@
           <td>${m.donations}</td>
           <td>${m.avgFame.toLocaleString()}</td>
           <td>${m.decks}</td>
-          <td>${m.loyaltyDisplay}</td>
+          <td>
+            <div class="loyalty-cell">
+              ${m.dotsHtml}
+              <span class="loyalty-text">${m.loyaltyRatio}</span>
+            </div>
+          </td>
           <td><span class="badge ${m.recommendationClass}">${m.recommendationText}</span></td>
         `;
         tbody.appendChild(tr);

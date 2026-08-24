@@ -24,6 +24,30 @@
       color: #94a3b8;
       margin-bottom: 24px;
     }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .stat-card .label {
+      color: #94a3b8;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    .stat-card .value {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #38bdf8;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -72,6 +96,25 @@
   <div class="container">
     <h1 id="title">Ikea Clan Management Dashboard</h1>
     <p class="subtitle" id="subtitle">Loading member & history data...</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="label">War Trophies</div>
+        <div class="value" id="stat-trophies">-</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Avg Weekly Clan Fame</div>
+        <div class="value" id="stat-fame">-</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Active War Warriors</div>
+        <div class="value" id="stat-active">-</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Top Performer</div>
+        <div class="value" id="stat-top">-</div>
+      </div>
+    </div>
 
     <table>
       <thead>
@@ -140,10 +183,18 @@
           });
         });
 
+        let totalClanAvgFame = 0;
+        let activeWarriorsCount = 0;
+
         combinedData = currentMembers.map(m => {
           const war = warStats[m.tag] || { fame: 0, decks: 0, weeks: 0 };
           const activeWeeks = war.weeks || 1;
           const avgFame = Math.round(war.fame / activeWeeks);
+
+          totalClanAvgFame += avgFame;
+          if (war.weeks >= Math.ceil(totalWeeks / 2)) {
+            activeWarriorsCount++;
+          }
 
           let recText = "Good Standing";
           let recWeight = 3;
@@ -153,11 +204,11 @@
             recText = "New / Low History";
             recWeight = 2;
             recClass = "review";
-          } else if (m.role === 'member' && avgFame >= 1800 && (m.donations || 0) >= 100) {
+          } else if (m.role === 'member' && avgFame >= 1800 && (m.donations || 0) >= 50) {
             recText = "Promote to Elder";
             recWeight = 5;
             recClass = "promote";
-          } else if (m.role === 'elder' && avgFame >= 2500 && (m.donations || 0) >= 250) {
+          } else if (m.role === 'elder' && avgFame >= 2500 && (m.donations || 0) >= 100) {
             recText = "Promote Candidate";
             recWeight = 5;
             recClass = "promote";
@@ -187,6 +238,13 @@
             recommendationClass: recClass
           };
         });
+
+        const topPlayer = [...combinedData].sort((a, b) => b.avgFame - a.avgFame)[0];
+
+        document.getElementById('stat-trophies').textContent = (membersData.clanWarTrophies || 0).toLocaleString();
+        document.getElementById('stat-fame').textContent = totalClanAvgFame.toLocaleString();
+        document.getElementById('stat-active').textContent = `${activeWarriorsCount} / ${currentMembers.length}`;
+        document.getElementById('stat-top').textContent = topPlayer ? topPlayer.name : '-';
 
         document.getElementById('subtitle').textContent = 
           `Active Members: ${currentMembers.length} | Evaluated over last ${totalWeeks} war weeks`;

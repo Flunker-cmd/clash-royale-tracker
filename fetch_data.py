@@ -1,5 +1,6 @@
-import os
 import json
+import os
+import urllib.error
 import urllib.request
 
 CLAN_TAG = "%23L0G0Y0JP"
@@ -11,11 +12,15 @@ req = urllib.request.Request(url)
 req.add_header("Authorization", f"Bearer {TOKEN}")
 
 try:
-    with urllib.request.urlopen(req) as response:
-        data = json.loads(response.read().decode())
-        with open("clan_data.json", "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-        print("Data sparad i clan_data.json")
+  with urllib.request.urlopen(req) as response:
+    data = json.loads(response.read().decode())
+    with open("clan_data.json", "w", encoding="utf-8") as f:
+      json.dump(data, f, ensure_ascii=False, indent=2)
+    print("Data sparad i clan_data.json")
+except urllib.error.HTTPError as e:
+  print(f"HTTP-fel {e.code}: {e.reason}")
+  print(e.read().decode())
+  exit(1)
 except Exception as e:
-    print(f"Ett fel uppstod: {e}")
-    exit(1)
+  print(f"Ett fel uppstod: {e}")
+  exit(1)

@@ -105,7 +105,8 @@
       height: 10px;
       border-radius: 2px;
     }
-    .dot.played { background-color: #10b981; }
+    .dot.full { background-color: #10b981; }
+    .dot.partial { background-color: #f59e0b; }
     .dot.missed { background-color: #ef4444; }
     .dot.none { background-color: #334155; opacity: 0.4; }
     .loyalty-text {
@@ -197,12 +198,13 @@
           if (!standing) return;
           (standing.clan.participants || []).forEach(p => {
             if (!warStats[p.tag]) {
-              warStats[p.tag] = { fame: 0, decks: 0, weeks: 0, history: new Array(totalWeeks).fill(false) };
+              warStats[p.tag] = { fame: 0, decks: 0, weeks: 0, history: new Array(totalWeeks).fill(null) };
             }
+            const decksUsed = p.decksUsed || 0;
             warStats[p.tag].fame += p.fame || 0;
-            warStats[p.tag].decks += p.decksUsed || 0;
+            warStats[p.tag].decks += decksUsed;
             warStats[p.tag].weeks += 1;
-            warStats[p.tag].history[weekIndex] = true;
+            warStats[p.tag].history[weekIndex] = decksUsed;
           });
         });
 
@@ -210,7 +212,7 @@
         let activeWarriorsCount = 0;
 
         combinedData = currentMembers.map(m => {
-          const war = warStats[m.tag] || { fame: 0, decks: 0, weeks: 0, history: new Array(totalWeeks).fill(false) };
+          const war = warStats[m.tag] || { fame: 0, decks: 0, weeks: 0, history: new Array(totalWeeks).fill(null) };
           const activeWeeks = war.weeks || 0;
           const avgFame = activeWeeks > 0 ? Math.round(war.fame / activeWeeks) : 0;
 
@@ -219,25 +221,30 @@
             activeWarriorsCount++;
           }
 
-         let firstSeenIndex = -1;
-      for (let i = totalWeeks - 1; i >= 0; i--) {
-        if (war.history[i]) {
-          firstSeenIndex = i;
-          break;
-        }
-      }
+          let firstSeenIndex = -1;
+          for (let i = totalWeeks - 1; i >= 0; i--) {
+            if (war.history[i] !== null) {
+              firstSeenIndex = i;
+              break;
+            }
+          }
 
-      let tenureWeeks = firstSeenIndex !== -1 ? (firstSeenIndex + 1) : 0;
-      let loyaltyRatio = tenureWeeks > 0 ? `${activeWeeks} / ${tenureWeeks} wk` : "0 / 0 wk";
+          let tenureWeeks = firstSeenIndex !== -1 ? (firstSeenIndex + 1) : 0;
+          let loyaltyRatio = tenureWeeks > 0 ? `${activeWeeks} / ${tenureWeeks} wk` : "0 / 0 wk";
 
           let dotsHtml = '<div class="timeline">';
           for (let i = totalWeeks - 1; i >= 0; i--) {
-            if (war.history[i]) {
-              dotsHtml += '<div class="dot played" title="Participated"></div>';
-            } else if (firstSeenIndex !== -1 && i < firstSeenIndex) {
-              dotsHtml += '<div class="dot missed" title="Missed war"></div>';
+            const decks = war.history[i];
+            if (decks !== null && decks >= 16) {
+              dotsHtml += `<div class="dot full" title="${decks}/16 decks used"></div>`;
+            } else if (decks !== null && decks > 0) {
+              dotsHtml += `<div class="dot partial" title="${decks}/16 decks used"></div>`;
+            } else if (decks !== null && decks === 0) {
+              dotsHtml += `<div class="dot missed" title="0/16 decks used"></div>`;
+            } else if (firstSeenIndex !== -1 && i <= firstSeenIndex) {
+              dotsHtml += `<div class="dot missed" title="Missed war"></div>`;
             } else {
-              dotsHtml += '<div class="dot none" title="Not in clan"></div>';
+              dotsHtml += `<div class="dot none" title="Not in clan"></div>`;
             }
           }
           dotsHtml += '</div>';

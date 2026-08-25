@@ -13,7 +13,7 @@
       padding: 24px;
     }
     .container {
-      max-width: 1250px;
+      max-width: 1300px;
       margin: 0 auto;
     }
     h1 {
@@ -91,6 +91,15 @@
     .review { background: #78350f; color: #fde047; }
     .kick { background: #831843; color: #f472b6; }
     
+    .fame-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .sparkline-svg {
+      overflow: visible;
+    }
+
     .loyalty-cell {
       display: flex;
       flex-direction: column;
@@ -165,7 +174,7 @@
           <th onclick="sortTable('name')">Player <span id="sort-name"></span></th>
           <th onclick="sortTable('role')">Role <span id="sort-role"></span></th>
           <th onclick="sortTable('donations')">Donations <span id="sort-donations"></span></th>
-          <th onclick="sortTable('avgFame')">Avg Fame / Wk <span id="sort-avgFame"></span></th>
+          <th onclick="sortTable('avgFame')">Avg Fame / Wk (Trend) <span id="sort-avgFame"></span></th>
           <th onclick="sortTable('decks')">Total Decks (Max 160) <span id="sort-decks"></span></th>
           <th onclick="sortTable('weeks')">War Loyalty <span id="sort-weeks"></span></th>
           <th onclick="sortTable('recommendationWeight')">Action / Recommendation <span id="sort-recommendationWeight"></span></th>
@@ -204,6 +213,31 @@
     let currentSortColumn = 'role';
     let currentSortAsc = false;
 
+    function createSparkline(fameHistory) {
+      const width = 65;
+      const height = 18;
+      const maxFame = 3600;
+
+      const chronological = [...fameHistory].reverse();
+
+      const points = chronological.map((val, i) => {
+        const x = (i / (chronological.length - 1 || 1)) * width;
+        const v = val !== null ? val : 0;
+        const y = height - (Math.min(v, maxFame) / maxFame) * (height - 2) - 1;
+        return `${x.toFixed(1)},${y.toFixed(1)}`;
+      });
+
+      const pointsString = points.join(' ');
+      const fillPoints = `0,${height} ${pointsString} ${width},${height}`;
+
+      return `
+        <svg class="sparkline-svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+          <polygon points="${fillPoints}" fill="rgba(249, 115, 22, 0.25)" />
+          <polyline points="${pointsString}" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      `;
+    }
+
     async function loadDashboard() {
       try {
         const [membersRes, historyRes] = await Promise.all([
@@ -224,13 +258,21 @@
           if (!standing) return;
           (standing.clan.participants || []).forEach(p => {
             if (!warStats[p.tag]) {
-              warStats[p.tag] = { fame: 0, decks: 0, weeks: 0, history: new Array(totalWeeks).fill(null) };
+              warStats[p.tag] = { 
+                fame: 0, 
+                decks: 0, 
+                weeks: 0, 
+                history: new Array(totalWeeks).fill(null),
+                fameHistory: new Array(totalWeeks).fill(null)
+              };
             }
             const decksUsed = p.decksUsed || 0;
-            warStats[p.tag].fame += p.fame || 0;
+            const fameGained = p.fame || 0;
+            warStats[p.tag].fame += fameGained;
             warStats[p.tag].decks += decksUsed;
             warStats[p.tag].weeks += 1;
             warStats[p.tag].history[weekIndex] = decksUsed;
+            warStats[p.tag].fameHistory[weekIndex] = fameGained;
           });
         });
 
@@ -238,7 +280,13 @@
         let activeWarriorsCount = 0;
 
         combinedData = currentMembers.map(m => {
-          const war = warStats[m.tag] || { fame: 0, decks: 0, weeks: 0, history: new Array(totalWeeks).fill(null) };
+          const war = warStats[m.tag] || { 
+            fame: 0, 
+            decks: 0, 
+            weeks: 0, 
+            history: new Array(totalWeeks).fill(null),
+            fameHistory: new Array(totalWeeks).fill(null)
+          };
           const activeWeeks = war.weeks || 0;
           const avgFame = activeWeeks > 0 ? Math.round(war.fame / activeWeeks) : 0;
 
@@ -309,6 +357,7 @@
             donations: m.donations || 0,
             fame: war.fame,
             avgFame: avgFame,
+            sparklineHtml: createSparkline(war.fameHistory),
             decks: war.decks,
             weeks: activeWeeks,
             tenureWeeks: tenureWeeks,
@@ -388,7 +437,12 @@
           <td><strong>${m.name}</strong></td>
           <td><span class="role">${roleNames[m.role] || m.role}</span></td>
           <td>${m.donations}</td>
-          <td>${m.avgFame.toLocaleString()}</td>
+          <td>
+            <div class="fame-cell">
+              <span>${m.avgFame.toLocaleString()}</span>
+              ${m.sparklineHtml}
+            </div>
+          </td>
           <td>${m.decks}</td>
           <td>
             <div class="loyalty-cell">

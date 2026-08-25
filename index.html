@@ -96,6 +96,10 @@
       align-items: center;
       gap: 12px;
     }
+    .fame-num {
+      min-width: 48px;
+      display: inline-block;
+    }
     .sparkline-svg {
       overflow: visible;
     }
@@ -439,7 +443,7 @@
           <td>${m.donations}</td>
           <td>
             <div class="fame-cell">
-              <span>${m.avgFame.toLocaleString()}</span>
+              <span class="fame-num">${m.avgFame.toLocaleString()}</span>
               ${m.sparklineHtml}
             </div>
           </td>

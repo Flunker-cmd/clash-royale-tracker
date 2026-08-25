@@ -219,16 +219,16 @@
             activeWarriorsCount++;
           }
 
-          let firstSeenIndex = -1;
-          for (let i = totalWeeks - 1; i >= 0; i--) {
-            if (war.history[i]) {
-              firstSeenIndex = i;
-              break;
-            }
-          }
+         let firstSeenIndex = -1;
+      for (let i = totalWeeks - 1; i >= 0; i--) {
+        if (war.history[i]) {
+          firstSeenIndex = i;
+          break;
+        }
+      }
 
-          let tenureWeeks = firstSeenIndex !== -1 ? (totalWeeks - firstSeenIndex) : 0;
-          let loyaltyRatio = tenureWeeks > 0 ? `${activeWeeks} / ${tenureWeeks} wk` : "0 / 0 wk";
+      let tenureWeeks = firstSeenIndex !== -1 ? (firstSeenIndex + 1) : 0;
+      let loyaltyRatio = tenureWeeks > 0 ? `${activeWeeks} / ${tenureWeeks} wk` : "0 / 0 wk";
 
           let dotsHtml = '<div class="timeline">';
           for (let i = totalWeeks - 1; i >= 0; i--) {

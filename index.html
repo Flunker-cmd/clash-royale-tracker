@@ -17,11 +17,6 @@
       margin: 0 auto;
     }
     .header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 16px;
       margin-bottom: 24px;
     }
     h1 {
@@ -147,13 +142,6 @@
     tr:nth-child(even) { background-color: #1e293b; }
     tr:nth-child(odd) { background-color: #182232; }
 
-    .sticky-col {
-      position: sticky;
-      left: 0;
-      background: inherit;
-      z-index: 1;
-    }
-    
     .badge {
       padding: 4px 8px;
       border-radius: 4px;
@@ -250,7 +238,6 @@
         <p class="subtitle" id="subtitle">Loading member & history data...</p>
         <div class="last-updated" id="last-updated">Updating timestamp...</div>
       </div>
-      <button class="btn btn-copy" onclick="copyChatSummary()">📋 Copy action summary</button>
     </div>
 
     <div class="stats-grid">
@@ -279,6 +266,7 @@
         <button class="btn" id="btn-filter-promote" onclick="setFilter('promote')">Promotions</button>
         <button class="btn" id="btn-filter-review" onclick="setFilter('review')">Review / Kick</button>
       </div>
+      <button class="btn btn-copy" onclick="copyChatSummary()">📋 Copy action summary</button>
     </div>
 
     <div class="table-wrapper">
@@ -308,7 +296,7 @@
     </div>
 
     <footer>
-      Created with ❤️ for Ikea Clan (#L0G0Y0JP)
+      Created with ❤️ for Ikea Clan (#L0G0Y0JP) • Maintained by wisely
     </footer>
   </div>
 

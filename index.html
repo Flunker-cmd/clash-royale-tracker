@@ -237,7 +237,7 @@
     footer {
       margin-top: 32px;
       text-align: center;
-      font-size: 0.8em;
+      font-size: 0.85em;
       color: #64748b;
     }
   </style>
@@ -250,7 +250,7 @@
         <p class="subtitle" id="subtitle">Loading member & history data...</p>
         <div class="last-updated" id="last-updated">Updating timestamp...</div>
       </div>
-      <button class="btn btn-copy" onclick="copyChatSummary()">📋 Copy Clan Chat Summary</button>
+      <button class="btn btn-copy" onclick="copyChatSummary()">📋 Copy action summary</button>
     </div>
 
     <div class="stats-grid">
@@ -308,7 +308,7 @@
     </div>
 
     <footer>
-      Created for Ikea Clan • Maintained by N3lson
+      Created with ❤️ for Ikea Clan (#L0G0Y0JP)
     </footer>
   </div>
 
@@ -334,6 +334,16 @@
     let currentSortAsc = false;
     let currentFilter = 'all';
     let searchQuery = '';
+
+    function formatSwedishDate(date) {
+      const pad = n => String(n).padStart(2, '0');
+      const year = date.getFullYear();
+      const month = pad(date.getMonth() + 1);
+      const day = pad(date.getDate());
+      const hours = pad(date.getHours());
+      const minutes = pad(date.getMinutes());
+      return `${year}-${month}-${day} ${hours}:${minutes}`;
+    }
 
     function parseLastSeen(str) {
       if (!str) return { text: 'Unknown', isWarning: false };
@@ -387,7 +397,7 @@
         const lastModHeader = membersRes.headers.get('last-modified');
         if (lastModHeader) {
           const date = new Date(lastModHeader);
-          document.getElementById('last-updated').textContent = `Data last updated: ${date.toLocaleString()}`;
+          document.getElementById('last-updated').textContent = `Data last updated: ${formatSwedishDate(date)}`;
         } else {
           document.getElementById('last-updated').textContent = `Data loaded from GitHub Pages`;
         }

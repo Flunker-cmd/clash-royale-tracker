@@ -135,6 +135,51 @@ class GenerateInsightsTests(unittest.TestCase):
 
             self.assertEqual(data["inactive"][0]["name"], "Bob")
 
+    def test_generate_insights_blocks_promotion_when_recent_participation_is_low(self):
+        members = {
+            "memberList": [
+                {
+                    "tag": "#A3",
+                    "name": "Charlie",
+                    "role": "member",
+                    "donations": 200,
+                    "lastSeen": "2024-01-01T00:00:00Z",
+                }
+            ]
+        }
+        history = {
+            "items": [
+                {
+                    "standings": [
+                        {
+                            "clan": {
+                                "tag": "#L0G0Y0JP",
+                                "participants": [
+                                    {"tag": "#A3", "fame": 5000, "decksUsed": 1}
+                                ],
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            members_path = Path(tmpdir) / "members.json"
+            history_path = Path(tmpdir) / "history.json"
+            members_path.write_text(json.dumps(members), encoding="utf-8")
+            history_path.write_text(json.dumps(history), encoding="utf-8")
+
+            criteria = {
+                "recentParticipationThreshold": 4,
+                "recentParticipationEnabled": True,
+            }
+
+            data = generate_insights(str(members_path), str(history_path), criteria=criteria)
+
+            self.assertNotIn("Charlie", [item["name"] for item in data["promote"]])
+            self.assertIn("Charlie", [item["name"] for item in data["review"]])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -144,6 +144,17 @@
       color: #cbd5e1;
       font-size: 0.8em;
     }
+    .criteria-info {
+      margin-top: 12px;
+      margin-bottom: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: rgba(14, 116, 144, 0.12);
+      border: 1px solid rgba(125, 211, 252, 0.25);
+      color: #dbeafe;
+      font-size: 0.82em;
+      line-height: 1.5;
+    }
     .criteria-field-header {
       display: flex;
       align-items: center;
@@ -463,7 +474,21 @@
 
     <div class="criteria-panel">
       <div class="label">Recommendation Criteria</div>
+      <div class="criteria-info">
+        Recent activity is measured as decks used in the latest war. A member must hit the participation gate before being considered for promotion. If the latest war is 0 decks, they are counted as inactive. Default gate: 4 decks used in the latest war.
+      </div>
       <div class="criteria-sections">
+        <div class="criteria-section">
+          <div class="criteria-section-title">Recent participation gate</div>
+          <div class="criteria-grid">
+            <div class="criteria-field">
+              <div class="criteria-field-header">
+                <label class="criteria-toggle"><input id="criteria-recentParticipationEnabled" type="checkbox" checked> Enabled</label>
+              </div>
+              <input id="criteria-recentParticipationThreshold" type="number" min="0" max="16" step="1" value="4">
+            </div>
+          </div>
+        </div>
         <div class="criteria-section">
           <div class="criteria-section-title">Promote to Elder</div>
           <div class="criteria-grid">
@@ -599,7 +624,9 @@
       kickAvgFame: 400,
       kickAvgFameEnabled: true,
       kickDonations: 30,
-      kickDonationsEnabled: true
+      kickDonationsEnabled: true,
+      recentParticipationThreshold: 4,
+      recentParticipationEnabled: true
     };
 
     let combinedData = [];
@@ -623,7 +650,9 @@
         kickAvgFame: Number(document.getElementById('criteria-kickAvgFame').value || defaultCriteria.kickAvgFame),
         kickAvgFameEnabled: document.getElementById('criteria-kickAvgFameEnabled').checked,
         kickDonations: Number(document.getElementById('criteria-kickDonations').value || defaultCriteria.kickDonations),
-        kickDonationsEnabled: document.getElementById('criteria-kickDonationsEnabled').checked
+        kickDonationsEnabled: document.getElementById('criteria-kickDonationsEnabled').checked,
+        recentParticipationThreshold: Number(document.getElementById('criteria-recentParticipationThreshold').value || defaultCriteria.recentParticipationThreshold),
+        recentParticipationEnabled: document.getElementById('criteria-recentParticipationEnabled').checked
       };
     }
 
@@ -698,12 +727,19 @@
         return { text: 'Inactive', weight: 2, className: 'review' };
       }
 
+      const recentParticipationEnabled = criteria.recentParticipationEnabled !== false;
+      const recentParticipationThreshold = Number(criteria.recentParticipationThreshold ?? 4);
+      const recentParticipationOk = !recentParticipationEnabled || latestWarParticipation >= recentParticipationThreshold;
       const elderAvgEnabled = criteria.promoteElderAvgFameEnabled !== false;
       const elderDonationEnabled = criteria.promoteElderDonationsEnabled !== false;
       const coLeaderAvgEnabled = criteria.promoteCoLeaderAvgFameEnabled !== false;
       const coLeaderDonationEnabled = criteria.promoteCoLeaderDonationsEnabled !== false;
       const kickAvgEnabled = criteria.kickAvgFameEnabled !== false;
       const kickDonationEnabled = criteria.kickDonationsEnabled !== false;
+
+      if (!recentParticipationOk) {
+        return { text: 'Recent activity low', weight: 2, className: 'review' };
+      }
 
       const elderFameOk = !elderAvgEnabled || avgFame >= Number(criteria.promoteElderAvgFame);
       const elderDonationsOk = !elderDonationEnabled || donations >= Number(criteria.promoteElderDonations);

@@ -6,14 +6,15 @@ from pathlib import Path
 CLAN_TAG = "#L0G0Y0JP"
 
 DEFAULT_CRITERIA = {
-    "promoteMemberAvgFame": 1800,
-    "promoteMemberDonations": 50,
-    "promoteElderAvgFame": 2500,
-    "promoteElderDonations": 100,
-    "reviewElderAvgFame": 600,
-    "kickMemberAvgFame": 400,
-    "kickMemberDonations": 30,
-    "inactiveParticipationRatio": 0.5,
+    "promoteElderAvgFame": 1800,
+    "promoteElderDonations": 50,
+    "promoteElderParticipationRatio": 0.5,
+    "promoteCoLeaderAvgFame": 2500,
+    "promoteCoLeaderDonations": 100,
+    "promoteCoLeaderParticipationRatio": 0.5,
+    "kickAvgFame": 400,
+    "kickDonations": 30,
+    "kickParticipationRatio": 0.5,
 }
 
 
@@ -139,40 +140,32 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
     review = []
     inactive = []
 
-    min_active_weeks = max(1, math.ceil(total_weeks * float(criteria["inactiveParticipationRatio"])))
-
     for member in summaries:
-        if member["role"] == "member" and member["avgFame"] >= criteria["promoteMemberAvgFame"] and member["donations"] >= criteria["promoteMemberDonations"]:
-            promote.append({
-                "name": member["name"],
-                "avgFame": member["avgFame"],
-                "donations": member["donations"],
-                "reason": "Member with strong fame and donations",
-            })
-        elif member["role"] == "elder" and member["avgFame"] >= criteria["promoteElderAvgFame"] and member["donations"] >= criteria["promoteElderDonations"]:
-            promote.append({
-                "name": member["name"],
-                "avgFame": member["avgFame"],
-                "donations": member["donations"],
-                "reason": "Elder with solid war contribution",
-            })
-
-        if member["role"] in {"coLeader", "elder"} and member["avgFame"] < criteria["reviewElderAvgFame"]:
-            review.append({
-                "name": member["name"],
-                "avgFame": member["avgFame"],
-                "donations": member["donations"],
-                "reason": "Role holder with low war contribution",
-            })
-        elif member["role"] == "member" and member["avgFame"] < criteria["kickMemberAvgFame"] and member["donations"] < criteria["kickMemberDonations"]:
-            review.append({
-                "name": member["name"],
-                "avgFame": member["avgFame"],
-                "donations": member["donations"],
-                "reason": "Low contribution / weak war presence",
-            })
-
-        if member["activeWeeks"] < min_active_weeks:
+        # Check promote to elder (members only)
+        if member["role"] == "member":
+            min_active_weeks_promote = max(1, math.ceil(total_weeks * float(criteria["promoteElderParticipationRatio"])))
+            if member["activeWeeks"] >= min_active_weeks_promote and member["avgFame"] >= criteria["promoteElderAvgFame"] and member["donations"] >= criteria["promoteElderDonations"]:
+                promote.append({
+                    "name": member["name"],
+                    "avgFame": member["avgFame"],
+                    "donations": member["donations"],
+                    "reason": "Ready for Elder promotion",
+                })
+        
+        # Check promote to co-leader (elders only)
+        if member["role"] == "elder":
+            min_active_weeks_promote = max(1, math.ceil(total_weeks * float(criteria["promoteCoLeaderParticipationRatio"])))
+            if member["activeWeeks"] >= min_active_weeks_promote and member["avgFame"] >= criteria["promoteCoLeaderAvgFame"] and member["donations"] >= criteria["promoteCoLeaderDonations"]:
+                promote.append({
+                    "name": member["name"],
+                    "avgFame": member["avgFame"],
+                    "donations": member["donations"],
+                    "reason": "Ready for Co-Leader promotion",
+                })
+        
+        # Check kick/demote (all roles)
+        min_active_weeks_kick = max(1, math.ceil(total_weeks * float(criteria["kickParticipationRatio"])))
+        if member["activeWeeks"] < min_active_weeks_kick:
             inactive.append({
                 "name": member["name"],
                 "activeWeeks": member["activeWeeks"],
@@ -181,8 +174,15 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
                 "lastSeenHours": round(member["lastSeenHours"], 1) if member["lastSeenHours"] != float("inf") else None,
                 "reason": "Below minimum participation threshold",
             })
+        elif member["avgFame"] < criteria["kickAvgFame"] and member["donations"] < criteria["kickDonations"]:
+            review.append({
+                "name": member["name"],
+                "avgFame": member["avgFame"],
+                "donations": member["donations"],
+                "reason": "Candidate for kick/demotion",
+            })
 
-    active_warriors = sum(1 for member in summaries if member["activeWeeks"] >= min_active_weeks)
+    active_warriors = sum(1 for member in summaries if member["activeWeeks"] >= max(1, math.ceil(total_weeks * 0.5)))
     avg_clan_fame = round(sum(member["avgFame"] for member in summaries) / len(summaries)) if summaries else 0
     top_performer = max(summaries, key=lambda m: m["avgFame"], default={"name": "N/A", "avgFame": 0})
 

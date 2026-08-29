@@ -533,14 +533,15 @@
     };
 
     const defaultCriteria = {
-      promoteMemberAvgFame: 1800,
-      promoteMemberDonations: 50,
-      promoteElderAvgFame: 2500,
-      promoteElderDonations: 100,
-      reviewElderAvgFame: 600,
-      kickMemberAvgFame: 400,
-      kickMemberDonations: 30,
-      inactiveParticipationRatio: 0.5
+      promoteElderAvgFame: 1800,
+      promoteElderDonations: 50,
+      promoteElderParticipationRatio: 0.5,
+      promoteCoLeaderAvgFame: 2500,
+      promoteCoLeaderDonations: 100,
+      promoteCoLeaderParticipationRatio: 0.5,
+      kickAvgFame: 400,
+      kickDonations: 30,
+      kickParticipationRatio: 0.5
     };
 
     let combinedData = [];
@@ -553,14 +554,15 @@
 
     function getCriteriaInputs() {
       return {
-        promoteMemberAvgFame: Number(document.getElementById('criteria-promoteMemberAvgFame').value || defaultCriteria.promoteMemberAvgFame),
-        promoteMemberDonations: Number(document.getElementById('criteria-promoteMemberDonations').value || defaultCriteria.promoteMemberDonations),
         promoteElderAvgFame: Number(document.getElementById('criteria-promoteElderAvgFame').value || defaultCriteria.promoteElderAvgFame),
         promoteElderDonations: Number(document.getElementById('criteria-promoteElderDonations').value || defaultCriteria.promoteElderDonations),
-        reviewElderAvgFame: Number(document.getElementById('criteria-reviewElderAvgFame').value || defaultCriteria.reviewElderAvgFame),
-        kickMemberAvgFame: Number(document.getElementById('criteria-kickMemberAvgFame').value || defaultCriteria.kickMemberAvgFame),
-        kickMemberDonations: Number(document.getElementById('criteria-kickMemberDonations').value || defaultCriteria.kickMemberDonations),
-        inactiveParticipationRatio: Number(document.getElementById('criteria-inactiveParticipationRatio').value || defaultCriteria.inactiveParticipationRatio)
+        promoteElderParticipationRatio: Number(document.getElementById('criteria-promoteElderParticipationRatio').value || defaultCriteria.promoteElderParticipationRatio),
+        promoteCoLeaderAvgFame: Number(document.getElementById('criteria-promoteCoLeaderAvgFame').value || defaultCriteria.promoteCoLeaderAvgFame),
+        promoteCoLeaderDonations: Number(document.getElementById('criteria-promoteCoLeaderDonations').value || defaultCriteria.promoteCoLeaderDonations),
+        promoteCoLeaderParticipationRatio: Number(document.getElementById('criteria-promoteCoLeaderParticipationRatio').value || defaultCriteria.promoteCoLeaderParticipationRatio),
+        kickAvgFame: Number(document.getElementById('criteria-kickAvgFame').value || defaultCriteria.kickAvgFame),
+        kickDonations: Number(document.getElementById('criteria-kickDonations').value || defaultCriteria.kickDonations),
+        kickParticipationRatio: Number(document.getElementById('criteria-kickParticipationRatio').value || defaultCriteria.kickParticipationRatio)
       };
     }
 
@@ -589,29 +591,33 @@
 
     function getRecommendation(member, criteria, totalWeeks) {
       const activeWeeks = member.weeks || 0;
-      const minActiveWeeks = Math.max(1, Math.ceil(totalWeeks * (Number(criteria.inactiveParticipationRatio) || 0.5)));
       const avgFame = member.avgFame || 0;
       const donations = member.donations || 0;
       const role = member.role;
 
-      if (activeWeeks < minActiveWeeks) {
-        return { text: 'New / Low History', weight: 2, className: 'review' };
+      // Check promote to elder (members only)
+      if (role === 'member') {
+        const minActiveWeeks = Math.max(1, Math.ceil(totalWeeks * (Number(criteria.promoteElderParticipationRatio) || 0.5)));
+        if (activeWeeks >= minActiveWeeks && avgFame >= Number(criteria.promoteElderAvgFame) && donations >= Number(criteria.promoteElderDonations)) {
+          return { text: 'Promote to Elder', weight: 5, className: 'promote' };
+        }
       }
 
-      if (role === 'member' && avgFame >= Number(criteria.promoteMemberAvgFame) && donations >= Number(criteria.promoteMemberDonations)) {
-        return { text: 'Promote to Elder', weight: 5, className: 'promote' };
+      // Check promote to co-leader (elders only)
+      if (role === 'elder') {
+        const minActiveWeeks = Math.max(1, Math.ceil(totalWeeks * (Number(criteria.promoteCoLeaderParticipationRatio) || 0.5)));
+        if (activeWeeks >= minActiveWeeks && avgFame >= Number(criteria.promoteCoLeaderAvgFame) && donations >= Number(criteria.promoteCoLeaderDonations)) {
+          return { text: 'Promote to Co-Leader', weight: 5, className: 'promote' };
+        }
       }
 
-      if (role === 'elder' && avgFame >= Number(criteria.promoteElderAvgFame) && donations >= Number(criteria.promoteElderDonations)) {
-        return { text: 'Promote Candidate', weight: 5, className: 'promote' };
+      // Check kick/demote (all roles)
+      const kickMinActiveWeeks = Math.max(1, Math.ceil(totalWeeks * (Number(criteria.kickParticipationRatio) || 0.5)));
+      if (activeWeeks < kickMinActiveWeeks) {
+        return { text: 'Inactive', weight: 2, className: 'review' };
       }
-
-      if (['coLeader', 'elder'].includes(role) && avgFame < Number(criteria.reviewElderAvgFame)) {
-        return { text: 'Demote / Review', weight: 1, className: 'review' };
-      }
-
-      if (role === 'member' && avgFame < Number(criteria.kickMemberAvgFame) && donations < Number(criteria.kickMemberDonations)) {
-        return { text: 'Kick Candidate', weight: 0, className: 'kick' };
+      if (avgFame < Number(criteria.kickAvgFame) && donations < Number(criteria.kickDonations)) {
+        return { text: 'Kick / Demote', weight: 0, className: 'kick' };
       }
 
       return { text: 'Good Standing', weight: 3, className: 'good' };
@@ -847,8 +853,7 @@
     function updateSummaryAndRecommendations() {
       const promote = combinedData.filter(member => member.recommendationClass === 'promote');
       const review = combinedData.filter(member => member.recommendationClass === 'review' || member.recommendationClass === 'kick');
-      const minActiveWeeks = Math.max(1, Math.ceil((combinedData[0]?.totalWeeks || 1) * (Number(currentCriteria.inactiveParticipationRatio) || 0.5)));
-      const inactive = combinedData.filter(member => member.weeks < minActiveWeeks);
+      const inactive = combinedData.filter(member => member.recommendationClass === 'review');
       const topPlayer = [...combinedData].sort((a, b) => b.avgFame - a.avgFame)[0];
 
       document.getElementById('insight-promote').textContent = promote.length;
@@ -856,7 +861,10 @@
       document.getElementById('insight-inactive').textContent = inactive.length;
       document.getElementById('insight-topfame').textContent = topPlayer ? `${topPlayer.avgFame.toLocaleString()}` : '-';
 
-      const activeCount = combinedData.filter(member => member.weeks >= minActiveWeeks).length;
+      const activeCount = combinedData.filter(member => {
+        const minWeeks = Math.max(1, Math.ceil((member.totalWeeks || 1) * 0.5));
+        return member.weeks >= minWeeks;
+      }).length;
       document.getElementById('summary-text').textContent =
         `Clan health is strong: ${activeCount} of ${combinedData.length} members are active, ${promote.length} players are ready for promotion, ${review.length} need review, and ${topPlayer ? topPlayer.name : 'N/A'} leads with ${topPlayer ? topPlayer.avgFame.toLocaleString() : '0'} average fame.`;
 

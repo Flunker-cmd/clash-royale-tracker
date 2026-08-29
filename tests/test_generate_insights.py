@@ -28,12 +28,15 @@ class GenerateInsightsTests(unittest.TestCase):
         members_path = Path("clan_members.json")
         history_path = Path("history_data.json")
         criteria = {
-            "promoteMemberAvgFame": 5000,
-            "promoteMemberDonations": 200,
-            "kickMemberAvgFame": 1000,
-            "kickMemberDonations": 50,
-            "reviewElderAvgFame": 2000,
-            "inactiveParticipationRatio": 0.6,
+            "promoteElderAvgFame": 5000,
+            "promoteElderDonations": 200,
+            "promoteCoLeaderAvgFame": 6000,
+            "promoteCoLeaderDonations": 250,
+            "kickAvgFame": 1000,
+            "kickDonations": 50,
+            "promoteElderParticipationRatio": 0.6,
+            "promoteCoLeaderParticipationRatio": 0.7,
+            "kickParticipationRatio": 0.6,
         }
 
         data = generate_insights(str(members_path), str(history_path), criteria=criteria)

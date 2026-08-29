@@ -112,11 +112,30 @@
       padding: 18px 20px;
       margin-bottom: 24px;
     }
+    .criteria-sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+    .criteria-section {
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .criteria-section-title {
+      color: #7dd3fc;
+      font-size: 0.8em;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
     .criteria-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
       gap: 12px;
-      margin-top: 12px;
     }
     .criteria-field {
       display: flex;
@@ -251,6 +270,22 @@
       color: #94a3b8;
       text-transform: capitalize;
     }
+    .role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.74em;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+    }
+    .role-badge.role-leader { background: rgba(34, 211, 238, 0.16); color: #67e8f9; border-color: rgba(34, 211, 238, 0.35); }
+    .role-badge.role-coLeader { background: rgba(96, 165, 250, 0.12); color: #93c5fd; border-color: rgba(96, 165, 250, 0.35); }
+    .role-badge.role-elder { background: rgba(250, 204, 21, 0.12); color: #facc15; border-color: rgba(250, 204, 21, 0.35); }
+    .role-badge.role-member { background: rgba(148, 163, 184, 0.14); color: #cbd5e1; border-color: rgba(148, 163, 184, 0.3); }
     .last-seen {
       font-size: 0.8em;
       color: #64748b;
@@ -375,34 +410,6 @@
       </div>
     </div>
 
-    <div class="summary-card" id="summary-card">
-      <div class="label">Clan Health</div>
-      <p class="summary-text" id="summary-text">Loading clan summary...</p>
-    </div>
-
-    <div class="recommendation-panel" id="recommendations-panel">
-      <div class="label">Top Recommendations</div>
-      <div id="recommendations-list" class="recommendation-list"></div>
-    </div>
-
-    <div class="criteria-panel">
-      <div class="label">Recommendation Criteria</div>
-      <div class="criteria-grid">
-        <label class="criteria-field"><span>Promote member avg fame</span><input id="criteria-promoteMemberAvgFame" type="number" min="0" step="50"></label>
-        <label class="criteria-field"><span>Promote member donations</span><input id="criteria-promoteMemberDonations" type="number" min="0" step="10"></label>
-        <label class="criteria-field"><span>Promote elder avg fame</span><input id="criteria-promoteElderAvgFame" type="number" min="0" step="50"></label>
-        <label class="criteria-field"><span>Promote elder donations</span><input id="criteria-promoteElderDonations" type="number" min="0" step="10"></label>
-        <label class="criteria-field"><span>Review elder avg fame</span><input id="criteria-reviewElderAvgFame" type="number" min="0" step="50"></label>
-        <label class="criteria-field"><span>Kick member avg fame</span><input id="criteria-kickMemberAvgFame" type="number" min="0" step="50"></label>
-        <label class="criteria-field"><span>Kick member donations</span><input id="criteria-kickMemberDonations" type="number" min="0" step="10"></label>
-        <label class="criteria-field"><span>Inactive participation ratio</span><input id="criteria-inactiveParticipationRatio" type="number" min="0" max="1" step="0.05"></label>
-      </div>
-      <div class="criteria-actions">
-        <button class="btn" id="criteria-reset-btn" type="button">Reset</button>
-        <button class="btn btn-copy" id="criteria-apply-btn" type="button">Apply</button>
-      </div>
-    </div>
-
     <div class="stats-grid" id="insight-grid" style="margin-top: 0; margin-bottom: 24px;">
       <div class="stat-card">
         <div class="label">Promote</div>
@@ -419,6 +426,44 @@
       <div class="stat-card">
         <div class="label">Top Avg Fame</div>
         <div class="value" id="insight-topfame">-</div>
+      </div>
+    </div>
+
+    <div class="summary-card" id="summary-card">
+      <div class="label">Clan Health</div>
+      <p class="summary-text" id="summary-text">Loading clan summary...</p>
+    </div>
+
+    <div class="recommendation-panel" id="recommendations-panel">
+      <div class="label">Top Recommendations</div>
+      <div id="recommendations-list" class="recommendation-list"></div>
+    </div>
+
+    <div class="criteria-panel">
+      <div class="label">Recommendation Criteria</div>
+      <div class="criteria-sections">
+        <div class="criteria-section">
+          <div class="criteria-section-title">Promotion Criteria</div>
+          <div class="criteria-grid">
+            <label class="criteria-field"><span>Promote member avg fame</span><input id="criteria-promoteMemberAvgFame" type="number" min="0" step="50"></label>
+            <label class="criteria-field"><span>Promote member donations</span><input id="criteria-promoteMemberDonations" type="number" min="0" step="10"></label>
+            <label class="criteria-field"><span>Promote elder avg fame</span><input id="criteria-promoteElderAvgFame" type="number" min="0" step="50"></label>
+            <label class="criteria-field"><span>Promote elder donations</span><input id="criteria-promoteElderDonations" type="number" min="0" step="10"></label>
+          </div>
+        </div>
+        <div class="criteria-section">
+          <div class="criteria-section-title">Demotion / Review Criteria</div>
+          <div class="criteria-grid">
+            <label class="criteria-field"><span>Review elder avg fame</span><input id="criteria-reviewElderAvgFame" type="number" min="0" step="50"></label>
+            <label class="criteria-field"><span>Kick member avg fame</span><input id="criteria-kickMemberAvgFame" type="number" min="0" step="50"></label>
+            <label class="criteria-field"><span>Kick member donations</span><input id="criteria-kickMemberDonations" type="number" min="0" step="10"></label>
+            <label class="criteria-field"><span>Inactive participation ratio</span><input id="criteria-inactiveParticipationRatio" type="number" min="0" max="1" step="0.05"></label>
+          </div>
+        </div>
+      </div>
+      <div class="criteria-actions">
+        <button class="btn" id="criteria-reset-btn" type="button">Reset</button>
+        <button class="btn btn-copy" id="criteria-apply-btn" type="button">Apply</button>
       </div>
     </div>
 
@@ -473,6 +518,13 @@
       member: "Member"
     };
 
+    const roleIcons = {
+      leader: '👑',
+      coLeader: '🛡️',
+      elder: '⭐',
+      member: '•'
+    };
+
     const roleOrder = {
       leader: 4,
       coLeader: 3,
@@ -492,6 +544,7 @@
     };
 
     let combinedData = [];
+    let dashboardState = null;
     let currentSortColumn = 'role';
     let currentSortAsc = false;
     let currentFilter = 'all';
@@ -564,6 +617,12 @@
       return { text: 'Good Standing', weight: 3, className: 'good' };
     }
 
+    function getRoleBadge(role) {
+      const safeRole = role || 'member';
+      const icon = roleIcons[safeRole] || roleIcons.member;
+      return `<span class="role-badge role-${safeRole}">${icon} ${roleNames[safeRole] || safeRole}</span>`;
+    }
+
     function formatSwedishDate(date) {
       const pad = n => String(n).padStart(2, '0');
       const year = date.getFullYear();
@@ -616,6 +675,125 @@
       `;
     }
 
+    function rebuildCombinedData() {
+      if (!dashboardState) return;
+
+      const { currentMembers, historyRaces, totalWeeks } = dashboardState;
+      const warStats = {};
+      let totalClanAvgFame = 0;
+      let activeWarriorsCount = 0;
+
+      historyRaces.forEach((race, weekIndex) => {
+        const standing = race.standings?.find(s => s.clan.tag === CLAN_TAG);
+        if (!standing) return;
+        (standing.clan.participants || []).forEach(p => {
+          if (!warStats[p.tag]) {
+            warStats[p.tag] = {
+              fame: 0,
+              decks: 0,
+              weeks: 0,
+              history: new Array(totalWeeks).fill(null),
+              fameHistory: new Array(totalWeeks).fill(null)
+            };
+          }
+          const decksUsed = p.decksUsed || 0;
+          const fameGained = p.fame || 0;
+          warStats[p.tag].fame += fameGained;
+          warStats[p.tag].decks += decksUsed;
+          warStats[p.tag].weeks += 1;
+          warStats[p.tag].history[weekIndex] = decksUsed;
+          warStats[p.tag].fameHistory[weekIndex] = fameGained;
+        });
+      });
+
+      combinedData = currentMembers.map(m => {
+        const war = warStats[m.tag] || {
+          fame: 0,
+          decks: 0,
+          weeks: 0,
+          history: new Array(totalWeeks).fill(null),
+          fameHistory: new Array(totalWeeks).fill(null)
+        };
+        const activeWeeks = war.weeks || 0;
+        const avgFame = activeWeeks > 0 ? Math.round(war.fame / activeWeeks) : 0;
+
+        totalClanAvgFame += avgFame;
+        if (activeWeeks >= Math.ceil(totalWeeks / 2)) {
+          activeWarriorsCount++;
+        }
+
+        let firstSeenIndex = -1;
+        for (let i = totalWeeks - 1; i >= 0; i--) {
+          if (war.history[i] !== null) {
+            firstSeenIndex = i;
+            break;
+          }
+        }
+
+        let tenureWeeks = firstSeenIndex !== -1 ? (firstSeenIndex + 1) : 0;
+        let loyaltyRatio = tenureWeeks > 0 ? `${activeWeeks} / ${tenureWeeks} wk` : "0 / 0 wk";
+
+        let dotsHtml = '<div class="timeline">';
+        for (let i = totalWeeks - 1; i >= 0; i--) {
+          const decks = war.history[i];
+          if (decks !== null && decks >= 16) {
+            dotsHtml += `<div class="dot full" data-tooltip="Week ${totalWeeks - i}: ${decks}/16 decks used"></div>`;
+          } else if (decks !== null && decks > 0) {
+            dotsHtml += `<div class="dot partial" data-tooltip="Week ${totalWeeks - i}: ${decks}/16 decks used"></div>`;
+          } else if (decks !== null && decks === 0) {
+            dotsHtml += `<div class="dot missed" data-tooltip="Week ${totalWeeks - i}: 0/16 decks used"></div>`;
+          } else if (firstSeenIndex !== -1 && i <= firstSeenIndex) {
+            dotsHtml += `<div class="dot missed" data-tooltip="Week ${totalWeeks - i}: Missed war"></div>`;
+          } else {
+            dotsHtml += `<div class="dot none" data-tooltip="Week ${totalWeeks - i}: Not in clan"></div>`;
+          }
+        }
+        dotsHtml += '</div>';
+
+        const recommendation = getRecommendation({
+          role: m.role,
+          avgFame: avgFame,
+          donations: m.donations || 0,
+          weeks: activeWeeks,
+        }, currentCriteria, totalWeeks);
+
+        const lastSeenInfo = parseLastSeen(m.lastSeen);
+
+        return {
+          tag: m.tag,
+          name: m.name,
+          role: m.role,
+          roleWeight: roleOrder[m.role] || 0,
+          donations: m.donations || 0,
+          fame: war.fame,
+          avgFame: avgFame,
+          sparklineHtml: createSparkline(war.fameHistory),
+          decks: war.decks,
+          weeks: activeWeeks,
+          tenureWeeks: tenureWeeks,
+          loyaltyRatio: loyaltyRatio,
+          dotsHtml: dotsHtml,
+          totalWeeks: totalWeeks,
+          lastSeenText: lastSeenInfo.text,
+          lastSeenWarning: lastSeenInfo.isWarning,
+          recommendationText: recommendation.text,
+          recommendationWeight: recommendation.weight,
+          recommendationClass: recommendation.className
+        };
+      });
+
+      const topPlayer = [...combinedData].sort((a, b) => b.avgFame - a.avgFame)[0];
+
+      document.getElementById('stat-trophies').textContent = (dashboardState.clanWarTrophies || 0).toLocaleString();
+      document.getElementById('stat-fame').textContent = totalClanAvgFame.toLocaleString();
+      document.getElementById('stat-active').textContent = `${activeWarriorsCount} / ${currentMembers.length}`;
+      document.getElementById('stat-top').textContent = topPlayer ? topPlayer.name : '-';
+      document.getElementById('subtitle').textContent = `Members: ${currentMembers.length} | Evaluated over the last ${totalWeeks} war weeks`;
+
+      updateSummaryAndRecommendations();
+      renderTable();
+    }
+
     async function loadDashboard() {
       try {
         const [membersRes, historyRes, insightsRes] = await Promise.all([
@@ -637,40 +815,10 @@
         const insightsData = insightsRes ? await insightsRes.json() : null;
 
         if (insightsData && insightsData.summary) {
-          const promoteCount = insightsData.promote?.length ?? 0;
-          const reviewCount = insightsData.review?.length ?? 0;
-          const inactiveCount = insightsData.inactive?.length ?? 0;
           const topPerformer = insightsData.topPerformer?.name || 'N/A';
           const topFame = insightsData.topPerformer?.avgFame ?? 0;
-
-          document.getElementById('insight-promote').textContent = promoteCount;
-          document.getElementById('insight-review').textContent = reviewCount;
-          document.getElementById('insight-inactive').textContent = inactiveCount;
           document.getElementById('insight-topfame').textContent = topFame ? `${topFame.toLocaleString()}` : '-';
-
-          document.getElementById('summary-text').textContent =
-            `Clan health is strong: ${insightsData.summary.activeWarriors} of ${insightsData.summary.activeMembers} members are active, ${promoteCount} players are ready for promotion, ${reviewCount} need review, and ${topPerformer} leads with ${topFame.toLocaleString()} average fame.`;
-
-          const topRecommendations = [];
-          (insightsData.promote || []).slice(0, 3).forEach(item => {
-            topRecommendations.push({ type: 'Promote', text: `${item.name} • ${item.avgFame.toLocaleString()} fame` });
-          });
-          (insightsData.review || []).slice(0, 2).forEach(item => {
-            topRecommendations.push({ type: 'Review', text: `${item.name} • ${item.avgFame.toLocaleString()} fame` });
-          });
-          (insightsData.inactive || []).slice(0, 2).forEach(item => {
-            topRecommendations.push({ type: 'Inactive', text: `${item.name} • ${item.activeWeeks}/${item.totalWeeks} wars` });
-          });
-
-          const recommendationsList = document.getElementById('recommendations-list');
-          recommendationsList.innerHTML = topRecommendations.length
-            ? topRecommendations.map(item => `
-                <div class="recommendation-item">
-                  <span class="recommendation-pill ${item.type.toLowerCase()}">${item.type}</span>
-                  <span>${item.text}</span>
-                </div>
-              `).join('')
-            : '<div class="recommendation-item"><span class="recommendation-pill neutral">Status</span><span>No major actions right now.</span></div>';
+          document.getElementById('summary-text').textContent = `Clan health snapshot: ${insightsData.summary.activeWarriors} of ${insightsData.summary.activeMembers} members are active, and ${topPerformer} leads with ${topFame.toLocaleString()} average fame.`;
         }
 
         applyCriteriaToInputs();
@@ -678,126 +826,14 @@
         const currentMembers = membersData.memberList || [];
         const historyRaces = historyData.items || [];
         const totalWeeks = historyRaces.length || 1;
+        dashboardState = {
+          currentMembers,
+          historyRaces,
+          totalWeeks,
+          clanWarTrophies: membersData.clanWarTrophies || 0
+        };
 
-        const warStats = {};
-        historyRaces.forEach((race, weekIndex) => {
-          const standing = race.standings?.find(s => s.clan.tag === CLAN_TAG);
-          if (!standing) return;
-          (standing.clan.participants || []).forEach(p => {
-            if (!warStats[p.tag]) {
-              warStats[p.tag] = { 
-                fame: 0, 
-                decks: 0, 
-                weeks: 0, 
-                history: new Array(totalWeeks).fill(null),
-                fameHistory: new Array(totalWeeks).fill(null)
-              };
-            }
-            const decksUsed = p.decksUsed || 0;
-            const fameGained = p.fame || 0;
-            warStats[p.tag].fame += fameGained;
-            warStats[p.tag].decks += decksUsed;
-            warStats[p.tag].weeks += 1;
-            warStats[p.tag].history[weekIndex] = decksUsed;
-            warStats[p.tag].fameHistory[weekIndex] = fameGained;
-          });
-        });
-
-        let totalClanAvgFame = 0;
-        let activeWarriorsCount = 0;
-
-        combinedData = currentMembers.map(m => {
-          const war = warStats[m.tag] || { 
-            fame: 0, 
-            decks: 0, 
-            weeks: 0, 
-            history: new Array(totalWeeks).fill(null),
-            fameHistory: new Array(totalWeeks).fill(null)
-          };
-          const activeWeeks = war.weeks || 0;
-          const avgFame = activeWeeks > 0 ? Math.round(war.fame / activeWeeks) : 0;
-
-          totalClanAvgFame += avgFame;
-          if (activeWeeks >= Math.ceil(totalWeeks / 2)) {
-            activeWarriorsCount++;
-          }
-
-          let firstSeenIndex = -1;
-          for (let i = totalWeeks - 1; i >= 0; i--) {
-            if (war.history[i] !== null) {
-              firstSeenIndex = i;
-              break;
-            }
-          }
-
-          let tenureWeeks = firstSeenIndex !== -1 ? (firstSeenIndex + 1) : 0;
-          let loyaltyRatio = tenureWeeks > 0 ? `${activeWeeks} / ${tenureWeeks} wk` : "0 / 0 wk";
-
-          let dotsHtml = '<div class="timeline">';
-          for (let i = totalWeeks - 1; i >= 0; i--) {
-            const decks = war.history[i];
-            if (decks !== null && decks >= 16) {
-              dotsHtml += `<div class="dot full" data-tooltip="Week ${totalWeeks - i}: ${decks}/16 decks used"></div>`;
-            } else if (decks !== null && decks > 0) {
-              dotsHtml += `<div class="dot partial" data-tooltip="Week ${totalWeeks - i}: ${decks}/16 decks used"></div>`;
-            } else if (decks !== null && decks === 0) {
-              dotsHtml += `<div class="dot missed" data-tooltip="Week ${totalWeeks - i}: 0/16 decks used"></div>`;
-            } else if (firstSeenIndex !== -1 && i <= firstSeenIndex) {
-              dotsHtml += `<div class="dot missed" data-tooltip="Week ${totalWeeks - i}: Missed war"></div>`;
-            } else {
-              dotsHtml += `<div class="dot none" data-tooltip="Week ${totalWeeks - i}: Not in clan"></div>`;
-            }
-          }
-          dotsHtml += '</div>';
-
-          const recommendation = getRecommendation({
-            role: m.role,
-            avgFame: avgFame,
-            donations: m.donations || 0,
-            weeks: activeWeeks,
-          }, currentCriteria, totalWeeks);
-
-          let recText = recommendation.text;
-          let recWeight = recommendation.weight;
-          let recClass = recommendation.className;
-
-          const lastSeenInfo = parseLastSeen(m.lastSeen);
-
-          return {
-            tag: m.tag,
-            name: m.name,
-            role: m.role,
-            roleWeight: roleOrder[m.role] || 0,
-            donations: m.donations || 0,
-            fame: war.fame,
-            avgFame: avgFame,
-            sparklineHtml: createSparkline(war.fameHistory),
-            decks: war.decks,
-            weeks: activeWeeks,
-            tenureWeeks: tenureWeeks,
-            loyaltyRatio: loyaltyRatio,
-            dotsHtml: dotsHtml,
-            totalWeeks: totalWeeks,
-            lastSeenText: lastSeenInfo.text,
-            lastSeenWarning: lastSeenInfo.isWarning,
-            recommendationText: recText,
-            recommendationWeight: recWeight,
-            recommendationClass: recClass
-          };
-        });
-
-        const topPlayer = [...combinedData].sort((a, b) => b.avgFame - a.avgFame)[0];
-
-        document.getElementById('stat-trophies').textContent = (membersData.clanWarTrophies || 0).toLocaleString();
-        document.getElementById('stat-fame').textContent = totalClanAvgFame.toLocaleString();
-        document.getElementById('stat-active').textContent = `${activeWarriorsCount} / ${currentMembers.length}`;
-        document.getElementById('stat-top').textContent = topPlayer ? topPlayer.name : '-';
-
-        document.getElementById('subtitle').textContent = 
-          `Members: ${currentMembers.length} | Evaluated over the last ${totalWeeks} war weeks`;
-
-        renderTable();
-
+        rebuildCombinedData();
       } catch (err) {
         document.getElementById('subtitle').textContent = 'Error loading dashboard data.';
       }
@@ -808,19 +844,55 @@
       renderTable();
     }
 
+    function updateSummaryAndRecommendations() {
+      const promote = combinedData.filter(member => member.recommendationClass === 'promote');
+      const review = combinedData.filter(member => member.recommendationClass === 'review' || member.recommendationClass === 'kick');
+      const minActiveWeeks = Math.max(1, Math.ceil((combinedData[0]?.totalWeeks || 1) * (Number(currentCriteria.inactiveParticipationRatio) || 0.5)));
+      const inactive = combinedData.filter(member => member.weeks < minActiveWeeks);
+      const topPlayer = [...combinedData].sort((a, b) => b.avgFame - a.avgFame)[0];
+
+      document.getElementById('insight-promote').textContent = promote.length;
+      document.getElementById('insight-review').textContent = review.length;
+      document.getElementById('insight-inactive').textContent = inactive.length;
+      document.getElementById('insight-topfame').textContent = topPlayer ? `${topPlayer.avgFame.toLocaleString()}` : '-';
+
+      const activeCount = combinedData.filter(member => member.weeks >= minActiveWeeks).length;
+      document.getElementById('summary-text').textContent =
+        `Clan health is strong: ${activeCount} of ${combinedData.length} members are active, ${promote.length} players are ready for promotion, ${review.length} need review, and ${topPlayer ? topPlayer.name : 'N/A'} leads with ${topPlayer ? topPlayer.avgFame.toLocaleString() : '0'} average fame.`;
+
+      const topRecommendations = [];
+      promote.slice(0, 3).forEach(member => {
+        topRecommendations.push({ type: 'Promote', text: `${member.name} • ${member.avgFame.toLocaleString()} fame` });
+      });
+      review.slice(0, 2).forEach(member => {
+        topRecommendations.push({ type: 'Review', text: `${member.name} • ${member.recommendationText}` });
+      });
+      inactive.slice(0, 2).forEach(member => {
+        topRecommendations.push({ type: 'Inactive', text: `${member.name} • ${member.weeks}/${member.totalWeeks} wars` });
+      });
+
+      const recommendationsList = document.getElementById('recommendations-list');
+      recommendationsList.innerHTML = topRecommendations.length
+        ? topRecommendations.map(item => `
+            <div class="recommendation-item">
+              <span class="recommendation-pill ${item.type.toLowerCase()}">${item.type}</span>
+              <span>${item.text}</span>
+            </div>
+          `).join('')
+        : '<div class="recommendation-item"><span class="recommendation-pill neutral">Status</span><span>No major actions right now.</span></div>';
+    }
+
     function bindCriteriaActions() {
       document.getElementById('criteria-apply-btn').addEventListener('click', () => {
         const nextCriteria = getCriteriaInputs();
         saveCriteria(nextCriteria);
-        renderTable();
-        loadDashboard();
+        rebuildCombinedData();
       });
 
       document.getElementById('criteria-reset-btn').addEventListener('click', () => {
         saveCriteria({ ...defaultCriteria });
         applyCriteriaToInputs();
-        renderTable();
-        loadDashboard();
+        rebuildCombinedData();
       });
     }
 
@@ -908,7 +980,7 @@
             <strong>${m.name}</strong>
             <span class="last-seen ${m.lastSeenWarning ? 'warning' : ''}">Seen: ${m.lastSeenText}</span>
           </td>
-          <td><span class="role">${roleNames[m.role] || m.role}</span></td>
+          <td>${getRoleBadge(m.role)}</td>
           <td>${m.donations}</td>
           <td>
             <div class="fame-cell">

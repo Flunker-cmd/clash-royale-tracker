@@ -443,21 +443,27 @@
       <div class="label">Recommendation Criteria</div>
       <div class="criteria-sections">
         <div class="criteria-section">
-          <div class="criteria-section-title">Promotion Criteria</div>
+          <div class="criteria-section-title">Promote to Elder</div>
           <div class="criteria-grid">
-            <label class="criteria-field"><span>Member avg fame</span><input id="criteria-promoteMemberAvgFame" type="number" min="0" step="50"></label>
-            <label class="criteria-field"><span>Member donations</span><input id="criteria-promoteMemberDonations" type="number" min="0" step="10"></label>
-            <label class="criteria-field"><span>Elder avg fame</span><input id="criteria-promoteElderAvgFame" type="number" min="0" step="50"></label>
-            <label class="criteria-field"><span>Elder donations</span><input id="criteria-promoteElderDonations" type="number" min="0" step="10"></label>
+            <label class="criteria-field"><span>Avg fame</span><input id="criteria-promoteElderAvgFame" type="number" min="0" step="50"></label>
+            <label class="criteria-field"><span>Donations</span><input id="criteria-promoteElderDonations" type="number" min="0" step="10"></label>
+            <label class="criteria-field"><span>Participation ratio</span><input id="criteria-promoteElderParticipationRatio" type="number" min="0" max="1" step="0.05"></label>
           </div>
         </div>
         <div class="criteria-section">
-          <div class="criteria-section-title">Demotion / Review Criteria</div>
+          <div class="criteria-section-title">Promote to Co-leader</div>
           <div class="criteria-grid">
-            <label class="criteria-field"><span>Elder avg fame threshold</span><input id="criteria-reviewElderAvgFame" type="number" min="0" step="50"></label>
-            <label class="criteria-field"><span>Member avg fame threshold</span><input id="criteria-kickMemberAvgFame" type="number" min="0" step="50"></label>
-            <label class="criteria-field"><span>Member donations threshold</span><input id="criteria-kickMemberDonations" type="number" min="0" step="10"></label>
-            <label class="criteria-field"><span>Participation ratio</span><input id="criteria-inactiveParticipationRatio" type="number" min="0" max="1" step="0.05"></label>
+            <label class="criteria-field"><span>Avg fame</span><input id="criteria-promoteCoLeaderAvgFame" type="number" min="0" step="50"></label>
+            <label class="criteria-field"><span>Donations</span><input id="criteria-promoteCoLeaderDonations" type="number" min="0" step="10"></label>
+            <label class="criteria-field"><span>Participation ratio</span><input id="criteria-promoteCoLeaderParticipationRatio" type="number" min="0" max="1" step="0.05"></label>
+          </div>
+        </div>
+        <div class="criteria-section">
+          <div class="criteria-section-title">Demotion / Kick</div>
+          <div class="criteria-grid">
+            <label class="criteria-field"><span>Avg fame</span><input id="criteria-kickAvgFame" type="number" min="0" step="50"></label>
+            <label class="criteria-field"><span>Donations</span><input id="criteria-kickDonations" type="number" min="0" step="10"></label>
+            <label class="criteria-field"><span>Participation ratio</span><input id="criteria-kickParticipationRatio" type="number" min="0" max="1" step="0.05"></label>
           </div>
         </div>
       </div>

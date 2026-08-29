@@ -24,6 +24,24 @@ class GenerateInsightsTests(unittest.TestCase):
         self.assertIsInstance(data["review"], list)
         self.assertIsInstance(data["inactive"], list)
 
+    def test_generate_insights_respects_custom_criteria(self):
+        members_path = Path("clan_members.json")
+        history_path = Path("history_data.json")
+        criteria = {
+            "promoteMemberAvgFame": 5000,
+            "promoteMemberDonations": 200,
+            "kickMemberAvgFame": 1000,
+            "kickMemberDonations": 50,
+            "reviewElderAvgFame": 2000,
+            "inactiveParticipationRatio": 0.6,
+        }
+
+        data = generate_insights(str(members_path), str(history_path), criteria=criteria)
+
+        self.assertIsInstance(data, dict)
+        self.assertIsInstance(data["promote"], list)
+        self.assertIsInstance(data["review"], list)
+
 
 if __name__ == "__main__":
     unittest.main()

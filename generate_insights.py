@@ -5,6 +5,24 @@ from pathlib import Path
 
 CLAN_TAG = "#L0G0Y0JP"
 
+DEFAULT_CRITERIA = {
+    "promoteMemberAvgFame": 1800,
+    "promoteMemberDonations": 50,
+    "promoteElderAvgFame": 2500,
+    "promoteElderDonations": 100,
+    "reviewElderAvgFame": 600,
+    "kickMemberAvgFame": 400,
+    "kickMemberDonations": 30,
+    "inactiveParticipationRatio": 0.5,
+}
+
+
+def merge_criteria(criteria=None):
+    merged = DEFAULT_CRITERIA.copy()
+    if criteria:
+        merged.update(criteria)
+    return merged
+
 
 def parse_last_seen(value):
     if not value:
@@ -104,7 +122,8 @@ def member_summary(member, war_stats, total_weeks):
     }
 
 
-def generate_insights(members_path="clan_members.json", history_path="history_data.json"):
+def generate_insights(members_path="clan_members.json", history_path="history_data.json", criteria=None):
+    criteria = merge_criteria(criteria)
     members_file = Path(members_path)
     history_file = Path(history_path)
 
@@ -120,15 +139,17 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
     review = []
     inactive = []
 
+    min_active_weeks = max(1, math.ceil(total_weeks * float(criteria["inactiveParticipationRatio"])))
+
     for member in summaries:
-        if member["role"] == "member" and member["avgFame"] >= 1800 and member["donations"] >= 50:
+        if member["role"] == "member" and member["avgFame"] >= criteria["promoteMemberAvgFame"] and member["donations"] >= criteria["promoteMemberDonations"]:
             promote.append({
                 "name": member["name"],
                 "avgFame": member["avgFame"],
                 "donations": member["donations"],
                 "reason": "Member with strong fame and donations",
             })
-        elif member["role"] == "elder" and member["avgFame"] >= 2500 and member["donations"] >= 100:
+        elif member["role"] == "elder" and member["avgFame"] >= criteria["promoteElderAvgFame"] and member["donations"] >= criteria["promoteElderDonations"]:
             promote.append({
                 "name": member["name"],
                 "avgFame": member["avgFame"],
@@ -136,14 +157,14 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
                 "reason": "Elder with solid war contribution",
             })
 
-        if member["role"] in {"coLeader", "elder"} and member["avgFame"] < 600:
+        if member["role"] in {"coLeader", "elder"} and member["avgFame"] < criteria["reviewElderAvgFame"]:
             review.append({
                 "name": member["name"],
                 "avgFame": member["avgFame"],
                 "donations": member["donations"],
                 "reason": "Role holder with low war contribution",
             })
-        elif member["role"] == "member" and member["avgFame"] < 400 and member["donations"] < 30:
+        elif member["role"] == "member" and member["avgFame"] < criteria["kickMemberAvgFame"] and member["donations"] < criteria["kickMemberDonations"]:
             review.append({
                 "name": member["name"],
                 "avgFame": member["avgFame"],
@@ -151,17 +172,17 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
                 "reason": "Low contribution / weak war presence",
             })
 
-        if member["inactive"]:
+        if member["activeWeeks"] < min_active_weeks:
             inactive.append({
                 "name": member["name"],
                 "activeWeeks": member["activeWeeks"],
                 "totalWeeks": member["totalWeeks"],
                 "avgFame": member["avgFame"],
                 "lastSeenHours": round(member["lastSeenHours"], 1) if member["lastSeenHours"] != float("inf") else None,
-                "reason": "Below half of recent war participation",
+                "reason": "Below minimum participation threshold",
             })
 
-    active_warriors = sum(1 for member in summaries if member["activeWeeks"] >= math.ceil(total_weeks / 2))
+    active_warriors = sum(1 for member in summaries if member["activeWeeks"] >= min_active_weeks)
     avg_clan_fame = round(sum(member["avgFame"] for member in summaries) / len(summaries)) if summaries else 0
     top_performer = max(summaries, key=lambda m: m["avgFame"], default={"name": "N/A", "avgFame": 0})
 

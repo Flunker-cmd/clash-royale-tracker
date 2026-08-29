@@ -105,6 +105,41 @@
       color: #e2e8f0;
       font-size: 0.9em;
     }
+    .criteria-panel {
+      background: #111827;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+    }
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .criteria-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      color: #cbd5e1;
+      font-size: 0.8em;
+    }
+    .criteria-field input {
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 0.95em;
+    }
+    .criteria-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
     .recommendation-pill {
       display: inline-flex;
       align-items: center;
@@ -350,6 +385,24 @@
       <div id="recommendations-list" class="recommendation-list"></div>
     </div>
 
+    <div class="criteria-panel">
+      <div class="label">Recommendation Criteria</div>
+      <div class="criteria-grid">
+        <label class="criteria-field"><span>Promote member avg fame</span><input id="criteria-promoteMemberAvgFame" type="number" min="0" step="50"></label>
+        <label class="criteria-field"><span>Promote member donations</span><input id="criteria-promoteMemberDonations" type="number" min="0" step="10"></label>
+        <label class="criteria-field"><span>Promote elder avg fame</span><input id="criteria-promoteElderAvgFame" type="number" min="0" step="50"></label>
+        <label class="criteria-field"><span>Promote elder donations</span><input id="criteria-promoteElderDonations" type="number" min="0" step="10"></label>
+        <label class="criteria-field"><span>Review elder avg fame</span><input id="criteria-reviewElderAvgFame" type="number" min="0" step="50"></label>
+        <label class="criteria-field"><span>Kick member avg fame</span><input id="criteria-kickMemberAvgFame" type="number" min="0" step="50"></label>
+        <label class="criteria-field"><span>Kick member donations</span><input id="criteria-kickMemberDonations" type="number" min="0" step="10"></label>
+        <label class="criteria-field"><span>Inactive participation ratio</span><input id="criteria-inactiveParticipationRatio" type="number" min="0" max="1" step="0.05"></label>
+      </div>
+      <div class="criteria-actions">
+        <button class="btn" id="criteria-reset-btn" type="button">Reset</button>
+        <button class="btn btn-copy" id="criteria-apply-btn" type="button">Apply</button>
+      </div>
+    </div>
+
     <div class="stats-grid" id="insight-grid" style="margin-top: 0; margin-bottom: 24px;">
       <div class="stat-card">
         <div class="label">Promote</div>
@@ -427,11 +480,89 @@
       member: 1
     };
 
+    const defaultCriteria = {
+      promoteMemberAvgFame: 1800,
+      promoteMemberDonations: 50,
+      promoteElderAvgFame: 2500,
+      promoteElderDonations: 100,
+      reviewElderAvgFame: 600,
+      kickMemberAvgFame: 400,
+      kickMemberDonations: 30,
+      inactiveParticipationRatio: 0.5
+    };
+
     let combinedData = [];
     let currentSortColumn = 'role';
     let currentSortAsc = false;
     let currentFilter = 'all';
     let searchQuery = '';
+    let currentCriteria = loadCriteria();
+
+    function getCriteriaInputs() {
+      return {
+        promoteMemberAvgFame: Number(document.getElementById('criteria-promoteMemberAvgFame').value || defaultCriteria.promoteMemberAvgFame),
+        promoteMemberDonations: Number(document.getElementById('criteria-promoteMemberDonations').value || defaultCriteria.promoteMemberDonations),
+        promoteElderAvgFame: Number(document.getElementById('criteria-promoteElderAvgFame').value || defaultCriteria.promoteElderAvgFame),
+        promoteElderDonations: Number(document.getElementById('criteria-promoteElderDonations').value || defaultCriteria.promoteElderDonations),
+        reviewElderAvgFame: Number(document.getElementById('criteria-reviewElderAvgFame').value || defaultCriteria.reviewElderAvgFame),
+        kickMemberAvgFame: Number(document.getElementById('criteria-kickMemberAvgFame').value || defaultCriteria.kickMemberAvgFame),
+        kickMemberDonations: Number(document.getElementById('criteria-kickMemberDonations').value || defaultCriteria.kickMemberDonations),
+        inactiveParticipationRatio: Number(document.getElementById('criteria-inactiveParticipationRatio').value || defaultCriteria.inactiveParticipationRatio)
+      };
+    }
+
+    function loadCriteria() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('clanCriteria') || '{}');
+        return { ...defaultCriteria, ...saved };
+      } catch {
+        return { ...defaultCriteria };
+      }
+    }
+
+    function saveCriteria(criteria) {
+      localStorage.setItem('clanCriteria', JSON.stringify(criteria));
+      currentCriteria = { ...defaultCriteria, ...criteria };
+    }
+
+    function applyCriteriaToInputs() {
+      Object.entries(currentCriteria).forEach(([key, value]) => {
+        const input = document.getElementById(`criteria-${key}`);
+        if (input) {
+          input.value = value;
+        }
+      });
+    }
+
+    function getRecommendation(member, criteria, totalWeeks) {
+      const activeWeeks = member.weeks || 0;
+      const minActiveWeeks = Math.max(1, Math.ceil(totalWeeks * (Number(criteria.inactiveParticipationRatio) || 0.5)));
+      const avgFame = member.avgFame || 0;
+      const donations = member.donations || 0;
+      const role = member.role;
+
+      if (activeWeeks < minActiveWeeks) {
+        return { text: 'New / Low History', weight: 2, className: 'review' };
+      }
+
+      if (role === 'member' && avgFame >= Number(criteria.promoteMemberAvgFame) && donations >= Number(criteria.promoteMemberDonations)) {
+        return { text: 'Promote to Elder', weight: 5, className: 'promote' };
+      }
+
+      if (role === 'elder' && avgFame >= Number(criteria.promoteElderAvgFame) && donations >= Number(criteria.promoteElderDonations)) {
+        return { text: 'Promote Candidate', weight: 5, className: 'promote' };
+      }
+
+      if (['coLeader', 'elder'].includes(role) && avgFame < Number(criteria.reviewElderAvgFame)) {
+        return { text: 'Demote / Review', weight: 1, className: 'review' };
+      }
+
+      if (role === 'member' && avgFame < Number(criteria.kickMemberAvgFame) && donations < Number(criteria.kickMemberDonations)) {
+        return { text: 'Kick Candidate', weight: 0, className: 'kick' };
+      }
+
+      return { text: 'Good Standing', weight: 3, className: 'good' };
+    }
 
     function formatSwedishDate(date) {
       const pad = n => String(n).padStart(2, '0');
@@ -542,6 +673,8 @@
             : '<div class="recommendation-item"><span class="recommendation-pill neutral">Status</span><span>No major actions right now.</span></div>';
         }
 
+        applyCriteriaToInputs();
+
         const currentMembers = membersData.memberList || [];
         const historyRaces = historyData.items || [];
         const totalWeeks = historyRaces.length || 1;
@@ -617,31 +750,16 @@
           }
           dotsHtml += '</div>';
 
-          let recText = "Good Standing";
-          let recWeight = 3;
-          let recClass = "good";
+          const recommendation = getRecommendation({
+            role: m.role,
+            avgFame: avgFame,
+            donations: m.donations || 0,
+            weeks: activeWeeks,
+          }, currentCriteria, totalWeeks);
 
-          if (activeWeeks < Math.ceil(totalWeeks / 2)) {
-            recText = "New / Low History";
-            recWeight = 2;
-            recClass = "review";
-          } else if (m.role === 'member' && avgFame >= 1800 && (m.donations || 0) >= 50) {
-            recText = "Promote to Elder";
-            recWeight = 5;
-            recClass = "promote";
-          } else if (m.role === 'elder' && avgFame >= 2500 && (m.donations || 0) >= 100) {
-            recText = "Promote Candidate";
-            recWeight = 5;
-            recClass = "promote";
-          } else if (['coLeader', 'elder'].includes(m.role) && avgFame < 600) {
-            recText = "Demote / Review";
-            recWeight = 1;
-            recClass = "review";
-          } else if (m.role === 'member' && avgFame < 400 && (m.donations || 0) < 30) {
-            recText = "Kick Candidate";
-            recWeight = 0;
-            recClass = "kick";
-          }
+          let recText = recommendation.text;
+          let recWeight = recommendation.weight;
+          let recClass = recommendation.className;
 
           const lastSeenInfo = parseLastSeen(m.lastSeen);
 
@@ -688,6 +806,22 @@
     function handleSearch(val) {
       searchQuery = val;
       renderTable();
+    }
+
+    function bindCriteriaActions() {
+      document.getElementById('criteria-apply-btn').addEventListener('click', () => {
+        const nextCriteria = getCriteriaInputs();
+        saveCriteria(nextCriteria);
+        renderTable();
+        loadDashboard();
+      });
+
+      document.getElementById('criteria-reset-btn').addEventListener('click', () => {
+        saveCriteria({ ...defaultCriteria });
+        applyCriteriaToInputs();
+        renderTable();
+        loadDashboard();
+      });
     }
 
     function setFilter(filterType) {
@@ -795,6 +929,7 @@
       });
     }
 
+    bindCriteriaActions();
     loadDashboard();
   </script>
 </body>

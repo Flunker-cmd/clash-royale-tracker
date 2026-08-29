@@ -692,8 +692,9 @@
       const donations = member.donations || 0;
       const role = member.role;
       const minActiveWeeks = Math.max(1, Math.ceil(totalWeeks * 0.5));
+      const latestWarParticipation = member.latestWarParticipation || 0;
 
-      if (activeWeeks < minActiveWeeks) {
+      if (latestWarParticipation === 0) {
         return { text: 'Inactive', weight: 2, className: 'review' };
       }
 
@@ -826,6 +827,7 @@
           fameHistory: new Array(totalWeeks).fill(null)
         };
         const activeWeeks = war.weeks || 0;
+        const latestWarParticipation = war.history?.length ? Number(war.history[war.history.length - 1] || 0) : 0;
         const avgFame = activeWeeks > 0 ? Math.round(war.fame / activeWeeks) : 0;
 
         totalClanAvgFame += avgFame;
@@ -881,6 +883,7 @@
           sparklineHtml: createSparkline(war.fameHistory),
           decks: war.decks,
           weeks: activeWeeks,
+          latestWarParticipation: latestWarParticipation,
           tenureWeeks: tenureWeeks,
           loyaltyRatio: loyaltyRatio,
           dotsHtml: dotsHtml,

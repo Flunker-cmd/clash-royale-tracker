@@ -98,6 +98,43 @@ class GenerateInsightsTests(unittest.TestCase):
 
             self.assertEqual(data["promote"][0]["name"], "Alice")
 
+    def test_generate_insights_marks_zero_participation_as_inactive(self):
+        members = {
+            "memberList": [
+                {
+                    "tag": "#A2",
+                    "name": "Bob",
+                    "role": "member",
+                    "donations": 10,
+                    "lastSeen": "2024-01-01T00:00:00Z",
+                }
+            ]
+        }
+        history = {
+            "items": [
+                {
+                    "standings": [
+                        {
+                            "clan": {
+                                "tag": "#L0G0Y0JP",
+                                "participants": []
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            members_path = Path(tmpdir) / "members.json"
+            history_path = Path(tmpdir) / "history.json"
+            members_path.write_text(json.dumps(members), encoding="utf-8")
+            history_path.write_text(json.dumps(history), encoding="utf-8")
+
+            data = generate_insights(str(members_path), str(history_path))
+
+            self.assertEqual(data["inactive"][0]["name"], "Bob")
+
 
 if __name__ == "__main__":
     unittest.main()

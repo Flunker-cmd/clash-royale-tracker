@@ -106,6 +106,9 @@ def member_summary(member, war_stats, total_weeks):
     tag = member.get("tag")
     war = war_stats.get(tag, {"fame": 0, "decks": 0, "weeks": 0, "history": [None] * total_weeks})
     active_weeks = int(war.get("weeks") or 0)
+    latest_war_participation = 0
+    if war.get("history"):
+        latest_war_participation = int(war["history"][-1] or 0)
     avg_fame = round(war.get("fame", 0) / active_weeks) if active_weeks else 0
     donations = int(member.get("donations") or 0)
     role = member.get("role", "member")
@@ -124,9 +127,10 @@ def member_summary(member, war_stats, total_weeks):
         "donations": donations,
         "avgFame": avg_fame,
         "activeWeeks": active_weeks,
+        "latestWarParticipation": latest_war_participation,
         "totalWeeks": total_weeks,
         "lastSeenHours": last_seen_hours,
-        "inactive": active_weeks < math.ceil(total_weeks / 2),
+        "inactive": latest_war_participation == 0,
     }
 
 
@@ -170,14 +174,14 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
                 "reason": "Ready for Co-Leader promotion",
             })
 
-        if member["activeWeeks"] < min_active_weeks:
+        if member["inactive"]:
             inactive.append({
                 "name": member["name"],
                 "activeWeeks": member["activeWeeks"],
                 "totalWeeks": member["totalWeeks"],
                 "avgFame": member["avgFame"],
                 "lastSeenHours": round(member["lastSeenHours"], 1) if member["lastSeenHours"] != float("inf") else None,
-                "reason": "Below minimum participation threshold",
+                "reason": "No participation in the latest war",
             })
         else:
             kick_fame_ok = not metric_is_enabled(criteria, "kickAvgFame") or member["avgFame"] < criteria["kickAvgFame"]

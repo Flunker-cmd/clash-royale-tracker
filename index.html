@@ -692,7 +692,7 @@
       const donations = member.donations || 0;
       const role = member.role;
       const minActiveWeeks = Math.max(1, Math.ceil(totalWeeks * 0.5));
-      const latestWarParticipation = member.latestWarParticipation || 0;
+      const latestWarParticipation = Number(member.latestWarParticipation ?? 0);
 
       if (latestWarParticipation === 0) {
         return { text: 'Inactive', weight: 2, className: 'review' };
@@ -868,6 +868,7 @@
           avgFame: avgFame,
           donations: m.donations || 0,
           weeks: activeWeeks,
+          latestWarParticipation: latestWarParticipation,
         }, currentCriteria, totalWeeks);
 
         const lastSeenInfo = parseLastSeen(m.lastSeen);

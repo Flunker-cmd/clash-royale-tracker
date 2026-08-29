@@ -108,7 +108,7 @@ def member_summary(member, war_stats, total_weeks):
     active_weeks = int(war.get("weeks") or 0)
     latest_war_participation = 0
     if war.get("history"):
-        latest_war_participation = int(war["history"][-1] or 0)
+        latest_war_participation = int(war["history"][0] or 0)
     avg_fame = round(war.get("fame", 0) / active_weeks) if active_weeks else 0
     donations = int(member.get("donations") or 0)
     role = member.get("role", "member")

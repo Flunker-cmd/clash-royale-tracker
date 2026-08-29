@@ -827,7 +827,7 @@
           fameHistory: new Array(totalWeeks).fill(null)
         };
         const activeWeeks = war.weeks || 0;
-        const latestWarParticipation = war.history?.length ? Number(war.history[war.history.length - 1] || 0) : 0;
+        const latestWarParticipation = war.history?.length ? Number(war.history[0] || 0) : 0;
         const avgFame = activeWeeks > 0 ? Math.round(war.fame / activeWeeks) : 0;
 
         totalClanAvgFame += avgFame;

@@ -140,17 +140,39 @@
     .criteria-field {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
       color: #cbd5e1;
       font-size: 0.8em;
     }
-    .criteria-field input {
+    .criteria-field-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .criteria-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #e2e8f0;
+      font-size: 0.8em;
+    }
+    .criteria-toggle input {
+      accent-color: #38bdf8;
+      width: 14px;
+      height: 14px;
+      margin: 0;
+    }
+    .criteria-field input[type="number"] {
       background: #0f172a;
       border: 1px solid #334155;
       color: #f8fafc;
       border-radius: 6px;
       padding: 8px 10px;
       font-size: 0.95em;
+    }
+    .criteria-field input[type="number"]:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
     }
     .criteria-actions {
       display: flex;
@@ -445,25 +467,52 @@
         <div class="criteria-section">
           <div class="criteria-section-title">Promote to Elder</div>
           <div class="criteria-grid">
-            <label class="criteria-field"><span>Avg fame</span><input id="criteria-promoteElderAvgFame" type="number" min="0" step="50"></label>
-            <label class="criteria-field"><span>Donations</span><input id="criteria-promoteElderDonations" type="number" min="0" step="10"></label>
-            <label class="criteria-field"><span>Participation ratio</span><input id="criteria-promoteElderParticipationRatio" type="number" min="0" max="1" step="0.05"></label>
+            <div class="criteria-field">
+              <div class="criteria-field-header">
+                <label class="criteria-toggle"><input id="criteria-promoteElderAvgFameEnabled" type="checkbox" checked> Avg fame</label>
+              </div>
+              <input id="criteria-promoteElderAvgFame" type="number" min="0" step="50">
+            </div>
+            <div class="criteria-field">
+              <div class="criteria-field-header">
+                <label class="criteria-toggle"><input id="criteria-promoteElderDonationsEnabled" type="checkbox" checked> Donations</label>
+              </div>
+              <input id="criteria-promoteElderDonations" type="number" min="0" step="10">
+            </div>
           </div>
         </div>
         <div class="criteria-section">
           <div class="criteria-section-title">Promote to Co-leader</div>
           <div class="criteria-grid">
-            <label class="criteria-field"><span>Avg fame</span><input id="criteria-promoteCoLeaderAvgFame" type="number" min="0" step="50"></label>
-            <label class="criteria-field"><span>Donations</span><input id="criteria-promoteCoLeaderDonations" type="number" min="0" step="10"></label>
-            <label class="criteria-field"><span>Participation ratio</span><input id="criteria-promoteCoLeaderParticipationRatio" type="number" min="0" max="1" step="0.05"></label>
+            <div class="criteria-field">
+              <div class="criteria-field-header">
+                <label class="criteria-toggle"><input id="criteria-promoteCoLeaderAvgFameEnabled" type="checkbox" checked> Avg fame</label>
+              </div>
+              <input id="criteria-promoteCoLeaderAvgFame" type="number" min="0" step="50">
+            </div>
+            <div class="criteria-field">
+              <div class="criteria-field-header">
+                <label class="criteria-toggle"><input id="criteria-promoteCoLeaderDonationsEnabled" type="checkbox" checked> Donations</label>
+              </div>
+              <input id="criteria-promoteCoLeaderDonations" type="number" min="0" step="10">
+            </div>
           </div>
         </div>
         <div class="criteria-section">
           <div class="criteria-section-title">Demotion / Kick</div>
           <div class="criteria-grid">
-            <label class="criteria-field"><span>Avg fame</span><input id="criteria-kickAvgFame" type="number" min="0" step="50"></label>
-            <label class="criteria-field"><span>Donations</span><input id="criteria-kickDonations" type="number" min="0" step="10"></label>
-            <label class="criteria-field"><span>Participation ratio</span><input id="criteria-kickParticipationRatio" type="number" min="0" max="1" step="0.05"></label>
+            <div class="criteria-field">
+              <div class="criteria-field-header">
+                <label class="criteria-toggle"><input id="criteria-kickAvgFameEnabled" type="checkbox" checked> Avg fame</label>
+              </div>
+              <input id="criteria-kickAvgFame" type="number" min="0" step="50">
+            </div>
+            <div class="criteria-field">
+              <div class="criteria-field-header">
+                <label class="criteria-toggle"><input id="criteria-kickDonationsEnabled" type="checkbox" checked> Donations</label>
+              </div>
+              <input id="criteria-kickDonations" type="number" min="0" step="10">
+            </div>
           </div>
         </div>
       </div>
@@ -540,14 +589,17 @@
 
     const defaultCriteria = {
       promoteElderAvgFame: 1800,
+      promoteElderAvgFameEnabled: true,
       promoteElderDonations: 50,
-      promoteElderParticipationRatio: 0.5,
+      promoteElderDonationsEnabled: true,
       promoteCoLeaderAvgFame: 2500,
+      promoteCoLeaderAvgFameEnabled: true,
       promoteCoLeaderDonations: 100,
-      promoteCoLeaderParticipationRatio: 0.5,
+      promoteCoLeaderDonationsEnabled: true,
       kickAvgFame: 400,
+      kickAvgFameEnabled: true,
       kickDonations: 30,
-      kickParticipationRatio: 0.5
+      kickDonationsEnabled: true
     };
 
     let combinedData = [];
@@ -561,15 +613,36 @@
     function getCriteriaInputs() {
       return {
         promoteElderAvgFame: Number(document.getElementById('criteria-promoteElderAvgFame').value || defaultCriteria.promoteElderAvgFame),
+        promoteElderAvgFameEnabled: document.getElementById('criteria-promoteElderAvgFameEnabled').checked,
         promoteElderDonations: Number(document.getElementById('criteria-promoteElderDonations').value || defaultCriteria.promoteElderDonations),
-        promoteElderParticipationRatio: Number(document.getElementById('criteria-promoteElderParticipationRatio').value || defaultCriteria.promoteElderParticipationRatio),
+        promoteElderDonationsEnabled: document.getElementById('criteria-promoteElderDonationsEnabled').checked,
         promoteCoLeaderAvgFame: Number(document.getElementById('criteria-promoteCoLeaderAvgFame').value || defaultCriteria.promoteCoLeaderAvgFame),
+        promoteCoLeaderAvgFameEnabled: document.getElementById('criteria-promoteCoLeaderAvgFameEnabled').checked,
         promoteCoLeaderDonations: Number(document.getElementById('criteria-promoteCoLeaderDonations').value || defaultCriteria.promoteCoLeaderDonations),
-        promoteCoLeaderParticipationRatio: Number(document.getElementById('criteria-promoteCoLeaderParticipationRatio').value || defaultCriteria.promoteCoLeaderParticipationRatio),
+        promoteCoLeaderDonationsEnabled: document.getElementById('criteria-promoteCoLeaderDonationsEnabled').checked,
         kickAvgFame: Number(document.getElementById('criteria-kickAvgFame').value || defaultCriteria.kickAvgFame),
+        kickAvgFameEnabled: document.getElementById('criteria-kickAvgFameEnabled').checked,
         kickDonations: Number(document.getElementById('criteria-kickDonations').value || defaultCriteria.kickDonations),
-        kickParticipationRatio: Number(document.getElementById('criteria-kickParticipationRatio').value || defaultCriteria.kickParticipationRatio)
+        kickDonationsEnabled: document.getElementById('criteria-kickDonationsEnabled').checked
       };
+    }
+
+    function updateCriteriaInputsState() {
+      const toggles = [
+        ['criteria-promoteElderAvgFameEnabled', 'criteria-promoteElderAvgFame'],
+        ['criteria-promoteElderDonationsEnabled', 'criteria-promoteElderDonations'],
+        ['criteria-promoteCoLeaderAvgFameEnabled', 'criteria-promoteCoLeaderAvgFame'],
+        ['criteria-promoteCoLeaderDonationsEnabled', 'criteria-promoteCoLeaderDonations'],
+        ['criteria-kickAvgFameEnabled', 'criteria-kickAvgFame'],
+        ['criteria-kickDonationsEnabled', 'criteria-kickDonations']
+      ];
+
+      toggles.forEach(([toggleId, inputId]) => {
+        const toggle = document.getElementById(toggleId);
+        const input = document.getElementById(inputId);
+        if (!toggle || !input) return;
+        input.disabled = !toggle.checked;
+      });
     }
 
     function loadCriteria() {
@@ -587,12 +660,30 @@
     }
 
     function applyCriteriaToInputs() {
-      Object.entries(currentCriteria).forEach(([key, value]) => {
+      Object.entries(defaultCriteria).forEach(([key, value]) => {
         const input = document.getElementById(`criteria-${key}`);
         if (input) {
-          input.value = value;
+          if (typeof value === 'boolean') {
+            input.checked = currentCriteria[key] !== false;
+          } else {
+            input.value = currentCriteria[key] ?? value;
+          }
         }
       });
+
+      const extraKeys = Object.keys(currentCriteria).filter(key => !(key in defaultCriteria));
+      extraKeys.forEach((key) => {
+        const input = document.getElementById(`criteria-${key}`);
+        if (input) {
+          if (typeof currentCriteria[key] === 'boolean') {
+            input.checked = currentCriteria[key];
+          } else {
+            input.value = currentCriteria[key];
+          }
+        }
+      });
+
+      updateCriteriaInputsState();
     }
 
     function getRecommendation(member, criteria, totalWeeks) {
@@ -600,30 +691,38 @@
       const avgFame = member.avgFame || 0;
       const donations = member.donations || 0;
       const role = member.role;
+      const minActiveWeeks = Math.max(1, Math.ceil(totalWeeks * 0.5));
 
-      // Check promote to elder (members only)
-      if (role === 'member') {
-        const minActiveWeeks = Math.max(1, Math.ceil(totalWeeks * (Number(criteria.promoteElderParticipationRatio) || 0.5)));
-        if (activeWeeks >= minActiveWeeks && avgFame >= Number(criteria.promoteElderAvgFame) && donations >= Number(criteria.promoteElderDonations)) {
-          return { text: 'Promote to Elder', weight: 5, className: 'promote' };
-        }
-      }
-
-      // Check promote to co-leader (elders only)
-      if (role === 'elder') {
-        const minActiveWeeks = Math.max(1, Math.ceil(totalWeeks * (Number(criteria.promoteCoLeaderParticipationRatio) || 0.5)));
-        if (activeWeeks >= minActiveWeeks && avgFame >= Number(criteria.promoteCoLeaderAvgFame) && donations >= Number(criteria.promoteCoLeaderDonations)) {
-          return { text: 'Promote to Co-Leader', weight: 5, className: 'promote' };
-        }
-      }
-
-      // Check kick/demote (all roles)
-      const kickMinActiveWeeks = Math.max(1, Math.ceil(totalWeeks * (Number(criteria.kickParticipationRatio) || 0.5)));
-      if (activeWeeks < kickMinActiveWeeks) {
+      if (activeWeeks < minActiveWeeks) {
         return { text: 'Inactive', weight: 2, className: 'review' };
       }
-      if (avgFame < Number(criteria.kickAvgFame) && donations < Number(criteria.kickDonations)) {
-        return { text: 'Kick / Demote', weight: 0, className: 'kick' };
+
+      const elderAvgEnabled = criteria.promoteElderAvgFameEnabled !== false;
+      const elderDonationEnabled = criteria.promoteElderDonationsEnabled !== false;
+      const coLeaderAvgEnabled = criteria.promoteCoLeaderAvgFameEnabled !== false;
+      const coLeaderDonationEnabled = criteria.promoteCoLeaderDonationsEnabled !== false;
+      const kickAvgEnabled = criteria.kickAvgFameEnabled !== false;
+      const kickDonationEnabled = criteria.kickDonationsEnabled !== false;
+
+      const elderFameOk = !elderAvgEnabled || avgFame >= Number(criteria.promoteElderAvgFame);
+      const elderDonationsOk = !elderDonationEnabled || donations >= Number(criteria.promoteElderDonations);
+      const coLeaderFameOk = !coLeaderAvgEnabled || avgFame >= Number(criteria.promoteCoLeaderAvgFame);
+      const coLeaderDonationsOk = !coLeaderDonationEnabled || donations >= Number(criteria.promoteCoLeaderDonations);
+      const kickFameOk = !kickAvgEnabled || avgFame < Number(criteria.kickAvgFame);
+      const kickDonationsOk = !kickDonationEnabled || donations < Number(criteria.kickDonations);
+
+      if (role === 'member' && elderFameOk && elderDonationsOk) {
+        return { text: 'Promote to Elder', weight: 5, className: 'promote' };
+      }
+
+      if (role === 'elder' && coLeaderFameOk && coLeaderDonationsOk) {
+        return { text: 'Promote to Co-Leader', weight: 5, className: 'promote' };
+      }
+
+      if (kickAvgEnabled || kickDonationEnabled) {
+        if (kickFameOk && kickDonationsOk) {
+          return { text: 'Kick / Demote', weight: 0, className: 'kick' };
+        }
       }
 
       return { text: 'Good Standing', weight: 3, className: 'good' };
@@ -897,6 +996,13 @@
     }
 
     function bindCriteriaActions() {
+      Object.keys(defaultCriteria).forEach((key) => {
+        const checkbox = document.getElementById(`criteria-${key}Enabled`);
+        if (checkbox) {
+          checkbox.addEventListener('change', updateCriteriaInputsState);
+        }
+      });
+
       document.getElementById('criteria-apply-btn').addEventListener('click', () => {
         const nextCriteria = getCriteriaInputs();
         saveCriteria(nextCriteria);

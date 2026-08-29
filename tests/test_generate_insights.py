@@ -1,3 +1,5 @@
+import json
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -34,9 +36,6 @@ class GenerateInsightsTests(unittest.TestCase):
             "promoteCoLeaderDonations": 250,
             "kickAvgFame": 1000,
             "kickDonations": 50,
-            "promoteElderParticipationRatio": 0.6,
-            "promoteCoLeaderParticipationRatio": 0.7,
-            "kickParticipationRatio": 0.6,
         }
 
         data = generate_insights(str(members_path), str(history_path), criteria=criteria)
@@ -44,6 +43,60 @@ class GenerateInsightsTests(unittest.TestCase):
         self.assertIsInstance(data, dict)
         self.assertIsInstance(data["promote"], list)
         self.assertIsInstance(data["review"], list)
+
+    def test_generate_insights_ignores_disabled_metric(self):
+        members = {
+            "memberList": [
+                {
+                    "tag": "#A1",
+                    "name": "Alice",
+                    "role": "member",
+                    "donations": 1000,
+                    "lastSeen": "2024-01-01T00:00:00Z",
+                }
+            ]
+        }
+        history = {
+            "items": [
+                {
+                    "standings": [
+                        {
+                            "clan": {
+                                "tag": "#L0G0Y0JP",
+                                "participants": [
+                                    {"tag": "#A1", "fame": 100, "decksUsed": 16}
+                                ],
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            members_path = Path(tmpdir) / "members.json"
+            history_path = Path(tmpdir) / "history.json"
+            members_path.write_text(json.dumps(members), encoding="utf-8")
+            history_path.write_text(json.dumps(history), encoding="utf-8")
+
+            criteria = {
+                "promoteElderAvgFame": 2000,
+                "promoteElderAvgFameEnabled": False,
+                "promoteElderDonations": 500,
+                "promoteElderDonationsEnabled": True,
+                "promoteCoLeaderAvgFame": 2500,
+                "promoteCoLeaderAvgFameEnabled": True,
+                "promoteCoLeaderDonations": 1000,
+                "promoteCoLeaderDonationsEnabled": True,
+                "kickAvgFame": 100,
+                "kickAvgFameEnabled": True,
+                "kickDonations": 50,
+                "kickDonationsEnabled": True,
+            }
+
+            data = generate_insights(str(members_path), str(history_path), criteria=criteria)
+
+            self.assertEqual(data["promote"][0]["name"], "Alice")
 
 
 if __name__ == "__main__":

@@ -57,6 +57,69 @@
       font-weight: bold;
       color: #38bdf8;
     }
+
+    .summary-card {
+      background: linear-gradient(135deg, #0f172a, #111827);
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(14, 116, 144, 0.12);
+    }
+    .summary-card .label {
+      color: #7dd3fc;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.76em;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .summary-card .summary-text {
+      color: #e2e8f0;
+      font-size: 1.02em;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .recommendation-panel {
+      background: #111827;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+    }
+    .recommendation-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .recommendation-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: #e2e8f0;
+      font-size: 0.9em;
+    }
+    .recommendation-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 0.72em;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .recommendation-pill.promote { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .recommendation-pill.review { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+    .recommendation-pill.inactive { background: rgba(239, 68, 68, 0.12); color: #fca5a5; }
+    .recommendation-pill.neutral { background: rgba(59, 130, 246, 0.15); color: #93c5fd; }
     
     .toolbar {
       display: flex;
@@ -253,22 +316,22 @@
     <div class="header-row">
       <div>
         <h1 id="title">Ikea Clan Management Dashboard</h1>
-        <p class="subtitle" id="subtitle">Loading member & history data...</p>
+        <p class="subtitle" id="subtitle">Loading clan members and war history...</p>
         <div class="last-updated" id="last-updated">Updating timestamp...</div>
       </div>
     </div>
 
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="label">War Trophies</div>
+        <div class="label">Clan War Trophies</div>
         <div class="value" id="stat-trophies">-</div>
       </div>
       <div class="stat-card">
-        <div class="label">Avg Weekly Clan Fame</div>
+        <div class="label">Average Weekly Clan Fame</div>
         <div class="value" id="stat-fame">-</div>
       </div>
       <div class="stat-card">
-        <div class="label">Active Warriors</div>
+        <div class="label">Active Members</div>
         <div class="value" id="stat-active">-</div>
       </div>
       <div class="stat-card">
@@ -277,11 +340,40 @@
       </div>
     </div>
 
+    <div class="summary-card" id="summary-card">
+      <div class="label">Clan Health</div>
+      <p class="summary-text" id="summary-text">Loading clan summary...</p>
+    </div>
+
+    <div class="recommendation-panel" id="recommendations-panel">
+      <div class="label">Top Recommendations</div>
+      <div id="recommendations-list" class="recommendation-list"></div>
+    </div>
+
+    <div class="stats-grid" id="insight-grid" style="margin-top: 0; margin-bottom: 24px;">
+      <div class="stat-card">
+        <div class="label">Promote</div>
+        <div class="value" id="insight-promote">-</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Review</div>
+        <div class="value" id="insight-review">-</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Inactive</div>
+        <div class="value" id="insight-inactive">-</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Top Avg Fame</div>
+        <div class="value" id="insight-topfame">-</div>
+      </div>
+    </div>
+
     <div class="toolbar">
       <div class="controls">
         <input type="text" id="search-input" class="search-input" placeholder="Search player..." oninput="handleSearch(this.value)">
         <button class="btn active" id="btn-filter-all" onclick="setFilter('all')">All</button>
-        <button class="btn" id="btn-filter-promote" onclick="setFilter('promote')">Promotions</button>
+        <button class="btn" id="btn-filter-promote" onclick="setFilter('promote')">Promote</button>
         <button class="btn" id="btn-filter-review" onclick="setFilter('review')">Review / Kick</button>
       </div>
       <button class="btn btn-copy" onclick="copyChatSummary()">📋 Copy action summary</button>
@@ -295,7 +387,7 @@
             <th onclick="sortTable('name')">Player <span id="sort-name"></span></th>
             <th onclick="sortTable('role')">Role <span id="sort-role"></span></th>
             <th onclick="sortTable('donations')">Donations <span id="sort-donations"></span></th>
-            <th onclick="sortTable('avgFame')">Avg Fame / Wk (Trend) <span id="sort-avgFame"></span></th>
+            <th onclick="sortTable('avgFame')">Avg Fame / Week <span id="sort-avgFame"></span></th>
             <th onclick="sortTable('decks')">Total Decks (Max 160) <span id="sort-decks"></span></th>
             <th onclick="sortTable('weeks')">War Loyalty <span id="sort-weeks"></span></th>
             <th onclick="sortTable('recommendationWeight')">Action / Recommendation <span id="sort-recommendationWeight"></span></th>
@@ -395,21 +487,60 @@
 
     async function loadDashboard() {
       try {
-        const [membersRes, historyRes] = await Promise.all([
+        const [membersRes, historyRes, insightsRes] = await Promise.all([
           fetch('clan_members.json'),
-          fetch('history_data.json')
+          fetch('history_data.json'),
+          fetch('insights.json').catch(() => null)
         ]);
 
         const lastModHeader = membersRes.headers.get('last-modified');
         if (lastModHeader) {
           const date = new Date(lastModHeader);
-          document.getElementById('last-updated').textContent = `Data last updated: ${formatSwedishDate(date)}`;
+          document.getElementById('last-updated').textContent = `Last updated: ${formatSwedishDate(date)}`;
         } else {
-          document.getElementById('last-updated').textContent = `Data loaded from GitHub Pages`;
+          document.getElementById('last-updated').textContent = `Loaded from GitHub Pages`;
         }
 
         const membersData = await membersRes.json();
         const historyData = await historyRes.json();
+        const insightsData = insightsRes ? await insightsRes.json() : null;
+
+        if (insightsData && insightsData.summary) {
+          const promoteCount = insightsData.promote?.length ?? 0;
+          const reviewCount = insightsData.review?.length ?? 0;
+          const inactiveCount = insightsData.inactive?.length ?? 0;
+          const topPerformer = insightsData.topPerformer?.name || 'N/A';
+          const topFame = insightsData.topPerformer?.avgFame ?? 0;
+
+          document.getElementById('insight-promote').textContent = promoteCount;
+          document.getElementById('insight-review').textContent = reviewCount;
+          document.getElementById('insight-inactive').textContent = inactiveCount;
+          document.getElementById('insight-topfame').textContent = topFame ? `${topFame.toLocaleString()}` : '-';
+
+          document.getElementById('summary-text').textContent =
+            `Clan health is strong: ${insightsData.summary.activeWarriors} of ${insightsData.summary.activeMembers} members are active, ${promoteCount} players are ready for promotion, ${reviewCount} need review, and ${topPerformer} leads with ${topFame.toLocaleString()} average fame.`;
+
+          const topRecommendations = [];
+          (insightsData.promote || []).slice(0, 3).forEach(item => {
+            topRecommendations.push({ type: 'Promote', text: `${item.name} • ${item.avgFame.toLocaleString()} fame` });
+          });
+          (insightsData.review || []).slice(0, 2).forEach(item => {
+            topRecommendations.push({ type: 'Review', text: `${item.name} • ${item.avgFame.toLocaleString()} fame` });
+          });
+          (insightsData.inactive || []).slice(0, 2).forEach(item => {
+            topRecommendations.push({ type: 'Inactive', text: `${item.name} • ${item.activeWeeks}/${item.totalWeeks} wars` });
+          });
+
+          const recommendationsList = document.getElementById('recommendations-list');
+          recommendationsList.innerHTML = topRecommendations.length
+            ? topRecommendations.map(item => `
+                <div class="recommendation-item">
+                  <span class="recommendation-pill ${item.type.toLowerCase()}">${item.type}</span>
+                  <span>${item.text}</span>
+                </div>
+              `).join('')
+            : '<div class="recommendation-item"><span class="recommendation-pill neutral">Status</span><span>No major actions right now.</span></div>';
+        }
 
         const currentMembers = membersData.memberList || [];
         const historyRaces = historyData.items || [];
@@ -545,7 +676,7 @@
         document.getElementById('stat-top').textContent = topPlayer ? topPlayer.name : '-';
 
         document.getElementById('subtitle').textContent = 
-          `Active Members: ${currentMembers.length} | Evaluated over last ${totalWeeks} war weeks`;
+          `Members: ${currentMembers.length} | Evaluated over the last ${totalWeeks} war weeks`;
 
         renderTable();
 
@@ -574,7 +705,7 @@
       
       let text = `📋 Ikea Clan Summary:\n\n`;
       text += `Promote candidates:\n${promotes.length ? promotes.join('\n') : 'None'}\n\n`;
-      text += `Review / Kick candidates:\n${reviews.length ? reviews.join('\n') : 'None'}`;
+      text += `Review / kick candidates:\n${reviews.length ? reviews.join('\n') : 'None'}`;
       
       navigator.clipboard.writeText(text).then(() => {
         alert('Summary copied to clipboard!');

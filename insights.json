@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-29T05:24:21Z",
+  "generatedAt": "2026-08-29T12:08:39Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 45,
+    "activeMembers": 47,
     "activeWarriors": 29,
     "totalWeeks": 10,
-    "avgClanFame": 1582,
+    "avgClanFame": 1498,
     "topPerformer": "MEGABAENIS",
     "topPerformerAvgFame": 2810
   },
@@ -13,50 +13,50 @@
     {
       "name": "WilliR5",
       "avgFame": 2565,
-      "donations": 120,
-      "reason": "Elder with solid war contribution"
+      "donations": 254,
+      "reason": "Ready for Co-Leader promotion"
     },
     {
       "name": "Oskar :)",
       "avgFame": 2400,
-      "donations": 244,
-      "reason": "Member with strong fame and donations"
+      "donations": 418,
+      "reason": "Ready for Elder promotion"
     },
     {
       "name": "BullyMeILLc|_|M",
       "avgFame": 2380,
-      "donations": 143,
-      "reason": "Member with strong fame and donations"
+      "donations": 337,
+      "reason": "Ready for Elder promotion"
     },
     {
       "name": "amj",
       "avgFame": 2175,
-      "donations": 130,
-      "reason": "Member with strong fame and donations"
+      "donations": 207,
+      "reason": "Ready for Elder promotion"
     },
     {
       "name": "Gabro",
       "avgFame": 2150,
-      "donations": 108,
-      "reason": "Member with strong fame and donations"
+      "donations": 261,
+      "reason": "Ready for Elder promotion"
     },
     {
       "name": "Reavy",
       "avgFame": 2030,
-      "donations": 58,
-      "reason": "Member with strong fame and donations"
+      "donations": 102,
+      "reason": "Ready for Elder promotion"
     },
     {
-      "name": "IaddeI",
-      "avgFame": 1975,
-      "donations": 60,
-      "reason": "Member with strong fame and donations"
+      "name": "slinky",
+      "avgFame": 2015,
+      "donations": 95,
+      "reason": "Ready for Elder promotion"
     },
     {
       "name": ": Marhabba :",
       "avgFame": 1808,
-      "donations": 100,
-      "reason": "Member with strong fame and donations"
+      "donations": 224,
+      "reason": "Ready for Elder promotion"
     }
   ],
   "review": [
@@ -64,167 +64,153 @@
       "name": "kebaneri",
       "avgFame": 165,
       "donations": 0,
-      "reason": "Role holder with low war contribution"
-    },
-    {
-      "name": "Einar",
-      "avgFame": 0,
-      "donations": 8,
-      "reason": "Low contribution / weak war presence"
-    },
-    {
-      "name": "JOKER",
-      "avgFame": 0,
-      "donations": 0,
-      "reason": "Low contribution / weak war presence"
-    },
-    {
-      "name": "abdisalam",
-      "avgFame": 0,
-      "donations": 0,
-      "reason": "Low contribution / weak war presence"
-    },
-    {
-      "name": "SVANTEVANTE",
-      "avgFame": 0,
-      "donations": 0,
-      "reason": "Low contribution / weak war presence"
-    },
-    {
-      "name": "hhhhh",
-      "avgFame": 0,
-      "donations": 18,
-      "reason": "Low contribution / weak war presence"
+      "reason": "Candidate for kick/demotion"
     }
   ],
   "inactive": [
+    {
+      "name": "Leo",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 0.3,
+      "reason": "Below minimum participation threshold"
+    },
+    {
+      "name": "Rudolf",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 3.8,
+      "reason": "Below minimum participation threshold"
+    },
+    {
+      "name": "abdisalam",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 5.1,
+      "reason": "Below minimum participation threshold"
+    },
     {
       "name": "mr",
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 67.7,
-      "reason": "Below half of recent war participation"
-    },
-    {
-      "name": "abdisalam",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 83.7,
-      "reason": "Below half of recent war participation"
+      "lastSeenHours": 21.0,
+      "reason": "Below minimum participation threshold"
     },
     {
       "name": "SVANTEVANTE",
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 71.2,
-      "reason": "Below half of recent war participation"
+      "lastSeenHours": 2.0,
+      "reason": "Below minimum participation threshold"
     },
     {
       "name": "hhhhh",
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 65.1,
-      "reason": "Below half of recent war participation"
+      "lastSeenHours": 2.9,
+      "reason": "Below minimum participation threshold"
+    },
+    {
+      "name": "Gattouz0",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 1.7,
+      "reason": "Below minimum participation threshold"
+    },
+    {
+      "name": "KFC",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 1.3,
+      "reason": "Below minimum participation threshold"
+    },
+    {
+      "name": "sleepwalker",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 1.5,
+      "reason": "Below minimum participation threshold"
     },
     {
       "name": "Einar",
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 65.8,
-      "reason": "Below half of recent war participation"
+      "lastSeenHours": 1.2,
+      "reason": "Below minimum participation threshold"
     },
     {
       "name": "Rasse08;)",
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 1600,
-      "lastSeenHours": 67.7,
-      "reason": "Below half of recent war participation"
-    },
-    {
-      "name": "Ingvar",
-      "activeWeeks": 1,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 67.5,
-      "reason": "Below half of recent war participation"
-    },
-    {
-      "name": "Peter Kamprad",
-      "activeWeeks": 1,
-      "totalWeeks": 10,
-      "avgFame": 800,
-      "lastSeenHours": 86.0,
-      "reason": "Below half of recent war participation"
+      "lastSeenHours": 22.0,
+      "reason": "Below minimum participation threshold"
     },
     {
       "name": "noodlefood",
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 1700,
-      "lastSeenHours": 67.3,
-      "reason": "Below half of recent war participation"
-    },
-    {
-      "name": "JOKER",
-      "activeWeeks": 1,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 72.6,
-      "reason": "Below half of recent war participation"
+      "lastSeenHours": 15.1,
+      "reason": "Below minimum participation threshold"
     },
     {
       "name": "bruh",
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 1600,
-      "lastSeenHours": 67.8,
-      "reason": "Below half of recent war participation"
+      "lastSeenHours": 26.1,
+      "reason": "Below minimum participation threshold"
     },
     {
       "name": "Nnea",
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 1175,
-      "lastSeenHours": 80.6,
-      "reason": "Below half of recent war participation"
+      "lastSeenHours": 0.3,
+      "reason": "Below minimum participation threshold"
     },
     {
       "name": "Daddy momo",
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 425,
-      "lastSeenHours": 67.7,
-      "reason": "Below half of recent war participation"
+      "lastSeenHours": 16.6,
+      "reason": "Below minimum participation threshold"
     },
     {
       "name": "Mr.Dubb",
       "activeWeeks": 2,
       "totalWeeks": 10,
       "avgFame": 1075,
-      "lastSeenHours": 66.2,
-      "reason": "Below half of recent war participation"
+      "lastSeenHours": 0.4,
+      "reason": "Below minimum participation threshold"
     },
     {
       "name": "IaddeI",
       "activeWeeks": 2,
       "totalWeeks": 10,
       "avgFame": 1975,
-      "lastSeenHours": 68.8,
-      "reason": "Below half of recent war participation"
+      "lastSeenHours": 23.9,
+      "reason": "Below minimum participation threshold"
     },
     {
       "name": "Lartzonov",
       "activeWeeks": 4,
       "totalWeeks": 10,
       "avgFame": 1662,
-      "lastSeenHours": 66.9,
-      "reason": "Below half of recent war participation"
+      "lastSeenHours": 2.4,
+      "reason": "Below minimum participation threshold"
     }
   ],
   "topPerformer": {

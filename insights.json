@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-31T10:03:14Z",
+  "generatedAt": "2026-08-31T12:28:18Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 47,
+    "activeMembers": 48,
     "activeWarriors": 30,
     "totalWeeks": 10,
-    "avgClanFame": 1682,
+    "avgClanFame": 1647,
     "topPerformer": "MEGABAENIS",
     "topPerformerAvgFame": 2835
   },
@@ -20,22 +20,22 @@
     {
       "name": "WilliR5",
       "avgFame": 2545,
-      "donations": 0,
-      "donationsPerWar": 0,
+      "donations": 52,
+      "donationsPerWar": 5,
       "reason": "Ready for Co-Leader promotion"
     },
     {
       "name": "Piggelin",
       "avgFame": 2510,
-      "donations": 94,
-      "donationsPerWar": 9,
+      "donations": 138,
+      "donationsPerWar": 14,
       "reason": "Ready for Co-Leader promotion"
     },
     {
       "name": "Johanx2000",
       "avgFame": 2432,
-      "donations": 8,
-      "donationsPerWar": 1,
+      "donations": 18,
+      "donationsPerWar": 2,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -62,8 +62,8 @@
     {
       "name": "Gabro",
       "avgFame": 2110,
-      "donations": 28,
-      "donationsPerWar": 3,
+      "donations": 90,
+      "donationsPerWar": 9,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -134,19 +134,27 @@
   ],
   "inactive": [
     {
+      "name": "TARAZAN",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 0.7,
+      "reason": "No participation in the latest war"
+    },
+    {
+      "name": "Clash Liam",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 1.6,
+      "reason": "No participation in the latest war"
+    },
+    {
       "name": "Rudolf",
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 5.3,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "hhhhh",
-      "activeWeeks": 1,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 0.5,
+      "lastSeenHours": 2.4,
       "reason": "No participation in the latest war"
     },
     {
@@ -154,7 +162,7 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 47.4,
+      "lastSeenHours": 49.8,
       "reason": "No participation in the latest war"
     },
     {
@@ -162,7 +170,7 @@
       "activeWeeks": 10,
       "totalWeeks": 10,
       "avgFame": 165,
-      "lastSeenHours": 408.4,
+      "lastSeenHours": 410.8,
       "reason": "No participation in the latest war"
     }
   ],

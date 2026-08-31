@@ -475,7 +475,7 @@
     <div class="criteria-panel">
       <div class="label">Recommendation Criteria</div>
       <div class="criteria-info">
-        Recent activity is measured as decks used in the latest war. A member must hit the participation gate before being considered for promotion. If the latest war is 0 decks, they are counted as inactive. Default gate: 4 decks used in the latest war.
+        Recent activity is measured as decks used in the latest war. A member must hit the participation gate before being considered for promotion. Donations are optional by default because each new war cycle can reset the current donation total. Default gate: 4 decks in the latest war; fame is the main promotion signal unless you enable donations manually.
       </div>
       <div class="criteria-sections">
         <div class="criteria-section">
@@ -500,7 +500,7 @@
             </div>
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-promoteElderDonationsEnabled" type="checkbox" checked> Donations</label>
+                <label class="criteria-toggle"><input id="criteria-promoteElderDonationsEnabled" type="checkbox"> Donations</label>
               </div>
               <input id="criteria-promoteElderDonations" type="number" min="0" step="10">
             </div>
@@ -517,7 +517,7 @@
             </div>
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-promoteCoLeaderDonationsEnabled" type="checkbox" checked> Donations</label>
+                <label class="criteria-toggle"><input id="criteria-promoteCoLeaderDonationsEnabled" type="checkbox"> Donations</label>
               </div>
               <input id="criteria-promoteCoLeaderDonations" type="number" min="0" step="10">
             </div>
@@ -534,7 +534,7 @@
             </div>
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-kickDonationsEnabled" type="checkbox" checked> Donations</label>
+                <label class="criteria-toggle"><input id="criteria-kickDonationsEnabled" type="checkbox"> Donations</label>
               </div>
               <input id="criteria-kickDonations" type="number" min="0" step="10">
             </div>
@@ -616,15 +616,15 @@
       promoteElderAvgFame: 1800,
       promoteElderAvgFameEnabled: true,
       promoteElderDonations: 50,
-      promoteElderDonationsEnabled: true,
+      promoteElderDonationsEnabled: false,
       promoteCoLeaderAvgFame: 2500,
       promoteCoLeaderAvgFameEnabled: true,
       promoteCoLeaderDonations: 100,
-      promoteCoLeaderDonationsEnabled: true,
+      promoteCoLeaderDonationsEnabled: false,
       kickAvgFame: 400,
       kickAvgFameEnabled: true,
       kickDonations: 30,
-      kickDonationsEnabled: true,
+      kickDonationsEnabled: false,
       recentParticipationThreshold: 4,
       recentParticipationEnabled: true
     };

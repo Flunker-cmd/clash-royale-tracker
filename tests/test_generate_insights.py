@@ -180,6 +180,54 @@ class GenerateInsightsTests(unittest.TestCase):
             self.assertNotIn("Charlie", [item["name"] for item in data["promote"]])
             self.assertIn("Charlie", [item["name"] for item in data["review"]])
 
+    def test_generate_insights_allows_promotion_without_current_donations_when_disabled(self):
+        members = {
+            "memberList": [
+                {
+                    "tag": "#A4",
+                    "name": "Dana",
+                    "role": "member",
+                    "donations": 0,
+                    "lastSeen": "2024-01-01T00:00:00Z",
+                }
+            ]
+        }
+        history = {
+            "items": [
+                {
+                    "standings": [
+                        {
+                            "clan": {
+                                "tag": "#L0G0Y0JP",
+                                "participants": [
+                                    {"tag": "#A4", "fame": 5000, "decksUsed": 10}
+                                ],
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            members_path = Path(tmpdir) / "members.json"
+            history_path = Path(tmpdir) / "history.json"
+            members_path.write_text(json.dumps(members), encoding="utf-8")
+            history_path.write_text(json.dumps(history), encoding="utf-8")
+
+            criteria = {
+                "promoteElderAvgFame": 4500,
+                "promoteElderAvgFameEnabled": True,
+                "promoteElderDonations": 50,
+                "promoteElderDonationsEnabled": False,
+                "recentParticipationThreshold": 4,
+                "recentParticipationEnabled": True,
+            }
+
+            data = generate_insights(str(members_path), str(history_path), criteria=criteria)
+
+            self.assertIn("Dana", [item["name"] for item in data["promote"]])
+
 
 if __name__ == "__main__":
     unittest.main()

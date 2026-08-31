@@ -1,221 +1,85 @@
 {
-  "generatedAt": "2026-08-29T12:08:39Z",
+  "generatedAt": "2026-08-31T09:49:35Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
     "activeMembers": 47,
-    "activeWarriors": 29,
+    "activeWarriors": 30,
     "totalWeeks": 10,
-    "avgClanFame": 1498,
+    "avgClanFame": 1682,
     "topPerformer": "MEGABAENIS",
-    "topPerformerAvgFame": 2810
+    "topPerformerAvgFame": 2835
   },
   "promote": [
     {
-      "name": "WilliR5",
-      "avgFame": 2565,
-      "donations": 254,
-      "reason": "Ready for Co-Leader promotion"
-    },
-    {
-      "name": "Oskar :)",
-      "avgFame": 2400,
-      "donations": 418,
-      "reason": "Ready for Elder promotion"
-    },
-    {
       "name": "BullyMeILLc|_|M",
-      "avgFame": 2380,
-      "donations": 337,
-      "reason": "Ready for Elder promotion"
-    },
-    {
-      "name": "amj",
-      "avgFame": 2175,
-      "donations": 207,
-      "reason": "Ready for Elder promotion"
-    },
-    {
-      "name": "Gabro",
-      "avgFame": 2150,
-      "donations": 261,
-      "reason": "Ready for Elder promotion"
-    },
-    {
-      "name": "Reavy",
-      "avgFame": 2030,
-      "donations": 102,
-      "reason": "Ready for Elder promotion"
-    },
-    {
-      "name": "slinky",
-      "avgFame": 2015,
-      "donations": 95,
+      "avgFame": 2400,
+      "donations": 56,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": ": Marhabba :",
-      "avgFame": 1808,
-      "donations": 224,
+      "avgFame": 1848,
+      "donations": 52,
       "reason": "Ready for Elder promotion"
     }
   ],
   "review": [
     {
-      "name": "kebaneri",
-      "avgFame": 165,
+      "name": "ارینین",
+      "avgFame": 400,
+      "donations": 45,
+      "reason": "Recent activity below threshold"
+    },
+    {
+      "name": "Gattouz0",
+      "avgFame": 350,
       "donations": 0,
       "reason": "Candidate for kick/demotion"
+    },
+    {
+      "name": "abdisalam",
+      "avgFame": 200,
+      "donations": 0,
+      "reason": "Recent activity below threshold"
     }
   ],
   "inactive": [
     {
-      "name": "Leo",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 0.3,
-      "reason": "Below minimum participation threshold"
-    },
-    {
       "name": "Rudolf",
-      "activeWeeks": 0,
+      "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 3.8,
-      "reason": "Below minimum participation threshold"
-    },
-    {
-      "name": "abdisalam",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 5.1,
-      "reason": "Below minimum participation threshold"
-    },
-    {
-      "name": "mr",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 21.0,
-      "reason": "Below minimum participation threshold"
-    },
-    {
-      "name": "SVANTEVANTE",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 2.0,
-      "reason": "Below minimum participation threshold"
+      "lastSeenHours": 5.0,
+      "reason": "No participation in the latest war"
     },
     {
       "name": "hhhhh",
-      "activeWeeks": 0,
+      "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 2.9,
-      "reason": "Below minimum participation threshold"
-    },
-    {
-      "name": "Gattouz0",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 1.7,
-      "reason": "Below minimum participation threshold"
-    },
-    {
-      "name": "KFC",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 1.3,
-      "reason": "Below minimum participation threshold"
+      "lastSeenHours": 0.3,
+      "reason": "No participation in the latest war"
     },
     {
       "name": "sleepwalker",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 1.5,
-      "reason": "Below minimum participation threshold"
-    },
-    {
-      "name": "Einar",
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 1.2,
-      "reason": "Below minimum participation threshold"
+      "lastSeenHours": 47.2,
+      "reason": "No participation in the latest war"
     },
     {
-      "name": "Rasse08;)",
-      "activeWeeks": 1,
+      "name": "kebaneri",
+      "activeWeeks": 10,
       "totalWeeks": 10,
-      "avgFame": 1600,
-      "lastSeenHours": 22.0,
-      "reason": "Below minimum participation threshold"
-    },
-    {
-      "name": "noodlefood",
-      "activeWeeks": 1,
-      "totalWeeks": 10,
-      "avgFame": 1700,
-      "lastSeenHours": 15.1,
-      "reason": "Below minimum participation threshold"
-    },
-    {
-      "name": "bruh",
-      "activeWeeks": 1,
-      "totalWeeks": 10,
-      "avgFame": 1600,
-      "lastSeenHours": 26.1,
-      "reason": "Below minimum participation threshold"
-    },
-    {
-      "name": "Nnea",
-      "activeWeeks": 1,
-      "totalWeeks": 10,
-      "avgFame": 1175,
-      "lastSeenHours": 0.3,
-      "reason": "Below minimum participation threshold"
-    },
-    {
-      "name": "Daddy momo",
-      "activeWeeks": 1,
-      "totalWeeks": 10,
-      "avgFame": 425,
-      "lastSeenHours": 16.6,
-      "reason": "Below minimum participation threshold"
-    },
-    {
-      "name": "Mr.Dubb",
-      "activeWeeks": 2,
-      "totalWeeks": 10,
-      "avgFame": 1075,
-      "lastSeenHours": 0.4,
-      "reason": "Below minimum participation threshold"
-    },
-    {
-      "name": "IaddeI",
-      "activeWeeks": 2,
-      "totalWeeks": 10,
-      "avgFame": 1975,
-      "lastSeenHours": 23.9,
-      "reason": "Below minimum participation threshold"
-    },
-    {
-      "name": "Lartzonov",
-      "activeWeeks": 4,
-      "totalWeeks": 10,
-      "avgFame": 1662,
-      "lastSeenHours": 2.4,
-      "reason": "Below minimum participation threshold"
+      "avgFame": 165,
+      "lastSeenHours": 408.1,
+      "reason": "No participation in the latest war"
     }
   ],
   "topPerformer": {
     "name": "MEGABAENIS",
-    "avgFame": 2810,
+    "avgFame": 2835,
     "role": "elder"
   }
 }

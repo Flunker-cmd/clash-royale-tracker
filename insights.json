@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-31T12:28:18Z",
+  "generatedAt": "2026-08-31T22:18:27Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 48,
-    "activeWarriors": 30,
+    "activeMembers": 49,
+    "activeWarriors": 29,
     "totalWeeks": 10,
-    "avgClanFame": 1647,
+    "avgClanFame": 1606,
     "topPerformer": "MEGABAENIS",
     "topPerformerAvgFame": 2835
   },
@@ -13,57 +13,50 @@
     {
       "name": "MEGABAENIS",
       "avgFame": 2835,
-      "donations": 0,
-      "donationsPerWar": 0,
+      "donations": 8,
+      "donationsPerWar": 1,
       "reason": "Ready for Co-Leader promotion"
     },
     {
       "name": "WilliR5",
       "avgFame": 2545,
-      "donations": 52,
-      "donationsPerWar": 5,
+      "donations": 92,
+      "donationsPerWar": 9,
       "reason": "Ready for Co-Leader promotion"
     },
     {
       "name": "Piggelin",
       "avgFame": 2510,
-      "donations": 138,
-      "donationsPerWar": 14,
+      "donations": 270,
+      "donationsPerWar": 27,
       "reason": "Ready for Co-Leader promotion"
-    },
-    {
-      "name": "Johanx2000",
-      "avgFame": 2432,
-      "donations": 18,
-      "donationsPerWar": 2,
-      "reason": "Ready for Elder promotion"
     },
     {
       "name": "Oskar :)",
       "avgFame": 2430,
-      "donations": 42,
-      "donationsPerWar": 4,
+      "donations": 62,
+      "donationsPerWar": 6,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "BullyMeILLc|_|M",
       "avgFame": 2400,
-      "donations": 56,
+      "donations": 64,
       "donationsPerWar": 6,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "amj",
       "avgFame": 2265,
-      "donations": 0,
-      "donationsPerWar": 0,
+      "donations": 8,
+      "donationsPerWar": 1,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "Gabro",
       "avgFame": 2110,
-      "donations": 90,
-      "donationsPerWar": 9,
+      "donations": 100,
+      "donationsPerWar": 10,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -83,14 +76,14 @@
     {
       "name": "Reavy",
       "avgFame": 2100,
-      "donations": 0,
-      "donationsPerWar": 0,
+      "donations": 54,
+      "donationsPerWar": 5,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "slinky",
       "avgFame": 2062,
-      "donations": 0,
+      "donations": 1,
       "donationsPerWar": 0,
       "reason": "Ready for Elder promotion"
     },
@@ -104,8 +97,8 @@
     {
       "name": ": Marhabba :",
       "avgFame": 1848,
-      "donations": 52,
-      "donationsPerWar": 5,
+      "donations": 60,
+      "donationsPerWar": 6,
       "reason": "Ready for Elder promotion"
     }
   ],
@@ -123,22 +116,39 @@
       "donations": 0,
       "donationsPerWar": 0,
       "reason": "Candidate for kick/demotion"
-    },
-    {
-      "name": "abdisalam",
-      "avgFame": 200,
-      "donations": 0,
-      "donationsPerWar": 0,
-      "reason": "Recent activity below threshold"
     }
   ],
   "inactive": [
+    {
+      "name": "pro_master_88",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 1.7,
+      "reason": "No participation in the latest war"
+    },
+    {
+      "name": "PlayerX",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 2.0,
+      "reason": "No participation in the latest war"
+    },
+    {
+      "name": "YOUR SENSEI",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 1.8,
+      "reason": "No participation in the latest war"
+    },
     {
       "name": "TARAZAN",
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 0.7,
+      "lastSeenHours": 0.1,
       "reason": "No participation in the latest war"
     },
     {
@@ -146,31 +156,23 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 1.6,
+      "lastSeenHours": 11.5,
       "reason": "No participation in the latest war"
     },
     {
-      "name": "Rudolf",
-      "activeWeeks": 1,
+      "name": "hamburger123",
+      "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 2.4,
+      "lastSeenHours": 5.9,
       "reason": "No participation in the latest war"
     },
     {
-      "name": "sleepwalker",
-      "activeWeeks": 1,
+      "name": "leif 3000",
+      "activeWeeks": 2,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 49.8,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "kebaneri",
-      "activeWeeks": 10,
-      "totalWeeks": 10,
-      "avgFame": 165,
-      "lastSeenHours": 410.8,
+      "lastSeenHours": 8.7,
       "reason": "No participation in the latest war"
     }
   ],

@@ -899,6 +899,9 @@
         }
         dotsHtml += '</div>';
 
+        const donationsValue = m.donations || 0;
+        const donationsPerWar = activeWeeks > 0 ? Math.round(donationsValue / activeWeeks) : 0;
+
         const recommendation = getRecommendation({
           role: m.role,
           avgFame: avgFame,
@@ -909,8 +912,6 @@
         }, currentCriteria, totalWeeks);
 
         const lastSeenInfo = parseLastSeen(m.lastSeen);
-        const donationsValue = m.donations || 0;
-        const donationsPerWar = activeWeeks > 0 ? Math.round(donationsValue / activeWeeks) : 0;
 
         return {
           tag: m.tag,

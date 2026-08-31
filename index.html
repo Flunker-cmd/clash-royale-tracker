@@ -475,7 +475,7 @@
     <div class="criteria-panel">
       <div class="label">Recommendation Criteria</div>
       <div class="criteria-info">
-        Recent activity is measured as decks used in the latest war. A member must hit the participation gate before being considered for promotion. Donations are optional by default because each new war cycle can reset the current donation total. Default gate: 4 decks in the latest war; fame is the main promotion signal unless you enable donations manually.
+        Recent activity is measured as decks used in the latest war. A member must hit the participation gate before being considered for promotion. Donation metrics are normalized per war (average donations across all wars they participated in) to avoid reset volatility. Donations are optional by default because cycles can reset the current total. Default gate: 4 decks in the latest war; fame is the main promotion signal.
       </div>
       <div class="criteria-sections">
         <div class="criteria-section">
@@ -718,7 +718,7 @@
     function getRecommendation(member, criteria, totalWeeks) {
       const activeWeeks = member.weeks || 0;
       const avgFame = member.avgFame || 0;
-      const donations = member.donations || 0;
+      const donationsPerWar = member.donationsPerWar || 0;
       const role = member.role;
       const minActiveWeeks = Math.max(1, Math.ceil(totalWeeks * 0.5));
       const latestWarParticipation = Number(member.latestWarParticipation ?? 0);
@@ -742,11 +742,11 @@
       }
 
       const elderFameOk = !elderAvgEnabled || avgFame >= Number(criteria.promoteElderAvgFame);
-      const elderDonationsOk = !elderDonationEnabled || donations >= Number(criteria.promoteElderDonations);
+      const elderDonationsOk = !elderDonationEnabled || donationsPerWar >= Number(criteria.promoteElderDonations);
       const coLeaderFameOk = !coLeaderAvgEnabled || avgFame >= Number(criteria.promoteCoLeaderAvgFame);
-      const coLeaderDonationsOk = !coLeaderDonationEnabled || donations >= Number(criteria.promoteCoLeaderDonations);
+      const coLeaderDonationsOk = !coLeaderDonationEnabled || donationsPerWar >= Number(criteria.promoteCoLeaderDonations);
       const kickFameOk = !kickAvgEnabled || avgFame < Number(criteria.kickAvgFame);
-      const kickDonationsOk = !kickDonationEnabled || donations < Number(criteria.kickDonations);
+      const kickDonationsOk = !kickDonationEnabled || donationsPerWar < Number(criteria.kickDonations);
 
       if (role === 'member' && elderFameOk && elderDonationsOk) {
         return { text: 'Promote to Elder', weight: 5, className: 'promote' };
@@ -902,19 +902,23 @@
         const recommendation = getRecommendation({
           role: m.role,
           avgFame: avgFame,
-          donations: m.donations || 0,
+          donations: donationsValue,
+          donationsPerWar: donationsPerWar,
           weeks: activeWeeks,
           latestWarParticipation: latestWarParticipation,
         }, currentCriteria, totalWeeks);
 
         const lastSeenInfo = parseLastSeen(m.lastSeen);
+        const donationsValue = m.donations || 0;
+        const donationsPerWar = activeWeeks > 0 ? Math.round(donationsValue / activeWeeks) : 0;
 
         return {
           tag: m.tag,
           name: m.name,
           role: m.role,
           roleWeight: roleOrder[m.role] || 0,
-          donations: m.donations || 0,
+          donations: donationsValue,
+          donationsPerWar: donationsPerWar,
           fame: war.fame,
           avgFame: avgFame,
           sparklineHtml: createSparkline(war.fameHistory),

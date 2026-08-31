@@ -228,6 +228,81 @@ class GenerateInsightsTests(unittest.TestCase):
 
             self.assertIn("Dana", [item["name"] for item in data["promote"]])
 
+    def test_generate_insights_uses_donations_per_war_metric(self):
+        members = {
+            "memberList": [
+                {
+                    "tag": "#A5",
+                    "name": "Eve",
+                    "role": "member",
+                    "donations": 300,
+                    "lastSeen": "2024-01-01T00:00:00Z",
+                }
+            ]
+        }
+        history = {
+            "items": [
+                {
+                    "standings": [
+                        {
+                            "clan": {
+                                "tag": "#L0G0Y0JP",
+                                "participants": [
+                                    {"tag": "#A5", "fame": 1000, "decksUsed": 16}
+                                ],
+                            }
+                        }
+                    ]
+                },
+                {
+                    "standings": [
+                        {
+                            "clan": {
+                                "tag": "#L0G0Y0JP",
+                                "participants": [
+                                    {"tag": "#A5", "fame": 1000, "decksUsed": 16}
+                                ],
+                            }
+                        }
+                    ]
+                },
+                {
+                    "standings": [
+                        {
+                            "clan": {
+                                "tag": "#L0G0Y0JP",
+                                "participants": [
+                                    {"tag": "#A5", "fame": 1000, "decksUsed": 16}
+                                ],
+                            }
+                        }
+                    ]
+                },
+            ]
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            members_path = Path(tmpdir) / "members.json"
+            history_path = Path(tmpdir) / "history.json"
+            members_path.write_text(json.dumps(members), encoding="utf-8")
+            history_path.write_text(json.dumps(history), encoding="utf-8")
+
+            criteria = {
+                "promoteElderAvgFame": 800,
+                "promoteElderAvgFameEnabled": True,
+                "promoteElderDonations": 100,
+                "promoteElderDonationsEnabled": True,
+                "recentParticipationThreshold": 4,
+                "recentParticipationEnabled": True,
+            }
+
+            data = generate_insights(str(members_path), str(history_path), criteria=criteria)
+
+            promoted = [item for item in data["promote"] if item["name"] == "Eve"]
+            self.assertEqual(len(promoted), 1)
+            self.assertEqual(promoted[0]["donations"], 300)
+            self.assertEqual(promoted[0]["donationsPerWar"], 100)
+
 
 if __name__ == "__main__":
     unittest.main()

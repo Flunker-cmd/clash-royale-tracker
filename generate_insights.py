@@ -113,6 +113,7 @@ def member_summary(member, war_stats, total_weeks):
         latest_war_participation = int(war["history"][0] or 0)
     avg_fame = round(war.get("fame", 0) / active_weeks) if active_weeks else 0
     donations = int(member.get("donations") or 0)
+    donations_per_war = round(donations / active_weeks) if active_weeks else 0
     role = member.get("role", "member")
     last_seen = parse_last_seen(member.get("lastSeen"))
 
@@ -127,6 +128,7 @@ def member_summary(member, war_stats, total_weeks):
         "name": member.get("name"),
         "role": role,
         "donations": donations,
+        "donationsPerWar": donations_per_war,
         "avgFame": avg_fame,
         "activeWeeks": active_weeks,
         "latestWarParticipation": latest_war_participation,
@@ -158,15 +160,16 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
     for member in summaries:
         recent_participation_ok = not metric_is_enabled(criteria, "recentParticipation") or member["latestWarParticipation"] >= criteria["recentParticipationThreshold"]
         elder_fame_ok = not metric_is_enabled(criteria, "promoteElderAvgFame") or member["avgFame"] >= criteria["promoteElderAvgFame"]
-        elder_donations_ok = not metric_is_enabled(criteria, "promoteElderDonations") or member["donations"] >= criteria["promoteElderDonations"]
+        elder_donations_ok = not metric_is_enabled(criteria, "promoteElderDonations") or member["donationsPerWar"] >= criteria["promoteElderDonations"]
         coleader_fame_ok = not metric_is_enabled(criteria, "promoteCoLeaderAvgFame") or member["avgFame"] >= criteria["promoteCoLeaderAvgFame"]
-        coleader_donations_ok = not metric_is_enabled(criteria, "promoteCoLeaderDonations") or member["donations"] >= criteria["promoteCoLeaderDonations"]
+        coleader_donations_ok = not metric_is_enabled(criteria, "promoteCoLeaderDonations") or member["donationsPerWar"] >= criteria["promoteCoLeaderDonations"]
 
         if member["role"] == "member" and member["activeWeeks"] >= min_active_weeks and recent_participation_ok and elder_fame_ok and elder_donations_ok:
             promote.append({
                 "name": member["name"],
                 "avgFame": member["avgFame"],
                 "donations": member["donations"],
+                "donationsPerWar": member["donationsPerWar"],
                 "reason": "Ready for Elder promotion",
             })
         elif member["role"] == "elder" and member["activeWeeks"] >= min_active_weeks and recent_participation_ok and coleader_fame_ok and coleader_donations_ok:
@@ -174,6 +177,7 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
                 "name": member["name"],
                 "avgFame": member["avgFame"],
                 "donations": member["donations"],
+                "donationsPerWar": member["donationsPerWar"],
                 "reason": "Ready for Co-Leader promotion",
             })
 
@@ -192,16 +196,18 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
                     "name": member["name"],
                     "avgFame": member["avgFame"],
                     "donations": member["donations"],
+                    "donationsPerWar": member["donationsPerWar"],
                     "reason": "Recent activity below threshold",
                 })
             else:
                 kick_fame_ok = not metric_is_enabled(criteria, "kickAvgFame") or member["avgFame"] < criteria["kickAvgFame"]
-                kick_donations_ok = not metric_is_enabled(criteria, "kickDonations") or member["donations"] < criteria["kickDonations"]
+                kick_donations_ok = not metric_is_enabled(criteria, "kickDonations") or member["donationsPerWar"] < criteria["kickDonations"]
                 if kick_fame_ok and kick_donations_ok:
                     review.append({
                         "name": member["name"],
                         "avgFame": member["avgFame"],
                         "donations": member["donations"],
+                        "donationsPerWar": member["donationsPerWar"],
                         "reason": "Candidate for kick/demotion",
                     })
 

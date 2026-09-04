@@ -30,11 +30,11 @@ class GenerateInsightsTests(unittest.TestCase):
         members_path = Path("clan_members.json")
         history_path = Path("history_data.json")
         criteria = {
-            "promoteElderAvgFame": 5000,
+            "promoteElderAvgDecks": 14,
             "promoteElderDonations": 200,
-            "promoteCoLeaderAvgFame": 6000,
+            "promoteCoLeaderAvgDecks": 16,
             "promoteCoLeaderDonations": 250,
-            "kickAvgFame": 1000,
+            "kickAvgDecks": 8,
             "kickDonations": 50,
         }
 
@@ -80,16 +80,16 @@ class GenerateInsightsTests(unittest.TestCase):
             history_path.write_text(json.dumps(history), encoding="utf-8")
 
             criteria = {
-                "promoteElderAvgFame": 2000,
-                "promoteElderAvgFameEnabled": False,
+                "promoteElderAvgDecks": 14,
+                "promoteElderAvgDecksEnabled": False,
                 "promoteElderDonations": 500,
                 "promoteElderDonationsEnabled": True,
-                "promoteCoLeaderAvgFame": 2500,
-                "promoteCoLeaderAvgFameEnabled": True,
+                "promoteCoLeaderAvgDecks": 16,
+                "promoteCoLeaderAvgDecksEnabled": True,
                 "promoteCoLeaderDonations": 1000,
                 "promoteCoLeaderDonationsEnabled": True,
-                "kickAvgFame": 100,
-                "kickAvgFameEnabled": True,
+                "kickAvgDecks": 8,
+                "kickAvgDecksEnabled": True,
                 "kickDonations": 50,
                 "kickDonationsEnabled": True,
             }
@@ -200,7 +200,7 @@ class GenerateInsightsTests(unittest.TestCase):
                             "clan": {
                                 "tag": "#L0G0Y0JP",
                                 "participants": [
-                                    {"tag": "#A4", "fame": 5000, "decksUsed": 10}
+                                    {"tag": "#A4", "fame": 100, "decksUsed": 16}
                                 ],
                             }
                         }
@@ -216,8 +216,8 @@ class GenerateInsightsTests(unittest.TestCase):
             history_path.write_text(json.dumps(history), encoding="utf-8")
 
             criteria = {
-                "promoteElderAvgFame": 4500,
-                "promoteElderAvgFameEnabled": True,
+                "promoteElderAvgDecks": 14,
+                "promoteElderAvgDecksEnabled": True,
                 "promoteElderDonations": 50,
                 "promoteElderDonationsEnabled": False,
                 "recentParticipationThreshold": 4,
@@ -227,6 +227,38 @@ class GenerateInsightsTests(unittest.TestCase):
             data = generate_insights(str(members_path), str(history_path), criteria=criteria)
 
             self.assertIn("Dana", [item["name"] for item in data["promote"]])
+
+    def test_generate_insights_uses_trophies_and_average_decks_for_decisions(self):
+        members = {
+            "memberList": [
+                {
+                    "tag": "#A6",
+                    "name": "Fiona",
+                    "role": "member",
+                    "trophies": 7421,
+                    "donations": 0,
+                }
+            ]
+        }
+        history = {
+            "items": [
+                {"standings": [{"clan": {"tag": "#L0G0Y0JP", "participants": [{"tag": "#A6", "fame": 10, "decksUsed": 14}]}}]},
+                {"standings": [{"clan": {"tag": "#L0G0Y0JP", "participants": [{"tag": "#A6", "fame": 5000, "decksUsed": 14}]}}]},
+            ]
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            members_path = Path(tmpdir) / "members.json"
+            history_path = Path(tmpdir) / "history.json"
+            members_path.write_text(json.dumps(members), encoding="utf-8")
+            history_path.write_text(json.dumps(history), encoding="utf-8")
+
+            data = generate_insights(str(members_path), str(history_path))
+            summary = data["promote"][0]
+
+            self.assertEqual(summary["avgDecks"], 14)
+            self.assertEqual(summary["name"], "Fiona")
+            self.assertNotIn("Fiona", [item["name"] for item in data["review"]])
 
     def test_generate_insights_uses_donations_per_war_metric(self):
         members = {
@@ -288,8 +320,8 @@ class GenerateInsightsTests(unittest.TestCase):
             history_path.write_text(json.dumps(history), encoding="utf-8")
 
             criteria = {
-                "promoteElderAvgFame": 800,
-                "promoteElderAvgFameEnabled": True,
+                "promoteElderAvgDecks": 14,
+                "promoteElderAvgDecksEnabled": True,
                 "promoteElderDonations": 100,
                 "promoteElderDonationsEnabled": True,
                 "recentParticipationThreshold": 4,

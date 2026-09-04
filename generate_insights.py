@@ -6,16 +6,16 @@ from pathlib import Path
 CLAN_TAG = "#L0G0Y0JP"
 
 DEFAULT_CRITERIA = {
-    "promoteElderAvgFame": 1800,
-    "promoteElderAvgFameEnabled": True,
+    "promoteElderAvgDecks": 14,
+    "promoteElderAvgDecksEnabled": True,
     "promoteElderDonations": 50,
     "promoteElderDonationsEnabled": False,
-    "promoteCoLeaderAvgFame": 2500,
-    "promoteCoLeaderAvgFameEnabled": True,
+    "promoteCoLeaderAvgDecks": 16,
+    "promoteCoLeaderAvgDecksEnabled": True,
     "promoteCoLeaderDonations": 100,
     "promoteCoLeaderDonationsEnabled": False,
-    "kickAvgFame": 400,
-    "kickAvgFameEnabled": True,
+    "kickAvgDecks": 8,
+    "kickAvgDecksEnabled": True,
     "kickDonations": 30,
     "kickDonationsEnabled": False,
     "recentParticipationThreshold": 4,
@@ -112,6 +112,7 @@ def member_summary(member, war_stats, total_weeks):
     if war.get("history"):
         latest_war_participation = int(war["history"][0] or 0)
     avg_fame = round(war.get("fame", 0) / active_weeks) if active_weeks else 0
+    avg_decks = round(war.get("decks", 0) / active_weeks, 1) if active_weeks else 0
     donations = int(member.get("donations") or 0)
     donations_per_war = round(donations / active_weeks) if active_weeks else 0
     role = member.get("role", "member")
@@ -127,9 +128,12 @@ def member_summary(member, war_stats, total_weeks):
         "tag": tag,
         "name": member.get("name"),
         "role": role,
+        "trophies": int(member.get("trophies") or 0),
         "donations": donations,
         "donationsPerWar": donations_per_war,
         "avgFame": avg_fame,
+        "avgDecks": avg_decks,
+        "totalDecks": int(war.get("decks") or 0),
         "activeWeeks": active_weeks,
         "latestWarParticipation": latest_war_participation,
         "totalWeeks": total_weeks,
@@ -159,23 +163,25 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
 
     for member in summaries:
         recent_participation_ok = not metric_is_enabled(criteria, "recentParticipation") or member["latestWarParticipation"] >= criteria["recentParticipationThreshold"]
-        elder_fame_ok = not metric_is_enabled(criteria, "promoteElderAvgFame") or member["avgFame"] >= criteria["promoteElderAvgFame"]
+        elder_decks_ok = not metric_is_enabled(criteria, "promoteElderAvgDecks") or member["avgDecks"] >= criteria["promoteElderAvgDecks"]
         elder_donations_ok = not metric_is_enabled(criteria, "promoteElderDonations") or member["donationsPerWar"] >= criteria["promoteElderDonations"]
-        coleader_fame_ok = not metric_is_enabled(criteria, "promoteCoLeaderAvgFame") or member["avgFame"] >= criteria["promoteCoLeaderAvgFame"]
+        coleader_decks_ok = not metric_is_enabled(criteria, "promoteCoLeaderAvgDecks") or member["avgDecks"] >= criteria["promoteCoLeaderAvgDecks"]
         coleader_donations_ok = not metric_is_enabled(criteria, "promoteCoLeaderDonations") or member["donationsPerWar"] >= criteria["promoteCoLeaderDonations"]
 
-        if member["role"] == "member" and member["activeWeeks"] >= min_active_weeks and recent_participation_ok and elder_fame_ok and elder_donations_ok:
+        if member["role"] == "member" and member["activeWeeks"] >= min_active_weeks and recent_participation_ok and elder_decks_ok and elder_donations_ok:
             promote.append({
                 "name": member["name"],
                 "avgFame": member["avgFame"],
+                "avgDecks": member["avgDecks"],
                 "donations": member["donations"],
                 "donationsPerWar": member["donationsPerWar"],
                 "reason": "Ready for Elder promotion",
             })
-        elif member["role"] == "elder" and member["activeWeeks"] >= min_active_weeks and recent_participation_ok and coleader_fame_ok and coleader_donations_ok:
+        elif member["role"] == "elder" and member["activeWeeks"] >= min_active_weeks and recent_participation_ok and coleader_decks_ok and coleader_donations_ok:
             promote.append({
                 "name": member["name"],
                 "avgFame": member["avgFame"],
+                "avgDecks": member["avgDecks"],
                 "donations": member["donations"],
                 "donationsPerWar": member["donationsPerWar"],
                 "reason": "Ready for Co-Leader promotion",
@@ -200,12 +206,13 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
                     "reason": "Recent activity below threshold",
                 })
             else:
-                kick_fame_ok = not metric_is_enabled(criteria, "kickAvgFame") or member["avgFame"] < criteria["kickAvgFame"]
+                kick_decks_ok = not metric_is_enabled(criteria, "kickAvgDecks") or member["avgDecks"] < criteria["kickAvgDecks"]
                 kick_donations_ok = not metric_is_enabled(criteria, "kickDonations") or member["donationsPerWar"] < criteria["kickDonations"]
-                if kick_fame_ok and kick_donations_ok:
+                if kick_decks_ok and kick_donations_ok:
                     review.append({
                         "name": member["name"],
                         "avgFame": member["avgFame"],
+                        "avgDecks": member["avgDecks"],
                         "donations": member["donations"],
                         "donationsPerWar": member["donationsPerWar"],
                         "reason": "Candidate for kick/demotion",
@@ -213,7 +220,7 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
 
     active_warriors = sum(1 for member in summaries if member["activeWeeks"] >= max(1, math.ceil(total_weeks * 0.5)))
     avg_clan_fame = round(sum(member["avgFame"] for member in summaries) / len(summaries)) if summaries else 0
-    top_performer = max(summaries, key=lambda m: m["avgFame"], default={"name": "N/A", "avgFame": 0})
+    top_performer = max(summaries, key=lambda m: m["avgDecks"], default={"name": "N/A", "avgDecks": 0})
 
     result = {
         "generatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -224,7 +231,7 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
             "totalWeeks": total_weeks,
             "avgClanFame": avg_clan_fame,
             "topPerformer": top_performer.get("name"),
-            "topPerformerAvgFame": top_performer.get("avgFame", 0),
+            "topPerformerAvgDecks": top_performer.get("avgDecks", 0),
         },
         "promote": sorted(promote, key=lambda item: item["avgFame"], reverse=True),
         "review": sorted(review, key=lambda item: item["avgFame"], reverse=True),
@@ -232,6 +239,7 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
         "topPerformer": {
             "name": top_performer.get("name"),
             "avgFame": top_performer.get("avgFame", 0),
+            "avgDecks": top_performer.get("avgDecks", 0),
             "role": top_performer.get("role"),
         },
     }

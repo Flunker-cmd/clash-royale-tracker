@@ -457,7 +457,7 @@
         <div class="value" id="insight-inactive">-</div>
       </div>
       <div class="stat-card">
-        <div class="label">Top Avg Fame</div>
+        <div class="label">Top Avg Decks / War</div>
         <div class="value" id="insight-topfame">-</div>
       </div>
     </div>
@@ -475,7 +475,7 @@
     <div class="criteria-panel">
       <div class="label">Recommendation Criteria</div>
       <div class="criteria-info">
-        Recent activity is measured as decks used in the latest war. A member must hit the participation gate before being considered for promotion. Donation metrics are normalized per war (average donations across all wars they participated in) to avoid reset volatility. Donations are optional by default because cycles can reset the current total. Default gate: 4 decks in the latest war; fame is the main promotion signal.
+        Recent activity is measured as decks used in the latest war. A member must hit the participation gate before being considered for promotion. Donation metrics are normalized per war (average donations across all wars they participated in) to avoid reset volatility. Donations are optional by default because cycles can reset the current total. Default gate: 4 decks in the latest war; promotion and review use average decks per participated war. Fame remains available as secondary information.
       </div>
       <div class="criteria-sections">
         <div class="criteria-section">
@@ -494,9 +494,9 @@
           <div class="criteria-grid">
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-promoteElderAvgFameEnabled" type="checkbox" checked> Avg fame</label>
+                <label class="criteria-toggle"><input id="criteria-promoteElderAvgDecksEnabled" type="checkbox" checked> Avg decks / war</label>
               </div>
-              <input id="criteria-promoteElderAvgFame" type="number" min="0" step="50">
+              <input id="criteria-promoteElderAvgDecks" type="number" min="0" max="16" step="1">
             </div>
             <div class="criteria-field">
               <div class="criteria-field-header">
@@ -511,9 +511,9 @@
           <div class="criteria-grid">
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-promoteCoLeaderAvgFameEnabled" type="checkbox" checked> Avg fame</label>
+                <label class="criteria-toggle"><input id="criteria-promoteCoLeaderAvgDecksEnabled" type="checkbox" checked> Avg decks / war</label>
               </div>
-              <input id="criteria-promoteCoLeaderAvgFame" type="number" min="0" step="50">
+              <input id="criteria-promoteCoLeaderAvgDecks" type="number" min="0" max="16" step="1">
             </div>
             <div class="criteria-field">
               <div class="criteria-field-header">
@@ -528,9 +528,9 @@
           <div class="criteria-grid">
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-kickAvgFameEnabled" type="checkbox" checked> Avg fame</label>
+                <label class="criteria-toggle"><input id="criteria-kickAvgDecksEnabled" type="checkbox" checked> Avg decks / war</label>
               </div>
-              <input id="criteria-kickAvgFame" type="number" min="0" step="50">
+              <input id="criteria-kickAvgDecks" type="number" min="0" max="16" step="1">
             </div>
             <div class="criteria-field">
               <div class="criteria-field-header">
@@ -564,8 +564,9 @@
             <th onclick="sortTable('index')"># <span id="sort-index"></span></th>
             <th onclick="sortTable('name')">Player <span id="sort-name"></span></th>
             <th onclick="sortTable('role')">Role <span id="sort-role"></span></th>
+            <th onclick="sortTable('trophies')">Trophies <span id="sort-trophies"></span></th>
             <th onclick="sortTable('donations')">Donations <span id="sort-donations"></span></th>
-            <th onclick="sortTable('avgFame')">Avg Fame / Week <span id="sort-avgFame"></span></th>
+            <th onclick="sortTable('avgDecks')">Avg Decks / War <span id="sort-avgDecks"></span></th>
             <th onclick="sortTable('decks')">Total Decks (Max 160) <span id="sort-decks"></span></th>
             <th onclick="sortTable('weeks')">War Loyalty <span id="sort-weeks"></span></th>
             <th onclick="sortTable('recommendationWeight')">Action / Recommendation <span id="sort-recommendationWeight"></span></th>
@@ -613,16 +614,16 @@
     };
 
     const defaultCriteria = {
-      promoteElderAvgFame: 1800,
-      promoteElderAvgFameEnabled: true,
+      promoteElderAvgDecks: 14,
+      promoteElderAvgDecksEnabled: true,
       promoteElderDonations: 50,
       promoteElderDonationsEnabled: false,
-      promoteCoLeaderAvgFame: 2500,
-      promoteCoLeaderAvgFameEnabled: true,
+      promoteCoLeaderAvgDecks: 16,
+      promoteCoLeaderAvgDecksEnabled: true,
       promoteCoLeaderDonations: 100,
       promoteCoLeaderDonationsEnabled: false,
-      kickAvgFame: 400,
-      kickAvgFameEnabled: true,
+      kickAvgDecks: 8,
+      kickAvgDecksEnabled: true,
       kickDonations: 30,
       kickDonationsEnabled: false,
       recentParticipationThreshold: 4,
@@ -639,16 +640,16 @@
 
     function getCriteriaInputs() {
       return {
-        promoteElderAvgFame: Number(document.getElementById('criteria-promoteElderAvgFame').value || defaultCriteria.promoteElderAvgFame),
-        promoteElderAvgFameEnabled: document.getElementById('criteria-promoteElderAvgFameEnabled').checked,
+        promoteElderAvgDecks: Number(document.getElementById('criteria-promoteElderAvgDecks').value || defaultCriteria.promoteElderAvgDecks),
+        promoteElderAvgDecksEnabled: document.getElementById('criteria-promoteElderAvgDecksEnabled').checked,
         promoteElderDonations: Number(document.getElementById('criteria-promoteElderDonations').value || defaultCriteria.promoteElderDonations),
         promoteElderDonationsEnabled: document.getElementById('criteria-promoteElderDonationsEnabled').checked,
-        promoteCoLeaderAvgFame: Number(document.getElementById('criteria-promoteCoLeaderAvgFame').value || defaultCriteria.promoteCoLeaderAvgFame),
-        promoteCoLeaderAvgFameEnabled: document.getElementById('criteria-promoteCoLeaderAvgFameEnabled').checked,
+        promoteCoLeaderAvgDecks: Number(document.getElementById('criteria-promoteCoLeaderAvgDecks').value || defaultCriteria.promoteCoLeaderAvgDecks),
+        promoteCoLeaderAvgDecksEnabled: document.getElementById('criteria-promoteCoLeaderAvgDecksEnabled').checked,
         promoteCoLeaderDonations: Number(document.getElementById('criteria-promoteCoLeaderDonations').value || defaultCriteria.promoteCoLeaderDonations),
         promoteCoLeaderDonationsEnabled: document.getElementById('criteria-promoteCoLeaderDonationsEnabled').checked,
-        kickAvgFame: Number(document.getElementById('criteria-kickAvgFame').value || defaultCriteria.kickAvgFame),
-        kickAvgFameEnabled: document.getElementById('criteria-kickAvgFameEnabled').checked,
+        kickAvgDecks: Number(document.getElementById('criteria-kickAvgDecks').value || defaultCriteria.kickAvgDecks),
+        kickAvgDecksEnabled: document.getElementById('criteria-kickAvgDecksEnabled').checked,
         kickDonations: Number(document.getElementById('criteria-kickDonations').value || defaultCriteria.kickDonations),
         kickDonationsEnabled: document.getElementById('criteria-kickDonationsEnabled').checked,
         recentParticipationThreshold: Number(document.getElementById('criteria-recentParticipationThreshold').value || defaultCriteria.recentParticipationThreshold),
@@ -658,11 +659,11 @@
 
     function updateCriteriaInputsState() {
       const toggles = [
-        ['criteria-promoteElderAvgFameEnabled', 'criteria-promoteElderAvgFame'],
+        ['criteria-promoteElderAvgDecksEnabled', 'criteria-promoteElderAvgDecks'],
         ['criteria-promoteElderDonationsEnabled', 'criteria-promoteElderDonations'],
-        ['criteria-promoteCoLeaderAvgFameEnabled', 'criteria-promoteCoLeaderAvgFame'],
+        ['criteria-promoteCoLeaderAvgDecksEnabled', 'criteria-promoteCoLeaderAvgDecks'],
         ['criteria-promoteCoLeaderDonationsEnabled', 'criteria-promoteCoLeaderDonations'],
-        ['criteria-kickAvgFameEnabled', 'criteria-kickAvgFame'],
+        ['criteria-kickAvgDecksEnabled', 'criteria-kickAvgDecks'],
         ['criteria-kickDonationsEnabled', 'criteria-kickDonations']
       ];
 
@@ -717,7 +718,7 @@
 
     function getRecommendation(member, criteria, totalWeeks) {
       const activeWeeks = member.weeks || 0;
-      const avgFame = member.avgFame || 0;
+      const avgDecks = member.avgDecks || 0;
       const donationsPerWar = member.donationsPerWar || 0;
       const role = member.role;
       const minActiveWeeks = Math.max(1, Math.ceil(totalWeeks * 0.5));
@@ -730,34 +731,34 @@
       const recentParticipationEnabled = criteria.recentParticipationEnabled !== false;
       const recentParticipationThreshold = Number(criteria.recentParticipationThreshold ?? 4);
       const recentParticipationOk = !recentParticipationEnabled || latestWarParticipation >= recentParticipationThreshold;
-      const elderAvgEnabled = criteria.promoteElderAvgFameEnabled !== false;
+      const elderAvgEnabled = criteria.promoteElderAvgDecksEnabled !== false;
       const elderDonationEnabled = criteria.promoteElderDonationsEnabled !== false;
-      const coLeaderAvgEnabled = criteria.promoteCoLeaderAvgFameEnabled !== false;
+      const coLeaderAvgEnabled = criteria.promoteCoLeaderAvgDecksEnabled !== false;
       const coLeaderDonationEnabled = criteria.promoteCoLeaderDonationsEnabled !== false;
-      const kickAvgEnabled = criteria.kickAvgFameEnabled !== false;
+      const kickAvgEnabled = criteria.kickAvgDecksEnabled !== false;
       const kickDonationEnabled = criteria.kickDonationsEnabled !== false;
 
       if (!recentParticipationOk) {
         return { text: 'Recent activity low', weight: 2, className: 'review' };
       }
 
-      const elderFameOk = !elderAvgEnabled || avgFame >= Number(criteria.promoteElderAvgFame);
+      const elderDecksOk = !elderAvgEnabled || avgDecks >= Number(criteria.promoteElderAvgDecks);
       const elderDonationsOk = !elderDonationEnabled || donationsPerWar >= Number(criteria.promoteElderDonations);
-      const coLeaderFameOk = !coLeaderAvgEnabled || avgFame >= Number(criteria.promoteCoLeaderAvgFame);
+      const coLeaderDecksOk = !coLeaderAvgEnabled || avgDecks >= Number(criteria.promoteCoLeaderAvgDecks);
       const coLeaderDonationsOk = !coLeaderDonationEnabled || donationsPerWar >= Number(criteria.promoteCoLeaderDonations);
-      const kickFameOk = !kickAvgEnabled || avgFame < Number(criteria.kickAvgFame);
+      const kickDecksOk = !kickAvgEnabled || avgDecks < Number(criteria.kickAvgDecks);
       const kickDonationsOk = !kickDonationEnabled || donationsPerWar < Number(criteria.kickDonations);
 
-      if (role === 'member' && elderFameOk && elderDonationsOk) {
+      if (role === 'member' && elderDecksOk && elderDonationsOk) {
         return { text: 'Promote to Elder', weight: 5, className: 'promote' };
       }
 
-      if (role === 'elder' && coLeaderFameOk && coLeaderDonationsOk) {
+      if (role === 'elder' && coLeaderDecksOk && coLeaderDonationsOk) {
         return { text: 'Promote to Co-Leader', weight: 5, className: 'promote' };
       }
 
       if (kickAvgEnabled || kickDonationEnabled) {
-        if (kickFameOk && kickDonationsOk) {
+        if (kickDecksOk && kickDonationsOk) {
           return { text: 'Kick / Demote', weight: 0, className: 'kick' };
         }
       }
@@ -865,6 +866,7 @@
         const activeWeeks = war.weeks || 0;
         const latestWarParticipation = war.history?.length ? Number(war.history[0] || 0) : 0;
         const avgFame = activeWeeks > 0 ? Math.round(war.fame / activeWeeks) : 0;
+        const avgDecks = activeWeeks > 0 ? Math.round((war.decks / activeWeeks) * 10) / 10 : 0;
 
         totalClanAvgFame += avgFame;
         if (activeWeeks >= Math.ceil(totalWeeks / 2)) {
@@ -905,6 +907,7 @@
         const recommendation = getRecommendation({
           role: m.role,
           avgFame: avgFame,
+          avgDecks: avgDecks,
           donations: donationsValue,
           donationsPerWar: donationsPerWar,
           weeks: activeWeeks,
@@ -918,10 +921,12 @@
           name: m.name,
           role: m.role,
           roleWeight: roleOrder[m.role] || 0,
+          trophies: Number(m.trophies || 0),
           donations: donationsValue,
           donationsPerWar: donationsPerWar,
           fame: war.fame,
           avgFame: avgFame,
+          avgDecks: avgDecks,
           sparklineHtml: createSparkline(war.fameHistory),
           decks: war.decks,
           weeks: activeWeeks,
@@ -938,7 +943,7 @@
         };
       });
 
-      const topPlayer = [...combinedData].sort((a, b) => b.avgFame - a.avgFame)[0];
+      const topPlayer = [...combinedData].sort((a, b) => b.avgDecks - a.avgDecks)[0];
 
       document.getElementById('stat-trophies').textContent = (dashboardState.clanWarTrophies || 0).toLocaleString();
       document.getElementById('stat-fame').textContent = totalClanAvgFame.toLocaleString();
@@ -972,9 +977,9 @@
 
         if (insightsData && insightsData.summary) {
           const topPerformer = insightsData.topPerformer?.name || 'N/A';
-          const topFame = insightsData.topPerformer?.avgFame ?? 0;
-          document.getElementById('insight-topfame').textContent = topFame ? `${topFame.toLocaleString()}` : '-';
-          document.getElementById('summary-text').textContent = `Clan health snapshot: ${insightsData.summary.activeWarriors} of ${insightsData.summary.activeMembers} members are active, and ${topPerformer} leads with ${topFame.toLocaleString()} average fame.`;
+          const topDecks = insightsData.topPerformer?.avgDecks ?? insightsData.summary.topPerformerAvgDecks ?? 0;
+          document.getElementById('insight-topfame').textContent = topDecks ? `${topDecks.toLocaleString()}` : '-';
+          document.getElementById('summary-text').textContent = `Clan health snapshot: ${insightsData.summary.activeWarriors} of ${insightsData.summary.activeMembers} members are active, and ${topPerformer} leads with ${topDecks.toLocaleString()} average decks per war.`;
         }
 
         applyCriteriaToInputs();
@@ -1004,23 +1009,23 @@
       const promote = combinedData.filter(member => member.recommendationClass === 'promote');
       const review = combinedData.filter(member => member.recommendationClass === 'review' || member.recommendationClass === 'kick');
       const inactive = combinedData.filter(member => member.recommendationClass === 'review');
-      const topPlayer = [...combinedData].sort((a, b) => b.avgFame - a.avgFame)[0];
+      const topPlayer = [...combinedData].sort((a, b) => b.avgDecks - a.avgDecks)[0];
 
       document.getElementById('insight-promote').textContent = promote.length;
       document.getElementById('insight-review').textContent = review.length;
       document.getElementById('insight-inactive').textContent = inactive.length;
-      document.getElementById('insight-topfame').textContent = topPlayer ? `${topPlayer.avgFame.toLocaleString()}` : '-';
+      document.getElementById('insight-topfame').textContent = topPlayer ? `${topPlayer.avgDecks.toLocaleString()}` : '-';
 
       const activeCount = combinedData.filter(member => {
         const minWeeks = Math.max(1, Math.ceil((member.totalWeeks || 1) * 0.5));
         return member.weeks >= minWeeks;
       }).length;
       document.getElementById('summary-text').textContent =
-        `Clan health is strong: ${activeCount} of ${combinedData.length} members are active, ${promote.length} players are ready for promotion, ${review.length} need review, and ${topPlayer ? topPlayer.name : 'N/A'} leads with ${topPlayer ? topPlayer.avgFame.toLocaleString() : '0'} average fame.`;
+        `Clan health is strong: ${activeCount} of ${combinedData.length} members are active, ${promote.length} players are ready for promotion, ${review.length} need review, and ${topPlayer ? topPlayer.name : 'N/A'} leads with ${topPlayer ? topPlayer.avgDecks.toLocaleString() : '0'} average decks per war.`;
 
       const topRecommendations = [];
       promote.slice(0, 3).forEach(member => {
-        topRecommendations.push({ type: 'Promote', text: `${member.name} • ${member.avgFame.toLocaleString()} fame` });
+        topRecommendations.push({ type: 'Promote', text: `${member.name} • ${member.avgDecks.toLocaleString()} decks / war` });
       });
       review.slice(0, 2).forEach(member => {
         topRecommendations.push({ type: 'Review', text: `${member.name} • ${member.recommendationText}` });
@@ -1114,8 +1119,8 @@
           valA = a.roleWeight;
           valB = b.roleWeight;
         } else if (currentSortColumn === 'index') {
-          valA = a.avgFame;
-          valB = b.avgFame;
+          valA = a.avgDecks;
+          valB = b.avgDecks;
         } else {
           valA = a[currentSortColumn];
           valB = b[currentSortColumn];
@@ -1127,7 +1132,7 @@
         return currentSortAsc ? valA - valB : valB - valA;
       });
 
-      ['index', 'name', 'role', 'donations', 'avgFame', 'decks', 'weeks', 'recommendationWeight'].forEach(col => {
+      ['index', 'name', 'role', 'trophies', 'donations', 'avgDecks', 'decks', 'weeks', 'recommendationWeight'].forEach(col => {
         const el = document.getElementById(`sort-${col}`);
         if (el) {
           el.textContent = col === currentSortColumn ? (currentSortAsc ? '▲' : '▼') : '';
@@ -1146,10 +1151,11 @@
             <span class="last-seen ${m.lastSeenWarning ? 'warning' : ''}">Seen: ${m.lastSeenText}</span>
           </td>
           <td>${getRoleBadge(m.role)}</td>
+          <td>${m.trophies.toLocaleString()}</td>
           <td>${m.donations}</td>
           <td>
             <div class="fame-cell">
-              <span class="fame-num">${m.avgFame.toLocaleString()}</span>
+              <span class="fame-num">${m.avgDecks.toLocaleString()} <small>(Fame ${m.avgFame.toLocaleString()})</small></span>
               ${m.sparklineHtml}
             </div>
           </td>

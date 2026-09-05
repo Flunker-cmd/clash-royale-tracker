@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-05T14:25:21Z",
+  "generatedAt": "2026-09-05T19:49:37Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 47,
+    "activeMembers": 49,
     "activeWarriors": 28,
     "totalWeeks": 10,
-    "avgClanFame": 1630,
+    "avgClanFame": 1564,
     "topPerformer": "MEGABAENIS",
     "topPerformerAvgDecks": 16.0
   },
@@ -22,8 +22,8 @@
       "name": "Oskar :)",
       "avgFame": 2430,
       "avgDecks": 15.2,
-      "donations": 378,
-      "donationsPerWar": 38,
+      "donations": 438,
+      "donationsPerWar": 44,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -38,8 +38,8 @@
       "name": "amj",
       "avgFame": 2265,
       "avgDecks": 14.9,
-      "donations": 361,
-      "donationsPerWar": 36,
+      "donations": 377,
+      "donationsPerWar": 38,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -70,24 +70,24 @@
       "name": "Wader",
       "avgFame": 1925,
       "avgDecks": 15.6,
-      "donations": 67,
-      "donationsPerWar": 7,
+      "donations": 75,
+      "donationsPerWar": 8,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": ": Marhabba :",
       "avgFame": 1848,
       "avgDecks": 14.4,
-      "donations": 485,
-      "donationsPerWar": 48,
+      "donations": 509,
+      "donationsPerWar": 51,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "isak",
       "avgFame": 1778,
       "avgDecks": 15.0,
-      "donations": 306,
-      "donationsPerWar": 38,
+      "donations": 322,
+      "donationsPerWar": 40,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -128,18 +128,26 @@
       "name": "Gattouz0",
       "avgFame": 350,
       "avgDecks": 4.0,
-      "donations": 220,
-      "donationsPerWar": 220,
+      "donations": 238,
+      "donationsPerWar": 238,
       "reason": "Candidate for kick/demotion"
     }
   ],
   "inactive": [
     {
+      "name": "☆ Maxi ☆",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 3.9,
+      "reason": "No participation in the latest war"
+    },
+    {
       "name": "herman@:com",
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 0.3,
+      "lastSeenHours": 5.7,
       "reason": "No participation in the latest war"
     },
     {
@@ -147,7 +155,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 5.5,
+      "lastSeenHours": 2.8,
       "reason": "No participation in the latest war"
     },
     {
@@ -155,7 +163,15 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 8.6,
+      "lastSeenHours": 2.7,
+      "reason": "No participation in the latest war"
+    },
+    {
+      "name": "CRgoat",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 2.1,
       "reason": "No participation in the latest war"
     },
     {
@@ -163,7 +179,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 0.5,
+      "lastSeenHours": 0.2,
       "reason": "No participation in the latest war"
     },
     {
@@ -171,7 +187,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 3.6,
+      "lastSeenHours": 1.9,
       "reason": "No participation in the latest war"
     },
     {
@@ -179,7 +195,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 0.4,
+      "lastSeenHours": 5.8,
       "reason": "No participation in the latest war"
     },
     {
@@ -187,7 +203,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 4.1,
+      "lastSeenHours": 9.5,
       "reason": "No participation in the latest war"
     }
   ],

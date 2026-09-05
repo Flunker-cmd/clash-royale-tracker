@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-04T18:57:05Z",
+  "generatedAt": "2026-09-05T07:44:02Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 48,
+    "activeMembers": 47,
     "activeWarriors": 29,
     "totalWeeks": 10,
-    "avgClanFame": 1631,
+    "avgClanFame": 1666,
     "topPerformer": "MEGABAENIS",
     "topPerformerAvgDecks": 16.0
   },
@@ -22,16 +22,16 @@
       "name": "Oskar :)",
       "avgFame": 2430,
       "avgDecks": 15.2,
-      "donations": 264,
-      "donationsPerWar": 26,
+      "donations": 342,
+      "donationsPerWar": 34,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "BullyMeILLc|_|M",
       "avgFame": 2400,
       "avgDecks": 15.9,
-      "donations": 212,
-      "donationsPerWar": 21,
+      "donations": 230,
+      "donationsPerWar": 23,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -62,9 +62,9 @@
       "name": "slinky",
       "avgFame": 2062,
       "avgDecks": 16.0,
-      "donations": 17,
+      "donations": 18,
       "donationsPerWar": 2,
-      "reason": "Ready for Elder promotion"
+      "reason": "Ready for Co-Leader promotion"
     },
     {
       "name": "Wader",
@@ -78,24 +78,24 @@
       "name": ": Marhabba :",
       "avgFame": 1848,
       "avgDecks": 14.4,
-      "donations": 441,
-      "donationsPerWar": 44,
+      "donations": 485,
+      "donationsPerWar": 48,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "isak",
       "avgFame": 1778,
       "avgDecks": 15.0,
-      "donations": 246,
-      "donationsPerWar": 31,
+      "donations": 278,
+      "donationsPerWar": 35,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "Limpan",
       "avgFame": 1742,
       "avgDecks": 14.5,
-      "donations": 211,
-      "donationsPerWar": 21,
+      "donations": 238,
+      "donationsPerWar": 24,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -136,18 +136,26 @@
       "name": "Gattouz0",
       "avgFame": 350,
       "avgDecks": 4.0,
-      "donations": 176,
-      "donationsPerWar": 176,
+      "donations": 220,
+      "donationsPerWar": 220,
       "reason": "Candidate for kick/demotion"
     }
   ],
   "inactive": [
     {
+      "name": "Viggen\\\\",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 2.3,
+      "reason": "No participation in the latest war"
+    },
+    {
       "name": "pro_master_88",
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 3.6,
+      "lastSeenHours": 1.9,
       "reason": "No participation in the latest war"
     },
     {
@@ -155,7 +163,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 33.0,
+      "lastSeenHours": 45.7,
       "reason": "No participation in the latest war"
     },
     {
@@ -163,15 +171,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 26.1,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "YOUR SENSEI",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 18.2,
+      "lastSeenHours": 38.9,
       "reason": "No participation in the latest war"
     },
     {
@@ -179,23 +179,15 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 12.4,
+      "lastSeenHours": 25.2,
       "reason": "No participation in the latest war"
     },
     {
-      "name": "TARAZAN",
+      "name": "awaken101",
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 4.5,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "AfganBoy",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 11.9,
+      "lastSeenHours": 7.2,
       "reason": "No participation in the latest war"
     }
   ],

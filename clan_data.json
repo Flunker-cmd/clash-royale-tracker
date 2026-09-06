@@ -4,7 +4,7 @@
     "tag": "#L0G0Y0JP",
     "name": "Ikea",
     "badgeId": 16000062,
-    "fame": 85900,
+    "fame": 86300,
     "repairPoints": 0,
     "participants": [
       {
@@ -818,15 +818,6 @@
         "decksUsedToday": 1
       },
       {
-        "tag": "#QJ920VG2C",
-        "name": "isak",
-        "fame": 1000,
-        "repairPoints": 0,
-        "boatAttacks": 0,
-        "decksUsed": 8,
-        "decksUsedToday": 0
-      },
-      {
         "tag": "#2QGGPPYCP",
         "name": "herman@:com",
         "fame": 1100,
@@ -852,6 +843,15 @@
         "boatAttacks": 0,
         "decksUsed": 9,
         "decksUsedToday": 2
+      },
+      {
+        "tag": "#QJ920VG2C",
+        "name": "isak",
+        "fame": 1400,
+        "repairPoints": 0,
+        "boatAttacks": 0,
+        "decksUsed": 12,
+        "decksUsedToday": 4
       },
       {
         "tag": "#G0QP8P0VJ",
@@ -1159,7 +1159,7 @@
       "tag": "#L8UCJLJJ",
       "name": "はるきゃん☆",
       "badgeId": 16000120,
-      "fame": 73000,
+      "fame": 76000,
       "repairPoints": 0,
       "participants": [
         {
@@ -1442,15 +1442,6 @@
           "decksUsedToday": 4
         },
         {
-          "tag": "#8RPQPYGC0",
-          "name": "Mr.Tyom",
-          "fame": 1200,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 7,
-          "decksUsedToday": 2
-        },
-        {
           "tag": "#Y9LRGVQ0Q",
           "name": "はるそう",
           "fame": 1250,
@@ -1469,13 +1460,13 @@
           "decksUsedToday": 1
         },
         {
-          "tag": "#U0982JVYQ",
-          "name": "たっくん",
-          "fame": 1400,
+          "tag": "#8RPQPYGC0",
+          "name": "Mr.Tyom",
+          "fame": 1300,
           "repairPoints": 0,
           "boatAttacks": 0,
-          "decksUsed": 7,
-          "decksUsedToday": 0
+          "decksUsed": 8,
+          "decksUsedToday": 3
         },
         {
           "tag": "#VR2R0RLRQ",
@@ -1538,24 +1529,6 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 11,
-          "decksUsedToday": 0
-        },
-        {
-          "tag": "#QULPR0C8P",
-          "name": "チキンライス",
-          "fame": 1650,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 9,
-          "decksUsedToday": 0
-        },
-        {
-          "tag": "#JL2RV9JC",
-          "name": "Yosshi",
-          "fame": 1650,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 12,
           "decksUsedToday": 0
         },
         {
@@ -1631,22 +1604,13 @@
           "decksUsedToday": 4
         },
         {
-          "tag": "#UVJVUU2RR",
-          "name": "John",
-          "fame": 2100,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 12,
-          "decksUsedToday": 1
-        },
-        {
-          "tag": "#8QU0LPQ0J",
-          "name": "円堂守",
+          "tag": "#U0982JVYQ",
+          "name": "たっくん",
           "fame": 2100,
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 11,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#9YJVJL2",
@@ -1656,6 +1620,24 @@
           "boatAttacks": 0,
           "decksUsed": 12,
           "decksUsedToday": 0
+        },
+        {
+          "tag": "#QULPR0C8P",
+          "name": "チキンライス",
+          "fame": 2250,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 12,
+          "decksUsedToday": 3
+        },
+        {
+          "tag": "#UVJVUU2RR",
+          "name": "John",
+          "fame": 2300,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 13,
+          "decksUsedToday": 2
         },
         {
           "tag": "#UJV8UQ0LJ",
@@ -1674,6 +1656,15 @@
           "boatAttacks": 0,
           "decksUsed": 13,
           "decksUsedToday": 1
+        },
+        {
+          "tag": "#JL2RV9JC",
+          "name": "Yosshi",
+          "fame": 2450,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 16,
+          "decksUsedToday": 4
         },
         {
           "tag": "#RRV9QL29Q",
@@ -1701,6 +1692,15 @@
           "boatAttacks": 0,
           "decksUsed": 16,
           "decksUsedToday": 4
+        },
+        {
+          "tag": "#8QU0LPQ0J",
+          "name": "円堂守",
+          "fame": 2700,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 14,
+          "decksUsedToday": 3
         },
         {
           "tag": "#8YJQPYYQ0",
@@ -1755,7 +1755,7 @@
       "tag": "#20RPU9J",
       "name": "AREA 619",
       "badgeId": 16000010,
-      "fame": 80900,
+      "fame": 82350,
       "repairPoints": 0,
       "participants": [
         {
@@ -2263,24 +2263,6 @@
           "decksUsedToday": 0
         },
         {
-          "tag": "#8V0CGG9J",
-          "name": "AFKSULTAN",
-          "fame": 1100,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 8,
-          "decksUsedToday": 0
-        },
-        {
-          "tag": "#208YP98GCQ",
-          "name": "Chick3nhawkjr",
-          "fame": 1200,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 7,
-          "decksUsedToday": 0
-        },
-        {
           "tag": "#2292JC2P9C",
           "name": "DeePrehShun",
           "fame": 1200,
@@ -2353,6 +2335,15 @@
           "decksUsedToday": 0
         },
         {
+          "tag": "#8V0CGG9J",
+          "name": "AFKSULTAN",
+          "fame": 1500,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 12,
+          "decksUsedToday": 4
+        },
+        {
           "tag": "#CY8YYQVLL",
           "name": "arian",
           "fame": 1500,
@@ -2360,6 +2351,15 @@
           "boatAttacks": 0,
           "decksUsed": 9,
           "decksUsedToday": 0
+        },
+        {
+          "tag": "#208YP98GCQ",
+          "name": "Chick3nhawkjr",
+          "fame": 1600,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 10,
+          "decksUsedToday": 3
         },
         {
           "tag": "#QJGP0PR",
@@ -2423,15 +2423,6 @@
           "boatAttacks": 0,
           "decksUsed": 12,
           "decksUsedToday": 4
-        },
-        {
-          "tag": "#P9VYCY9LL",
-          "name": "ᴶᴬᴷᴱ:)",
-          "fame": 2150,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 12,
-          "decksUsedToday": 0
         },
         {
           "tag": "#CJY0GQCP",
@@ -2560,6 +2551,15 @@
           "decksUsedToday": 4
         },
         {
+          "tag": "#P9VYCY9LL",
+          "name": "ᴶᴬᴷᴱ:)",
+          "fame": 2600,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 15,
+          "decksUsedToday": 3
+        },
+        {
           "tag": "#C9L8QU9P",
           "name": "mac daddy",
           "fame": 2700,
@@ -2598,11 +2598,11 @@
         {
           "tag": "#JJVYYC0PG",
           "name": "sorina",
-          "fame": 3400,
+          "fame": 3600,
           "repairPoints": 0,
           "boatAttacks": 0,
-          "decksUsed": 15,
-          "decksUsedToday": 3
+          "decksUsed": 16,
+          "decksUsedToday": 4
         }
       ],
       "periodPoints": 0,
@@ -4488,7 +4488,7 @@
       "tag": "#L0G0Y0JP",
       "name": "Ikea",
       "badgeId": 16000062,
-      "fame": 85900,
+      "fame": 86300,
       "repairPoints": 0,
       "participants": [
         {
@@ -5302,15 +5302,6 @@
           "decksUsedToday": 1
         },
         {
-          "tag": "#QJ920VG2C",
-          "name": "isak",
-          "fame": 1000,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 8,
-          "decksUsedToday": 0
-        },
-        {
           "tag": "#2QGGPPYCP",
           "name": "herman@:com",
           "fame": 1100,
@@ -5336,6 +5327,15 @@
           "boatAttacks": 0,
           "decksUsed": 9,
           "decksUsedToday": 2
+        },
+        {
+          "tag": "#QJ920VG2C",
+          "name": "isak",
+          "fame": 1400,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 12,
+          "decksUsedToday": 4
         },
         {
           "tag": "#G0QP8P0VJ",

@@ -1,5 +1,7 @@
 # clash-royale-tracker
 
+[Open the published dashboard](https://flunker-cmd.github.io/clash-royale-tracker/)
+
 The dashboard shows current player trophies, total war decks used, and average
 decks used per participated war. Promotion and review recommendations use
 average decks per war instead of fame.

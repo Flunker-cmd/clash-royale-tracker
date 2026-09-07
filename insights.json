@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-07T13:46:49Z",
+  "generatedAt": "2026-09-07T18:28:08Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 50,
+    "activeMembers": 47,
     "activeWarriors": 28,
     "totalWeeks": 10,
-    "avgClanFame": 1685,
+    "avgClanFame": 1784,
     "topPerformer": "MEGABAENIS",
     "topPerformerAvgDecks": 16.0
   },
@@ -22,16 +22,16 @@
       "name": "Piggelin",
       "avgFame": 2720,
       "avgDecks": 16.0,
-      "donations": 16,
-      "donationsPerWar": 2,
+      "donations": 34,
+      "donationsPerWar": 3,
       "reason": "Ready for Co-Leader promotion"
     },
     {
       "name": "Oskar :)",
       "avgFame": 2470,
       "avgDecks": 15.6,
-      "donations": 0,
-      "donationsPerWar": 0,
+      "donations": 28,
+      "donationsPerWar": 3,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -46,7 +46,7 @@
       "name": "amj",
       "avgFame": 2225,
       "avgDecks": 14.6,
-      "donations": 76,
+      "donations": 84,
       "donationsPerWar": 8,
       "reason": "Ready for Elder promotion"
     },
@@ -54,8 +54,8 @@
       "name": "slinky",
       "avgFame": 2202,
       "avgDecks": 16.0,
-      "donations": 4,
-      "donationsPerWar": 0,
+      "donations": 14,
+      "donationsPerWar": 1,
       "reason": "Ready for Co-Leader promotion"
     },
     {
@@ -70,8 +70,8 @@
       "name": "Wader",
       "avgFame": 2055,
       "avgDecks": 15.6,
-      "donations": 25,
-      "donationsPerWar": 2,
+      "donations": 36,
+      "donationsPerWar": 4,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -86,16 +86,16 @@
       "name": ": Marhabba :",
       "avgFame": 1955,
       "avgDecks": 14.8,
-      "donations": 66,
-      "donationsPerWar": 7,
+      "donations": 83,
+      "donationsPerWar": 8,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "Limpan",
       "avgFame": 1828,
       "avgDecks": 14.7,
-      "donations": 0,
-      "donationsPerWar": 0,
+      "donations": 16,
+      "donationsPerWar": 2,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -154,20 +154,6 @@
       "donations": 0,
       "donationsPerWar": 0,
       "reason": "Recent activity below threshold"
-    },
-    {
-      "name": "mishakap",
-      "avgFame": 200,
-      "donations": 0,
-      "donationsPerWar": 0,
-      "reason": "Recent activity below threshold"
-    },
-    {
-      "name": "awaken101",
-      "avgFame": 200,
-      "donations": 0,
-      "donationsPerWar": 0,
-      "reason": "Recent activity below threshold"
     }
   ],
   "inactive": [
@@ -176,7 +162,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 1.7,
+      "lastSeenHours": 6.4,
       "reason": "No participation in the latest war"
     },
     {
@@ -184,7 +170,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 2.2,
+      "lastSeenHours": 0.1,
       "reason": "No participation in the latest war"
     },
     {
@@ -192,15 +178,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 1.1,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "PlayerX",
-      "activeWeeks": 1,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 4.0,
+      "lastSeenHours": 5.8,
       "reason": "No participation in the latest war"
     }
   ],

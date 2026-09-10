@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-10T12:25:51Z",
+  "generatedAt": "2026-09-10T17:22:07Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
     "activeMembers": 49,
     "activeWarriors": 29,
     "totalWeeks": 10,
-    "avgClanFame": 1715,
+    "avgClanFame": 1688,
     "topPerformer": "MEGABAENIS",
     "topPerformerAvgDecks": 16.0
   },
@@ -30,23 +30,23 @@
       "name": "Oskar :)",
       "avgFame": 2470,
       "avgDecks": 15.6,
-      "donations": 220,
-      "donationsPerWar": 22,
+      "donations": 244,
+      "donationsPerWar": 24,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "BullyMeILLc|_|M",
       "avgFame": 2370,
       "avgDecks": 15.9,
-      "donations": 80,
-      "donationsPerWar": 8,
+      "donations": 104,
+      "donationsPerWar": 10,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "amj",
       "avgFame": 2225,
       "avgDecks": 14.6,
-      "donations": 216,
+      "donations": 224,
       "donationsPerWar": 22,
       "reason": "Ready for Elder promotion"
     },
@@ -78,8 +78,8 @@
       "name": "Gabro",
       "avgFame": 1980,
       "avgDecks": 14.0,
-      "donations": 34,
-      "donationsPerWar": 3,
+      "donations": 44,
+      "donationsPerWar": 4,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -94,8 +94,8 @@
       "name": "Limpan",
       "avgFame": 1828,
       "avgDecks": 14.7,
-      "donations": 106,
-      "donationsPerWar": 11,
+      "donations": 116,
+      "donationsPerWar": 12,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -110,8 +110,8 @@
       "name": "Adam",
       "avgFame": 1579,
       "avgDecks": 14.4,
-      "donations": 32,
-      "donationsPerWar": 5,
+      "donations": 40,
+      "donationsPerWar": 6,
       "reason": "Ready for Elder promotion"
     }
   ],
@@ -139,13 +139,6 @@
       "donations": 52,
       "donationsPerWar": 26,
       "reason": "Candidate for kick/demotion"
-    },
-    {
-      "name": "Lovisnubben",
-      "avgFame": 400,
-      "donations": 0,
-      "donationsPerWar": 0,
-      "reason": "Recent activity below threshold"
     }
   ],
   "inactive": [
@@ -154,7 +147,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 13.6,
+      "lastSeenHours": 1.7,
       "reason": "No participation in the latest war"
     },
     {
@@ -170,7 +163,15 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 4.1,
+      "lastSeenHours": 0.0,
+      "reason": "No participation in the latest war"
+    },
+    {
+      "name": "Ensio",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 0.7,
       "reason": "No participation in the latest war"
     },
     {
@@ -178,7 +179,15 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 17.0,
+      "lastSeenHours": 22.0,
+      "reason": "No participation in the latest war"
+    },
+    {
+      "name": "jack the pack",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 1.8,
       "reason": "No participation in the latest war"
     },
     {
@@ -186,7 +195,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 1.6,
+      "lastSeenHours": 6.5,
       "reason": "No participation in the latest war"
     },
     {
@@ -194,7 +203,7 @@
       "activeWeeks": 10,
       "totalWeeks": 10,
       "avgFame": 740,
-      "lastSeenHours": 0.8,
+      "lastSeenHours": 0.3,
       "reason": "No participation in the latest war"
     }
   ],

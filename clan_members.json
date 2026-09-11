@@ -4,7 +4,7 @@
   "type": "open",
   "description": "CW klan: CW torsdag - Söndag 16/16 har du det som krävs? isåfall välkommen in i värmen! Code: RoyaleAPI",
   "badgeId": 16000062,
-  "clanScore": 131736,
+  "clanScore": 131745,
   "clanWarTrophies": 3218,
   "location": {
     "id": 57000225,
@@ -13,12 +13,30 @@
     "countryCode": "SE"
   },
   "requiredTrophies": 7000,
-  "donationsPerWeek": 7768,
+  "donationsPerWeek": 7794,
   "clanChestStatus": "inactive",
   "clanChestLevel": 1,
   "clanChestMaxLevel": 0,
   "members": 49,
   "memberList": [
+    {
+      "tag": "#8VV8GGGPY",
+      "name": "Leo",
+      "role": "member",
+      "lastSeen": "20260911T003755.000Z",
+      "expLevel": 0,
+      "trophies": 14000,
+      "arena": {
+        "id": 54000144,
+        "name": "Spirit Square",
+        "rawName": "Arena_L18"
+      },
+      "clanRank": 1,
+      "previousClanRank": 6,
+      "donations": 154,
+      "donationsReceived": 200,
+      "clanChestPoints": 0
+    },
     {
       "tag": "#CQCUPGGG",
       "name": "Bjögga",
@@ -31,28 +49,10 @@
         "name": "Spirit Square",
         "rawName": "Arena_L18"
       },
-      "clanRank": 1,
+      "clanRank": 2,
       "previousClanRank": 3,
       "donations": 382,
       "donationsReceived": 160,
-      "clanChestPoints": 0
-    },
-    {
-      "tag": "#8VV8GGGPY",
-      "name": "Leo",
-      "role": "member",
-      "lastSeen": "20260910T211655.000Z",
-      "expLevel": 0,
-      "trophies": 14000,
-      "arena": {
-        "id": 54000144,
-        "name": "Spirit Square",
-        "rawName": "Arena_L18"
-      },
-      "clanRank": 2,
-      "previousClanRank": 6,
-      "donations": 154,
-      "donationsReceived": 200,
       "clanChestPoints": 0
     },
     {
@@ -394,7 +394,7 @@
       "clanRank": 21,
       "previousClanRank": 22,
       "donations": 319,
-      "donationsReceived": 288,
+      "donationsReceived": 304,
       "clanChestPoints": 0
     },
     {
@@ -527,7 +527,7 @@
       "tag": "#URUQ09LVG",
       "name": "wisely",
       "role": "coLeader",
-      "lastSeen": "20260910T212045.000Z",
+      "lastSeen": "20260911T005212.000Z",
       "expLevel": 0,
       "trophies": 12160,
       "arena": {
@@ -537,7 +537,7 @@
       },
       "clanRank": 29,
       "previousClanRank": 29,
-      "donations": 184,
+      "donations": 192,
       "donationsReceived": 440,
       "clanChestPoints": 0
     },
@@ -545,7 +545,7 @@
       "tag": "#20VYLRPCYG",
       "name": "OG27",
       "role": "coLeader",
-      "lastSeen": "20260910T220055.000Z",
+      "lastSeen": "20260911T003953.000Z",
       "expLevel": 0,
       "trophies": 12089,
       "arena": {
@@ -555,7 +555,7 @@
       },
       "clanRank": 30,
       "previousClanRank": 30,
-      "donations": 398,
+      "donations": 416,
       "donationsReceived": 480,
       "clanChestPoints": 0
     },
@@ -653,7 +653,7 @@
       "tag": "#L2QUPV20J",
       "name": "johannes",
       "role": "member",
-      "lastSeen": "20260909T125046.000Z",
+      "lastSeen": "20260911T010115.000Z",
       "expLevel": 0,
       "trophies": 11061,
       "arena": {
@@ -689,9 +689,9 @@
       "tag": "#RL9L0RPY",
       "name": "Ensio",
       "role": "member",
-      "lastSeen": "20260910T192610.000Z",
+      "lastSeen": "20260911T012817.000Z",
       "expLevel": 0,
-      "trophies": 10812,
+      "trophies": 10905,
       "arena": {
         "id": 54000130,
         "name": "Royal Road",
@@ -700,7 +700,7 @@
       "clanRank": 38,
       "previousClanRank": 0,
       "donations": 8,
-      "donationsReceived": 40,
+      "donationsReceived": 50,
       "clanChestPoints": 0
     },
     {

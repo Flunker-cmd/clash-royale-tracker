@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-12T06:38:13Z",
+  "generatedAt": "2026-09-12T11:46:05Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 48,
+    "activeMembers": 46,
     "activeWarriors": 30,
     "totalWeeks": 10,
-    "avgClanFame": 1706,
+    "avgClanFame": 1768,
     "topPerformer": "MEGABAENIS",
     "topPerformerAvgDecks": 16.0
   },
@@ -22,32 +22,32 @@
       "name": "Piggelin",
       "avgFame": 2720,
       "avgDecks": 16.0,
-      "donations": 188,
-      "donationsPerWar": 19,
+      "donations": 198,
+      "donationsPerWar": 20,
       "reason": "Ready for Co-Leader promotion"
     },
     {
       "name": "Oskar :)",
       "avgFame": 2470,
       "avgDecks": 15.6,
-      "donations": 288,
-      "donationsPerWar": 29,
+      "donations": 304,
+      "donationsPerWar": 30,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "amj",
       "avgFame": 2225,
       "avgDecks": 14.6,
-      "donations": 326,
-      "donationsPerWar": 33,
+      "donations": 336,
+      "donationsPerWar": 34,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "slinky",
       "avgFame": 2202,
       "avgDecks": 16.0,
-      "donations": 87,
-      "donationsPerWar": 9,
+      "donations": 95,
+      "donationsPerWar": 10,
       "reason": "Ready for Co-Leader promotion"
     },
     {
@@ -62,24 +62,24 @@
       "name": "Wader",
       "avgFame": 2055,
       "avgDecks": 15.6,
-      "donations": 78,
-      "donationsPerWar": 8,
+      "donations": 92,
+      "donationsPerWar": 9,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "Gabro",
       "avgFame": 1980,
       "avgDecks": 14.0,
-      "donations": 152,
-      "donationsPerWar": 15,
+      "donations": 172,
+      "donationsPerWar": 17,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": ": Marhabba :",
       "avgFame": 1955,
       "avgDecks": 14.8,
-      "donations": 344,
-      "donationsPerWar": 34,
+      "donations": 352,
+      "donationsPerWar": 35,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -107,23 +107,14 @@
       "reason": "Ready for Elder promotion"
     }
   ],
-  "review": [
-    {
-      "name": "SVANTEVANTE",
-      "avgFame": 600,
-      "avgDecks": 5.0,
-      "donations": 62,
-      "donationsPerWar": 31,
-      "reason": "Candidate for kick/demotion"
-    }
-  ],
+  "review": [],
   "inactive": [
     {
       "name": "DoritoTV",
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 19.4,
+      "lastSeenHours": 24.5,
       "reason": "No participation in the latest war"
     },
     {
@@ -131,7 +122,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 12.6,
+      "lastSeenHours": 1.3,
       "reason": "No participation in the latest war"
     },
     {
@@ -139,7 +130,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 0.3,
+      "lastSeenHours": 0.7,
       "reason": "No participation in the latest war"
     },
     {
@@ -147,7 +138,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 2.2,
+      "lastSeenHours": 7.3,
       "reason": "No participation in the latest war"
     },
     {
@@ -155,15 +146,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 4.0,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "Nils",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 59.2,
+      "lastSeenHours": 9.1,
       "reason": "No participation in the latest war"
     },
     {
@@ -171,7 +154,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 0.2,
+      "lastSeenHours": 0.1,
       "reason": "No participation in the latest war"
     },
     {
@@ -179,7 +162,7 @@
       "activeWeeks": 5,
       "totalWeeks": 10,
       "avgFame": 970,
-      "lastSeenHours": 1.7,
+      "lastSeenHours": 1.0,
       "reason": "No participation in the latest war"
     },
     {
@@ -187,7 +170,7 @@
       "activeWeeks": 10,
       "totalWeeks": 10,
       "avgFame": 740,
-      "lastSeenHours": 7.6,
+      "lastSeenHours": 1.0,
       "reason": "No participation in the latest war"
     }
   ],

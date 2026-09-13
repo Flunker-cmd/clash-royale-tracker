@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-13T06:54:17Z",
+  "generatedAt": "2026-09-13T12:53:52Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
     "activeMembers": 47,
-    "activeWarriors": 30,
+    "activeWarriors": 29,
     "totalWeeks": 10,
-    "avgClanFame": 1730,
+    "avgClanFame": 1709,
     "topPerformer": "MEGABAENIS",
     "topPerformerAvgDecks": 16.0
   },
@@ -22,8 +22,8 @@
       "name": "Piggelin",
       "avgFame": 2720,
       "avgDecks": 16.0,
-      "donations": 246,
-      "donationsPerWar": 25,
+      "donations": 256,
+      "donationsPerWar": 26,
       "reason": "Ready for Co-Leader promotion"
     },
     {
@@ -62,8 +62,8 @@
       "name": "Wader",
       "avgFame": 2055,
       "avgDecks": 15.6,
-      "donations": 92,
-      "donationsPerWar": 9,
+      "donations": 102,
+      "donationsPerWar": 10,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -78,51 +78,43 @@
       "name": ": Marhabba :",
       "avgFame": 1955,
       "avgDecks": 14.8,
-      "donations": 446,
-      "donationsPerWar": 45,
+      "donations": 476,
+      "donationsPerWar": 48,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "Limpan",
       "avgFame": 1828,
       "avgDecks": 14.7,
-      "donations": 166,
-      "donationsPerWar": 17,
+      "donations": 186,
+      "donationsPerWar": 19,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "isak",
       "avgFame": 1736,
       "avgDecks": 14.7,
-      "donations": 369,
-      "donationsPerWar": 41,
+      "donations": 399,
+      "donationsPerWar": 44,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "Adam",
       "avgFame": 1579,
       "avgDecks": 14.4,
-      "donations": 96,
-      "donationsPerWar": 14,
+      "donations": 124,
+      "donationsPerWar": 18,
       "reason": "Ready for Elder promotion"
     }
   ],
   "review": [],
   "inactive": [
     {
-      "name": "DoritoTV",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 10.8,
-      "reason": "No participation in the latest war"
-    },
-    {
       "name": "Ekman",
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 14.2,
+      "lastSeenHours": 1.3,
       "reason": "No participation in the latest war"
     },
     {
@@ -130,7 +122,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 0.3,
+      "lastSeenHours": 4.6,
       "reason": "No participation in the latest war"
     },
     {
@@ -138,7 +130,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 8.8,
+      "lastSeenHours": 4.8,
       "reason": "No participation in the latest war"
     },
     {
@@ -146,7 +138,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 8.9,
+      "lastSeenHours": 14.9,
       "reason": "No participation in the latest war"
     },
     {
@@ -154,7 +146,15 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 7.9,
+      "lastSeenHours": 13.9,
+      "reason": "No participation in the latest war"
+    },
+    {
+      "name": "Emm",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 2.9,
       "reason": "No participation in the latest war"
     },
     {
@@ -162,15 +162,15 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 13.7,
+      "lastSeenHours": 19.7,
       "reason": "No participation in the latest war"
     },
     {
-      "name": "3C",
-      "activeWeeks": 5,
+      "name": "Jontety",
+      "activeWeeks": 0,
       "totalWeeks": 10,
-      "avgFame": 970,
-      "lastSeenHours": 16.8,
+      "avgFame": 0,
+      "lastSeenHours": 2.9,
       "reason": "No participation in the latest war"
     },
     {
@@ -178,7 +178,7 @@
       "activeWeeks": 10,
       "totalWeeks": 10,
       "avgFame": 740,
-      "lastSeenHours": 9.2,
+      "lastSeenHours": 1.0,
       "reason": "No participation in the latest war"
     }
   ],

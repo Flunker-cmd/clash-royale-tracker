@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-09-14T09:19:39Z",
+  "generatedAt": "2026-09-14T11:51:10Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 48,
-    "activeWarriors": 29,
+    "activeMembers": 50,
+    "activeWarriors": 32,
     "totalWeeks": 10,
-    "avgClanFame": 1674,
-    "topPerformer": "MEGABAENIS",
+    "avgClanFame": 1759,
+    "topPerformer": "Julia",
     "topPerformerAvgDecks": 16.0
   },
   "promote": [
     {
       "name": "MEGABAENIS",
-      "avgFame": 2860,
+      "avgFame": 2880,
       "avgDecks": 16.0,
       "donations": 0,
       "donationsPerWar": 0,
@@ -20,31 +20,47 @@
     },
     {
       "name": "Piggelin",
-      "avgFame": 2720,
+      "avgFame": 2775,
       "avgDecks": 16.0,
-      "donations": 10,
-      "donationsPerWar": 1,
+      "donations": 20,
+      "donationsPerWar": 2,
       "reason": "Ready for Co-Leader promotion"
     },
     {
       "name": "Oskar :)",
-      "avgFame": 2470,
+      "avgFame": 2485,
       "avgDecks": 15.6,
       "donations": 70,
       "donationsPerWar": 7,
       "reason": "Ready for Elder promotion"
     },
     {
+      "name": "Julia",
+      "avgFame": 2415,
+      "avgDecks": 16.0,
+      "donations": 48,
+      "donationsPerWar": 5,
+      "reason": "Ready for Co-Leader promotion"
+    },
+    {
       "name": "amj",
-      "avgFame": 2225,
-      "avgDecks": 14.6,
-      "donations": 0,
-      "donationsPerWar": 0,
+      "avgFame": 2315,
+      "avgDecks": 14.8,
+      "donations": 36,
+      "donationsPerWar": 4,
+      "reason": "Ready for Elder promotion"
+    },
+    {
+      "name": "Reavy",
+      "avgFame": 2270,
+      "avgDecks": 14.5,
+      "donations": 36,
+      "donationsPerWar": 4,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "slinky",
-      "avgFame": 2202,
+      "avgFame": 2198,
       "avgDecks": 16.0,
       "donations": 0,
       "donationsPerWar": 0,
@@ -52,39 +68,31 @@
     },
     {
       "name": "Thabet",
-      "avgFame": 2100,
-      "avgDecks": 15.0,
+      "avgFame": 2128,
+      "avgDecks": 15.1,
       "donations": 0,
       "donationsPerWar": 0,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "Wader",
-      "avgFame": 2055,
+      "avgFame": 2085,
       "avgDecks": 15.6,
       "donations": 44,
       "donationsPerWar": 4,
       "reason": "Ready for Elder promotion"
     },
     {
-      "name": "Gabro",
-      "avgFame": 1980,
-      "avgDecks": 14.0,
-      "donations": 10,
-      "donationsPerWar": 1,
-      "reason": "Ready for Elder promotion"
-    },
-    {
       "name": ": Marhabba :",
-      "avgFame": 1955,
-      "avgDecks": 14.8,
+      "avgFame": 1925,
+      "avgDecks": 14.4,
       "donations": 0,
       "donationsPerWar": 0,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "Limpan",
-      "avgFame": 1828,
+      "avgFame": 1830,
       "avgDecks": 14.7,
       "donations": 8,
       "donationsPerWar": 1,
@@ -92,107 +100,115 @@
     },
     {
       "name": "isak",
-      "avgFame": 1736,
-      "avgDecks": 14.7,
-      "donations": 0,
-      "donationsPerWar": 0,
+      "avgFame": 1772,
+      "avgDecks": 14.8,
+      "donations": 8,
+      "donationsPerWar": 1,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "Adam",
-      "avgFame": 1579,
-      "avgDecks": 14.4,
+      "avgFame": 1619,
+      "avgDecks": 14.6,
       "donations": 0,
       "donationsPerWar": 0,
       "reason": "Ready for Elder promotion"
     }
   ],
-  "review": [],
-  "inactive": [
+  "review": [
     {
-      "name": "Ekman",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 21.7,
-      "reason": "No participation in the latest war"
+      "name": "pro_master_88",
+      "avgFame": 950,
+      "avgDecks": 6.5,
+      "donations": 10,
+      "donationsPerWar": 5,
+      "reason": "Candidate for kick/demotion"
+    },
+    {
+      "name": "Lucky Lukas",
+      "avgFame": 790,
+      "avgDecks": 4.2,
+      "donations": 38,
+      "donationsPerWar": 4,
+      "reason": "Candidate for kick/demotion"
     },
     {
       "name": "mohsen00",
+      "avgFame": 600,
+      "avgDecks": 4.0,
+      "donations": 35,
+      "donationsPerWar": 35,
+      "reason": "Candidate for kick/demotion"
+    },
+    {
+      "name": "jack the pack",
+      "avgFame": 550,
+      "avgDecks": 6.0,
+      "donations": 0,
+      "donationsPerWar": 0,
+      "reason": "Candidate for kick/demotion"
+    },
+    {
+      "name": "Emm",
+      "avgFame": 325,
+      "donations": 0,
+      "donationsPerWar": 0,
+      "reason": "Recent activity below threshold"
+    }
+  ],
+  "inactive": [
+    {
+      "name": "3.0",
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 0.3,
+      "lastSeenHours": 0.1,
       "reason": "No participation in the latest war"
     },
     {
       "name": "blixten 2.0",
-      "activeWeeks": 0,
+      "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 0.4,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "Teddaren",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 0.1,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "jack the pack",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 34.3,
+      "lastSeenHours": 2.9,
       "reason": "No participation in the latest war"
     },
     {
       "name": "bh4l_izzy",
-      "activeWeeks": 0,
+      "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 0.5,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "Emm",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 1.6,
+      "lastSeenHours": 2.2,
       "reason": "No participation in the latest war"
     },
     {
       "name": "yoitx",
-      "activeWeeks": 0,
+      "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 40.1,
+      "lastSeenHours": 42.6,
       "reason": "No participation in the latest war"
     },
     {
       "name": "Jontety",
-      "activeWeeks": 0,
+      "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 1.7,
+      "lastSeenHours": 4.2,
       "reason": "No participation in the latest war"
     },
     {
-      "name": "Lucky Lukas",
-      "activeWeeks": 10,
+      "name": "_x_scooe",
+      "activeWeeks": 6,
       "totalWeeks": 10,
-      "avgFame": 740,
-      "lastSeenHours": 0.1,
+      "avgFame": 83,
+      "lastSeenHours": 1.1,
       "reason": "No participation in the latest war"
     }
   ],
   "topPerformer": {
-    "name": "MEGABAENIS",
-    "avgFame": 2860,
+    "name": "Julia",
+    "avgFame": 2415,
     "avgDecks": 16.0,
     "role": "elder"
   }

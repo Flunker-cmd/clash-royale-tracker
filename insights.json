@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-14T15:22:10Z",
+  "generatedAt": "2026-09-14T16:01:33Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 49,
-    "activeWarriors": 32,
+    "activeMembers": 47,
+    "activeWarriors": 31,
     "totalWeeks": 10,
-    "avgClanFame": 1795,
+    "avgClanFame": 1851,
     "topPerformer": "Julia",
     "topPerformerAvgDecks": 16.0
   },
@@ -54,8 +54,8 @@
       "name": "Reavy",
       "avgFame": 2270,
       "avgDecks": 14.5,
-      "donations": 36,
-      "donationsPerWar": 4,
+      "donations": 46,
+      "donationsPerWar": 5,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -139,21 +139,6 @@
       "donations": 35,
       "donationsPerWar": 35,
       "reason": "Candidate for kick/demotion"
-    },
-    {
-      "name": "jack the pack",
-      "avgFame": 550,
-      "avgDecks": 6.0,
-      "donations": 0,
-      "donationsPerWar": 0,
-      "reason": "Candidate for kick/demotion"
-    },
-    {
-      "name": "Emm",
-      "avgFame": 325,
-      "donations": 0,
-      "donationsPerWar": 0,
-      "reason": "Recent activity below threshold"
     }
   ],
   "inactive": [
@@ -162,7 +147,15 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 3.2,
+      "lastSeenHours": 3.8,
+      "reason": "No participation in the latest war"
+    },
+    {
+      "name": "Hugo",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 0.3,
       "reason": "No participation in the latest war"
     },
     {
@@ -170,7 +163,7 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 1.1,
+      "lastSeenHours": 1.7,
       "reason": "No participation in the latest war"
     },
     {
@@ -178,7 +171,7 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 5.7,
+      "lastSeenHours": 0.2,
       "reason": "No participation in the latest war"
     },
     {
@@ -186,15 +179,7 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 7.8,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "_x_scooe",
-      "activeWeeks": 6,
-      "totalWeeks": 10,
-      "avgFame": 83,
-      "lastSeenHours": 4.7,
+      "lastSeenHours": 8.4,
       "reason": "No participation in the latest war"
     }
   ],

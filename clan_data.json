@@ -131,7 +131,7 @@
         "repairPoints": 0,
         "boatAttacks": 0,
         "decksUsed": 0,
-        "decksUsedToday": 2
+        "decksUsedToday": 3
       },
       {
         "tag": "#2JC8C9VVP",
@@ -172,6 +172,15 @@
       {
         "tag": "#YPCURPPY2",
         "name": "BullyMeILLc|_|M",
+        "fame": 0,
+        "repairPoints": 0,
+        "boatAttacks": 0,
+        "decksUsed": 0,
+        "decksUsedToday": 0
+      },
+      {
+        "tag": "#CUG9CCCQ8",
+        "name": "Hugo",
         "fame": 0,
         "repairPoints": 0,
         "boatAttacks": 0,
@@ -1216,7 +1225,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 2
         },
         {
           "tag": "#UUYUQLVC8",
@@ -2028,7 +2037,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 1
         },
         {
           "tag": "#L8028RGJY",
@@ -2770,7 +2779,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 2
+          "decksUsedToday": 3
         },
         {
           "tag": "#2JC8C9VVP",
@@ -2811,6 +2820,15 @@
         {
           "tag": "#YPCURPPY2",
           "name": "BullyMeILLc|_|M",
+          "fame": 0,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 0,
+          "decksUsedToday": 0
+        },
+        {
+          "tag": "#CUG9CCCQ8",
+          "name": "Hugo",
           "fame": 0,
           "repairPoints": 0,
           "boatAttacks": 0,

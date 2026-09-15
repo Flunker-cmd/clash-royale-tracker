@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-14T21:07:16Z",
+  "generatedAt": "2026-09-15T00:02:58Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
     "activeMembers": 47,
-    "activeWarriors": 31,
+    "activeWarriors": 32,
     "totalWeeks": 10,
-    "avgClanFame": 1851,
+    "avgClanFame": 1848,
     "topPerformer": "Julia",
     "topPerformerAvgDecks": 16.0
   },
@@ -38,8 +38,8 @@
       "name": "Julia",
       "avgFame": 2415,
       "avgDecks": 16.0,
-      "donations": 94,
-      "donationsPerWar": 9,
+      "donations": 140,
+      "donationsPerWar": 14,
       "reason": "Ready for Co-Leader promotion"
     },
     {
@@ -131,14 +131,6 @@
       "donations": 46,
       "donationsPerWar": 5,
       "reason": "Candidate for kick/demotion"
-    },
-    {
-      "name": "mohsen00",
-      "avgFame": 600,
-      "avgDecks": 4.0,
-      "donations": 35,
-      "donationsPerWar": 35,
-      "reason": "Candidate for kick/demotion"
     }
   ],
   "inactive": [
@@ -147,7 +139,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 1.7,
+      "lastSeenHours": 4.7,
       "reason": "No participation in the latest war"
     },
     {
@@ -155,7 +147,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 5.4,
+      "lastSeenHours": 8.4,
       "reason": "No participation in the latest war"
     },
     {
@@ -163,7 +155,7 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 4.5,
+      "lastSeenHours": 1.6,
       "reason": "No participation in the latest war"
     },
     {
@@ -171,7 +163,7 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 1.3,
+      "lastSeenHours": 4.3,
       "reason": "No participation in the latest war"
     },
     {
@@ -179,7 +171,15 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 13.5,
+      "lastSeenHours": 16.4,
+      "reason": "No participation in the latest war"
+    },
+    {
+      "name": "BananaSplit",
+      "activeWeeks": 5,
+      "totalWeeks": 10,
+      "avgFame": 475,
+      "lastSeenHours": 1.5,
       "reason": "No participation in the latest war"
     }
   ],

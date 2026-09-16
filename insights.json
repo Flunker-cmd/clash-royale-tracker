@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-16T02:02:59Z",
+  "generatedAt": "2026-09-16T08:53:43Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 50,
+    "activeMembers": 43,
     "activeWarriors": 31,
     "totalWeeks": 10,
-    "avgClanFame": 1728,
+    "avgClanFame": 2009,
     "topPerformer": "Julia",
     "topPerformerAvgDecks": 16.0
   },
@@ -46,8 +46,8 @@
       "name": "amj",
       "avgFame": 2315,
       "avgDecks": 14.8,
-      "donations": 134,
-      "donationsPerWar": 13,
+      "donations": 142,
+      "donationsPerWar": 14,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -94,8 +94,8 @@
       "name": "Limpan",
       "avgFame": 1830,
       "avgDecks": 14.7,
-      "donations": 44,
-      "donationsPerWar": 4,
+      "donations": 46,
+      "donationsPerWar": 5,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -120,8 +120,8 @@
       "name": "pro_master_88",
       "avgFame": 950,
       "avgDecks": 6.5,
-      "donations": 102,
-      "donationsPerWar": 51,
+      "donations": 126,
+      "donationsPerWar": 63,
       "reason": "Candidate for kick/demotion"
     },
     {
@@ -135,51 +135,11 @@
   ],
   "inactive": [
     {
-      "name": "3.0",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 8.7,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "max1100",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 8.7,
-      "reason": "No participation in the latest war"
-    },
-    {
       "name": "snopss03:o",
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 2.1,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "kronisen",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 10.4,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "aston",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 8.5,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "Hugo",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 34.4,
+      "lastSeenHours": 9.0,
       "reason": "No participation in the latest war"
     },
     {
@@ -187,23 +147,7 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 16.1,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "bh4l_izzy",
-      "activeWeeks": 1,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 7.6,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "Jontety",
-      "activeWeeks": 1,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 42.4,
+      "lastSeenHours": 1.8,
       "reason": "No participation in the latest war"
     }
   ],

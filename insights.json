@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-17T08:58:45Z",
+  "generatedAt": "2026-09-17T14:30:47Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 47,
+    "activeMembers": 49,
     "activeWarriors": 31,
     "totalWeeks": 10,
-    "avgClanFame": 1838,
+    "avgClanFame": 1763,
     "topPerformer": "Julia",
     "topPerformerAvgDecks": 16.0
   },
@@ -22,24 +22,24 @@
       "name": "Piggelin",
       "avgFame": 2775,
       "avgDecks": 16.0,
-      "donations": 114,
-      "donationsPerWar": 11,
+      "donations": 136,
+      "donationsPerWar": 14,
       "reason": "Ready for Co-Leader promotion"
     },
     {
       "name": "Oskar :)",
       "avgFame": 2485,
       "avgDecks": 15.6,
-      "donations": 134,
-      "donationsPerWar": 13,
+      "donations": 154,
+      "donationsPerWar": 15,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "Julia",
       "avgFame": 2415,
       "avgDecks": 16.0,
-      "donations": 254,
-      "donationsPerWar": 25,
+      "donations": 262,
+      "donationsPerWar": 26,
       "reason": "Ready for Co-Leader promotion"
     },
     {
@@ -54,7 +54,7 @@
       "name": "Reavy",
       "avgFame": 2270,
       "avgDecks": 14.5,
-      "donations": 126,
+      "donations": 134,
       "donationsPerWar": 13,
       "reason": "Ready for Elder promotion"
     },
@@ -62,7 +62,7 @@
       "name": "slinky",
       "avgFame": 2198,
       "avgDecks": 16.0,
-      "donations": 10,
+      "donations": 12,
       "donationsPerWar": 1,
       "reason": "Ready for Co-Leader promotion"
     },
@@ -94,16 +94,16 @@
       "name": "Limpan",
       "avgFame": 1830,
       "avgDecks": 14.7,
-      "donations": 108,
-      "donationsPerWar": 11,
+      "donations": 116,
+      "donationsPerWar": 12,
       "reason": "Ready for Elder promotion"
     },
     {
       "name": "isak",
       "avgFame": 1772,
       "avgDecks": 14.8,
-      "donations": 108,
-      "donationsPerWar": 11,
+      "donations": 126,
+      "donationsPerWar": 13,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -128,18 +128,26 @@
       "name": "Lucky Lukas",
       "avgFame": 790,
       "avgDecks": 4.2,
-      "donations": 80,
-      "donationsPerWar": 8,
+      "donations": 112,
+      "donationsPerWar": 11,
       "reason": "Candidate for kick/demotion"
     }
   ],
   "inactive": [
     {
+      "name": "55feeeeelix",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 3.5,
+      "reason": "No participation in the latest war"
+    },
+    {
       "name": "Jobg",
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 12.3,
+      "lastSeenHours": 17.8,
       "reason": "No participation in the latest war"
     },
     {
@@ -147,7 +155,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 9.5,
+      "lastSeenHours": 0.0,
       "reason": "No participation in the latest war"
     },
     {
@@ -155,7 +163,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 5.7,
+      "lastSeenHours": 11.2,
       "reason": "No participation in the latest war"
     },
     {
@@ -163,7 +171,15 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 21.3,
+      "lastSeenHours": 5.2,
+      "reason": "No participation in the latest war"
+    },
+    {
+      "name": "jagÄrEnInvandra",
+      "activeWeeks": 0,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 2.8,
       "reason": "No participation in the latest war"
     },
     {
@@ -171,7 +187,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 20.0,
+      "lastSeenHours": 25.5,
       "reason": "No participation in the latest war"
     },
     {
@@ -179,7 +195,7 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 0.7,
+      "lastSeenHours": 6.2,
       "reason": "No participation in the latest war"
     }
   ],

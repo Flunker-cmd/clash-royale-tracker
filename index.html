@@ -427,6 +427,122 @@
       font-size: 0.75em;
     }
 
+    .war-panel {
+      background: #111827;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+    }
+    .war-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .war-panel .label {
+      color: #7dd3fc;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.76em;
+      font-weight: 700;
+    }
+    .war-panel .stats-grid {
+      margin-bottom: 0;
+    }
+    .war-days {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 0;
+    }
+    .war-day {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #334155;
+      color: #64748b;
+      font-size: 0.8em;
+      text-transform: capitalize;
+    }
+    .war-day.done { color: #94a3b8; background: #0f172a; }
+    .war-day.current { color: #0f172a; background: #38bdf8; border-color: #38bdf8; font-weight: 700; }
+    .war-group-title {
+      color: #cbd5e1;
+      font-size: 0.85em;
+      font-weight: 600;
+      margin: 18px 0 8px;
+    }
+    .war-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .war-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.85em;
+      color: #e2e8f0;
+    }
+    .war-chip small { color: #fbbf24; }
+    .war-chip.none small { color: #fca5a5; }
+    .war-note {
+      margin: 14px 0 0;
+      color: #94a3b8;
+      font-size: 0.8em;
+    }
+    .mobile-only { display: none; }
+
+    @media (max-width: 720px) {
+      body { padding: 16px; }
+      h1 { font-size: 1.5em; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .stat-card { padding: 12px; }
+      .stat-card .value { font-size: 1.2em; overflow-wrap: anywhere; }
+      .summary-card, .recommendation-panel, .criteria-panel, .war-panel { padding: 14px; }
+      .toolbar, .controls { width: 100%; }
+      .search-input { flex: 1 1 100%; min-width: 0; }
+      #sort-select { flex: 1 1 calc(100% - 56px); min-width: 0; }
+      .toolbar .btn-copy { width: 100%; }
+      .mobile-only { display: inline-block; }
+
+      /* Table becomes one card per player */
+      .table-wrapper { background: none; border: none; overflow: visible; }
+      table, tbody { display: block; width: 100%; min-width: 0; }
+      thead { display: none; }
+      tr:nth-child(n) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        padding: 14px;
+        margin-bottom: 12px;
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 10px;
+      }
+      td { display: block; padding: 0; min-width: 0; order: 3; }
+      td::before {
+        content: attr(data-label);
+        display: block;
+        margin-bottom: 2px;
+        color: #64748b;
+        font-size: 0.7em;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      td:nth-child(1) { display: none; }
+      td:nth-child(2) { grid-column: 1 / -1; order: 1; font-size: 1.05em; }
+      td:nth-child(10) { grid-column: 1 / -1; order: 2; }
+      td:nth-child(2)::before, td:nth-child(10)::before { display: none; }
+      td:nth-child(8), td:nth-child(9) { grid-column: 1 / -1; }
+    }
+
     footer {
       margin-top: 32px;
       text-align: center;
@@ -491,6 +607,19 @@
     <div class="recommendation-panel" id="recommendations-panel">
       <div class="label">Viktigaste rekommendationerna</div>
       <div id="recommendations-list" class="recommendation-list"></div>
+    </div>
+
+    <div class="war-panel" id="war-panel" hidden>
+      <div class="war-panel-header">
+        <div>
+          <div class="label" id="war-title">Pågående krig</div>
+          <div class="war-days" id="war-days"></div>
+        </div>
+        <button class="btn btn-copy" id="war-copy-btn" onclick="copyWarPingList()" hidden>📋 Kopiera lista över decks kvar</button>
+      </div>
+      <div class="stats-grid" id="war-stats"></div>
+      <div id="war-lists"></div>
+      <p class="war-note" id="war-note"></p>
     </div>
 
     <div class="criteria-panel">
@@ -577,6 +706,18 @@
         <button class="btn active" id="btn-filter-all" onclick="setFilter('all')">Alla</button>
         <button class="btn" id="btn-filter-promote" onclick="setFilter('promote')">Befordra</button>
         <button class="btn" id="btn-filter-review" onclick="setFilter('review')">Granska / kicka</button>
+        <select id="sort-select" class="search-input mobile-only" onchange="sortTable(this.value)" aria-label="Sortera efter">
+          <option value="role">Sortera: Roll</option>
+          <option value="name">Sortera: Namn</option>
+          <option value="recommendationWeight">Sortera: Åtgärd</option>
+          <option value="avgDecks">Sortera: Decks per krig</option>
+          <option value="warDecksUsed">Sortera: Pågående krig</option>
+          <option value="decks">Sortera: Totala decks</option>
+          <option value="trophies">Sortera: Troféer</option>
+          <option value="donations">Sortera: Donationer</option>
+          <option value="weeks">Sortera: Krigslojalitet</option>
+        </select>
+        <button class="btn mobile-only" onclick="sortTable(currentSortColumn)" title="Byt sorteringsriktning" aria-label="Byt sorteringsriktning">⇅</button>
       </div>
       <button class="btn btn-copy" onclick="copyChatSummary()">📋 Kopiera åtgärdssammanfattning</button>
     </div>
@@ -592,6 +733,7 @@
             <th onclick="sortTable('donations')">Donationer <span id="sort-donations"></span></th>
             <th onclick="sortTable('avgDecks')">Antal decks per krig <span id="sort-avgDecks"></span></th>
             <th onclick="sortTable('decks')">Totala decks (max 160) <span id="sort-decks"></span></th>
+            <th onclick="sortTable('warDecksUsed')">Pågående krig <span id="sort-warDecksUsed"></span></th>
             <th onclick="sortTable('weeks')">Krigslojalitet <span id="sort-weeks"></span></th>
             <th onclick="sortTable('recommendationWeight')">Åtgärd / rekommendation <span id="sort-recommendationWeight"></span></th>
           </tr>
@@ -657,7 +799,11 @@
       recentParticipationEnabled: false
     };
 
+    const DECKS_PER_DAY = 4;
+    const WAR_DAY_NAMES = ['torsdag', 'fredag', 'lördag', 'söndag'];
+
     let combinedData = [];
+    let currentWarInfo = { active: false, day: 0 };
     let dashboardState = null;
     let currentSortColumn = 'role';
     let currentSortAsc = false;
@@ -912,6 +1058,8 @@
       if (!dashboardState) return;
 
       const { currentMembers, historyRaces, totalWeeks } = dashboardState;
+      currentWarInfo = getCurrentWarInfo(dashboardState.currentWar);
+      const warParticipants = new Map((dashboardState.currentWar?.clan?.participants || []).map(p => [p.tag, p]));
       const warStats = {};
       let totalClanAvgFame = 0;
       let activeWarriorsCount = 0;
@@ -990,6 +1138,7 @@
         const donationsValue = m.donations || 0;
         const donationsPerWar = activeWeeks > 0 ? Math.round(donationsValue / activeWeeks) : 0;
         const afk = isAfk(m.tag);
+        const warEntry = warParticipants.get(m.tag);
 
         const recommendation = getRecommendation({
           role: m.role,
@@ -1023,6 +1172,8 @@
           latestWarParticipation: latestWarParticipation,
           latestWarFame: latestWarFame,
           afk: afk,
+          warDecksUsed: Number(warEntry?.decksUsed || 0),
+          warDecksToday: Number(warEntry?.decksUsedToday || 0),
           inLatestWar: inLatestWar,
           inactive: !afk && inLatestWar && latestWarParticipation === 0,
           tenureWeeks: tenureWeeks,
@@ -1047,15 +1198,17 @@
       document.getElementById('subtitle').textContent = `Medlemmar: ${currentMembers.length} | Utvärderat över de senaste ${totalWeeks} krigsveckorna`;
 
       updateSummaryAndRecommendations();
+      renderWarPanel();
       renderTable();
     }
 
     async function loadDashboard() {
       try {
-        const [membersRes, historyRes, insightsRes] = await Promise.all([
+        const [membersRes, historyRes, insightsRes, warRes] = await Promise.all([
           fetch('clan_members.json'),
           fetch('history_data.json'),
-          fetch('insights.json').catch(() => null)
+          fetch('insights.json').catch(() => null),
+          fetch('clan_data.json').catch(() => null)
         ]);
 
         const lastModHeader = membersRes.headers.get('last-modified');
@@ -1069,6 +1222,7 @@
         const membersData = await membersRes.json();
         const historyData = await historyRes.json();
         const insightsData = insightsRes ? await insightsRes.json() : null;
+        const currentWar = warRes && warRes.ok ? await warRes.json().catch(() => null) : null;
 
         if (insightsData && insightsData.summary) {
           const topPerformer = insightsData.topPerformer?.name || 'N/A';
@@ -1086,6 +1240,7 @@
           currentMembers,
           historyRaces,
           totalWeeks,
+          currentWar,
           clanWarTrophies: membersData.clanWarTrophies || 0
         };
 
@@ -1093,6 +1248,111 @@
       } catch (err) {
         document.getElementById('subtitle').textContent = 'Det gick inte att läsa in dashboardens data.';
       }
+    }
+
+    // periodIndex counts days through the season: 3 training days (0-2) and 4 war days (3-6) per week.
+    function getCurrentWarInfo(currentWar) {
+      if (!currentWar || !['warDay', 'colosseum'].includes(currentWar.periodType)) {
+        return { active: false, day: 0 };
+      }
+      const day = (Number(currentWar.periodIndex) % 7) - 2;
+      return day >= 1 && day <= WAR_DAY_NAMES.length ? { active: true, day } : { active: false, day: 0 };
+    }
+
+    function getPendingWarPlayers() {
+      return combinedData
+        .filter(m => !m.afk && m.warDecksToday < DECKS_PER_DAY)
+        .sort((a, b) => a.warDecksToday - b.warDecksToday || a.name.localeCompare(b.name));
+    }
+
+    function renderWarPanel() {
+      const panel = document.getElementById('war-panel');
+      if (!dashboardState?.currentWar) {
+        panel.hidden = true;
+        return;
+      }
+      panel.hidden = false;
+
+      const title = document.getElementById('war-title');
+      const daysEl = document.getElementById('war-days');
+      const statsEl = document.getElementById('war-stats');
+      const listsEl = document.getElementById('war-lists');
+      const noteEl = document.getElementById('war-note');
+      const copyBtn = document.getElementById('war-copy-btn');
+
+      if (!currentWarInfo.active) {
+        title.textContent = 'Pågående krig';
+        daysEl.innerHTML = '';
+        statsEl.innerHTML = '';
+        listsEl.innerHTML = '';
+        copyBtn.hidden = true;
+        noteEl.textContent = dashboardState.currentWar.periodType === 'training'
+          ? 'Träningsdagar pågår. Kriget startar på torsdag.'
+          : 'Inget krig pågår just nu.';
+        return;
+      }
+
+      const { day } = currentWarInfo;
+      const total = combinedData.length;
+      const usedToday = combinedData.reduce((sum, m) => sum + m.warDecksToday, 0);
+      const usedWar = combinedData.reduce((sum, m) => sum + m.warDecksUsed, 0);
+      const finishedToday = combinedData.filter(m => m.warDecksToday >= DECKS_PER_DAY).length;
+      const notPlayedToday = combinedData.filter(m => m.warDecksToday === 0).length;
+
+      title.textContent = `Pågående krig – dag ${day} av ${WAR_DAY_NAMES.length}`;
+      daysEl.innerHTML = WAR_DAY_NAMES.map((name, i) =>
+        `<span class="war-day ${i + 1 < day ? 'done' : (i + 1 === day ? 'current' : '')}">${name}</span>`
+      ).join('');
+
+      const statCard = (label, value) => `<div class="stat-card"><div class="label">${label}</div><div class="value">${value}</div></div>`;
+      statsEl.innerHTML = [
+        statCard('Decks idag', `${usedToday} / ${total * DECKS_PER_DAY}`),
+        statCard('Decks i kriget', `${usedWar} / ${total * DECKS_PER_DAY * day}`),
+        statCard('Klara idag', `${finishedToday} / ${total}`),
+        statCard('Inte spelat idag', notPlayedToday)
+      ].join('');
+
+      const pending = getPendingWarPlayers();
+      const chip = m => `<span class="war-chip ${m.warDecksToday === 0 ? 'none' : ''}">${escapeHtml(m.name)} <small>${DECKS_PER_DAY - m.warDecksToday} kvar</small></span>`;
+      const untouched = pending.filter(m => m.warDecksToday === 0);
+      const partial = pending.filter(m => m.warDecksToday > 0);
+      const group = (heading, players) => players.length
+        ? `<div class="war-group-title">${heading} (${players.length})</div><div class="war-chips">${players.map(chip).join('')}</div>`
+        : '';
+      listsEl.innerHTML = pending.length
+        ? group('Inte spelat alls idag', untouched) + group('Har decks kvar idag', partial)
+        : '<div class="war-group-title">Alla har spelat klart idag 🎉</div>';
+      copyBtn.hidden = pending.length === 0;
+
+      const afkLeft = combinedData.filter(m => m.afk && m.warDecksToday < DECKS_PER_DAY).length;
+      noteEl.textContent = `Datan uppdateras varje timme.${afkLeft ? ` ${afkLeft} AFK-markerade spelare visas inte i listorna.` : ''}`;
+    }
+
+    function copyWarPingList() {
+      if (!currentWarInfo.active) return;
+      const pending = getPendingWarPlayers();
+      const dayName = WAR_DAY_NAMES[currentWarInfo.day - 1];
+      const lines = pending.map(m => `• ${m.name} (${DECKS_PER_DAY - m.warDecksToday} kvar)`);
+      const text = `⚔️ Krigsdag ${currentWarInfo.day}/${WAR_DAY_NAMES.length} (${dayName}) – decks kvar idag:\n${lines.join('\n')}`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Listan kopierades!');
+      }).catch(() => {
+        alert('Kunde inte kopiera automatiskt. Kontrollera webbläsarens behörigheter.');
+      });
+    }
+
+    function renderWarCell(m) {
+      if (!currentWarInfo.active) return '<span class="loyalty-text">–</span>';
+      const dots = Array.from({ length: DECKS_PER_DAY }, (_, i) => {
+        const played = i < m.warDecksToday;
+        return `<div class="dot ${played ? 'full' : 'none'}" data-tooltip="Deck ${i + 1} idag: ${played ? 'spelad' : 'ej spelad'}"></div>`;
+      }).join('');
+      return `
+            <div class="loyalty-cell">
+              <div class="timeline">${dots}</div>
+              <span class="loyalty-text">${m.warDecksUsed} / ${currentWarInfo.day * DECKS_PER_DAY} decks</span>
+            </div>`;
     }
 
     function handleSearch(val) {
@@ -1227,12 +1487,15 @@
         return currentSortAsc ? valA - valB : valB - valA;
       });
 
-      ['index', 'name', 'role', 'trophies', 'donations', 'avgDecks', 'decks', 'weeks', 'recommendationWeight'].forEach(col => {
+      ['index', 'name', 'role', 'trophies', 'donations', 'avgDecks', 'decks', 'warDecksUsed', 'weeks', 'recommendationWeight'].forEach(col => {
         const el = document.getElementById(`sort-${col}`);
         if (el) {
           el.textContent = col === currentSortColumn ? (currentSortAsc ? '▲' : '▼') : '';
         }
       });
+
+      const sortSelect = document.getElementById('sort-select');
+      if (sortSelect) sortSelect.value = currentSortColumn;
 
       const tbody = document.getElementById('member-table');
       tbody.innerHTML = '';
@@ -1240,8 +1503,8 @@
       filtered.forEach((m, index) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${index + 1}</td>
-          <td>
+          <td data-label="#">${index + 1}</td>
+          <td data-label="Spelare">
             <strong>${escapeHtml(m.name)}</strong>
             <span class="last-seen ${m.lastSeenWarning ? 'warning' : ''}">Senast sedd: ${m.lastSeenText}</span>
             <label class="afk-toggle" title="Undanta från veckans regler">
@@ -1249,23 +1512,24 @@
               AFK denna vecka
             </label>
           </td>
-          <td>${getRoleBadge(m.role)}</td>
-          <td>${m.trophies.toLocaleString()}</td>
-          <td>${m.donations}</td>
-          <td>
+          <td data-label="Roll">${getRoleBadge(m.role)}</td>
+          <td data-label="Troféer">${m.trophies.toLocaleString()}</td>
+          <td data-label="Donationer">${m.donations}</td>
+          <td data-label="Decks per krig">
             <div class="fame-cell">
               <span class="fame-num">${m.avgDecks.toLocaleString()} <small>(Fame ${m.avgFame.toLocaleString()})</small></span>
               ${m.sparklineHtml}
             </div>
           </td>
-          <td>${m.decks}</td>
-          <td>
+          <td data-label="Totala decks">${m.decks}</td>
+          <td data-label="Pågående krig">${renderWarCell(m)}</td>
+          <td data-label="Krigslojalitet">
             <div class="loyalty-cell">
               ${m.dotsHtml}
               <span class="loyalty-text">${m.loyaltyRatio}</span>
             </div>
           </td>
-          <td>
+          <td data-label="Åtgärd">
             <span class="badge ${m.recommendationClass}">${m.recommendationText}</span>
             ${m.recommendationReason ? `<span class="reason-text">${escapeHtml(m.recommendationReason)}</span>` : ''}
           </td>

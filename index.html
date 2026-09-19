@@ -481,7 +481,7 @@
     <div class="criteria-panel">
       <div class="label">Rekommendationskriterier</div>
       <div class="criteria-info">
-        Aktivitet mäts som använda decks i det senaste kriget. En medlem måste klara deltagandegränsen för att kunna befordras. Donationsvärden normaliseras per krig. Standardvärden: kicka medlem under 1000 fame, befordra till elder vid minst 2500 fame och degradera elder under 1600 fame. AFK-markerade spelare undantas från veckans regler.
+        Aktivitet mäts som använda decks i det senaste kriget. En medlem måste klara deltagandegränsen för att kunna befordras. Donationsvärden normaliseras per krig. Standardvärden: kicka medlem under 1000 fame, befordra till elder vid minst 2500 fame och degradera elder under 1600 fame. Snittdecks och donationer är avstängda som standard. Co-leader-befordran beslutas manuellt utifrån chatten. AFK-markerade spelare undantas från veckans regler.
       </div>
       <div class="criteria-sections">
         <div class="criteria-section">
@@ -506,7 +506,7 @@
             </div>
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-promoteElderAvgDecksEnabled" type="checkbox" checked> Snittdecks / krig</label>
+                <label class="criteria-toggle"><input id="criteria-promoteElderAvgDecksEnabled" type="checkbox"> Snittdecks / krig</label>
               </div>
               <input id="criteria-promoteElderAvgDecks" type="number" min="0" max="16" step="1">
             </div>
@@ -515,23 +515,6 @@
                 <label class="criteria-toggle"><input id="criteria-promoteElderDonationsEnabled" type="checkbox"> Donationer</label>
               </div>
               <input id="criteria-promoteElderDonations" type="number" min="0" step="10">
-            </div>
-          </div>
-        </div>
-        <div class="criteria-section">
-          <div class="criteria-section-title">Befordra till co-leader</div>
-          <div class="criteria-grid">
-            <div class="criteria-field">
-              <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-promoteCoLeaderAvgDecksEnabled" type="checkbox" checked> Snittdecks / krig</label>
-              </div>
-              <input id="criteria-promoteCoLeaderAvgDecks" type="number" min="0" max="16" step="1">
-            </div>
-            <div class="criteria-field">
-              <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-promoteCoLeaderDonationsEnabled" type="checkbox"> Donationer</label>
-              </div>
-              <input id="criteria-promoteCoLeaderDonations" type="number" min="0" step="10">
             </div>
           </div>
         </div>
@@ -552,7 +535,7 @@
             </div>
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-kickAvgDecksEnabled" type="checkbox" checked> Snittdecks / krig</label>
+                <label class="criteria-toggle"><input id="criteria-kickAvgDecksEnabled" type="checkbox"> Snittdecks / krig</label>
               </div>
               <input id="criteria-kickAvgDecks" type="number" min="0" max="16" step="1">
             </div>
@@ -642,15 +625,11 @@
       promoteElderLatestWarFame: 2500,
       demoteElderLatestWarFame: 1600,
       promoteElderAvgDecks: 14,
-      promoteElderAvgDecksEnabled: true,
+      promoteElderAvgDecksEnabled: false,
       promoteElderDonations: 50,
       promoteElderDonationsEnabled: false,
-      promoteCoLeaderAvgDecks: 16,
-      promoteCoLeaderAvgDecksEnabled: true,
-      promoteCoLeaderDonations: 100,
-      promoteCoLeaderDonationsEnabled: false,
       kickAvgDecks: 8,
-      kickAvgDecksEnabled: true,
+      kickAvgDecksEnabled: false,
       kickDonations: 30,
       kickDonationsEnabled: false,
       recentParticipationThreshold: 4,
@@ -674,10 +653,6 @@
         promoteElderAvgDecksEnabled: document.getElementById('criteria-promoteElderAvgDecksEnabled').checked,
         promoteElderDonations: Number(document.getElementById('criteria-promoteElderDonations').value || defaultCriteria.promoteElderDonations),
         promoteElderDonationsEnabled: document.getElementById('criteria-promoteElderDonationsEnabled').checked,
-        promoteCoLeaderAvgDecks: Number(document.getElementById('criteria-promoteCoLeaderAvgDecks').value || defaultCriteria.promoteCoLeaderAvgDecks),
-        promoteCoLeaderAvgDecksEnabled: document.getElementById('criteria-promoteCoLeaderAvgDecksEnabled').checked,
-        promoteCoLeaderDonations: Number(document.getElementById('criteria-promoteCoLeaderDonations').value || defaultCriteria.promoteCoLeaderDonations),
-        promoteCoLeaderDonationsEnabled: document.getElementById('criteria-promoteCoLeaderDonationsEnabled').checked,
         kickAvgDecks: Number(document.getElementById('criteria-kickAvgDecks').value || defaultCriteria.kickAvgDecks),
         kickAvgDecksEnabled: document.getElementById('criteria-kickAvgDecksEnabled').checked,
         kickDonations: Number(document.getElementById('criteria-kickDonations').value || defaultCriteria.kickDonations),
@@ -691,8 +666,6 @@
       const toggles = [
         ['criteria-promoteElderAvgDecksEnabled', 'criteria-promoteElderAvgDecks'],
         ['criteria-promoteElderDonationsEnabled', 'criteria-promoteElderDonations'],
-        ['criteria-promoteCoLeaderAvgDecksEnabled', 'criteria-promoteCoLeaderAvgDecks'],
-        ['criteria-promoteCoLeaderDonationsEnabled', 'criteria-promoteCoLeaderDonations'],
         ['criteria-kickAvgDecksEnabled', 'criteria-kickAvgDecks'],
         ['criteria-kickDonationsEnabled', 'criteria-kickDonations']
       ];
@@ -776,8 +749,6 @@
 
     function getRecommendation(member, criteria, totalWeeks) {
       const activeWeeks = member.weeks || 0;
-      const avgDecks = member.avgDecks || 0;
-      const donationsPerWar = member.donationsPerWar || 0;
       const role = member.role;
       const minActiveWeeks = Math.max(1, Math.ceil(totalWeeks * 0.5));
       const latestWarParticipation = Number(member.latestWarParticipation ?? 0);
@@ -794,8 +765,6 @@
       const recentParticipationEnabled = criteria.recentParticipationEnabled !== false;
       const recentParticipationThreshold = Number(criteria.recentParticipationThreshold ?? 4);
       const recentParticipationOk = !recentParticipationEnabled || latestWarParticipation >= recentParticipationThreshold;
-      const coLeaderAvgEnabled = criteria.promoteCoLeaderAvgDecksEnabled !== false;
-      const coLeaderDonationEnabled = criteria.promoteCoLeaderDonationsEnabled !== false;
       const memberKickFame = latestWarFame < Number(criteria.kickMemberLatestWarFame ?? defaultCriteria.kickMemberLatestWarFame);
       const memberPromoteFame = latestWarFame >= Number(criteria.promoteElderLatestWarFame ?? defaultCriteria.promoteElderLatestWarFame);
       const elderDemoteFame = latestWarFame < Number(criteria.demoteElderLatestWarFame ?? defaultCriteria.demoteElderLatestWarFame);
@@ -804,19 +773,12 @@
         return { text: 'Låg aktivitet nyligen', weight: 2, className: 'review' };
       }
 
-      const coLeaderDecksOk = !coLeaderAvgEnabled || avgDecks >= Number(criteria.promoteCoLeaderAvgDecks);
-      const coLeaderDonationsOk = !coLeaderDonationEnabled || donationsPerWar >= Number(criteria.promoteCoLeaderDonations);
-
       if (role === 'elder' && elderDemoteFame) {
         return { text: 'Degradera till medlem', weight: 1, className: 'review' };
       }
 
       if (role === 'member' && memberPromoteFame) {
         return { text: 'Befordra till elder', weight: 5, className: 'promote' };
-      }
-
-      if (role === 'elder' && coLeaderDecksOk && coLeaderDonationsOk) {
-        return { text: 'Befordra till co-leader', weight: 5, className: 'promote' };
       }
 
       if (role === 'member' && memberKickFame) {

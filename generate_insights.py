@@ -6,6 +6,9 @@ from pathlib import Path
 CLAN_TAG = "#L0G0Y0JP"
 
 DEFAULT_CRITERIA = {
+    "kickMemberLatestWarFame": 1000,
+    "promoteElderLatestWarFame": 2500,
+    "demoteElderLatestWarFame": 1600,
     "promoteElderAvgDecks": 14,
     "promoteElderAvgDecksEnabled": True,
     "promoteElderDonations": 50,
@@ -106,11 +109,14 @@ def get_war_stats(history_data):
 
 def member_summary(member, war_stats, total_weeks):
     tag = member.get("tag")
-    war = war_stats.get(tag, {"fame": 0, "decks": 0, "weeks": 0, "history": [None] * total_weeks})
+    war = war_stats.get(tag, {"fame": 0, "decks": 0, "weeks": 0, "history": [None] * total_weeks, "fameHistory": [None] * total_weeks})
     active_weeks = int(war.get("weeks") or 0)
     latest_war_participation = 0
+    latest_war_fame = 0
     if war.get("history"):
         latest_war_participation = int(war["history"][0] or 0)
+    if war.get("fameHistory"):
+        latest_war_fame = int(war["fameHistory"][0] or 0)
     avg_fame = round(war.get("fame", 0) / active_weeks) if active_weeks else 0
     avg_decks = round(war.get("decks", 0) / active_weeks, 1) if active_weeks else 0
     donations = int(member.get("donations") or 0)
@@ -132,6 +138,7 @@ def member_summary(member, war_stats, total_weeks):
         "donations": donations,
         "donationsPerWar": donations_per_war,
         "avgFame": avg_fame,
+        "latestWarFame": latest_war_fame,
         "avgDecks": avg_decks,
         "totalDecks": int(war.get("decks") or 0),
         "activeWeeks": active_weeks,
@@ -163,12 +170,13 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
 
     for member in summaries:
         recent_participation_ok = not metric_is_enabled(criteria, "recentParticipation") or member["latestWarParticipation"] >= criteria["recentParticipationThreshold"]
-        elder_decks_ok = not metric_is_enabled(criteria, "promoteElderAvgDecks") or member["avgDecks"] >= criteria["promoteElderAvgDecks"]
-        elder_donations_ok = not metric_is_enabled(criteria, "promoteElderDonations") or member["donationsPerWar"] >= criteria["promoteElderDonations"]
+        member_promote_fame_ok = member["latestWarFame"] >= criteria["promoteElderLatestWarFame"]
+        member_kick_fame = member["latestWarFame"] < criteria["kickMemberLatestWarFame"]
+        elder_demote_fame = member["latestWarFame"] < criteria["demoteElderLatestWarFame"]
         coleader_decks_ok = not metric_is_enabled(criteria, "promoteCoLeaderAvgDecks") or member["avgDecks"] >= criteria["promoteCoLeaderAvgDecks"]
         coleader_donations_ok = not metric_is_enabled(criteria, "promoteCoLeaderDonations") or member["donationsPerWar"] >= criteria["promoteCoLeaderDonations"]
 
-        if member["role"] == "member" and member["activeWeeks"] >= min_active_weeks and recent_participation_ok and elder_decks_ok and elder_donations_ok:
+        if member["role"] == "member" and member["activeWeeks"] >= min_active_weeks and recent_participation_ok and member_promote_fame_ok:
             promote.append({
                 "name": member["name"],
                 "avgFame": member["avgFame"],
@@ -177,7 +185,7 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
                 "donationsPerWar": member["donationsPerWar"],
                 "reason": "Ready for Elder promotion",
             })
-        elif member["role"] == "elder" and member["activeWeeks"] >= min_active_weeks and recent_participation_ok and coleader_decks_ok and coleader_donations_ok:
+        elif member["role"] == "elder" and not elder_demote_fame and member["activeWeeks"] >= min_active_weeks and recent_participation_ok and coleader_decks_ok and coleader_donations_ok:
             promote.append({
                 "name": member["name"],
                 "avgFame": member["avgFame"],
@@ -206,9 +214,19 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
                     "reason": "Recent activity below threshold",
                 })
             else:
-                kick_decks_ok = not metric_is_enabled(criteria, "kickAvgDecks") or member["avgDecks"] < criteria["kickAvgDecks"]
-                kick_donations_ok = not metric_is_enabled(criteria, "kickDonations") or member["donationsPerWar"] < criteria["kickDonations"]
-                if kick_decks_ok and kick_donations_ok:
+                if member["role"] == "elder" and elder_demote_fame:
+                    review.append({
+                        "name": member["name"],
+                        "avgFame": member["avgFame"],
+                        "latestWarFame": member["latestWarFame"],
+                        "avgDecks": member["avgDecks"],
+                        "donations": member["donations"],
+                        "donationsPerWar": member["donationsPerWar"],
+                        "reason": "Candidate for elder demotion",
+                    })
+                    continue
+
+                if member["role"] == "member" and member_kick_fame:
                     review.append({
                         "name": member["name"],
                         "avgFame": member["avgFame"],

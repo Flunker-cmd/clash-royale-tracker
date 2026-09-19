@@ -7,6 +7,60 @@ from generate_insights import generate_insights
 
 
 class GenerateInsightsTests(unittest.TestCase):
+    def test_latest_war_fame_rules_use_configurable_boundaries(self):
+        members = {
+            "memberList": [
+                {"tag": "#M999", "name": "Low", "role": "member"},
+                {"tag": "#M1000", "name": "Safe", "role": "member"},
+                {"tag": "#M2500", "name": "Promote", "role": "member"},
+                {"tag": "#E1599", "name": "Demote", "role": "elder"},
+                {"tag": "#E1600", "name": "ElderSafe", "role": "elder"},
+            ]
+        }
+        history = {
+            "items": [{
+                "standings": [{
+                    "clan": {
+                        "tag": "#L0G0Y0JP",
+                        "participants": [
+                            {"tag": "#M999", "fame": 999, "decksUsed": 16},
+                            {"tag": "#M1000", "fame": 1000, "decksUsed": 16},
+                            {"tag": "#M2500", "fame": 2500, "decksUsed": 16},
+                            {"tag": "#E1599", "fame": 1599, "decksUsed": 16},
+                            {"tag": "#E1600", "fame": 1600, "decksUsed": 16},
+                        ],
+                    }
+                }]
+            }]
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            members_path = Path(tmpdir) / "members.json"
+            history_path = Path(tmpdir) / "history.json"
+            members_path.write_text(json.dumps(members), encoding="utf-8")
+            history_path.write_text(json.dumps(history), encoding="utf-8")
+
+            data = generate_insights(
+                str(members_path),
+                str(history_path),
+                criteria={
+                    "promoteElderAvgDecksEnabled": False,
+                    "promoteElderDonationsEnabled": False,
+                    "promoteCoLeaderAvgDecksEnabled": False,
+                    "promoteCoLeaderDonationsEnabled": False,
+                    "kickAvgDecksEnabled": False,
+                    "kickDonationsEnabled": False,
+                },
+            )
+
+            promoted = [item["name"] for item in data["promote"]]
+            reviewed = {item["name"]: item["reason"] for item in data["review"]}
+            self.assertIn("Promote", promoted)
+            self.assertNotIn("Safe", promoted)
+            self.assertEqual(reviewed["Low"], "Candidate for kick/demotion")
+            self.assertEqual(reviewed["Demote"], "Candidate for elder demotion")
+            self.assertNotIn("ElderSafe", reviewed)
+
     def test_generate_insights_creates_summary_and_lists(self):
         members_path = Path("clan_members.json")
         history_path = Path("history_data.json")
@@ -64,7 +118,7 @@ class GenerateInsightsTests(unittest.TestCase):
                             "clan": {
                                 "tag": "#L0G0Y0JP",
                                 "participants": [
-                                    {"tag": "#A1", "fame": 100, "decksUsed": 16}
+                                    {"tag": "#A1", "fame": 3000, "decksUsed": 16}
                                 ],
                             }
                         }
@@ -200,7 +254,7 @@ class GenerateInsightsTests(unittest.TestCase):
                             "clan": {
                                 "tag": "#L0G0Y0JP",
                                 "participants": [
-                                    {"tag": "#A4", "fame": 100, "decksUsed": 16}
+                                    {"tag": "#A4", "fame": 3000, "decksUsed": 16}
                                 ],
                             }
                         }
@@ -242,7 +296,7 @@ class GenerateInsightsTests(unittest.TestCase):
         }
         history = {
             "items": [
-                {"standings": [{"clan": {"tag": "#L0G0Y0JP", "participants": [{"tag": "#A6", "fame": 10, "decksUsed": 14}]}}]},
+                {"standings": [{"clan": {"tag": "#L0G0Y0JP", "participants": [{"tag": "#A6", "fame": 3000, "decksUsed": 14}]}}]},
                 {"standings": [{"clan": {"tag": "#L0G0Y0JP", "participants": [{"tag": "#A6", "fame": 5000, "decksUsed": 14}]}}]},
             ]
         }
@@ -280,7 +334,7 @@ class GenerateInsightsTests(unittest.TestCase):
                             "clan": {
                                 "tag": "#L0G0Y0JP",
                                 "participants": [
-                                    {"tag": "#A5", "fame": 1000, "decksUsed": 16}
+                                    {"tag": "#A5", "fame": 3000, "decksUsed": 16}
                                 ],
                             }
                         }
@@ -292,7 +346,7 @@ class GenerateInsightsTests(unittest.TestCase):
                             "clan": {
                                 "tag": "#L0G0Y0JP",
                                 "participants": [
-                                    {"tag": "#A5", "fame": 1000, "decksUsed": 16}
+                                    {"tag": "#A5", "fame": 3000, "decksUsed": 16}
                                 ],
                             }
                         }
@@ -304,7 +358,7 @@ class GenerateInsightsTests(unittest.TestCase):
                             "clan": {
                                 "tag": "#L0G0Y0JP",
                                 "participants": [
-                                    {"tag": "#A5", "fame": 1000, "decksUsed": 16}
+                                    {"tag": "#A5", "fame": 3000, "decksUsed": 16}
                                 ],
                             }
                         }

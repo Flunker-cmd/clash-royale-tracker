@@ -4,7 +4,7 @@
   "type": "open",
   "description": "CW klan: CW torsdag - Söndag 16/16 har du det som krävs? isåfall välkommen in i värmen! Code: RoyaleAPI",
   "badgeId": 16000062,
-  "clanScore": 132560,
+  "clanScore": 132568,
   "clanWarTrophies": 3213,
   "location": {
     "id": 57000225,
@@ -13,7 +13,7 @@
     "countryCode": "SE"
   },
   "requiredTrophies": 7000,
-  "donationsPerWeek": 10264,
+  "donationsPerWeek": 10272,
   "clanChestStatus": "inactive",
   "clanChestLevel": 1,
   "clanChestMaxLevel": 0,
@@ -290,6 +290,24 @@
       "clanChestPoints": 0
     },
     {
+      "tag": "#RUV8V8GVR",
+      "name": "MEGABAENIS",
+      "role": "elder",
+      "lastSeen": "20260919T172316.000Z",
+      "expLevel": 0,
+      "trophies": 13659,
+      "arena": {
+        "id": 54000144,
+        "name": "Spirit Square",
+        "rawName": "Arena_L18"
+      },
+      "clanRank": 16,
+      "previousClanRank": 17,
+      "donations": 34,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
       "tag": "#CJLPGJ2CY",
       "name": "BRUNO",
       "role": "elder",
@@ -301,27 +319,9 @@
         "name": "Spirit Square",
         "rawName": "Arena_L18"
       },
-      "clanRank": 16,
+      "clanRank": 17,
       "previousClanRank": 16,
       "donations": 0,
-      "donationsReceived": 0,
-      "clanChestPoints": 0
-    },
-    {
-      "tag": "#RUV8V8GVR",
-      "name": "MEGABAENIS",
-      "role": "elder",
-      "lastSeen": "20260919T171441.000Z",
-      "expLevel": 0,
-      "trophies": 13627,
-      "arena": {
-        "id": 54000144,
-        "name": "Spirit Square",
-        "rawName": "Arena_L18"
-      },
-      "clanRank": 17,
-      "previousClanRank": 17,
-      "donations": 34,
       "donationsReceived": 0,
       "clanChestPoints": 0
     },
@@ -376,7 +376,7 @@
       "clanRank": 20,
       "previousClanRank": 20,
       "donations": 347,
-      "donationsReceived": 432,
+      "donationsReceived": 440,
       "clanChestPoints": 0
     },
     {
@@ -455,7 +455,7 @@
       "tag": "#8CVLPV9YR",
       "name": "Piggelin",
       "role": "elder",
-      "lastSeen": "20260919T154028.000Z",
+      "lastSeen": "20260919T172309.000Z",
       "expLevel": 0,
       "trophies": 12631,
       "arena": {
@@ -465,7 +465,7 @@
       },
       "clanRank": 25,
       "previousClanRank": 25,
-      "donations": 270,
+      "donations": 278,
       "donationsReceived": 520,
       "clanChestPoints": 0
     },
@@ -797,7 +797,7 @@
       "tag": "#PQRQ98UQQ",
       "name": "aliba",
       "role": "member",
-      "lastSeen": "20260919T103708.000Z",
+      "lastSeen": "20260919T171831.000Z",
       "expLevel": 0,
       "trophies": 9030,
       "arena": {

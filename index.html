@@ -144,6 +144,21 @@
       color: #cbd5e1;
       font-size: 0.8em;
     }
+    .criteria-subtitle {
+      grid-column: 1 / -1;
+      color: #94a3b8;
+      font-size: 0.72em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-top: 1px solid #334155;
+      padding-top: 10px;
+    }
+    .reason-text {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.75em;
+      color: #94a3b8;
+    }
     .criteria-info {
       margin-top: 12px;
       margin-bottom: 10px;
@@ -432,7 +447,7 @@
 
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="label">Krankrigstroféer</div>
+        <div class="label">Klankrigstroféer</div>
         <div class="value" id="stat-trophies">-</div>
       </div>
       <div class="stat-card">
@@ -479,24 +494,13 @@
     </div>
 
     <div class="criteria-panel">
-      <div class="label">Kriterier för befodran</div>
+      <div class="label">Kriterier för befordran</div>
       <div class="criteria-info">
-        Aktivitet mäts som använda decks i det senaste kriget. Deltagandegränsen anger hur många decks spelaren minst måste ha använt i det senaste kriget; värdet 4 betyder minst 4 använda decks. Den är avstängd som standard. Donationsvärden normaliseras per krig. Standardvärden: kicka medlem under 1000 fame, befordra till elder vid minst 2500 fame och degradera elder under 1600 fame. Antal decks per krig och donationer är avstängda som standard. Co-leader-befordran beslutas manuellt utifrån chatten. AFK-markerade spelare undantas från veckans regler.
+        Standardreglerna utgår från poäng (fame) i det senaste avslutade kriget (torsdag–söndag): en medlem befordras till elder vid minst 2500, en medlem under 500 kickas och en elder under 1600 degraderas till medlem (elder fungerar som ett extraliv). Co-leaders utses manuellt och får ingen rekommendation. Extra filter är avstängda som standard och kan slås på för att undersöka: för befordran måste alla aktiva villkor uppfyllas, för kick/degradering räcker det att ett av dem slår till. Decks och donationer räknas som snitt per krig. Ändringar gäller tills sidan laddas om. AFK-markerade spelare undantas.
       </div>
       <div class="criteria-sections">
         <div class="criteria-section">
-          <div class="criteria-section-title">Deltagandegräns (antal decks)</div>
-          <div class="criteria-grid">
-            <div class="criteria-field">
-              <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-recentParticipationEnabled" type="checkbox"> Aktiv</label>
-              </div>
-              <input id="criteria-recentParticipationThreshold" type="number" min="0" max="16" step="1" value="4">
-            </div>
-          </div>
-        </div>
-        <div class="criteria-section">
-          <div class="criteria-section-title">Befordra till elder</div>
+          <div class="criteria-section-title">Befordra medlem till elder</div>
           <div class="criteria-grid">
             <div class="criteria-field">
               <div class="criteria-field-header">
@@ -504,28 +508,29 @@
               </div>
               <input id="criteria-promoteElderLatestWarFame" type="number" min="0" step="100" value="2500">
             </div>
+            <div class="criteria-subtitle">Extra filter (valfria)</div>
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-promoteElderAvgDecksEnabled" type="checkbox"> Antal decks per krig</label>
+                <label class="criteria-toggle"><input id="criteria-promoteElderAvgDecksEnabled" type="checkbox"> Decks per krig minst</label>
               </div>
               <input id="criteria-promoteElderAvgDecks" type="number" min="0" max="16" step="1">
             </div>
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-promoteElderDonationsEnabled" type="checkbox"> Donationer</label>
+                <label class="criteria-toggle"><input id="criteria-promoteElderDonationsEnabled" type="checkbox"> Donationer per krig minst</label>
               </div>
               <input id="criteria-promoteElderDonations" type="number" min="0" step="10">
             </div>
           </div>
         </div>
         <div class="criteria-section">
-          <div class="criteria-section-title">Degradering / kick</div>
+          <div class="criteria-section-title">Kicka medlem / degradera elder</div>
           <div class="criteria-grid">
             <div class="criteria-field">
               <div class="criteria-field-header">
                 <label class="criteria-toggle"><input id="criteria-kickMemberLatestWarFameEnabled" type="checkbox"> Kicka medlem under</label>
               </div>
-              <input id="criteria-kickMemberLatestWarFame" type="number" min="0" step="100" value="1000">
+              <input id="criteria-kickMemberLatestWarFame" type="number" min="0" step="100" value="500">
             </div>
             <div class="criteria-field">
               <div class="criteria-field-header">
@@ -533,17 +538,29 @@
               </div>
               <input id="criteria-demoteElderLatestWarFame" type="number" min="0" step="100" value="1600">
             </div>
+            <div class="criteria-subtitle">Extra filter (valfria, gäller båda)</div>
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-kickAvgDecksEnabled" type="checkbox"> Antal decks per krig</label>
+                <label class="criteria-toggle"><input id="criteria-kickAvgDecksEnabled" type="checkbox"> Decks per krig under</label>
               </div>
               <input id="criteria-kickAvgDecks" type="number" min="0" max="16" step="1">
             </div>
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-kickDonationsEnabled" type="checkbox"> Donationer</label>
+                <label class="criteria-toggle"><input id="criteria-kickDonationsEnabled" type="checkbox"> Donationer per krig under</label>
               </div>
               <input id="criteria-kickDonations" type="number" min="0" step="10">
+            </div>
+          </div>
+        </div>
+        <div class="criteria-section">
+          <div class="criteria-section-title">Deltagandegräns (extra filter)</div>
+          <div class="criteria-grid">
+            <div class="criteria-field">
+              <div class="criteria-field-header">
+                <label class="criteria-toggle"><input id="criteria-recentParticipationEnabled" type="checkbox"> Decks i senaste kriget minst</label>
+              </div>
+              <input id="criteria-recentParticipationThreshold" type="number" min="0" max="16" step="1" value="4">
             </div>
           </div>
         </div>
@@ -620,8 +637,9 @@
       member: 1
     };
 
+    // Default rules: fame in the latest finished war decides. Everything else is an optional filter.
     const defaultCriteria = {
-      kickMemberLatestWarFame: 1000,
+      kickMemberLatestWarFame: 500,
       kickMemberLatestWarFameEnabled: true,
       promoteElderLatestWarFame: 2500,
       promoteElderLatestWarFameEnabled: true,
@@ -676,7 +694,8 @@
         ['criteria-promoteElderAvgDecksEnabled', 'criteria-promoteElderAvgDecks'],
         ['criteria-promoteElderDonationsEnabled', 'criteria-promoteElderDonations'],
         ['criteria-kickAvgDecksEnabled', 'criteria-kickAvgDecks'],
-        ['criteria-kickDonationsEnabled', 'criteria-kickDonations']
+        ['criteria-kickDonationsEnabled', 'criteria-kickDonations'],
+        ['criteria-recentParticipationEnabled', 'criteria-recentParticipationThreshold']
       ];
 
       toggles.forEach(([toggleId, inputId]) => {
@@ -687,34 +706,16 @@
       });
     }
 
+    // Criteria are not persisted: the page always opens with the default rules.
     function loadCriteria() {
       try {
-        const saved = JSON.parse(localStorage.getItem('clanCriteria') || '{}');
-        const migrationKey = 'clanCriteriaDefaultsV3';
-        if (localStorage.getItem(migrationKey) !== 'true') {
-          const migrated = {
-            ...saved,
-            kickMemberLatestWarFameEnabled: true,
-            promoteElderLatestWarFameEnabled: true,
-            demoteElderLatestWarFameEnabled: true,
-            recentParticipationEnabled: false,
-            promoteElderAvgDecksEnabled: false,
-            promoteElderDonationsEnabled: false,
-            kickAvgDecksEnabled: false,
-            kickDonationsEnabled: false
-          };
-          localStorage.setItem('clanCriteria', JSON.stringify(migrated));
-          localStorage.setItem(migrationKey, 'true');
-          return { ...defaultCriteria, ...migrated };
-        }
-        return { ...defaultCriteria, ...saved };
-      } catch {
-        return { ...defaultCriteria };
-      }
+        localStorage.removeItem('clanCriteria');
+        localStorage.removeItem('clanCriteriaDefaultsV3');
+      } catch {}
+      return { ...defaultCriteria };
     }
 
     function saveCriteria(criteria) {
-      localStorage.setItem('clanCriteria', JSON.stringify(criteria));
       currentCriteria = { ...defaultCriteria, ...criteria };
     }
 
@@ -773,48 +774,80 @@
       updateCriteriaInputsState();
     }
 
-    function getRecommendation(member, criteria, totalWeeks) {
-      const activeWeeks = member.weeks || 0;
-      const role = member.role;
-      const minActiveWeeks = Math.max(1, Math.ceil(totalWeeks * 0.5));
-      const latestWarParticipation = Number(member.latestWarParticipation ?? 0);
-      const latestWarFame = Number(member.latestWarFame ?? 0);
-      const kickFameEnabled = criteria.kickMemberLatestWarFameEnabled !== false;
-      const promoteFameEnabled = criteria.promoteElderLatestWarFameEnabled !== false;
-      const demoteFameEnabled = criteria.demoteElderLatestWarFameEnabled !== false;
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, ch => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[ch]));
+    }
 
+    function isCriterionEnabled(criteria, key) {
+      return criteria[`${key}Enabled`] !== false;
+    }
+
+    // Members/elders are judged on their latest finished war. Anything that makes a member worse
+    // (kick) or an elder worse (demote) triggers on ANY enabled criterion; promotion needs ALL
+    // enabled promotion criteria. Leaders and co-leaders are handled manually.
+    function getRecommendation(member, criteria) {
       if (member.afk) {
-        return { text: 'AFK-undantag', weight: 3, className: 'good' };
+        return { text: 'AFK-undantag', weight: 3, className: 'good', reason: 'Undantagen från veckans regler' };
       }
 
-      if (latestWarParticipation === 0) {
-        return { text: 'Inaktiv', weight: 2, className: 'review' };
+      if (member.role !== 'member' && member.role !== 'elder') {
+        return { text: 'Manuell bedömning', weight: 3, className: 'good', reason: 'Utses manuellt' };
       }
 
-      const recentParticipationEnabled = criteria.recentParticipationEnabled !== false;
-      const recentParticipationThreshold = Number(criteria.recentParticipationThreshold ?? 4);
-      const recentParticipationOk = !recentParticipationEnabled || latestWarParticipation >= recentParticipationThreshold;
-      const memberKickFame = kickFameEnabled && latestWarFame < Number(criteria.kickMemberLatestWarFame ?? defaultCriteria.kickMemberLatestWarFame);
-      const memberPromoteFame = promoteFameEnabled && latestWarFame >= Number(criteria.promoteElderLatestWarFame ?? defaultCriteria.promoteElderLatestWarFame);
-      const elderDemoteFame = demoteFameEnabled && latestWarFame < Number(criteria.demoteElderLatestWarFame ?? defaultCriteria.demoteElderLatestWarFame);
-
-      if (!recentParticipationOk) {
-        return { text: 'Låg aktivitet nyligen', weight: 2, className: 'review' };
+      if (!member.inLatestWar) {
+        return { text: 'Ny medlem', weight: 3, className: 'good', reason: 'Ingen data från senaste kriget' };
       }
 
-      if (role === 'elder' && elderDemoteFame) {
-        return { text: 'Degradera till medlem', weight: 1, className: 'review' };
+      const isElder = member.role === 'elder';
+      const fameKey = isElder ? 'demoteElderLatestWarFame' : 'kickMemberLatestWarFame';
+      const downReasons = [
+        [fameKey, member.latestWarFame, 'Krigspoäng'],
+        ['kickAvgDecks', member.avgDecks, 'Decks/krig'],
+        ['kickDonations', member.donationsPerWar, 'Donationer/krig']
+      ]
+        .filter(([key, value]) => isCriterionEnabled(criteria, key) && value < Number(criteria[key]))
+        .map(([key, value, label]) => `${label} ${value} < ${criteria[key]}`);
+
+      if (downReasons.length) {
+        return isElder
+          ? { text: 'Degradera till medlem', weight: 1, className: 'review', reason: downReasons.join(', ') }
+          : { text: 'Kicka', weight: 0, className: 'kick', reason: downReasons.join(', ') };
       }
 
-      if (role === 'member' && memberPromoteFame) {
-        return { text: 'Befordra till elder', weight: 5, className: 'promote' };
+      if (isCriterionEnabled(criteria, 'recentParticipation')
+          && member.latestWarParticipation < Number(criteria.recentParticipationThreshold)) {
+        return {
+          text: 'Låg aktivitet nyligen',
+          weight: 2,
+          className: 'review',
+          reason: `Decks i senaste kriget ${member.latestWarParticipation} < ${criteria.recentParticipationThreshold}`
+        };
       }
 
-      if (role === 'member' && memberKickFame) {
-        return { text: 'Kicka', weight: 0, className: 'kick' };
+      if (!isElder) {
+        const upChecks = [
+          ['promoteElderLatestWarFame', member.latestWarFame, 'Krigspoäng'],
+          ['promoteElderAvgDecks', member.avgDecks, 'Decks/krig'],
+          ['promoteElderDonations', member.donationsPerWar, 'Donationer/krig']
+        ].filter(([key]) => isCriterionEnabled(criteria, key));
+
+        if (upChecks.length && upChecks.every(([key, value]) => value >= Number(criteria[key]))) {
+          return {
+            text: 'Befordra till elder',
+            weight: 5,
+            className: 'promote',
+            reason: upChecks.map(([key, value, label]) => `${label} ${value} ≥ ${criteria[key]}`).join(', ')
+          };
+        }
       }
 
-      return { text: 'God status', weight: 3, className: 'good' };
+      if (member.latestWarParticipation === 0) {
+        return { text: 'Inaktiv', weight: 2, className: 'review', reason: 'Inga decks i senaste kriget' };
+      }
+
+      return { text: 'God status', weight: 3, className: 'good', reason: '' };
     }
 
     function getRoleBadge(role) {
@@ -917,6 +950,7 @@
         const activeWeeks = war.weeks || 0;
         const latestWarParticipation = war.history?.length ? Number(war.history[0] || 0) : 0;
         const latestWarFame = war.fameHistory?.length ? Number(war.fameHistory[0] || 0) : 0;
+        const inLatestWar = war.history.length > 0 && war.history[0] !== null;
         const avgFame = activeWeeks > 0 ? Math.round(war.fame / activeWeeks) : 0;
         const avgDecks = activeWeeks > 0 ? Math.round((war.decks / activeWeeks) * 10) / 10 : 0;
 
@@ -966,8 +1000,9 @@
           weeks: activeWeeks,
           latestWarParticipation: latestWarParticipation,
           latestWarFame: latestWarFame,
+          inLatestWar: inLatestWar,
           afk: afk,
-        }, currentCriteria, totalWeeks);
+        }, currentCriteria);
 
         const lastSeenInfo = parseLastSeen(m.lastSeen);
 
@@ -988,6 +1023,8 @@
           latestWarParticipation: latestWarParticipation,
           latestWarFame: latestWarFame,
           afk: afk,
+          inLatestWar: inLatestWar,
+          inactive: !afk && inLatestWar && latestWarParticipation === 0,
           tenureWeeks: tenureWeeks,
           loyaltyRatio: loyaltyRatio,
           dotsHtml: dotsHtml,
@@ -996,14 +1033,15 @@
           lastSeenWarning: lastSeenInfo.isWarning,
           recommendationText: recommendation.text,
           recommendationWeight: recommendation.weight,
-          recommendationClass: recommendation.className
+          recommendationClass: recommendation.className,
+          recommendationReason: recommendation.reason
         };
       });
 
       const topPlayer = [...combinedData].sort((a, b) => b.avgDecks - a.avgDecks)[0];
 
       document.getElementById('stat-trophies').textContent = (dashboardState.clanWarTrophies || 0).toLocaleString();
-      document.getElementById('stat-fame').textContent = totalClanAvgFame.toLocaleString();
+      document.getElementById('stat-fame').textContent = Math.round(totalClanAvgFame / (currentMembers.length || 1)).toLocaleString();
       document.getElementById('stat-active').textContent = `${activeWarriorsCount} / ${currentMembers.length}`;
       document.getElementById('stat-top').textContent = topPlayer ? topPlayer.name : '-';
       document.getElementById('subtitle').textContent = `Medlemmar: ${currentMembers.length} | Utvärderat över de senaste ${totalWeeks} krigsveckorna`;
@@ -1065,7 +1103,7 @@
     function updateSummaryAndRecommendations() {
       const promote = combinedData.filter(member => member.recommendationClass === 'promote');
       const review = combinedData.filter(member => member.recommendationClass === 'review' || member.recommendationClass === 'kick');
-      const inactive = combinedData.filter(member => member.recommendationClass === 'review');
+      const inactive = combinedData.filter(member => member.inactive);
       const topPlayer = [...combinedData].sort((a, b) => b.avgDecks - a.avgDecks)[0];
 
       document.getElementById('insight-promote').textContent = promote.length;
@@ -1078,17 +1116,17 @@
         return member.weeks >= minWeeks;
       }).length;
       document.getElementById('summary-text').textContent =
-        `Klanens status är god: ${activeCount} av ${combinedData.length} medlemmar är aktiva, ${promote.length} spelare kan befordras, ${review.length} behöver granskas och ${topPlayer ? topPlayer.name : 'okänd'} leder med ${topPlayer ? topPlayer.avgDecks.toLocaleString() : '0'} decks per krig i snitt.`;
+        `Klanöversikt: ${activeCount} av ${combinedData.length} medlemmar är aktiva, ${promote.length} spelare kan befordras, ${review.length} behöver granskas och ${topPlayer ? topPlayer.name : 'okänd'} leder med ${topPlayer ? topPlayer.avgDecks.toLocaleString() : '0'} decks per krig i snitt.`;
 
       const topRecommendations = [];
       promote.slice(0, 3).forEach(member => {
-        topRecommendations.push({ type: 'promote', label: 'Befordra', text: `${member.name} • ${member.avgDecks.toLocaleString()} decks / krig` });
+        topRecommendations.push({ type: 'promote', label: 'Befordra', text: `${escapeHtml(member.name)} • ${member.avgDecks.toLocaleString()} decks / krig` });
       });
       review.slice(0, 2).forEach(member => {
-        topRecommendations.push({ type: 'review', label: 'Granska', text: `${member.name} • ${member.recommendationText}` });
+        topRecommendations.push({ type: 'review', label: 'Granska', text: `${escapeHtml(member.name)} • ${escapeHtml(member.recommendationText)}` });
       });
       inactive.slice(0, 2).forEach(member => {
-        topRecommendations.push({ type: 'inactive', label: 'Inaktiv', text: `${member.name} • ${member.weeks}/${member.totalWeeks} krig` });
+        topRecommendations.push({ type: 'inactive', label: 'Inaktiv', text: `${escapeHtml(member.name)} • ${member.weeks}/${member.totalWeeks} krig` });
       });
 
       const recommendationsList = document.getElementById('recommendations-list');
@@ -1134,7 +1172,7 @@
 
     function copyChatSummary() {
       const promotes = combinedData.filter(m => m.recommendationClass === 'promote').map(m => `• ${m.name}`);
-      const reviews = combinedData.filter(m => m.recommendationClass === 'kick' || m.recommendationClass === 'review').map(m => `• ${m.name} (${m.recommendationText})`);
+      const reviews = combinedData.filter(m => m.recommendationClass === 'kick' || m.recommendationClass === 'review').map(m => `• ${m.name} (${m.recommendationText}${m.recommendationReason ? ': ' + m.recommendationReason : ''})`);
       
       let text = `📋 Ikea-klanens sammanfattning:\n\n`;
       text += `Befordringskandidater:\n${promotes.length ? promotes.join('\n') : 'Inga'}\n\n`;
@@ -1204,10 +1242,10 @@
         tr.innerHTML = `
           <td>${index + 1}</td>
           <td>
-            <strong>${m.name}</strong>
+            <strong>${escapeHtml(m.name)}</strong>
             <span class="last-seen ${m.lastSeenWarning ? 'warning' : ''}">Senast sedd: ${m.lastSeenText}</span>
             <label class="afk-toggle" title="Undanta från veckans regler">
-              <input type="checkbox" ${m.afk ? 'checked' : ''} onchange="setAfk('${m.tag}', this.checked)">
+              <input type="checkbox" ${m.afk ? 'checked' : ''} data-tag="${escapeHtml(m.tag)}" onchange="setAfk(this.dataset.tag, this.checked)">
               AFK denna vecka
             </label>
           </td>
@@ -1227,7 +1265,10 @@
               <span class="loyalty-text">${m.loyaltyRatio}</span>
             </div>
           </td>
-          <td><span class="badge ${m.recommendationClass}">${m.recommendationText}</span></td>
+          <td>
+            <span class="badge ${m.recommendationClass}">${m.recommendationText}</span>
+            ${m.recommendationReason ? `<span class="reason-text">${escapeHtml(m.recommendationReason)}</span>` : ''}
+          </td>
         `;
         tbody.appendChild(tr);
       });

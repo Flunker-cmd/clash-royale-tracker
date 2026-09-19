@@ -3,391 +3,218 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from generate_insights import generate_insights
+from generate_insights import DEFAULT_CRITERIA, generate_insights
+
+CLAN = "#L0G0Y0JP"
 
 
-class GenerateInsightsTests(unittest.TestCase):
-    def test_latest_war_fame_rules_use_configurable_boundaries(self):
-        members = {
-            "memberList": [
-                {"tag": "#M999", "name": "Low", "role": "member"},
-                {"tag": "#M1000", "name": "Safe", "role": "member"},
-                {"tag": "#M2500", "name": "Promote", "role": "member"},
-                {"tag": "#E1599", "name": "Demote", "role": "elder"},
-                {"tag": "#E1600", "name": "ElderSafe", "role": "elder"},
-            ]
-        }
-        history = {
-            "items": [{
-                "standings": [{
-                    "clan": {
-                        "tag": "#L0G0Y0JP",
-                        "participants": [
-                            {"tag": "#M999", "fame": 999, "decksUsed": 16},
-                            {"tag": "#M1000", "fame": 1000, "decksUsed": 16},
-                            {"tag": "#M2500", "fame": 2500, "decksUsed": 16},
-                            {"tag": "#E1599", "fame": 1599, "decksUsed": 16},
-                            {"tag": "#E1600", "fame": 1600, "decksUsed": 16},
-                        ],
-                    }
-                }]
-            }]
-        }
+def war(*participants):
+    """One finished war. Each participant is (tag, fame, decksUsed)."""
+    return {
+        "standings": [{
+            "clan": {
+                "tag": CLAN,
+                "participants": [
+                    {"tag": tag, "fame": fame, "decksUsed": decks}
+                    for tag, fame, decks in participants
+                ],
+            }
+        }]
+    }
 
-        with tempfile.TemporaryDirectory() as tmpdir:
-            members_path = Path(tmpdir) / "members.json"
-            history_path = Path(tmpdir) / "history.json"
-            members_path.write_text(json.dumps(members), encoding="utf-8")
-            history_path.write_text(json.dumps(history), encoding="utf-8")
 
-            data = generate_insights(
-                str(members_path),
-                str(history_path),
-                criteria={
-                    "promoteElderAvgDecksEnabled": False,
-                    "promoteElderDonationsEnabled": False,
-                    "promoteCoLeaderAvgDecksEnabled": False,
-                    "promoteCoLeaderDonationsEnabled": False,
-                    "kickAvgDecksEnabled": False,
-                    "kickDonationsEnabled": False,
-                },
-            )
+def run_insights(members, wars, criteria=None):
+    """members: list of (tag, name, role, donations). wars: newest war first."""
+    members_data = {
+        "memberList": [
+            {"tag": tag, "name": name, "role": role, "donations": donations}
+            for tag, name, role, donations in members
+        ]
+    }
+    with tempfile.TemporaryDirectory() as tmpdir:
+        members_path = Path(tmpdir) / "members.json"
+        history_path = Path(tmpdir) / "history.json"
+        members_path.write_text(json.dumps(members_data), encoding="utf-8")
+        history_path.write_text(json.dumps({"items": wars}), encoding="utf-8")
+        return generate_insights(str(members_path), str(history_path), criteria=criteria)
 
-            promoted = [item["name"] for item in data["promote"]]
-            reviewed = {item["name"]: item["reason"] for item in data["review"]}
-            self.assertIn("Promote", promoted)
-            self.assertNotIn("Safe", promoted)
-            self.assertEqual(reviewed["Low"], "Candidate for kick/demotion")
-            self.assertEqual(reviewed["Demote"], "Candidate for elder demotion")
-            self.assertNotIn("ElderSafe", reviewed)
 
-    def test_generate_insights_creates_summary_and_lists(self):
-        members_path = Path("clan_members.json")
-        history_path = Path("history_data.json")
+def names(items):
+    return [item["name"] for item in items]
 
-        data = generate_insights(str(members_path), str(history_path))
 
-        self.assertIsInstance(data, dict)
-        self.assertIn("summary", data)
-        self.assertIn("promote", data)
-        self.assertIn("review", data)
-        self.assertIn("inactive", data)
-        self.assertIn("topPerformer", data)
-        self.assertIn("generatedAt", data)
+class DefaultRulesTests(unittest.TestCase):
+    def test_default_boundaries_for_members_and_elders(self):
+        data = run_insights(
+            [
+                ("#M499", "KickMe", "member", 0),
+                ("#M500", "Safe", "member", 0),
+                ("#M2499", "AlmostElder", "member", 0),
+                ("#M2500", "PromoteMe", "member", 0),
+                ("#E1599", "DemoteMe", "elder", 0),
+                ("#E1600", "ElderSafe", "elder", 0),
+                ("#E3000", "StrongElder", "elder", 0),
+            ],
+            [war(
+                ("#M499", 499, 16),
+                ("#M500", 500, 16),
+                ("#M2499", 2499, 16),
+                ("#M2500", 2500, 16),
+                ("#E1599", 1599, 16),
+                ("#E1600", 1600, 16),
+                ("#E3000", 3000, 16),
+            )],
+        )
 
-        self.assertIsInstance(data["summary"], dict)
-        self.assertIsInstance(data["promote"], list)
-        self.assertIsInstance(data["review"], list)
-        self.assertIsInstance(data["inactive"], list)
+        reviewed = {item["name"]: item["reason"] for item in data["review"]}
+        self.assertEqual(names(data["promote"]), ["PromoteMe"])
+        self.assertEqual(reviewed, {
+            "KickMe": "Candidate for kick",
+            "DemoteMe": "Candidate for elder demotion",
+        })
 
-    def test_generate_insights_respects_custom_criteria(self):
-        members_path = Path("clan_members.json")
-        history_path = Path("history_data.json")
-        criteria = {
-            "promoteElderAvgDecks": 14,
-            "promoteElderDonations": 200,
-            "promoteCoLeaderAvgDecks": 16,
-            "promoteCoLeaderDonations": 250,
-            "kickAvgDecks": 8,
-            "kickDonations": 50,
-        }
+    def test_elder_below_kick_threshold_is_demoted_not_kicked(self):
+        data = run_insights(
+            [("#E1", "Weak", "elder", 0)],
+            [war(("#E1", 100, 2))],
+        )
 
-        data = generate_insights(str(members_path), str(history_path), criteria=criteria)
+        self.assertEqual(data["review"][0]["reason"], "Candidate for elder demotion")
 
-        self.assertIsInstance(data, dict)
-        self.assertIsInstance(data["promote"], list)
-        self.assertIsInstance(data["review"], list)
+    def test_co_leaders_and_leaders_are_never_evaluated(self):
+        data = run_insights(
+            [
+                ("#C1", "CoLeaderStrong", "coLeader", 500),
+                ("#C2", "CoLeaderIdle", "coLeader", 0),
+                ("#L1", "Leader", "leader", 0),
+            ],
+            [war(("#C1", 4000, 16), ("#C2", 0, 0), ("#L1", 0, 0))],
+        )
 
-    def test_generate_insights_ignores_disabled_metric(self):
-        members = {
-            "memberList": [
-                {
-                    "tag": "#A1",
-                    "name": "Alice",
-                    "role": "member",
-                    "donations": 1000,
-                    "lastSeen": "2024-01-01T00:00:00Z",
-                }
-            ]
-        }
-        history = {
-            "items": [
-                {
-                    "standings": [
-                        {
-                            "clan": {
-                                "tag": "#L0G0Y0JP",
-                                "participants": [
-                                    {"tag": "#A1", "fame": 3000, "decksUsed": 16}
-                                ],
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
+        self.assertEqual(data["promote"], [])
+        self.assertEqual(data["review"], [])
 
-        with tempfile.TemporaryDirectory() as tmpdir:
-            members_path = Path(tmpdir) / "members.json"
-            history_path = Path(tmpdir) / "history.json"
-            members_path.write_text(json.dumps(members), encoding="utf-8")
-            history_path.write_text(json.dumps(history), encoding="utf-8")
+    def test_member_without_latest_war_data_is_not_kicked(self):
+        data = run_insights(
+            [("#N1", "Newcomer", "member", 0), ("#O1", "Veteran", "member", 0)],
+            [war(("#O1", 2600, 16)), war(("#O1", 2600, 16), ("#N1", 2600, 16))],
+        )
 
-            criteria = {
-                "promoteElderAvgDecks": 14,
-                "promoteElderAvgDecksEnabled": False,
-                "promoteElderDonations": 500,
+        self.assertNotIn("Newcomer", names(data["review"]))
+        self.assertNotIn("Newcomer", names(data["inactive"]))
+        self.assertEqual(names(data["promote"]), ["Veteran"])
+
+    def test_zero_participation_member_is_kicked_and_listed_as_inactive(self):
+        data = run_insights(
+            [("#A2", "Bob", "member", 10)],
+            [war(("#A2", 0, 0))],
+        )
+
+        self.assertEqual(names(data["inactive"]), ["Bob"])
+        self.assertEqual(data["review"][0]["reason"], "Candidate for kick")
+
+    def test_optional_criteria_are_off_by_default(self):
+        for key in (
+            "promoteElderAvgDecksEnabled",
+            "promoteElderDonationsEnabled",
+            "kickAvgDecksEnabled",
+            "kickDonationsEnabled",
+            "recentParticipationEnabled",
+        ):
+            self.assertFalse(DEFAULT_CRITERIA[key], key)
+
+        # Few decks and no donations, but fame is what counts by default.
+        data = run_insights(
+            [("#A4", "Dana", "member", 0)],
+            [war(("#A4", 3000, 5))],
+        )
+
+        self.assertEqual(names(data["promote"]), ["Dana"])
+
+
+class OptionalCriteriaTests(unittest.TestCase):
+    def test_promotion_requires_every_enabled_criterion(self):
+        members = [("#A1", "Alice", "member", 300)]
+        wars = [war(("#A1", 3000, 10)), war(("#A1", 3000, 10)), war(("#A1", 3000, 10))]
+
+        blocked = run_insights(members, wars, {"promoteElderAvgDecksEnabled": True})
+        self.assertEqual(blocked["promote"], [])
+
+        allowed = run_insights(
+            members,
+            wars,
+            {
+                "promoteElderAvgDecksEnabled": True,
+                "promoteElderAvgDecks": 10,
                 "promoteElderDonationsEnabled": True,
-                "promoteCoLeaderAvgDecks": 16,
-                "promoteCoLeaderAvgDecksEnabled": True,
-                "promoteCoLeaderDonations": 1000,
-                "promoteCoLeaderDonationsEnabled": True,
-                "kickAvgDecks": 8,
-                "kickAvgDecksEnabled": True,
-                "kickDonations": 50,
-                "kickDonationsEnabled": True,
-            }
-
-            data = generate_insights(str(members_path), str(history_path), criteria=criteria)
-
-            self.assertEqual(data["promote"][0]["name"], "Alice")
-
-    def test_generate_insights_marks_zero_participation_as_inactive(self):
-        members = {
-            "memberList": [
-                {
-                    "tag": "#A2",
-                    "name": "Bob",
-                    "role": "member",
-                    "donations": 10,
-                    "lastSeen": "2024-01-01T00:00:00Z",
-                }
-            ]
-        }
-        history = {
-            "items": [
-                {
-                    "standings": [
-                        {
-                            "clan": {
-                                "tag": "#L0G0Y0JP",
-                                "participants": []
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
-
-        with tempfile.TemporaryDirectory() as tmpdir:
-            members_path = Path(tmpdir) / "members.json"
-            history_path = Path(tmpdir) / "history.json"
-            members_path.write_text(json.dumps(members), encoding="utf-8")
-            history_path.write_text(json.dumps(history), encoding="utf-8")
-
-            data = generate_insights(str(members_path), str(history_path))
-
-            self.assertEqual(data["inactive"][0]["name"], "Bob")
-
-    def test_generate_insights_blocks_promotion_when_recent_participation_is_low(self):
-        members = {
-            "memberList": [
-                {
-                    "tag": "#A3",
-                    "name": "Charlie",
-                    "role": "member",
-                    "donations": 200,
-                    "lastSeen": "2024-01-01T00:00:00Z",
-                }
-            ]
-        }
-        history = {
-            "items": [
-                {
-                    "standings": [
-                        {
-                            "clan": {
-                                "tag": "#L0G0Y0JP",
-                                "participants": [
-                                    {"tag": "#A3", "fame": 5000, "decksUsed": 1}
-                                ],
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
-
-        with tempfile.TemporaryDirectory() as tmpdir:
-            members_path = Path(tmpdir) / "members.json"
-            history_path = Path(tmpdir) / "history.json"
-            members_path.write_text(json.dumps(members), encoding="utf-8")
-            history_path.write_text(json.dumps(history), encoding="utf-8")
-
-            criteria = {
-                "recentParticipationThreshold": 4,
-                "recentParticipationEnabled": True,
-            }
-
-            data = generate_insights(str(members_path), str(history_path), criteria=criteria)
-
-            self.assertNotIn("Charlie", [item["name"] for item in data["promote"]])
-            self.assertIn("Charlie", [item["name"] for item in data["review"]])
-
-    def test_generate_insights_allows_promotion_without_current_donations_when_disabled(self):
-        members = {
-            "memberList": [
-                {
-                    "tag": "#A4",
-                    "name": "Dana",
-                    "role": "member",
-                    "donations": 0,
-                    "lastSeen": "2024-01-01T00:00:00Z",
-                }
-            ]
-        }
-        history = {
-            "items": [
-                {
-                    "standings": [
-                        {
-                            "clan": {
-                                "tag": "#L0G0Y0JP",
-                                "participants": [
-                                    {"tag": "#A4", "fame": 3000, "decksUsed": 16}
-                                ],
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
-
-        with tempfile.TemporaryDirectory() as tmpdir:
-            members_path = Path(tmpdir) / "members.json"
-            history_path = Path(tmpdir) / "history.json"
-            members_path.write_text(json.dumps(members), encoding="utf-8")
-            history_path.write_text(json.dumps(history), encoding="utf-8")
-
-            criteria = {
-                "promoteElderAvgDecks": 14,
-                "promoteElderAvgDecksEnabled": True,
-                "promoteElderDonations": 50,
-                "promoteElderDonationsEnabled": False,
-                "recentParticipationThreshold": 4,
-                "recentParticipationEnabled": True,
-            }
-
-            data = generate_insights(str(members_path), str(history_path), criteria=criteria)
-
-            self.assertIn("Dana", [item["name"] for item in data["promote"]])
-
-    def test_generate_insights_uses_trophies_and_average_decks_for_decisions(self):
-        members = {
-            "memberList": [
-                {
-                    "tag": "#A6",
-                    "name": "Fiona",
-                    "role": "member",
-                    "trophies": 7421,
-                    "donations": 0,
-                }
-            ]
-        }
-        history = {
-            "items": [
-                {"standings": [{"clan": {"tag": "#L0G0Y0JP", "participants": [{"tag": "#A6", "fame": 3000, "decksUsed": 14}]}}]},
-                {"standings": [{"clan": {"tag": "#L0G0Y0JP", "participants": [{"tag": "#A6", "fame": 5000, "decksUsed": 14}]}}]},
-            ]
-        }
-
-        with tempfile.TemporaryDirectory() as tmpdir:
-            members_path = Path(tmpdir) / "members.json"
-            history_path = Path(tmpdir) / "history.json"
-            members_path.write_text(json.dumps(members), encoding="utf-8")
-            history_path.write_text(json.dumps(history), encoding="utf-8")
-
-            data = generate_insights(str(members_path), str(history_path))
-            summary = data["promote"][0]
-
-            self.assertEqual(summary["avgDecks"], 14)
-            self.assertEqual(summary["name"], "Fiona")
-            self.assertNotIn("Fiona", [item["name"] for item in data["review"]])
-
-    def test_generate_insights_uses_donations_per_war_metric(self):
-        members = {
-            "memberList": [
-                {
-                    "tag": "#A5",
-                    "name": "Eve",
-                    "role": "member",
-                    "donations": 300,
-                    "lastSeen": "2024-01-01T00:00:00Z",
-                }
-            ]
-        }
-        history = {
-            "items": [
-                {
-                    "standings": [
-                        {
-                            "clan": {
-                                "tag": "#L0G0Y0JP",
-                                "participants": [
-                                    {"tag": "#A5", "fame": 3000, "decksUsed": 16}
-                                ],
-                            }
-                        }
-                    ]
-                },
-                {
-                    "standings": [
-                        {
-                            "clan": {
-                                "tag": "#L0G0Y0JP",
-                                "participants": [
-                                    {"tag": "#A5", "fame": 3000, "decksUsed": 16}
-                                ],
-                            }
-                        }
-                    ]
-                },
-                {
-                    "standings": [
-                        {
-                            "clan": {
-                                "tag": "#L0G0Y0JP",
-                                "participants": [
-                                    {"tag": "#A5", "fame": 3000, "decksUsed": 16}
-                                ],
-                            }
-                        }
-                    ]
-                },
-            ]
-        }
-
-        with tempfile.TemporaryDirectory() as tmpdir:
-            members_path = Path(tmpdir) / "members.json"
-            history_path = Path(tmpdir) / "history.json"
-            members_path.write_text(json.dumps(members), encoding="utf-8")
-            history_path.write_text(json.dumps(history), encoding="utf-8")
-
-            criteria = {
-                "promoteElderAvgDecks": 14,
-                "promoteElderAvgDecksEnabled": True,
                 "promoteElderDonations": 100,
-                "promoteElderDonationsEnabled": True,
-                "recentParticipationThreshold": 4,
-                "recentParticipationEnabled": True,
-            }
+            },
+        )
+        promoted = allowed["promote"][0]
+        self.assertEqual(promoted["name"], "Alice")
+        self.assertEqual(promoted["donations"], 300)
+        self.assertEqual(promoted["donationsPerWar"], 100)
 
-            data = generate_insights(str(members_path), str(history_path), criteria=criteria)
+    def test_promotion_can_run_on_optional_criteria_alone(self):
+        data = run_insights(
+            [("#A1", "Alice", "member", 0)],
+            [war(("#A1", 1200, 16))],
+            {"promoteElderLatestWarFameEnabled": False, "promoteElderAvgDecksEnabled": True},
+        )
 
-            promoted = [item for item in data["promote"] if item["name"] == "Eve"]
-            self.assertEqual(len(promoted), 1)
-            self.assertEqual(promoted[0]["donations"], 300)
-            self.assertEqual(promoted[0]["donationsPerWar"], 100)
+        self.assertEqual(names(data["promote"]), ["Alice"])
+
+    def test_no_enabled_promotion_criteria_promotes_nobody(self):
+        data = run_insights(
+            [("#A1", "Alice", "member", 0)],
+            [war(("#A1", 4000, 16))],
+            {"promoteElderLatestWarFameEnabled": False},
+        )
+
+        self.assertEqual(data["promote"], [])
+
+    def test_any_enabled_kick_criterion_flags_member(self):
+        members = [("#A1", "Alice", "member", 0)]
+        wars = [war(("#A1", 800, 6))]
+
+        self.assertEqual(run_insights(members, wars)["review"], [])
+
+        flagged = run_insights(members, wars, {"kickAvgDecksEnabled": True})
+        self.assertEqual(names(flagged["review"]), ["Alice"])
+        self.assertEqual(flagged["review"][0]["details"], ["Average decks per war 6.0 < 8"])
+
+        flagged = run_insights(members, wars, {"kickDonationsEnabled": True})
+        self.assertEqual(names(flagged["review"]), ["Alice"])
+
+    def test_optional_kick_criteria_demote_elders(self):
+        data = run_insights(
+            [("#E1", "Elder", "elder", 0)],
+            [war(("#E1", 2000, 6))],
+            {"kickAvgDecksEnabled": True},
+        )
+
+        self.assertEqual(data["review"][0]["reason"], "Candidate for elder demotion")
+
+    def test_recent_participation_flags_and_blocks_promotion(self):
+        data = run_insights(
+            [("#A3", "Charlie", "member", 200)],
+            [war(("#A3", 5000, 1))],
+            {"recentParticipationEnabled": True, "recentParticipationThreshold": 4},
+        )
+
+        self.assertNotIn("Charlie", names(data["promote"]))
+        self.assertEqual(data["review"][0]["reason"], "Recent activity below threshold")
+
+
+class OutputShapeTests(unittest.TestCase):
+    def test_generate_insights_creates_summary_and_lists(self):
+        data = generate_insights("clan_members.json", "history_data.json")
+
+        for key in ("summary", "promote", "review", "inactive", "topPerformer", "generatedAt"):
+            self.assertIn(key, data)
+        self.assertIsInstance(data["summary"], dict)
+        for key in ("promote", "review", "inactive"):
+            self.assertIsInstance(data[key], list)
 
 
 if __name__ == "__main__":

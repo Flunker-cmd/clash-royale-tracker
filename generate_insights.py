@@ -5,24 +5,29 @@ from pathlib import Path
 
 CLAN_TAG = "#L0G0Y0JP"
 
+# Default rules (all based on fame in the latest finished war):
+#   member  >= 2500 -> promote to elder
+#   member  <   500 -> kick
+#   elder   <  1600 -> demote to member (elder works as an extra life)
+# Co-leaders are appointed manually and never get a recommendation.
+# The remaining criteria are optional filters that are off by default.
 DEFAULT_CRITERIA = {
-    "kickMemberLatestWarFame": 1000,
+    "kickMemberLatestWarFame": 500,
+    "kickMemberLatestWarFameEnabled": True,
     "promoteElderLatestWarFame": 2500,
+    "promoteElderLatestWarFameEnabled": True,
     "demoteElderLatestWarFame": 1600,
+    "demoteElderLatestWarFameEnabled": True,
     "promoteElderAvgDecks": 14,
-    "promoteElderAvgDecksEnabled": True,
+    "promoteElderAvgDecksEnabled": False,
     "promoteElderDonations": 50,
     "promoteElderDonationsEnabled": False,
-    "promoteCoLeaderAvgDecks": 16,
-    "promoteCoLeaderAvgDecksEnabled": True,
-    "promoteCoLeaderDonations": 100,
-    "promoteCoLeaderDonationsEnabled": False,
     "kickAvgDecks": 8,
-    "kickAvgDecksEnabled": True,
+    "kickAvgDecksEnabled": False,
     "kickDonations": 30,
     "kickDonationsEnabled": False,
     "recentParticipationThreshold": 4,
-    "recentParticipationEnabled": True,
+    "recentParticipationEnabled": False,
 }
 
 
@@ -113,6 +118,7 @@ def member_summary(member, war_stats, total_weeks):
     active_weeks = int(war.get("weeks") or 0)
     latest_war_participation = 0
     latest_war_fame = 0
+    in_latest_war = bool(war.get("history")) and war["history"][0] is not None
     if war.get("history"):
         latest_war_participation = int(war["history"][0] or 0)
     if war.get("fameHistory"):
@@ -145,8 +151,56 @@ def member_summary(member, war_stats, total_weeks):
         "latestWarParticipation": latest_war_participation,
         "totalWeeks": total_weeks,
         "lastSeenHours": last_seen_hours,
-        "inactive": latest_war_participation == 0,
+        "inLatestWar": in_latest_war,
+        "inactive": in_latest_war and latest_war_participation == 0,
     }
+
+
+def evaluate_member(member, criteria):
+    """Return (action, details) for a member or elder.
+
+    Actions: "kick", "demote", "lowActivity", "promote" or None. Downward
+    criteria (kick/demote) trigger when any enabled one is hit; promotion
+    requires every enabled promotion criterion to be met. Co-leaders, leaders
+    and members without data for the latest war are never evaluated.
+    """
+    role = member["role"]
+    if role not in ("member", "elder") or not member["inLatestWar"]:
+        return None, []
+
+    fame_key = "kickMemberLatestWarFame" if role == "member" else "demoteElderLatestWarFame"
+    down_checks = [
+        (fame_key, member["latestWarFame"], "Latest war fame"),
+        ("kickAvgDecks", member["avgDecks"], "Average decks per war"),
+        ("kickDonations", member["donationsPerWar"], "Donations per war"),
+    ]
+    down = [
+        f"{label} {value} < {criteria[key]}"
+        for key, value, label in down_checks
+        if metric_is_enabled(criteria, key) and value < criteria[key]
+    ]
+    if down:
+        return ("kick" if role == "member" else "demote"), down
+
+    if (
+        metric_is_enabled(criteria, "recentParticipation")
+        and member["latestWarParticipation"] < criteria["recentParticipationThreshold"]
+    ):
+        return "lowActivity", [
+            f"Latest war decks {member['latestWarParticipation']} < {criteria['recentParticipationThreshold']}"
+        ]
+
+    if role == "member":
+        up_checks = [
+            ("promoteElderLatestWarFame", member["latestWarFame"], "Latest war fame"),
+            ("promoteElderAvgDecks", member["avgDecks"], "Average decks per war"),
+            ("promoteElderDonations", member["donationsPerWar"], "Donations per war"),
+        ]
+        up_checks = [check for check in up_checks if metric_is_enabled(criteria, check[0])]
+        if up_checks and all(value >= criteria[key] for key, value, _ in up_checks):
+            return "promote", [f"{label} {value} >= {criteria[key]}" for key, value, label in up_checks]
+
+    return None, []
 
 
 def generate_insights(members_path="clan_members.json", history_path="history_data.json", criteria=None):
@@ -166,34 +220,28 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
     review = []
     inactive = []
 
-    min_active_weeks = max(1, math.ceil(total_weeks * 0.5))
+    review_reasons = {
+        "kick": "Candidate for kick",
+        "demote": "Candidate for elder demotion",
+        "lowActivity": "Recent activity below threshold",
+    }
 
     for member in summaries:
-        recent_participation_ok = not metric_is_enabled(criteria, "recentParticipation") or member["latestWarParticipation"] >= criteria["recentParticipationThreshold"]
-        member_promote_fame_ok = member["latestWarFame"] >= criteria["promoteElderLatestWarFame"]
-        member_kick_fame = member["latestWarFame"] < criteria["kickMemberLatestWarFame"]
-        elder_demote_fame = member["latestWarFame"] < criteria["demoteElderLatestWarFame"]
-        coleader_decks_ok = not metric_is_enabled(criteria, "promoteCoLeaderAvgDecks") or member["avgDecks"] >= criteria["promoteCoLeaderAvgDecks"]
-        coleader_donations_ok = not metric_is_enabled(criteria, "promoteCoLeaderDonations") or member["donationsPerWar"] >= criteria["promoteCoLeaderDonations"]
+        action, details = evaluate_member(member, criteria)
+        entry = {
+            "name": member["name"],
+            "role": member["role"],
+            "avgFame": member["avgFame"],
+            "latestWarFame": member["latestWarFame"],
+            "avgDecks": member["avgDecks"],
+            "donations": member["donations"],
+            "donationsPerWar": member["donationsPerWar"],
+        }
 
-        if member["role"] == "member" and member["activeWeeks"] >= min_active_weeks and recent_participation_ok and member_promote_fame_ok:
-            promote.append({
-                "name": member["name"],
-                "avgFame": member["avgFame"],
-                "avgDecks": member["avgDecks"],
-                "donations": member["donations"],
-                "donationsPerWar": member["donationsPerWar"],
-                "reason": "Ready for Elder promotion",
-            })
-        elif member["role"] == "elder" and not elder_demote_fame and member["activeWeeks"] >= min_active_weeks and recent_participation_ok and coleader_decks_ok and coleader_donations_ok:
-            promote.append({
-                "name": member["name"],
-                "avgFame": member["avgFame"],
-                "avgDecks": member["avgDecks"],
-                "donations": member["donations"],
-                "donationsPerWar": member["donationsPerWar"],
-                "reason": "Ready for Co-Leader promotion",
-            })
+        if action == "promote":
+            promote.append({**entry, "reason": "Ready for Elder promotion", "details": details})
+        elif action in review_reasons:
+            review.append({**entry, "reason": review_reasons[action], "details": details})
 
         if member["inactive"]:
             inactive.append({
@@ -204,37 +252,6 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
                 "lastSeenHours": round(member["lastSeenHours"], 1) if member["lastSeenHours"] != float("inf") else None,
                 "reason": "No participation in the latest war",
             })
-        else:
-            if not recent_participation_ok:
-                review.append({
-                    "name": member["name"],
-                    "avgFame": member["avgFame"],
-                    "donations": member["donations"],
-                    "donationsPerWar": member["donationsPerWar"],
-                    "reason": "Recent activity below threshold",
-                })
-            else:
-                if member["role"] == "elder" and elder_demote_fame:
-                    review.append({
-                        "name": member["name"],
-                        "avgFame": member["avgFame"],
-                        "latestWarFame": member["latestWarFame"],
-                        "avgDecks": member["avgDecks"],
-                        "donations": member["donations"],
-                        "donationsPerWar": member["donationsPerWar"],
-                        "reason": "Candidate for elder demotion",
-                    })
-                    continue
-
-                if member["role"] == "member" and member_kick_fame:
-                    review.append({
-                        "name": member["name"],
-                        "avgFame": member["avgFame"],
-                        "avgDecks": member["avgDecks"],
-                        "donations": member["donations"],
-                        "donationsPerWar": member["donationsPerWar"],
-                        "reason": "Candidate for kick/demotion",
-                    })
 
     active_warriors = sum(1 for member in summaries if member["activeWeeks"] >= max(1, math.ceil(total_weeks * 0.5)))
     avg_clan_fame = round(sum(member["avgFame"] for member in summaries) / len(summaries)) if summaries else 0

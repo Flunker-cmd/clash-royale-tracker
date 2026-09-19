@@ -467,15 +467,6 @@
         "decksUsedToday": 4
       },
       {
-        "tag": "#PCUQP9CJQ",
-        "name": "cas",
-        "fame": 1500,
-        "repairPoints": 0,
-        "boatAttacks": 0,
-        "decksUsed": 8,
-        "decksUsedToday": 0
-      },
-      {
         "tag": "#CVGCRRCR2",
         "name": "Nnea",
         "fame": 1500,
@@ -692,6 +683,15 @@
         "decksUsedToday": 4
       },
       {
+        "tag": "#PCUQP9CJQ",
+        "name": "cas",
+        "fame": 2050,
+        "repairPoints": 0,
+        "boatAttacks": 0,
+        "decksUsed": 12,
+        "decksUsedToday": 4
+      },
+      {
         "tag": "#CC0JPP0UL",
         "name": "slinky",
         "fame": 2050,
@@ -728,7 +728,7 @@
         "decksUsedToday": 4
       }
     ],
-    "periodPoints": 18875,
+    "periodPoints": 19425,
     "clanScore": 3213
   },
   "clans": [
@@ -1037,6 +1037,15 @@
           "decksUsedToday": 0
         },
         {
+          "tag": "#2U90CRLC2",
+          "name": "Gustavo R.",
+          "fame": 300,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 2,
+          "decksUsedToday": 2
+        },
+        {
           "tag": "#UY8L0890R",
           "name": "Danilopy",
           "fame": 325,
@@ -1136,15 +1145,6 @@
           "decksUsedToday": 0
         },
         {
-          "tag": "#JGUPCGQV0",
-          "name": "takulo",
-          "fame": 950,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 7,
-          "decksUsedToday": 0
-        },
-        {
           "tag": "#CGGRR0UGQ",
           "name": "Mbeesii",
           "fame": 1100,
@@ -1215,6 +1215,15 @@
           "boatAttacks": 0,
           "decksUsed": 7,
           "decksUsedToday": 4
+        },
+        {
+          "tag": "#JGUPCGQV0",
+          "name": "takulo",
+          "fame": 1450,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 10,
+          "decksUsedToday": 3
         },
         {
           "tag": "#CQU2RY2VY",
@@ -1379,7 +1388,7 @@
           "decksUsedToday": 4
         }
       ],
-      "periodPoints": 14125,
+      "periodPoints": 14925,
       "clanScore": 3191
     },
     {
@@ -1651,15 +1660,6 @@
           "decksUsedToday": 4
         },
         {
-          "tag": "#80YLCV82G",
-          "name": "Bozznier069",
-          "fame": 700,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 4,
-          "decksUsedToday": 2
-        },
-        {
           "tag": "#RJ9JY0RQP",
           "name": "Grizzox",
           "fame": 800,
@@ -1667,6 +1667,15 @@
           "boatAttacks": 0,
           "decksUsed": 4,
           "decksUsedToday": 0
+        },
+        {
+          "tag": "#80YLCV82G",
+          "name": "Bozznier069",
+          "fame": 800,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 5,
+          "decksUsedToday": 3
         },
         {
           "tag": "#P2RR0JVQ",
@@ -1694,15 +1703,6 @@
           "boatAttacks": 0,
           "decksUsed": 8,
           "decksUsedToday": 4
-        },
-        {
-          "tag": "#2Y2QQJL9",
-          "name": "Nico",
-          "fame": 1050,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 9,
-          "decksUsedToday": 2
         },
         {
           "tag": "#CVCPGJPRJ",
@@ -1774,6 +1774,15 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 8,
+          "decksUsedToday": 4
+        },
+        {
+          "tag": "#2Y2QQJL9",
+          "name": "Nico",
+          "fame": 1350,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 11,
           "decksUsedToday": 4
         },
         {
@@ -1948,7 +1957,7 @@
           "decksUsedToday": 4
         }
       ],
-      "periodPoints": 12725,
+      "periodPoints": 13125,
       "clanScore": 3205
     },
     {
@@ -2382,15 +2391,6 @@
           "decksUsedToday": 0
         },
         {
-          "tag": "#8PPJRRG8Y",
-          "name": "Korasado",
-          "fame": 1100,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 8,
-          "decksUsedToday": 0
-        },
-        {
           "tag": "#VL8U0PVP0",
           "name": "Ripsito",
           "fame": 1100,
@@ -2434,6 +2434,15 @@
           "boatAttacks": 0,
           "decksUsed": 8,
           "decksUsedToday": 4
+        },
+        {
+          "tag": "#8PPJRRG8Y",
+          "name": "Korasado",
+          "fame": 1300,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 9,
+          "decksUsedToday": 1
         },
         {
           "tag": "#8PLCC9LR0",
@@ -2634,7 +2643,7 @@
           "decksUsedToday": 4
         }
       ],
-      "periodPoints": 14250,
+      "periodPoints": 14450,
       "clanScore": 3230
     },
     {
@@ -2897,15 +2906,6 @@
           "decksUsedToday": 1
         },
         {
-          "tag": "#VQ8UGQPU",
-          "name": "Maxim",
-          "fame": 600,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 4,
-          "decksUsedToday": 0
-        },
-        {
           "tag": "#RU2JUJYG0",
           "name": "Fowii",
           "fame": 650,
@@ -2994,6 +2994,15 @@
           "boatAttacks": 0,
           "decksUsed": 8,
           "decksUsedToday": 0
+        },
+        {
+          "tag": "#VQ8UGQPU",
+          "name": "Maxim",
+          "fame": 1300,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 8,
+          "decksUsedToday": 4
         },
         {
           "tag": "#20PUL0V0RU",
@@ -3248,7 +3257,7 @@
           "decksUsedToday": 4
         }
       ],
-      "periodPoints": 16500,
+      "periodPoints": 17200,
       "clanScore": 3225
     },
     {
@@ -3718,15 +3727,6 @@
           "decksUsedToday": 4
         },
         {
-          "tag": "#PCUQP9CJQ",
-          "name": "cas",
-          "fame": 1500,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 8,
-          "decksUsedToday": 0
-        },
-        {
           "tag": "#CVGCRRCR2",
           "name": "Nnea",
           "fame": 1500,
@@ -3943,6 +3943,15 @@
           "decksUsedToday": 4
         },
         {
+          "tag": "#PCUQP9CJQ",
+          "name": "cas",
+          "fame": 2050,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 12,
+          "decksUsedToday": 4
+        },
+        {
           "tag": "#CC0JPP0UL",
           "name": "slinky",
           "fame": 2050,
@@ -3979,7 +3988,7 @@
           "decksUsedToday": 4
         }
       ],
-      "periodPoints": 18875,
+      "periodPoints": 19425,
       "clanScore": 3213
     }
   ],

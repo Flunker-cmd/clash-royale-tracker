@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-19T07:02:26Z",
+  "generatedAt": "2026-09-19T14:02:06Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 48,
+    "activeMembers": 47,
     "activeWarriors": 29,
     "totalWeeks": 10,
-    "avgClanFame": 1718,
+    "avgClanFame": 1755,
     "topPerformer": "Julia",
     "topPerformerAvgDecks": 16.0
   },
@@ -22,32 +22,24 @@
       "name": "Piggelin",
       "avgFame": 2775,
       "avgDecks": 16.0,
-      "donations": 250,
-      "donationsPerWar": 25,
+      "donations": 260,
+      "donationsPerWar": 26,
       "reason": "Ready for Co-Leader promotion"
-    },
-    {
-      "name": "Oskar :)",
-      "avgFame": 2485,
-      "avgDecks": 15.6,
-      "donations": 332,
-      "donationsPerWar": 33,
-      "reason": "Ready for Elder promotion"
     },
     {
       "name": "Julia",
       "avgFame": 2415,
       "avgDecks": 16.0,
-      "donations": 446,
-      "donationsPerWar": 45,
+      "donations": 496,
+      "donationsPerWar": 50,
       "reason": "Ready for Co-Leader promotion"
     },
     {
       "name": "amj",
       "avgFame": 2315,
       "avgDecks": 14.8,
-      "donations": 236,
-      "donationsPerWar": 24,
+      "donations": 249,
+      "donationsPerWar": 25,
       "reason": "Ready for Elder promotion"
     },
     {
@@ -57,6 +49,14 @@
       "donations": 12,
       "donationsPerWar": 1,
       "reason": "Ready for Co-Leader promotion"
+    },
+    {
+      "name": "Lucky Lukas",
+      "avgFame": 790,
+      "avgDecks": 4.2,
+      "donations": 206,
+      "donationsPerWar": 21,
+      "reason": "Ready for Elder promotion"
     }
   ],
   "review": [
@@ -83,7 +83,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 3.5,
+      "lastSeenHours": 10.5,
       "reason": "No participation in the latest war"
     },
     {
@@ -91,7 +91,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 9.0,
+      "lastSeenHours": 16.0,
       "reason": "No participation in the latest war"
     },
     {
@@ -99,7 +99,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 5.1,
+      "lastSeenHours": 12.1,
       "reason": "No participation in the latest war"
     },
     {
@@ -107,7 +107,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 4.6,
+      "lastSeenHours": 11.6,
       "reason": "No participation in the latest war"
     },
     {
@@ -115,7 +115,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 19.6,
+      "lastSeenHours": 26.6,
       "reason": "No participation in the latest war"
     },
     {
@@ -123,7 +123,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 0.2,
+      "lastSeenHours": 0.0,
       "reason": "No participation in the latest war"
     },
     {
@@ -131,15 +131,7 @@
       "activeWeeks": 0,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 6.0,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "V7KAISER",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 6.3,
+      "lastSeenHours": 3.4,
       "reason": "No participation in the latest war"
     },
     {
@@ -147,7 +139,7 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 16.0,
+      "lastSeenHours": 0.1,
       "reason": "No participation in the latest war"
     }
   ],

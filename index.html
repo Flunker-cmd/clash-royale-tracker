@@ -463,7 +463,7 @@
         <div class="value" id="insight-inactive">-</div>
       </div>
       <div class="stat-card">
-        <div class="label">Flest snittdecks per krig</div>
+        <div class="label">Flest antal decks per krig</div>
         <div class="value" id="insight-topfame">-</div>
       </div>
     </div>
@@ -481,15 +481,15 @@
     <div class="criteria-panel">
       <div class="label">Rekommendationskriterier</div>
       <div class="criteria-info">
-        Aktivitet mäts som använda decks i det senaste kriget. En medlem måste klara deltagandegränsen för att kunna befordras. Donationsvärden normaliseras per krig. Standardvärden: kicka medlem under 1000 fame, befordra till elder vid minst 2500 fame och degradera elder under 1600 fame. Snittdecks och donationer är avstängda som standard. Co-leader-befordran beslutas manuellt utifrån chatten. AFK-markerade spelare undantas från veckans regler.
+        Aktivitet mäts som använda decks i det senaste kriget. Deltagandegränsen anger hur många decks spelaren minst måste ha använt i det senaste kriget; värdet 4 betyder minst 4 använda decks. Den är avstängd som standard. Donationsvärden normaliseras per krig. Standardvärden: kicka medlem under 1000 fame, befordra till elder vid minst 2500 fame och degradera elder under 1600 fame. Antal decks per krig och donationer är avstängda som standard. Co-leader-befordran beslutas manuellt utifrån chatten. AFK-markerade spelare undantas från veckans regler.
       </div>
       <div class="criteria-sections">
         <div class="criteria-section">
-          <div class="criteria-section-title">Deltagandegräns</div>
+          <div class="criteria-section-title">Deltagandegräns (antal decks)</div>
           <div class="criteria-grid">
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-recentParticipationEnabled" type="checkbox" checked> Aktiv</label>
+                <label class="criteria-toggle"><input id="criteria-recentParticipationEnabled" type="checkbox"> Aktiv</label>
               </div>
               <input id="criteria-recentParticipationThreshold" type="number" min="0" max="16" step="1" value="4">
             </div>
@@ -506,7 +506,7 @@
             </div>
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-promoteElderAvgDecksEnabled" type="checkbox"> Snittdecks / krig</label>
+                <label class="criteria-toggle"><input id="criteria-promoteElderAvgDecksEnabled" type="checkbox"> Antal decks per krig</label>
               </div>
               <input id="criteria-promoteElderAvgDecks" type="number" min="0" max="16" step="1">
             </div>
@@ -535,7 +535,7 @@
             </div>
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-kickAvgDecksEnabled" type="checkbox"> Snittdecks / krig</label>
+                <label class="criteria-toggle"><input id="criteria-kickAvgDecksEnabled" type="checkbox"> Antal decks per krig</label>
               </div>
               <input id="criteria-kickAvgDecks" type="number" min="0" max="16" step="1">
             </div>
@@ -573,7 +573,7 @@
             <th onclick="sortTable('role')">Roll <span id="sort-role"></span></th>
             <th onclick="sortTable('trophies')">Troféer <span id="sort-trophies"></span></th>
             <th onclick="sortTable('donations')">Donationer <span id="sort-donations"></span></th>
-            <th onclick="sortTable('avgDecks')">Snittdecks / krig <span id="sort-avgDecks"></span></th>
+            <th onclick="sortTable('avgDecks')">Antal decks per krig <span id="sort-avgDecks"></span></th>
             <th onclick="sortTable('decks')">Totala decks (max 160) <span id="sort-decks"></span></th>
             <th onclick="sortTable('weeks')">Krigslojalitet <span id="sort-weeks"></span></th>
             <th onclick="sortTable('recommendationWeight')">Åtgärd / rekommendation <span id="sort-recommendationWeight"></span></th>
@@ -633,7 +633,7 @@
       kickDonations: 30,
       kickDonationsEnabled: false,
       recentParticipationThreshold: 4,
-      recentParticipationEnabled: true
+      recentParticipationEnabled: false
     };
 
     let combinedData = [];
@@ -681,6 +681,20 @@
     function loadCriteria() {
       try {
         const saved = JSON.parse(localStorage.getItem('clanCriteria') || '{}');
+        const migrationKey = 'clanCriteriaDefaultsV2';
+        if (localStorage.getItem(migrationKey) !== 'true') {
+          const migrated = {
+            ...saved,
+            recentParticipationEnabled: false,
+            promoteElderAvgDecksEnabled: false,
+            promoteElderDonationsEnabled: false,
+            kickAvgDecksEnabled: false,
+            kickDonationsEnabled: false
+          };
+          localStorage.setItem('clanCriteria', JSON.stringify(migrated));
+          localStorage.setItem(migrationKey, 'true');
+          return { ...defaultCriteria, ...migrated };
+        }
         return { ...defaultCriteria, ...saved };
       } catch {
         return { ...defaultCriteria };

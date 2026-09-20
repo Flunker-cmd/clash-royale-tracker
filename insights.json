@@ -1,145 +1,103 @@
 {
-  "generatedAt": "2026-09-19T14:02:06Z",
+  "generatedAt": "2026-09-20T02:07:22Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 47,
+    "activeMembers": 46,
     "activeWarriors": 29,
     "totalWeeks": 10,
-    "avgClanFame": 1755,
+    "avgClanFame": 1793,
     "topPerformer": "Julia",
     "topPerformerAvgDecks": 16.0
   },
   "promote": [
     {
-      "name": "MEGABAENIS",
-      "avgFame": 2880,
+      "name": "Teddaren",
+      "role": "member",
+      "avgFame": 2600,
+      "latestWarFame": 2600,
       "avgDecks": 16.0,
-      "donations": 26,
-      "donationsPerWar": 3,
-      "reason": "Ready for Co-Leader promotion"
+      "donations": 336,
+      "donationsPerWar": 336,
+      "reason": "Ready for Elder promotion",
+      "details": [
+        "Latest war fame 2600 >= 2500"
+      ]
     },
     {
-      "name": "Piggelin",
-      "avgFame": 2775,
-      "avgDecks": 16.0,
-      "donations": 260,
-      "donationsPerWar": 26,
-      "reason": "Ready for Co-Leader promotion"
+      "name": "Ekman",
+      "role": "member",
+      "avgFame": 2525,
+      "latestWarFame": 2525,
+      "avgDecks": 15.0,
+      "donations": 144,
+      "donationsPerWar": 144,
+      "reason": "Ready for Elder promotion",
+      "details": [
+        "Latest war fame 2525 >= 2500"
+      ]
     },
     {
-      "name": "Julia",
-      "avgFame": 2415,
-      "avgDecks": 16.0,
-      "donations": 496,
-      "donationsPerWar": 50,
-      "reason": "Ready for Co-Leader promotion"
+      "name": "Leo",
+      "role": "member",
+      "avgFame": 2517,
+      "latestWarFame": 2900,
+      "avgDecks": 14.7,
+      "donations": 328,
+      "donationsPerWar": 109,
+      "reason": "Ready for Elder promotion",
+      "details": [
+        "Latest war fame 2900 >= 2500"
+      ]
     },
     {
       "name": "amj",
+      "role": "member",
       "avgFame": 2315,
+      "latestWarFame": 2800,
       "avgDecks": 14.8,
-      "donations": 249,
-      "donationsPerWar": 25,
-      "reason": "Ready for Elder promotion"
-    },
-    {
-      "name": "slinky",
-      "avgFame": 2198,
-      "avgDecks": 16.0,
-      "donations": 12,
-      "donationsPerWar": 1,
-      "reason": "Ready for Co-Leader promotion"
+      "donations": 257,
+      "donationsPerWar": 26,
+      "reason": "Ready for Elder promotion",
+      "details": [
+        "Latest war fame 2800 >= 2500"
+      ]
     },
     {
       "name": "Lucky Lukas",
+      "role": "member",
       "avgFame": 790,
+      "latestWarFame": 3000,
       "avgDecks": 4.2,
       "donations": 206,
       "donationsPerWar": 21,
-      "reason": "Ready for Elder promotion"
+      "reason": "Ready for Elder promotion",
+      "details": [
+        "Latest war fame 3000 >= 2500"
+      ]
     }
   ],
   "review": [
     {
-      "name": "bruh",
-      "avgFame": 1450,
-      "avgDecks": 10.0,
-      "donations": 34,
-      "donationsPerWar": 8,
-      "reason": "Candidate for kick/demotion"
-    },
-    {
-      "name": "pro_master_88",
-      "avgFame": 950,
-      "avgDecks": 6.5,
-      "donations": 303,
-      "donationsPerWar": 152,
-      "reason": "Candidate for kick/demotion"
+      "name": "blixten 2.0",
+      "role": "member",
+      "avgFame": 0,
+      "latestWarFame": 0,
+      "avgDecks": 0.0,
+      "donations": 64,
+      "donationsPerWar": 64,
+      "reason": "Candidate for kick",
+      "details": [
+        "Latest war fame 0 < 500"
+      ]
     }
   ],
   "inactive": [
-    {
-      "name": "Jobg",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 10.5,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "ALDO PY",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 16.0,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "cas",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 12.1,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "snopss03:o",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 11.6,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "Allahuakbar",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 26.6,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "messi",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 0.0,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "aliba",
-      "activeWeeks": 0,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 3.4,
-      "reason": "No participation in the latest war"
-    },
     {
       "name": "blixten 2.0",
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 0.1,
+      "lastSeenHours": 12.2,
       "reason": "No participation in the latest war"
     }
   ],

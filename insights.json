@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-21T17:19:45Z",
+  "generatedAt": "2026-09-21T21:16:27Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
     "activeMembers": 47,
     "activeWarriors": 32,
     "totalWeeks": 10,
-    "avgClanFame": 1878,
-    "topPerformer": "Julia",
+    "avgClanFame": 1873,
+    "topPerformer": "WilliR5",
     "topPerformerAvgDecks": 16.0
   },
   "promote": [
@@ -16,8 +16,8 @@
       "avgFame": 2625,
       "latestWarFame": 2650,
       "avgDecks": 16.0,
-      "donations": 95,
-      "donationsPerWar": 48,
+      "donations": 105,
+      "donationsPerWar": 52,
       "reason": "Ready for Elder promotion",
       "details": [
         "Latest war fame 2650 >= 2500"
@@ -29,8 +29,8 @@
       "avgFame": 2500,
       "latestWarFame": 2500,
       "avgDecks": 15.0,
-      "donations": 18,
-      "donationsPerWar": 18,
+      "donations": 66,
+      "donationsPerWar": 66,
       "reason": "Ready for Elder promotion",
       "details": [
         "Latest war fame 2500 >= 2500"
@@ -42,8 +42,8 @@
       "avgFame": 2333,
       "latestWarFame": 2800,
       "avgDecks": 14.7,
-      "donations": 16,
-      "donationsPerWar": 5,
+      "donations": 36,
+      "donationsPerWar": 12,
       "reason": "Ready for Elder promotion",
       "details": [
         "Latest war fame 2800 >= 2500"
@@ -83,31 +83,18 @@
       "avgFame": 300,
       "latestWarFame": 300,
       "avgDecks": 4.0,
-      "donations": 116,
-      "donationsPerWar": 116,
+      "donations": 144,
+      "donationsPerWar": 144,
       "reason": "Candidate for kick",
       "details": [
         "Latest war fame 300 < 500"
-      ]
-    },
-    {
-      "name": "blixten 2.0",
-      "role": "member",
-      "avgFame": 225,
-      "latestWarFame": 450,
-      "avgDecks": 2.0,
-      "donations": 44,
-      "donationsPerWar": 22,
-      "reason": "Candidate for kick",
-      "details": [
-        "Latest war fame 450 < 500"
       ]
     }
   ],
   "inactive": [],
   "topPerformer": {
-    "name": "Julia",
-    "avgFame": 2445,
+    "name": "WilliR5",
+    "avgFame": 2680,
     "avgDecks": 16.0,
     "role": "elder"
   }

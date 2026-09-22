@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-22T00:21:01Z",
+  "generatedAt": "2026-09-22T05:33:44Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
     "activeMembers": 48,
     "activeWarriors": 32,
     "totalWeeks": 10,
     "avgClanFame": 1834,
-    "topPerformer": "WilliR5",
+    "topPerformer": "Julia",
     "topPerformerAvgDecks": 16.0
   },
   "promote": [
@@ -29,8 +29,8 @@
       "avgFame": 2500,
       "latestWarFame": 2500,
       "avgDecks": 15.0,
-      "donations": 66,
-      "donationsPerWar": 66,
+      "donations": 92,
+      "donationsPerWar": 92,
       "reason": "Ready for Elder promotion",
       "details": [
         "Latest war fame 2500 >= 2500"
@@ -57,8 +57,8 @@
       "avgFame": 300,
       "latestWarFame": 300,
       "avgDecks": 4.0,
-      "donations": 144,
-      "donationsPerWar": 144,
+      "donations": 162,
+      "donationsPerWar": 162,
       "reason": "Candidate for kick",
       "details": [
         "Latest war fame 300 < 500"
@@ -67,8 +67,8 @@
   ],
   "inactive": [],
   "topPerformer": {
-    "name": "WilliR5",
-    "avgFame": 2680,
+    "name": "Julia",
+    "avgFame": 2445,
     "avgDecks": 16.0,
     "role": "elder"
   }

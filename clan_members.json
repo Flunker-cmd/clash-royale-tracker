@@ -4,7 +4,7 @@
   "type": "open",
   "description": "Vi kör Clan Wars, joina inte om du inte spelar CW torsdag till Söndag. vi är en Aktiv Klan! Code: RoyaleAPI",
   "badgeId": 16000062,
-  "clanScore": 132098,
+  "clanScore": 132374,
   "clanWarTrophies": 3223,
   "location": {
     "id": 57000225,
@@ -13,11 +13,11 @@
     "countryCode": "SE"
   },
   "requiredTrophies": 7000,
-  "donationsPerWeek": 1950,
+  "donationsPerWeek": 1982,
   "clanChestStatus": "inactive",
   "clanChestLevel": 1,
   "clanChestMaxLevel": 0,
-  "members": 47,
+  "members": 48,
   "memberList": [
     {
       "tag": "#CQCUPGGG",
@@ -184,7 +184,7 @@
     {
       "tag": "#8UPLQ90YQ",
       "name": "Viggen\\\\",
-      "role": "member",
+      "role": "elder",
       "lastSeen": "20260921T205141.000Z",
       "expLevel": 0,
       "trophies": 13915,
@@ -203,9 +203,9 @@
       "tag": "#PCUQP9CJQ",
       "name": "cas",
       "role": "member",
-      "lastSeen": "20260921T195412.000Z",
+      "lastSeen": "20260922T001430.000Z",
       "expLevel": 0,
-      "trophies": 13839,
+      "trophies": 13869,
       "arena": {
         "id": 54000144,
         "name": "Spirit Square",
@@ -275,7 +275,7 @@
       "tag": "#QJ920VG2C",
       "name": "isak",
       "role": "member",
-      "lastSeen": "20260921T185330.000Z",
+      "lastSeen": "20260921T222621.000Z",
       "expLevel": 0,
       "trophies": 13745,
       "arena": {
@@ -285,8 +285,8 @@
       },
       "clanRank": 15,
       "previousClanRank": 13,
-      "donations": 8,
-      "donationsReceived": 40,
+      "donations": 16,
+      "donationsReceived": 48,
       "clanChestPoints": 0
     },
     {
@@ -347,7 +347,7 @@
       "tag": "#YUY0L2P2",
       "name": "Lucky Lukas",
       "role": "member",
-      "lastSeen": "20260921T150901.000Z",
+      "lastSeen": "20260921T221656.000Z",
       "expLevel": 0,
       "trophies": 13554,
       "arena": {
@@ -357,7 +357,7 @@
       },
       "clanRank": 19,
       "previousClanRank": 18,
-      "donations": 28,
+      "donations": 36,
       "donationsReceived": 80,
       "clanChestPoints": 0
     },
@@ -382,7 +382,7 @@
     {
       "tag": "#J98C09980",
       "name": "noodlefood",
-      "role": "member",
+      "role": "elder",
       "lastSeen": "20260921T093653.000Z",
       "expLevel": 0,
       "trophies": 13338,
@@ -473,7 +473,7 @@
       "tag": "#URUQ09LVG",
       "name": "wisely",
       "role": "coLeader",
-      "lastSeen": "20260921T210929.000Z",
+      "lastSeen": "20260921T213457.000Z",
       "expLevel": 0,
       "trophies": 12319,
       "arena": {
@@ -527,7 +527,7 @@
       "tag": "#20VYLRPCYG",
       "name": "OG27",
       "role": "coLeader",
-      "lastSeen": "20260921T211441.000Z",
+      "lastSeen": "20260921T223343.000Z",
       "expLevel": 0,
       "trophies": 12065,
       "arena": {
@@ -537,8 +537,8 @@
       },
       "clanRank": 29,
       "previousClanRank": 31,
-      "donations": 58,
-      "donationsReceived": 80,
+      "donations": 66,
+      "donationsReceived": 104,
       "clanChestPoints": 0
     },
     {
@@ -547,7 +547,7 @@
       "role": "member",
       "lastSeen": "20260921T211513.000Z",
       "expLevel": 0,
-      "trophies": 11832,
+      "trophies": 11806,
       "arena": {
         "id": 54000132,
         "name": "Summit of Heroes",
@@ -555,7 +555,7 @@
       },
       "clanRank": 30,
       "previousClanRank": 32,
-      "donations": 105,
+      "donations": 113,
       "donationsReceived": 80,
       "clanChestPoints": 0
     },
@@ -776,6 +776,24 @@
       "clanChestPoints": 0
     },
     {
+      "tag": "#YYPLRPUVG",
+      "name": "Fisken lidström",
+      "role": "member",
+      "lastSeen": "20260921T231122.000Z",
+      "expLevel": 0,
+      "trophies": 9055,
+      "arena": {
+        "id": 54000020,
+        "name": "Valkalla",
+        "rawName": "Arena_L9"
+      },
+      "clanRank": 43,
+      "previousClanRank": 0,
+      "donations": 0,
+      "donationsReceived": 0,
+      "clanChestPoints": 0
+    },
+    {
       "tag": "#GYJVQYR",
       "name": "Adam",
       "role": "member",
@@ -787,7 +805,7 @@
         "name": "Valkalla",
         "rawName": "Arena_L9"
       },
-      "clanRank": 43,
+      "clanRank": 44,
       "previousClanRank": 43,
       "donations": 56,
       "donationsReceived": 0,
@@ -805,7 +823,7 @@
         "name": "Valkalla",
         "rawName": "Arena_L9"
       },
-      "clanRank": 44,
+      "clanRank": 45,
       "previousClanRank": 44,
       "donations": 0,
       "donationsReceived": 0,
@@ -823,7 +841,7 @@
         "name": "PANCAKES!",
         "rawName": "Arena_L8"
       },
-      "clanRank": 45,
+      "clanRank": 46,
       "previousClanRank": 45,
       "donations": 70,
       "donationsReceived": 80,
@@ -841,7 +859,7 @@
         "name": "Boot Camp",
         "rawName": "Arena_L6"
       },
-      "clanRank": 46,
+      "clanRank": 47,
       "previousClanRank": 46,
       "donations": 0,
       "donationsReceived": 0,
@@ -859,7 +877,7 @@
         "name": "Dragon Spa",
         "rawName": "Arena_L5"
       },
-      "clanRank": 47,
+      "clanRank": 48,
       "previousClanRank": 47,
       "donations": 144,
       "donationsReceived": 80,

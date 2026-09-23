@@ -194,7 +194,7 @@
         "repairPoints": 0,
         "boatAttacks": 0,
         "decksUsed": 0,
-        "decksUsedToday": 0
+        "decksUsedToday": 1
       },
       {
         "tag": "#2JC8C9VVP",
@@ -280,6 +280,15 @@
       {
         "tag": "#URY88RY88",
         "name": "Jontety",
+        "fame": 0,
+        "repairPoints": 0,
+        "boatAttacks": 0,
+        "decksUsed": 0,
+        "decksUsedToday": 0
+      },
+      {
+        "tag": "#LGLPY8U2V",
+        "name": "CallMeLucky",
         "fame": 0,
         "repairPoints": 0,
         "boatAttacks": 0,
@@ -509,7 +518,7 @@
         "repairPoints": 0,
         "boatAttacks": 0,
         "decksUsed": 0,
-        "decksUsedToday": 1
+        "decksUsedToday": 4
       },
       {
         "tag": "#YURVCY9R",
@@ -527,7 +536,7 @@
         "repairPoints": 0,
         "boatAttacks": 0,
         "decksUsed": 0,
-        "decksUsedToday": 0
+        "decksUsedToday": 4
       },
       {
         "tag": "#Y9QJ8RGQL",
@@ -685,6 +694,15 @@
       {
         "tag": "#YUPUC08GY",
         "name": "Edwin",
+        "fame": 0,
+        "repairPoints": 0,
+        "boatAttacks": 0,
+        "decksUsed": 0,
+        "decksUsedToday": 0
+      },
+      {
+        "tag": "#GR082CLLR",
+        "name": "Chipspojken",
         "fame": 0,
         "repairPoints": 0,
         "boatAttacks": 0,
@@ -1367,7 +1385,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#J8QQGPCGL",
@@ -1909,7 +1927,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 2
         },
         {
           "tag": "#RJ9JY0RQP",
@@ -2289,7 +2307,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#JGGGPL98V",
@@ -2343,7 +2361,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#9QR2LY0QV",
@@ -2352,7 +2370,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#PQ20VLYYV",
@@ -2595,7 +2613,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 1
         },
         {
           "tag": "#P08UQ2R0C",
@@ -2658,7 +2676,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#R0QVLJUU",
@@ -2721,7 +2739,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 1
+          "decksUsedToday": 4
         },
         {
           "tag": "#9RQ2YQJ08",
@@ -3002,7 +3020,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 2
         },
         {
           "tag": "#2VV0P8YVC",
@@ -3805,7 +3823,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 1
         },
         {
           "tag": "#2JC8C9VVP",
@@ -3891,6 +3909,15 @@
         {
           "tag": "#URY88RY88",
           "name": "Jontety",
+          "fame": 0,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 0,
+          "decksUsedToday": 0
+        },
+        {
+          "tag": "#LGLPY8U2V",
+          "name": "CallMeLucky",
           "fame": 0,
           "repairPoints": 0,
           "boatAttacks": 0,
@@ -4120,7 +4147,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 1
+          "decksUsedToday": 4
         },
         {
           "tag": "#YURVCY9R",
@@ -4138,7 +4165,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#Y9QJ8RGQL",
@@ -4296,6 +4323,15 @@
         {
           "tag": "#YUPUC08GY",
           "name": "Edwin",
+          "fame": 0,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 0,
+          "decksUsedToday": 0
+        },
+        {
+          "tag": "#GR082CLLR",
+          "name": "Chipspojken",
           "fame": 0,
           "repairPoints": 0,
           "boatAttacks": 0,

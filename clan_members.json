@@ -4,7 +4,7 @@
   "type": "open",
   "description": "Vi kör Clan Wars, joina inte om du inte spelar CW torsdag till Söndag. vi är en Aktiv Klan! Code: RoyaleAPI",
   "badgeId": 16000062,
-  "clanScore": 133809,
+  "clanScore": 133813,
   "clanWarTrophies": 3223,
   "location": {
     "id": 57000225,
@@ -13,12 +13,30 @@
     "countryCode": "SE"
   },
   "requiredTrophies": 7000,
-  "donationsPerWeek": 5840,
+  "donationsPerWeek": 5848,
   "clanChestStatus": "inactive",
   "clanChestLevel": 1,
   "clanChestMaxLevel": 0,
   "members": 50,
   "memberList": [
+    {
+      "tag": "#CQCUPGGG",
+      "name": "Bjögga",
+      "role": "elder",
+      "lastSeen": "20260923T234031.000Z",
+      "expLevel": 0,
+      "trophies": 14000,
+      "arena": {
+        "id": 54000144,
+        "name": "Spirit Square",
+        "rawName": "Arena_L18"
+      },
+      "clanRank": 1,
+      "previousClanRank": 4,
+      "donations": 230,
+      "donationsReceived": 120,
+      "clanChestPoints": 0
+    },
     {
       "tag": "#PCUQP9CJQ",
       "name": "cas",
@@ -31,28 +49,10 @@
         "name": "Spirit Square",
         "rawName": "Arena_L18"
       },
-      "clanRank": 1,
+      "clanRank": 2,
       "previousClanRank": 10,
       "donations": 156,
       "donationsReceived": 0,
-      "clanChestPoints": 0
-    },
-    {
-      "tag": "#CQCUPGGG",
-      "name": "Bjögga",
-      "role": "elder",
-      "lastSeen": "20260923T214948.000Z",
-      "expLevel": 0,
-      "trophies": 14000,
-      "arena": {
-        "id": 54000144,
-        "name": "Spirit Square",
-        "rawName": "Arena_L18"
-      },
-      "clanRank": 2,
-      "previousClanRank": 4,
-      "donations": 230,
-      "donationsReceived": 120,
       "clanChestPoints": 0
     },
     {
@@ -509,9 +509,9 @@
       "tag": "#P2VVLPGUJ",
       "name": "Gabro",
       "role": "elder",
-      "lastSeen": "20260923T222048.000Z",
+      "lastSeen": "20260923T233153.000Z",
       "expLevel": 0,
-      "trophies": 12323,
+      "trophies": 12354,
       "arena": {
         "id": 54000141,
         "name": "Magic Academy",
@@ -563,7 +563,7 @@
       "tag": "#20VYLRPCYG",
       "name": "OG27",
       "role": "coLeader",
-      "lastSeen": "20260923T192439.000Z",
+      "lastSeen": "20260924T001750.000Z",
       "expLevel": 0,
       "trophies": 12168,
       "arena": {
@@ -574,7 +574,7 @@
       "clanRank": 31,
       "previousClanRank": 30,
       "donations": 236,
-      "donationsReceived": 320,
+      "donationsReceived": 328,
       "clanChestPoints": 0
     },
     {
@@ -851,7 +851,7 @@
       "tag": "#20929PYR0",
       "name": "Reavy",
       "role": "elder",
-      "lastSeen": "20260923T153532.000Z",
+      "lastSeen": "20260924T011730.000Z",
       "expLevel": 0,
       "trophies": 8510,
       "arena": {
@@ -861,7 +861,7 @@
       },
       "clanRank": 47,
       "previousClanRank": 47,
-      "donations": 122,
+      "donations": 130,
       "donationsReceived": 240,
       "clanChestPoints": 0
     },

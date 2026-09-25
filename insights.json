@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-25T08:16:51Z",
+  "generatedAt": "2026-09-25T14:15:48Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 50,
+    "activeMembers": 42,
     "activeWarriors": 32,
     "totalWeeks": 10,
-    "avgClanFame": 1728,
-    "topPerformer": "Julia",
+    "avgClanFame": 1943,
+    "topPerformer": "Oskar :)",
     "topPerformerAvgDecks": 16.0
   },
   "promote": [
@@ -16,24 +16,11 @@
       "avgFame": 2625,
       "latestWarFame": 2650,
       "avgDecks": 16.0,
-      "donations": 299,
-      "donationsPerWar": 150,
+      "donations": 350,
+      "donationsPerWar": 175,
       "reason": "Ready for Elder promotion",
       "details": [
         "Latest war fame 2650 >= 2500"
-      ]
-    },
-    {
-      "name": "cas",
-      "role": "member",
-      "avgFame": 2500,
-      "latestWarFame": 2500,
-      "avgDecks": 15.0,
-      "donations": 240,
-      "donationsPerWar": 240,
-      "reason": "Ready for Elder promotion",
-      "details": [
-        "Latest war fame 2500 >= 2500"
       ]
     },
     {
@@ -42,8 +29,8 @@
       "avgFame": 2280,
       "latestWarFame": 2700,
       "avgDecks": 13.0,
-      "donations": 0,
-      "donationsPerWar": 0,
+      "donations": 8,
+      "donationsPerWar": 2,
       "reason": "Ready for Elder promotion",
       "details": [
         "Latest war fame 2700 >= 2500"
@@ -57,8 +44,8 @@
       "avgFame": 300,
       "latestWarFame": 300,
       "avgDecks": 4.0,
-      "donations": 390,
-      "donationsPerWar": 390,
+      "donations": 418,
+      "donationsPerWar": 418,
       "reason": "Candidate for kick",
       "details": [
         "Latest war fame 300 < 500"
@@ -67,8 +54,8 @@
   ],
   "inactive": [],
   "topPerformer": {
-    "name": "Julia",
-    "avgFame": 2445,
+    "name": "Oskar :)",
+    "avgFame": 2530,
     "avgDecks": 16.0,
     "role": "elder"
   }

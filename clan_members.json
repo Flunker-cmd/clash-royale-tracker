@@ -4,7 +4,7 @@
   "type": "open",
   "description": "Vi kör Clan Wars, joina inte om du inte spelar CW torsdag till Söndag. vi är en Aktiv Klan! Code: RoyaleAPI",
   "badgeId": 16000062,
-  "clanScore": 130616,
+  "clanScore": 130608,
   "clanWarTrophies": 3223,
   "location": {
     "id": 57000225,
@@ -13,12 +13,30 @@
     "countryCode": "SE"
   },
   "requiredTrophies": 7000,
-  "donationsPerWeek": 11598,
+  "donationsPerWeek": 11724,
   "clanChestStatus": "inactive",
   "clanChestLevel": 1,
   "clanChestMaxLevel": 0,
   "members": 46,
   "memberList": [
+    {
+      "tag": "#9PQPP2GVG",
+      "name": "Jobg",
+      "role": "member",
+      "lastSeen": "20260926T235550.000Z",
+      "expLevel": 0,
+      "trophies": 14000,
+      "arena": {
+        "id": 54000144,
+        "name": "Spirit Square",
+        "rawName": "Arena_L18"
+      },
+      "clanRank": 1,
+      "previousClanRank": 4,
+      "donations": 44,
+      "donationsReceived": 40,
+      "clanChestPoints": 0
+    },
     {
       "tag": "#8UPLQ90YQ",
       "name": "Viggen\\\\",
@@ -31,7 +49,7 @@
         "name": "Spirit Square",
         "rawName": "Arena_L18"
       },
-      "clanRank": 1,
+      "clanRank": 2,
       "previousClanRank": 7,
       "donations": 376,
       "donationsReceived": 0,
@@ -49,7 +67,7 @@
         "name": "Spirit Square",
         "rawName": "Arena_L18"
       },
-      "clanRank": 2,
+      "clanRank": 3,
       "previousClanRank": 2,
       "donations": 430,
       "donationsReceived": 240,
@@ -67,7 +85,7 @@
         "name": "Spirit Square",
         "rawName": "Arena_L18"
       },
-      "clanRank": 3,
+      "clanRank": 4,
       "previousClanRank": 5,
       "donations": 524,
       "donationsReceived": 480,
@@ -85,7 +103,7 @@
         "name": "Spirit Square",
         "rawName": "Arena_L18"
       },
-      "clanRank": 4,
+      "clanRank": 5,
       "previousClanRank": 3,
       "donations": 451,
       "donationsReceived": 440,
@@ -103,7 +121,7 @@
         "name": "Spirit Square",
         "rawName": "Arena_L18"
       },
-      "clanRank": 5,
+      "clanRank": 6,
       "previousClanRank": 8,
       "donations": 421,
       "donationsReceived": 440,
@@ -121,7 +139,7 @@
         "name": "Spirit Square",
         "rawName": "Arena_L18"
       },
-      "clanRank": 6,
+      "clanRank": 7,
       "previousClanRank": 1,
       "donations": 131,
       "donationsReceived": 400,
@@ -139,7 +157,7 @@
         "name": "Spirit Square",
         "rawName": "Arena_L18"
       },
-      "clanRank": 7,
+      "clanRank": 8,
       "previousClanRank": 6,
       "donations": 330,
       "donationsReceived": 400,
@@ -157,7 +175,7 @@
         "name": "Spirit Square",
         "rawName": "Arena_L18"
       },
-      "clanRank": 8,
+      "clanRank": 9,
       "previousClanRank": 9,
       "donations": 18,
       "donationsReceived": 240,
@@ -175,27 +193,9 @@
         "name": "Spirit Square",
         "rawName": "Arena_L18"
       },
-      "clanRank": 9,
+      "clanRank": 10,
       "previousClanRank": 10,
       "donations": 188,
-      "donationsReceived": 40,
-      "clanChestPoints": 0
-    },
-    {
-      "tag": "#9PQPP2GVG",
-      "name": "Jobg",
-      "role": "member",
-      "lastSeen": "20260926T030248.000Z",
-      "expLevel": 0,
-      "trophies": 14000,
-      "arena": {
-        "id": 54000144,
-        "name": "Spirit Square",
-        "rawName": "Arena_L18"
-      },
-      "clanRank": 10,
-      "previousClanRank": 4,
-      "donations": 44,
       "donationsReceived": 40,
       "clanChestPoints": 0
     },
@@ -277,7 +277,7 @@
       "role": "member",
       "lastSeen": "20260926T214025.000Z",
       "expLevel": 0,
-      "trophies": 13744,
+      "trophies": 13715,
       "arena": {
         "id": 54000144,
         "name": "Spirit Square",
@@ -285,8 +285,8 @@
       },
       "clanRank": 15,
       "previousClanRank": 14,
-      "donations": 230,
-      "donationsReceived": 368,
+      "donations": 248,
+      "donationsReceived": 392,
       "clanChestPoints": 0
     },
     {
@@ -329,7 +329,7 @@
       "tag": "#YUY0L2P2",
       "name": "Lucky Lukas",
       "role": "member",
-      "lastSeen": "20260926T074745.000Z",
+      "lastSeen": "20260926T231713.000Z",
       "expLevel": 0,
       "trophies": 13582,
       "arena": {
@@ -340,7 +340,7 @@
       "clanRank": 18,
       "previousClanRank": 18,
       "donations": 98,
-      "donationsReceived": 200,
+      "donationsReceived": 232,
       "clanChestPoints": 0
     },
     {
@@ -437,7 +437,7 @@
       "tag": "#P2VVLPGUJ",
       "name": "Gabro",
       "role": "elder",
-      "lastSeen": "20260926T201002.000Z",
+      "lastSeen": "20260926T232228.000Z",
       "expLevel": 0,
       "trophies": 12354,
       "arena": {
@@ -447,7 +447,7 @@
       },
       "clanRank": 24,
       "previousClanRank": 24,
-      "donations": 276,
+      "donations": 322,
       "donationsReceived": 0,
       "clanChestPoints": 0
     },
@@ -455,7 +455,7 @@
       "tag": "#URUQ09LVG",
       "name": "wisely",
       "role": "coLeader",
-      "lastSeen": "20260926T202333.000Z",
+      "lastSeen": "20260926T223703.000Z",
       "expLevel": 0,
       "trophies": 12320,
       "arena": {
@@ -465,8 +465,8 @@
       },
       "clanRank": 25,
       "previousClanRank": 25,
-      "donations": 230,
-      "donationsReceived": 600,
+      "donations": 248,
+      "donationsReceived": 620,
       "clanChestPoints": 0
     },
     {
@@ -509,7 +509,7 @@
       "tag": "#20VYLRPCYG",
       "name": "OG27",
       "role": "coLeader",
-      "lastSeen": "20260926T203816.000Z",
+      "lastSeen": "20260926T230749.000Z",
       "expLevel": 0,
       "trophies": 12140,
       "arena": {
@@ -519,8 +519,8 @@
       },
       "clanRank": 28,
       "previousClanRank": 27,
-      "donations": 550,
-      "donationsReceived": 600,
+      "donations": 578,
+      "donationsReceived": 610,
       "clanChestPoints": 0
     },
     {
@@ -707,7 +707,7 @@
       "tag": "#GYJVQYR",
       "name": "Adam",
       "role": "member",
-      "lastSeen": "20260926T212723.000Z",
+      "lastSeen": "20260926T214222.000Z",
       "expLevel": 0,
       "trophies": 9060,
       "arena": {
@@ -717,8 +717,8 @@
       },
       "clanRank": 39,
       "previousClanRank": 39,
-      "donations": 126,
-      "donationsReceived": 40,
+      "donations": 142,
+      "donationsReceived": 80,
       "clanChestPoints": 0
     },
     {

@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-28T07:51:58Z",
+  "generatedAt": "2026-09-28T16:10:49Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 46,
-    "activeWarriors": 31,
+    "activeMembers": 50,
+    "activeWarriors": 32,
     "totalWeeks": 10,
-    "avgClanFame": 1744,
+    "avgClanFame": 1776,
     "topPerformer": "Oskar :)",
     "topPerformerAvgDecks": 16.0
   },
@@ -13,49 +13,188 @@
     {
       "name": "Teddaren",
       "role": "member",
-      "avgFame": 2625,
-      "latestWarFame": 2650,
+      "avgFame": 2700,
+      "latestWarFame": 2850,
       "avgDecks": 16.0,
-      "donations": 0,
-      "donationsPerWar": 0,
+      "donations": 23,
+      "donationsPerWar": 8,
       "reason": "Ready for Elder promotion",
       "details": [
-        "Latest war fame 2650 >= 2500"
+        "Latest war fame 2850 >= 2500"
+      ]
+    },
+    {
+      "name": "Leo",
+      "role": "member",
+      "avgFame": 2550,
+      "latestWarFame": 2750,
+      "avgDecks": 15.2,
+      "donations": 32,
+      "donationsPerWar": 6,
+      "reason": "Ready for Elder promotion",
+      "details": [
+        "Latest war fame 2750 >= 2500"
       ]
     },
     {
       "name": "Rasse08;)",
       "role": "member",
-      "avgFame": 2280,
+      "avgFame": 2333,
+      "latestWarFame": 2600,
+      "avgDecks": 13.2,
+      "donations": 0,
+      "donationsPerWar": 0,
+      "reason": "Ready for Elder promotion",
+      "details": [
+        "Latest war fame 2600 >= 2500"
+      ]
+    },
+    {
+      "name": "Limpan",
+      "role": "member",
+      "avgFame": 1968,
+      "latestWarFame": 2525,
+      "avgDecks": 15.1,
+      "donations": 36,
+      "donationsPerWar": 4,
+      "reason": "Ready for Elder promotion",
+      "details": [
+        "Latest war fame 2525 >= 2500"
+      ]
+    },
+    {
+      "name": "herman@:com",
+      "role": "member",
+      "avgFame": 1862,
       "latestWarFame": 2700,
+      "avgDecks": 10.8,
+      "donations": 36,
+      "donationsPerWar": 9,
+      "reason": "Ready for Elder promotion",
+      "details": [
+        "Latest war fame 2700 >= 2500"
+      ]
+    },
+    {
+      "name": "Jobg",
+      "role": "member",
+      "avgFame": 1850,
+      "latestWarFame": 2500,
       "avgDecks": 13.0,
       "donations": 0,
       "donationsPerWar": 0,
       "reason": "Ready for Elder promotion",
       "details": [
-        "Latest war fame 2700 >= 2500"
+        "Latest war fame 2500 >= 2500"
+      ]
+    },
+    {
+      "name": "IaddeI",
+      "role": "member",
+      "avgFame": 1850,
+      "latestWarFame": 2600,
+      "avgDecks": 12.0,
+      "donations": 11,
+      "donationsPerWar": 2,
+      "reason": "Ready for Elder promotion",
+      "details": [
+        "Latest war fame 2600 >= 2500"
+      ]
+    },
+    {
+      "name": "A19",
+      "role": "member",
+      "avgFame": 1775,
+      "latestWarFame": 2950,
+      "avgDecks": 10.0,
+      "donations": 8,
+      "donationsPerWar": 4,
+      "reason": "Ready for Elder promotion",
+      "details": [
+        "Latest war fame 2950 >= 2500"
       ]
     }
   ],
   "review": [
     {
-      "name": "Arvid",
+      "name": "Reavy",
+      "role": "elder",
+      "avgFame": 2150,
+      "latestWarFame": 1500,
+      "avgDecks": 13.7,
+      "donations": 0,
+      "donationsPerWar": 0,
+      "reason": "Candidate for elder demotion",
+      "details": [
+        "Latest war fame 1500 < 1600"
+      ]
+    },
+    {
+      "name": "noodlefood",
+      "role": "elder",
+      "avgFame": 2033,
+      "latestWarFame": 1350,
+      "avgDecks": 15.2,
+      "donations": 24,
+      "donationsPerWar": 4,
+      "reason": "Candidate for elder demotion",
+      "details": [
+        "Latest war fame 1350 < 1600"
+      ]
+    },
+    {
+      "name": "Chicken man",
+      "role": "member",
+      "avgFame": 350,
+      "latestWarFame": 350,
+      "avgDecks": 4.0,
+      "donations": 0,
+      "donationsPerWar": 0,
+      "reason": "Candidate for kick",
+      "details": [
+        "Latest war fame 350 < 500"
+      ]
+    },
+    {
+      "name": "StripyAphid0",
       "role": "member",
       "avgFame": 300,
       "latestWarFame": 300,
-      "avgDecks": 4.0,
-      "donations": 56,
-      "donationsPerWar": 56,
+      "avgDecks": 3.0,
+      "donations": 0,
+      "donationsPerWar": 0,
       "reason": "Candidate for kick",
       "details": [
         "Latest war fame 300 < 500"
       ]
+    },
+    {
+      "name": "olle",
+      "role": "member",
+      "avgFame": 0,
+      "latestWarFame": 0,
+      "avgDecks": 0.0,
+      "donations": 0,
+      "donationsPerWar": 0,
+      "reason": "Candidate for kick",
+      "details": [
+        "Latest war fame 0 < 500"
+      ]
     }
   ],
-  "inactive": [],
+  "inactive": [
+    {
+      "name": "olle",
+      "activeWeeks": 1,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 45.5,
+      "reason": "No participation in the latest war"
+    }
+  ],
   "topPerformer": {
     "name": "Oskar :)",
-    "avgFame": 2530,
+    "avgFame": 2560,
     "avgDecks": 16.0,
     "role": "elder"
   }

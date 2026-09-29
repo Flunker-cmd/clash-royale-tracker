@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-29T16:11:28Z",
+  "generatedAt": "2026-09-29T21:07:38Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 50,
+    "activeMembers": 48,
     "activeWarriors": 32,
     "totalWeeks": 10,
-    "avgClanFame": 1776,
-    "topPerformer": "Oskar :)",
+    "avgClanFame": 1832,
+    "topPerformer": "Julia",
     "topPerformerAvgDecks": 16.0
   },
   "promote": [
@@ -16,8 +16,8 @@
       "avgFame": 2700,
       "latestWarFame": 2850,
       "avgDecks": 16.0,
-      "donations": 83,
-      "donationsPerWar": 28,
+      "donations": 101,
+      "donationsPerWar": 34,
       "reason": "Ready for Elder promotion",
       "details": [
         "Latest war fame 2850 >= 2500"
@@ -29,8 +29,8 @@
       "avgFame": 2550,
       "latestWarFame": 2750,
       "avgDecks": 15.2,
-      "donations": 120,
-      "donationsPerWar": 24,
+      "donations": 148,
+      "donationsPerWar": 30,
       "reason": "Ready for Elder promotion",
       "details": [
         "Latest war fame 2750 >= 2500"
@@ -42,8 +42,8 @@
       "avgFame": 2333,
       "latestWarFame": 2600,
       "avgDecks": 13.2,
-      "donations": 0,
-      "donationsPerWar": 0,
+      "donations": 16,
+      "donationsPerWar": 3,
       "reason": "Ready for Elder promotion",
       "details": [
         "Latest war fame 2600 >= 2500"
@@ -55,7 +55,7 @@
       "avgFame": 1968,
       "latestWarFame": 2525,
       "avgDecks": 15.1,
-      "donations": 81,
+      "donations": 82,
       "donationsPerWar": 8,
       "reason": "Ready for Elder promotion",
       "details": [
@@ -143,19 +143,6 @@
       ]
     },
     {
-      "name": "Chicken man",
-      "role": "member",
-      "avgFame": 350,
-      "latestWarFame": 350,
-      "avgDecks": 4.0,
-      "donations": 44,
-      "donationsPerWar": 44,
-      "reason": "Candidate for kick",
-      "details": [
-        "Latest war fame 350 < 500"
-      ]
-    },
-    {
       "name": "StripyAphid0",
       "role": "member",
       "avgFame": 300,
@@ -188,13 +175,13 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 21.8,
+      "lastSeenHours": 26.7,
       "reason": "No participation in the latest war"
     }
   ],
   "topPerformer": {
-    "name": "Oskar :)",
-    "avgFame": 2560,
+    "name": "Julia",
+    "avgFame": 2470,
     "avgDecks": 16.0,
     "role": "elder"
   }

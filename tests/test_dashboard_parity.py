@@ -30,7 +30,8 @@ CRITERIA_SETS = [
     {"kickAvgDecksEnabled": True},
     {"kickDonationsEnabled": True},
     {"recentParticipationEnabled": True},
-    {"promoteElderLatestWarFameEnabled": False},
+    {"promoteElderFullWarsEnabled": False},
+    {"promoteElderFullWars": 2},
     {"kickMemberLatestWarFameEnabled": False, "demoteElderLatestWarFameEnabled": False},
     {
         "promoteElderAvgDecksEnabled": True,
@@ -51,14 +52,16 @@ def build_scenarios():
             "avgDecks": avg_decks,
             "donationsPerWar": donations,
             "latestWarParticipation": participation,
+            "fullWarStreak": streak,
         }
-        for role, in_latest_war, fame, avg_decks, donations, participation in itertools.product(
+        for role, in_latest_war, fame, avg_decks, donations, participation, streak in itertools.product(
             ["member", "elder", "coLeader", "leader"],
             [True, False],
             [0, 499, 500, 1599, 1600, 2499, 2500],
             [0, 7.9, 8, 14],
             [0, 29, 30, 50],
             [0, 3, 4, 16],
+            [0, 2, 3],
         )
     ]
     return [{"member": member, "criteria": criteria} for criteria in CRITERIA_SETS for member in members]

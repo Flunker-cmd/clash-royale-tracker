@@ -863,7 +863,7 @@
     <div class="criteria-panel">
       <div class="label">Kriterier för befordran</div>
       <div class="criteria-info">
-        Standardreglerna utgår från poäng (fame) i det senaste avslutade kriget (torsdag–söndag): en medlem befordras till elder vid minst 2500, en medlem under 500 kickas och en elder under 1600 degraderas till medlem (elder fungerar som ett extraliv). Co-leaders utses manuellt och får ingen rekommendation. Extra filter är avstängda som standard och kan slås på för att undersöka: för befordran måste alla aktiva villkor uppfyllas, för kick/degradering räcker det att ett av dem slår till. Decks och donationer räknas som snitt per krig. Ändringar gäller tills sidan laddas om. AFK-markerade spelare undantas.
+        En medlem befordras till elder efter att ha använt alla 16 decks i vart och ett av de 3 senaste krigen (torsdag–söndag). Kick och degradering utgår från poäng (fame) i det senaste avslutade kriget: en medlem under 500 kickas och en elder under 1600 degraderas till medlem (elder fungerar som ett extraliv). Co-leaders utses manuellt och får ingen rekommendation. Extra filter är avstängda som standard och kan slås på för att undersöka: för befordran måste alla aktiva villkor uppfyllas, för kick/degradering räcker det att ett av dem slår till. Decks och donationer räknas som snitt per krig. Ändringar gäller tills sidan laddas om. AFK-markerade spelare undantas.
       </div>
       <div class="criteria-sections">
         <div class="criteria-section">
@@ -871,9 +871,9 @@
           <div class="criteria-grid">
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-promoteElderLatestWarFameEnabled" type="checkbox"> Senaste krigspoäng minst</label>
+                <label class="criteria-toggle"><input id="criteria-promoteElderFullWarsEnabled" type="checkbox"> Krig i rad med alla 16 decks minst</label>
               </div>
-              <input id="criteria-promoteElderLatestWarFame" type="number" min="0" step="100" value="2500">
+              <input id="criteria-promoteElderFullWars" type="number" min="1" step="1" value="3">
             </div>
             <div class="criteria-subtitle">Extra filter (valfria)</div>
             <div class="criteria-field">
@@ -1033,12 +1033,13 @@
       member: 1
     };
 
-    // Default rules: fame in the latest finished war decides. Everything else is an optional filter.
+    // Default rules: promotion needs full wars in a row, kick/demotion uses fame in the latest finished war.
+    // Everything else is an optional filter.
     const defaultCriteria = {
       kickMemberLatestWarFame: 500,
       kickMemberLatestWarFameEnabled: true,
-      promoteElderLatestWarFame: 2500,
-      promoteElderLatestWarFameEnabled: true,
+      promoteElderFullWars: 3,
+      promoteElderFullWarsEnabled: true,
       demoteElderLatestWarFame: 1600,
       demoteElderLatestWarFameEnabled: true,
       promoteElderAvgDecks: 14,
@@ -1090,8 +1091,8 @@
       return {
         kickMemberLatestWarFame: Number(document.getElementById('criteria-kickMemberLatestWarFame').value || defaultCriteria.kickMemberLatestWarFame),
         kickMemberLatestWarFameEnabled: document.getElementById('criteria-kickMemberLatestWarFameEnabled').checked,
-        promoteElderLatestWarFame: Number(document.getElementById('criteria-promoteElderLatestWarFame').value || defaultCriteria.promoteElderLatestWarFame),
-        promoteElderLatestWarFameEnabled: document.getElementById('criteria-promoteElderLatestWarFameEnabled').checked,
+        promoteElderFullWars: Number(document.getElementById('criteria-promoteElderFullWars').value || defaultCriteria.promoteElderFullWars),
+        promoteElderFullWarsEnabled: document.getElementById('criteria-promoteElderFullWarsEnabled').checked,
         demoteElderLatestWarFame: Number(document.getElementById('criteria-demoteElderLatestWarFame').value || defaultCriteria.demoteElderLatestWarFame),
         demoteElderLatestWarFameEnabled: document.getElementById('criteria-demoteElderLatestWarFameEnabled').checked,
         promoteElderAvgDecks: Number(document.getElementById('criteria-promoteElderAvgDecks').value || defaultCriteria.promoteElderAvgDecks),
@@ -1110,7 +1111,7 @@
     function updateCriteriaInputsState() {
       const toggles = [
         ['criteria-kickMemberLatestWarFameEnabled', 'criteria-kickMemberLatestWarFame'],
-        ['criteria-promoteElderLatestWarFameEnabled', 'criteria-promoteElderLatestWarFame'],
+        ['criteria-promoteElderFullWarsEnabled', 'criteria-promoteElderFullWars'],
         ['criteria-demoteElderLatestWarFameEnabled', 'criteria-demoteElderLatestWarFame'],
         ['criteria-promoteElderAvgDecksEnabled', 'criteria-promoteElderAvgDecks'],
         ['criteria-promoteElderDonationsEnabled', 'criteria-promoteElderDonations'],
@@ -1227,7 +1228,7 @@
       recent.hit = recent.enabled && recent.value < recent.limit;
 
       const up = isElder ? [] : [
-        { key: 'promoteElderLatestWarFame', label: 'Krigspoäng', value: member.latestWarFame },
+        { key: 'promoteElderFullWars', label: 'Fulla krig i rad', value: member.fullWarStreak },
         { key: 'promoteElderAvgDecks', label: 'Decks/krig', value: member.avgDecks },
         { key: 'promoteElderDonations', label: 'Donationer/krig', value: member.donationsPerWar }
       ].map(withState).map(c => ({ ...c, met: c.enabled && c.value >= c.limit }));
@@ -1282,6 +1283,16 @@
       }
 
       return { text: 'God status', weight: 3, className: 'good', reason: '' };
+    }
+
+    // Wars in a row, counting back from the latest, where every deck was used.
+    function getFullWarStreak(deckHistory) {
+      let streak = 0;
+      for (const decks of deckHistory) {
+        if (decks === null || decks < 16) break;
+        streak++;
+      }
+      return streak;
     }
 
     function getRoleBadge(role) {
@@ -1387,6 +1398,7 @@
         const latestWarParticipation = war.history?.length ? Number(war.history[0] || 0) : 0;
         const latestWarFame = war.fameHistory?.length ? Number(war.fameHistory[0] || 0) : 0;
         const inLatestWar = war.history.length > 0 && war.history[0] !== null;
+        const fullWarStreak = getFullWarStreak(war.history);
         const avgFame = activeWeeks > 0 ? Math.round(war.fame / activeWeeks) : 0;
         const avgDecks = activeWeeks > 0 ? Math.round((war.decks / activeWeeks) * 10) / 10 : 0;
 
@@ -1442,6 +1454,7 @@
           weeks: activeWeeks,
           latestWarParticipation: latestWarParticipation,
           latestWarFame: latestWarFame,
+          fullWarStreak: fullWarStreak,
           inLatestWar: inLatestWar,
           afk: afk,
         }, currentCriteria);
@@ -1464,6 +1477,7 @@
           weeks: activeWeeks,
           latestWarParticipation: latestWarParticipation,
           latestWarFame: latestWarFame,
+          fullWarStreak: fullWarStreak,
           afk: afk,
           warDecksUsed: Number(warEntry?.decksUsed || 0),
           warDecksToday: Number(warEntry?.decksUsedToday || 0),
@@ -2473,6 +2487,7 @@
         ['Fame per krig', member.avgFame.toLocaleString()],
         ['Senaste krigets fame', member.inLatestWar ? member.latestWarFame.toLocaleString() : '–'],
         ['Krigslojalitet', member.loyaltyRatio],
+        ['Fulla krig i rad', member.fullWarStreak],
         ['Pågående krig', currentWarInfo.active ? `${member.warDecksUsed} / ${currentWarInfo.day * DECKS_PER_DAY} decks` : '–']
       ].forEach(([label, value]) => {
         const fact = makeEl('div', 'md-fact');

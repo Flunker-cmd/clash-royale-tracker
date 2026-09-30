@@ -8,12 +8,14 @@ over time.
 
 ## Default rules
 
-Recommendations are based on the fame a player earned in the **latest finished
-war** (one war = Thursday to Sunday):
+One war runs Thursday to Sunday, and a full war is all 16 decks used.
 
-- Member with at least 2500 fame: promote to Elder
-- Member with less than 500 fame: kick
-- Elder with less than 1600 fame: demote to Member (Elder works as an extra life)
+- Member with a full war in each of the **3 latest finished wars**: promote to
+  Elder. A war with fewer decks, or one the player was not in the clan for,
+  breaks the streak. Fame does not matter for promotion.
+- Member with less than 500 fame in the **latest finished war**: kick
+- Elder with less than 1600 fame in the latest finished war: demote to Member
+  (Elder works as an extra life)
 - Co-Leaders are appointed manually and never get a recommendation
 - Members with no data for the latest war (newly joined) are not evaluated
 

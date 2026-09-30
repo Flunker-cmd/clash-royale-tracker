@@ -4,18 +4,19 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 CLAN_TAG = "#L0G0Y0JP"
+DECKS_PER_WAR = 16
 
-# Default rules (all based on fame in the latest finished war):
-#   member  >= 2500 -> promote to elder
-#   member  <   500 -> kick
-#   elder   <  1600 -> demote to member (elder works as an extra life)
+# Default rules:
+#   member with all 16 decks in each of the 3 latest wars -> promote to elder
+#   member  <   500 fame in the latest war -> kick
+#   elder   <  1600 fame in the latest war -> demote to member (elder works as an extra life)
 # Co-leaders are appointed manually and never get a recommendation.
 # The remaining criteria are optional filters that are off by default.
 DEFAULT_CRITERIA = {
     "kickMemberLatestWarFame": 500,
     "kickMemberLatestWarFameEnabled": True,
-    "promoteElderLatestWarFame": 2500,
-    "promoteElderLatestWarFameEnabled": True,
+    "promoteElderFullWars": 3,
+    "promoteElderFullWarsEnabled": True,
     "demoteElderLatestWarFame": 1600,
     "demoteElderLatestWarFameEnabled": True,
     "promoteElderAvgDecks": 14,
@@ -112,6 +113,16 @@ def get_war_stats(history_data):
     return stats, total_weeks
 
 
+def full_war_streak(deck_history):
+    """Number of wars in a row, counting back from the latest, with every deck used."""
+    streak = 0
+    for decks in deck_history:
+        if decks is None or decks < DECKS_PER_WAR:
+            break
+        streak += 1
+    return streak
+
+
 def member_summary(member, war_stats, total_weeks):
     tag = member.get("tag")
     war = war_stats.get(tag, {"fame": 0, "decks": 0, "weeks": 0, "history": [None] * total_weeks, "fameHistory": [None] * total_weeks})
@@ -149,6 +160,7 @@ def member_summary(member, war_stats, total_weeks):
         "totalDecks": int(war.get("decks") or 0),
         "activeWeeks": active_weeks,
         "latestWarParticipation": latest_war_participation,
+        "fullWarStreak": full_war_streak(war.get("history") or []),
         "totalWeeks": total_weeks,
         "lastSeenHours": last_seen_hours,
         "inLatestWar": in_latest_war,
@@ -192,7 +204,7 @@ def evaluate_member(member, criteria):
 
     if role == "member":
         up_checks = [
-            ("promoteElderLatestWarFame", member["latestWarFame"], "Latest war fame"),
+            ("promoteElderFullWars", member["fullWarStreak"], "Full wars in a row"),
             ("promoteElderAvgDecks", member["avgDecks"], "Average decks per war"),
             ("promoteElderDonations", member["donationsPerWar"], "Donations per war"),
         ]

@@ -44,13 +44,11 @@ def names(items):
 
 
 class DefaultRulesTests(unittest.TestCase):
-    def test_default_boundaries_for_members_and_elders(self):
+    def test_default_fame_boundaries_for_kick_and_demotion(self):
         data = run_insights(
             [
                 ("#M499", "KickMe", "member", 0),
                 ("#M500", "Safe", "member", 0),
-                ("#M2499", "AlmostElder", "member", 0),
-                ("#M2500", "PromoteMe", "member", 0),
                 ("#E1599", "DemoteMe", "elder", 0),
                 ("#E1600", "ElderSafe", "elder", 0),
                 ("#E3000", "StrongElder", "elder", 0),
@@ -58,8 +56,6 @@ class DefaultRulesTests(unittest.TestCase):
             [war(
                 ("#M499", 499, 16),
                 ("#M500", 500, 16),
-                ("#M2499", 2499, 16),
-                ("#M2500", 2500, 16),
                 ("#E1599", 1599, 16),
                 ("#E1600", 1600, 16),
                 ("#E3000", 3000, 16),
@@ -67,11 +63,55 @@ class DefaultRulesTests(unittest.TestCase):
         )
 
         reviewed = {item["name"]: item["reason"] for item in data["review"]}
-        self.assertEqual(names(data["promote"]), ["PromoteMe"])
+        self.assertEqual(data["promote"], [])
         self.assertEqual(reviewed, {
             "KickMe": "Candidate for kick",
             "DemoteMe": "Candidate for elder demotion",
         })
+
+    def test_member_is_promoted_after_three_full_wars_in_a_row(self):
+        data = run_insights(
+            [("#P1", "PromoteMe", "member", 0), ("#P2", "TwoWars", "member", 0)],
+            [
+                war(("#P1", 1700, 16), ("#P2", 3000, 16)),
+                war(("#P1", 1700, 16), ("#P2", 3000, 16)),
+                war(("#P1", 1700, 16)),
+            ],
+        )
+
+        self.assertEqual(names(data["promote"]), ["PromoteMe"])
+        self.assertEqual(data["promote"][0]["details"], ["Full wars in a row 3 >= 3"])
+
+    def test_fame_alone_does_not_promote(self):
+        data = run_insights(
+            [("#A1", "HighFame", "member", 0)],
+            [war(("#A1", 3400, 15)), war(("#A1", 3400, 15)), war(("#A1", 3400, 15))],
+        )
+
+        self.assertEqual(data["promote"], [])
+
+    def test_full_war_streak_counts_back_from_the_latest_war(self):
+        members = [("#A1", "Alice", "member", 0)]
+        # A single 15-deck war breaks the streak, even with older full wars.
+        broken = [war(("#A1", 2000, 16)), war(("#A1", 2000, 15)), war(("#A1", 2000, 16)), war(("#A1", 2000, 16))]
+        self.assertEqual(run_insights(members, broken)["promote"], [])
+
+        # A war outside the clan breaks it too.
+        gap = [war(("#A1", 2000, 16)), war(("#A1", 2000, 16)), war(), war(("#A1", 2000, 16))]
+        self.assertEqual(run_insights(members, gap)["promote"], [])
+
+        # Whatever happened before the streak does not matter.
+        long_ago = [war(("#A1", 2000, 16)), war(("#A1", 2000, 16)), war(("#A1", 2000, 16)), war(("#A1", 0, 0))]
+        self.assertEqual(names(run_insights(members, long_ago)["promote"]), ["Alice"])
+
+    def test_number_of_full_wars_is_configurable(self):
+        data = run_insights(
+            [("#A1", "Alice", "member", 0)],
+            [war(("#A1", 2000, 16)), war(("#A1", 2000, 16))],
+            {"promoteElderFullWars": 2},
+        )
+
+        self.assertEqual(names(data["promote"]), ["Alice"])
 
     def test_elder_below_kick_threshold_is_demoted_not_kicked(self):
         data = run_insights(
@@ -97,7 +137,7 @@ class DefaultRulesTests(unittest.TestCase):
     def test_member_without_latest_war_data_is_not_kicked(self):
         data = run_insights(
             [("#N1", "Newcomer", "member", 0), ("#O1", "Veteran", "member", 0)],
-            [war(("#O1", 2600, 16)), war(("#O1", 2600, 16), ("#N1", 2600, 16))],
+            [war(("#O1", 2600, 16)), war(("#O1", 2600, 16)), war(("#O1", 2600, 16), ("#N1", 2600, 16))],
         )
 
         self.assertNotIn("Newcomer", names(data["review"]))
@@ -123,10 +163,10 @@ class DefaultRulesTests(unittest.TestCase):
         ):
             self.assertFalse(DEFAULT_CRITERIA[key], key)
 
-        # Few decks and no donations, but fame is what counts by default.
+        # Modest fame and no donations, but full wars are what count by default.
         data = run_insights(
             [("#A4", "Dana", "member", 0)],
-            [war(("#A4", 3000, 5))],
+            [war(("#A4", 1700, 16)), war(("#A4", 1700, 16)), war(("#A4", 1700, 16))],
         )
 
         self.assertEqual(names(data["promote"]), ["Dana"])
@@ -134,10 +174,10 @@ class DefaultRulesTests(unittest.TestCase):
 
 class OptionalCriteriaTests(unittest.TestCase):
     def test_promotion_requires_every_enabled_criterion(self):
-        members = [("#A1", "Alice", "member", 300)]
-        wars = [war(("#A1", 3000, 10)), war(("#A1", 3000, 10)), war(("#A1", 3000, 10))]
+        members = [("#A1", "Alice", "member", 90)]
+        wars = [war(("#A1", 3000, 16)), war(("#A1", 3000, 16)), war(("#A1", 3000, 16))]
 
-        blocked = run_insights(members, wars, {"promoteElderAvgDecksEnabled": True})
+        blocked = run_insights(members, wars, {"promoteElderDonationsEnabled": True})
         self.assertEqual(blocked["promote"], [])
 
         allowed = run_insights(
@@ -145,21 +185,21 @@ class OptionalCriteriaTests(unittest.TestCase):
             wars,
             {
                 "promoteElderAvgDecksEnabled": True,
-                "promoteElderAvgDecks": 10,
+                "promoteElderAvgDecks": 16,
                 "promoteElderDonationsEnabled": True,
-                "promoteElderDonations": 100,
+                "promoteElderDonations": 30,
             },
         )
         promoted = allowed["promote"][0]
         self.assertEqual(promoted["name"], "Alice")
-        self.assertEqual(promoted["donations"], 300)
-        self.assertEqual(promoted["donationsPerWar"], 100)
+        self.assertEqual(promoted["donations"], 90)
+        self.assertEqual(promoted["donationsPerWar"], 30)
 
     def test_promotion_can_run_on_optional_criteria_alone(self):
         data = run_insights(
             [("#A1", "Alice", "member", 0)],
             [war(("#A1", 1200, 16))],
-            {"promoteElderLatestWarFameEnabled": False, "promoteElderAvgDecksEnabled": True},
+            {"promoteElderFullWarsEnabled": False, "promoteElderAvgDecksEnabled": True},
         )
 
         self.assertEqual(names(data["promote"]), ["Alice"])
@@ -167,8 +207,8 @@ class OptionalCriteriaTests(unittest.TestCase):
     def test_no_enabled_promotion_criteria_promotes_nobody(self):
         data = run_insights(
             [("#A1", "Alice", "member", 0)],
-            [war(("#A1", 4000, 16))],
-            {"promoteElderLatestWarFameEnabled": False},
+            [war(("#A1", 4000, 16)), war(("#A1", 4000, 16)), war(("#A1", 4000, 16))],
+            {"promoteElderFullWarsEnabled": False},
         )
 
         self.assertEqual(data["promote"], [])

@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-29T21:07:38Z",
+  "generatedAt": "2026-09-30T00:50:18Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 48,
+    "activeMembers": 49,
     "activeWarriors": 32,
     "totalWeeks": 10,
-    "avgClanFame": 1832,
+    "avgClanFame": 1795,
     "topPerformer": "Julia",
     "topPerformerAvgDecks": 16.0
   },
@@ -16,8 +16,8 @@
       "avgFame": 2700,
       "latestWarFame": 2850,
       "avgDecks": 16.0,
-      "donations": 101,
-      "donationsPerWar": 34,
+      "donations": 127,
+      "donationsPerWar": 42,
       "reason": "Ready for Elder promotion",
       "details": [
         "Latest war fame 2850 >= 2500"
@@ -29,8 +29,8 @@
       "avgFame": 2550,
       "latestWarFame": 2750,
       "avgDecks": 15.2,
-      "donations": 148,
-      "donationsPerWar": 30,
+      "donations": 186,
+      "donationsPerWar": 37,
       "reason": "Ready for Elder promotion",
       "details": [
         "Latest war fame 2750 >= 2500"
@@ -175,7 +175,7 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 26.7,
+      "lastSeenHours": 30.4,
       "reason": "No participation in the latest war"
     }
   ],

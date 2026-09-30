@@ -14,8 +14,9 @@ One war runs Thursday to Sunday, and a full war is all 16 decks used.
   Elder. A war with fewer decks, or one the player was not in the clan for,
   breaks the streak. Fame does not matter for promotion.
 - Member with less than 500 fame in the **latest finished war**: kick
-- Elder with less than 1600 fame in the latest finished war: demote to Member
-  (Elder works as an extra life)
+- Elder with less than 1600 fame in each of the **2 latest finished wars**:
+  demote to Member (Elder works as an extra life). One such war gives a warning.
+  A war the player was not in the clan for does not count as weak.
 - Co-Leaders are appointed manually and never get a recommendation
 - Members with no data for the latest war (newly joined) are not evaluated
 

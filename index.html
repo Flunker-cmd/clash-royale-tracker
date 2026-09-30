@@ -347,6 +347,7 @@
     .good { background: #1e3a8a; color: #93c5fd; }
     .review { background: #78350f; color: #fde047; }
     .kick { background: #831843; color: #f472b6; }
+    .warn { background: transparent; color: #fde047; box-shadow: inset 0 0 0 1px #a16207; }
     
     .fame-cell {
       display: flex;
@@ -863,7 +864,7 @@
     <div class="criteria-panel">
       <div class="label">Kriterier för befordran</div>
       <div class="criteria-info">
-        En medlem befordras till elder efter att ha använt alla 16 decks i vart och ett av de 3 senaste krigen (torsdag–söndag). Kick och degradering utgår från poäng (fame) i det senaste avslutade kriget: en medlem under 500 kickas och en elder under 1600 degraderas till medlem (elder fungerar som ett extraliv). Co-leaders utses manuellt och får ingen rekommendation. Extra filter är avstängda som standard och kan slås på för att undersöka: för befordran måste alla aktiva villkor uppfyllas, för kick/degradering räcker det att ett av dem slår till. Decks och donationer räknas som snitt per krig. Ändringar gäller tills sidan laddas om. AFK-markerade spelare undantas.
+        En medlem befordras till elder efter att ha använt alla 16 decks i vart och ett av de 3 senaste krigen (torsdag–söndag). Kick och degradering utgår från poäng (fame) i det senaste avslutade kriget: en medlem under 500 kickas. En elder under 1600 får en varning och degraderas till medlem om det händer 2 krig i rad (elder fungerar som ett extraliv). Co-leaders utses manuellt och får ingen rekommendation. Extra filter är avstängda som standard och kan slås på för att undersöka: för befordran måste alla aktiva villkor uppfyllas, för kick/degradering räcker det att ett av dem slår till. Decks och donationer räknas som snitt per krig. Ändringar gäller tills sidan laddas om. AFK-markerade spelare undantas.
       </div>
       <div class="criteria-sections">
         <div class="criteria-section">
@@ -904,6 +905,12 @@
                 <label class="criteria-toggle"><input id="criteria-demoteElderLatestWarFameEnabled" type="checkbox"> Degradera elder under</label>
               </div>
               <input id="criteria-demoteElderLatestWarFame" type="number" min="0" step="100" value="1600">
+            </div>
+            <div class="criteria-field">
+              <div class="criteria-field-header">
+                <label class="criteria-toggle" for="criteria-demoteElderWeakWars">…i antal krig i rad</label>
+              </div>
+              <input id="criteria-demoteElderWeakWars" type="number" min="1" step="1" value="2">
             </div>
             <div class="criteria-subtitle">Extra filter (valfria, gäller båda)</div>
             <div class="criteria-field">
@@ -1033,7 +1040,8 @@
       member: 1
     };
 
-    // Default rules: promotion needs full wars in a row, kick/demotion uses fame in the latest finished war.
+    // Default rules: promotion needs full wars in a row, kick uses fame in the latest finished war,
+    // demotion needs low fame in several wars in a row.
     // Everything else is an optional filter.
     const defaultCriteria = {
       kickMemberLatestWarFame: 500,
@@ -1042,6 +1050,7 @@
       promoteElderFullWarsEnabled: true,
       demoteElderLatestWarFame: 1600,
       demoteElderLatestWarFameEnabled: true,
+      demoteElderWeakWars: 2,
       promoteElderAvgDecks: 14,
       promoteElderAvgDecksEnabled: false,
       promoteElderDonations: 50,
@@ -1095,6 +1104,7 @@
         promoteElderFullWarsEnabled: document.getElementById('criteria-promoteElderFullWarsEnabled').checked,
         demoteElderLatestWarFame: Number(document.getElementById('criteria-demoteElderLatestWarFame').value || defaultCriteria.demoteElderLatestWarFame),
         demoteElderLatestWarFameEnabled: document.getElementById('criteria-demoteElderLatestWarFameEnabled').checked,
+        demoteElderWeakWars: Number(document.getElementById('criteria-demoteElderWeakWars').value || defaultCriteria.demoteElderWeakWars),
         promoteElderAvgDecks: Number(document.getElementById('criteria-promoteElderAvgDecks').value || defaultCriteria.promoteElderAvgDecks),
         promoteElderAvgDecksEnabled: document.getElementById('criteria-promoteElderAvgDecksEnabled').checked,
         promoteElderDonations: Number(document.getElementById('criteria-promoteElderDonations').value || defaultCriteria.promoteElderDonations),
@@ -1113,6 +1123,7 @@
         ['criteria-kickMemberLatestWarFameEnabled', 'criteria-kickMemberLatestWarFame'],
         ['criteria-promoteElderFullWarsEnabled', 'criteria-promoteElderFullWars'],
         ['criteria-demoteElderLatestWarFameEnabled', 'criteria-demoteElderLatestWarFame'],
+        ['criteria-demoteElderLatestWarFameEnabled', 'criteria-demoteElderWeakWars'],
         ['criteria-promoteElderAvgDecksEnabled', 'criteria-promoteElderAvgDecks'],
         ['criteria-promoteElderDonationsEnabled', 'criteria-promoteElderDonations'],
         ['criteria-kickAvgDecksEnabled', 'criteria-kickAvgDecks'],
@@ -1208,6 +1219,7 @@
 
     // One set of checks feeds both the recommendation and the detail view's explanation.
     // Kick/demote criteria trigger on ANY enabled hit; promotion needs ALL enabled criteria met.
+    // An elder's fame check only hits after several weak wars in a row and warns before that.
     function getCriteriaChecks(member, criteria) {
       const isElder = member.role === 'elder';
       const fameKey = isElder ? 'demoteElderLatestWarFame' : 'kickMemberLatestWarFame';
@@ -1221,7 +1233,17 @@
         { key: fameKey, label: 'Krigspoäng', value: member.latestWarFame },
         { key: 'kickAvgDecks', label: 'Decks/krig', value: member.avgDecks },
         { key: 'kickDonations', label: 'Donationer/krig', value: member.donationsPerWar }
-      ].map(withState).map(c => ({ ...c, hit: c.enabled && c.value < c.limit }));
+      ].map(withState).map(c => ({ ...c, hit: c.enabled && c.value < c.limit, warn: false, suffix: '', ruleSuffix: '' }));
+
+      if (isElder) {
+        const fame = down[0];
+        const needed = Number(criteria.demoteElderWeakWars);
+        const streak = getWeakWarStreak(member.fameHistory || [], fame.limit);
+        fame.hit = fame.enabled && streak >= needed;
+        fame.warn = fame.enabled && streak > 0 && !fame.hit;
+        fame.suffix = ` (${Math.min(streak, needed)} av ${needed} krig i rad)`;
+        fame.ruleSuffix = ` i ${needed} krig i rad`;
+      }
 
       const recent = withState({ key: 'recentParticipation', label: 'Decks i senaste kriget', value: member.latestWarParticipation });
       recent.limit = Number(criteria.recentParticipationThreshold);
@@ -1252,11 +1274,16 @@
 
       const { isElder, down, recent, up } = getCriteriaChecks(member, criteria);
 
-      const downReasons = down.filter(c => c.hit).map(c => `${c.label} ${c.value} < ${c.limit}`);
+      const downReasons = down.filter(c => c.hit).map(c => `${c.label} ${c.value} < ${c.limit}${c.suffix}`);
       if (downReasons.length) {
         return isElder
           ? { text: 'Degradera till medlem', weight: 1, className: 'review', reason: downReasons.join(', ') }
           : { text: 'Kicka', weight: 0, className: 'kick', reason: downReasons.join(', ') };
+      }
+
+      const warning = down.find(c => c.warn);
+      if (warning) {
+        return { text: 'Varning', weight: 2, className: 'warn', reason: `${warning.label} ${warning.value} < ${warning.limit}${warning.suffix}` };
       }
 
       if (recent.hit) {
@@ -1290,6 +1317,16 @@
       let streak = 0;
       for (const decks of deckHistory) {
         if (decks === null || decks < 16) break;
+        streak++;
+      }
+      return streak;
+    }
+
+    // Wars in a row, counting back from the latest, with fame below the limit.
+    function getWeakWarStreak(fameHistory, limit) {
+      let streak = 0;
+      for (const fame of fameHistory) {
+        if (fame === null || fame >= limit) break;
         streak++;
       }
       return streak;
@@ -1455,6 +1492,7 @@
           latestWarParticipation: latestWarParticipation,
           latestWarFame: latestWarFame,
           fullWarStreak: fullWarStreak,
+          fameHistory: war.fameHistory,
           inLatestWar: inLatestWar,
           afk: afk,
         }, currentCriteria);
@@ -2438,9 +2476,9 @@
       const action = isElder ? 'Degradera' : 'Kicka';
       const rows = down.map(c => ({
         enabled: c.enabled,
-        rule: `${action} om ${c.label.toLowerCase()} under ${c.limit}`,
+        rule: `${action} om ${c.label.toLowerCase()} under ${c.limit}${c.ruleSuffix}`,
         value: c.value,
-        outcome: !c.enabled ? '– Av' : (c.hit ? '⚠ Slår till' : '✓ Slår inte till')
+        outcome: !c.enabled ? '– Av' : (c.hit ? '⚠ Slår till' : (c.warn ? `⚠ Varning${c.suffix}` : '✓ Slår inte till'))
       }));
       rows.push({
         enabled: recent.enabled,

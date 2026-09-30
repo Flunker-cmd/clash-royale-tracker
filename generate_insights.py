@@ -9,7 +9,8 @@ DECKS_PER_WAR = 16
 # Default rules:
 #   member with all 16 decks in each of the 3 latest wars -> promote to elder
 #   member  <   500 fame in the latest war -> kick
-#   elder   <  1600 fame in the latest war -> demote to member (elder works as an extra life)
+#   elder   <  1600 fame in each of the 2 latest wars -> demote to member (elder works as an
+#                  extra life); one such war gives a warning
 # Co-leaders are appointed manually and never get a recommendation.
 # The remaining criteria are optional filters that are off by default.
 DEFAULT_CRITERIA = {
@@ -19,6 +20,7 @@ DEFAULT_CRITERIA = {
     "promoteElderFullWarsEnabled": True,
     "demoteElderLatestWarFame": 1600,
     "demoteElderLatestWarFameEnabled": True,
+    "demoteElderWeakWars": 2,
     "promoteElderAvgDecks": 14,
     "promoteElderAvgDecksEnabled": False,
     "promoteElderDonations": 50,
@@ -123,6 +125,16 @@ def full_war_streak(deck_history):
     return streak
 
 
+def weak_war_streak(fame_history, limit):
+    """Number of wars in a row, counting back from the latest, with fame below the limit."""
+    streak = 0
+    for fame in fame_history:
+        if fame is None or fame >= limit:
+            break
+        streak += 1
+    return streak
+
+
 def member_summary(member, war_stats, total_weeks):
     tag = member.get("tag")
     war = war_stats.get(tag, {"fame": 0, "decks": 0, "weeks": 0, "history": [None] * total_weeks, "fameHistory": [None] * total_weeks})
@@ -161,6 +173,7 @@ def member_summary(member, war_stats, total_weeks):
         "activeWeeks": active_weeks,
         "latestWarParticipation": latest_war_participation,
         "fullWarStreak": full_war_streak(war.get("history") or []),
+        "fameHistory": war.get("fameHistory") or [],
         "totalWeeks": total_weeks,
         "lastSeenHours": last_seen_hours,
         "inLatestWar": in_latest_war,
@@ -171,28 +184,42 @@ def member_summary(member, war_stats, total_weeks):
 def evaluate_member(member, criteria):
     """Return (action, details) for a member or elder.
 
-    Actions: "kick", "demote", "lowActivity", "promote" or None. Downward
-    criteria (kick/demote) trigger when any enabled one is hit; promotion
-    requires every enabled promotion criterion to be met. Co-leaders, leaders
-    and members without data for the latest war are never evaluated.
+    Actions: "kick", "demote", "warning", "lowActivity", "promote" or None.
+    Downward criteria (kick/demote) trigger when any enabled one is hit;
+    promotion requires every enabled promotion criterion to be met. An elder is
+    demoted on fame only after several weak wars in a row and gets a warning
+    before that. Co-leaders, leaders and members without data for the latest
+    war are never evaluated.
     """
     role = member["role"]
     if role not in ("member", "elder") or not member["inLatestWar"]:
         return None, []
 
-    fame_key = "kickMemberLatestWarFame" if role == "member" else "demoteElderLatestWarFame"
     down_checks = [
-        (fame_key, member["latestWarFame"], "Latest war fame"),
         ("kickAvgDecks", member["avgDecks"], "Average decks per war"),
         ("kickDonations", member["donationsPerWar"], "Donations per war"),
     ]
+    if role == "member":
+        down_checks.insert(0, ("kickMemberLatestWarFame", member["latestWarFame"], "Latest war fame"))
     down = [
         f"{label} {value} < {criteria[key]}"
         for key, value, label in down_checks
         if metric_is_enabled(criteria, key) and value < criteria[key]
     ]
+
+    warning = []
+    if role == "elder" and metric_is_enabled(criteria, "demoteElderLatestWarFame"):
+        limit = criteria["demoteElderLatestWarFame"]
+        needed = criteria["demoteElderWeakWars"]
+        streak = weak_war_streak(member["fameHistory"], limit)
+        if streak:
+            text = f"Fame {member['latestWarFame']} < {limit} in {min(streak, needed)} of {needed} wars in a row"
+            (down if streak >= needed else warning).insert(0, text)
+
     if down:
         return ("kick" if role == "member" else "demote"), down
+    if warning:
+        return "warning", warning
 
     if (
         metric_is_enabled(criteria, "recentParticipation")
@@ -235,6 +262,7 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
     review_reasons = {
         "kick": "Candidate for kick",
         "demote": "Candidate for elder demotion",
+        "warning": "Elder demotion warning",
         "lowActivity": "Recent activity below threshold",
     }
 

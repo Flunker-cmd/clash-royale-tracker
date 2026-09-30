@@ -44,7 +44,7 @@ The promote/kick/demote/low-activity rules exist twice: `evaluate_member` in `ge
 
 ### Rule semantics that are easy to get wrong
 
-- Kick and demotion are judged on the **latest finished war** (fame in `history[0]`), not on averages. Promotion is judged on the full-war streak: wars in a row, counting back from `history[0]`, with all 16 decks used (`full_war_streak` / `getFullWarStreak`). A war the player was not in breaks the streak. Averages are only used by the optional filters, which are off by default.
+- Kick is judged on the **latest finished war** (fame in `history[0]`), not on averages. Elder demotion needs fame below the limit in `demoteElderWeakWars` wars in a row (`weak_war_streak` / `getWeakWarStreak`). A shorter streak gives the `warning` action ("Varning"), which the dashboard keeps out of the review counts. Promotion is judged on the full-war streak: wars in a row, counting back from `history[0]`, with all 16 decks used (`full_war_streak` / `getFullWarStreak`). A war the player was not in breaks the streak. Averages are only used by the optional filters, which are off by default.
 - Only `member` and `elder` are evaluated. Co-leaders and leaders get no recommendation. A member with no data for the latest war (`inLatestWar` false, e.g. newly joined) is skipped.
 - Kick/demote criteria trigger if **any** enabled one is hit. Promotion requires **all** enabled promotion criteria to be met.
 

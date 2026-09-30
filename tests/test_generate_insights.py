@@ -53,13 +53,16 @@ class DefaultRulesTests(unittest.TestCase):
                 ("#E1600", "ElderSafe", "elder", 0),
                 ("#E3000", "StrongElder", "elder", 0),
             ],
-            [war(
-                ("#M499", 499, 16),
-                ("#M500", 500, 16),
-                ("#E1599", 1599, 16),
-                ("#E1600", 1600, 16),
-                ("#E3000", 3000, 16),
-            )],
+            [
+                war(
+                    ("#M499", 499, 16),
+                    ("#M500", 500, 16),
+                    ("#E1599", 1599, 16),
+                    ("#E1600", 1600, 16),
+                    ("#E3000", 3000, 16),
+                ),
+                war(("#E1599", 1599, 16), ("#E1600", 1599, 16), ("#E3000", 1599, 16)),
+            ],
         )
 
         reviewed = {item["name"]: item["reason"] for item in data["review"]}
@@ -68,6 +71,32 @@ class DefaultRulesTests(unittest.TestCase):
             "KickMe": "Candidate for kick",
             "DemoteMe": "Candidate for elder demotion",
         })
+
+    def test_one_weak_war_only_warns_an_elder(self):
+        data = run_insights(
+            [("#E1", "OneBadWeek", "elder", 0)],
+            [war(("#E1", 1350, 11)), war(("#E1", 2550, 16))],
+        )
+
+        self.assertEqual(data["review"][0]["reason"], "Elder demotion warning")
+        self.assertEqual(data["review"][0]["details"], ["Fame 1350 < 1600 in 1 of 2 wars in a row"])
+
+    def test_war_outside_the_clan_does_not_count_as_weak(self):
+        data = run_insights(
+            [("#E1", "Returned", "elder", 0)],
+            [war(("#E1", 1000, 8)), war(), war(("#E1", 1000, 8))],
+        )
+
+        self.assertEqual(data["review"][0]["reason"], "Elder demotion warning")
+
+    def test_number_of_weak_wars_is_configurable(self):
+        members = [("#E1", "Elder", "elder", 0)]
+        wars = [war(("#E1", 1000, 8))]
+
+        self.assertEqual(
+            run_insights(members, wars, {"demoteElderWeakWars": 1})["review"][0]["reason"],
+            "Candidate for elder demotion",
+        )
 
     def test_member_is_promoted_after_three_full_wars_in_a_row(self):
         data = run_insights(
@@ -116,7 +145,7 @@ class DefaultRulesTests(unittest.TestCase):
     def test_elder_below_kick_threshold_is_demoted_not_kicked(self):
         data = run_insights(
             [("#E1", "Weak", "elder", 0)],
-            [war(("#E1", 100, 2))],
+            [war(("#E1", 100, 2)), war(("#E1", 100, 2))],
         )
 
         self.assertEqual(data["review"][0]["reason"], "Candidate for elder demotion")

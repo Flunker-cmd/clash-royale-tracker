@@ -20,6 +20,7 @@ DASHBOARD_TEXT = {
     "promote": "Befordra till elder",
     "kick": "Kicka",
     "demote": "Degradera till medlem",
+    "warning": "Varning",
     "lowActivity": "Låg aktivitet nyligen",
 }
 
@@ -32,6 +33,7 @@ CRITERIA_SETS = [
     {"recentParticipationEnabled": True},
     {"promoteElderFullWarsEnabled": False},
     {"promoteElderFullWars": 2},
+    {"demoteElderWeakWars": 1},
     {"kickMemberLatestWarFameEnabled": False, "demoteElderLatestWarFameEnabled": False},
     {
         "promoteElderAvgDecksEnabled": True,
@@ -49,15 +51,17 @@ def build_scenarios():
             "role": role,
             "inLatestWar": in_latest_war,
             "latestWarFame": fame,
+            "fameHistory": [fame, previous_fame],
             "avgDecks": avg_decks,
             "donationsPerWar": donations,
             "latestWarParticipation": participation,
             "fullWarStreak": streak,
         }
-        for role, in_latest_war, fame, avg_decks, donations, participation, streak in itertools.product(
+        for role, in_latest_war, fame, previous_fame, avg_decks, donations, participation, streak in itertools.product(
             ["member", "elder", "coLeader", "leader"],
             [True, False],
             [0, 499, 500, 1599, 1600, 2499, 2500],
+            [None, 1599, 1600],
             [0, 7.9, 8, 14],
             [0, 29, 30, 50],
             [0, 3, 4, 16],

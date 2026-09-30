@@ -39,6 +39,8 @@ data. Decks and donations are averages per participated war.
   checklist of every rule with its outcome, so a recommendation can be explained.
 - **War in progress**: which day it is, decks played today and in total, and who
   still has decks left today (with a button that copies the list for the clan chat).
+  Click an earlier day of the war to see who played all, some or none of their
+  decks that day (saved hourly by `track_war_days.py`, so only days after it started running).
 - **Clan trend**: war trophies, total fame, decks used and placement per finished
   war, with hover details and a table view.
 - **Member events**: who joined, left, was promoted or demoted (tracked from the
@@ -53,8 +55,9 @@ data. Decks and donations are averages per participated war.
 | `fetch_data.py` | Fetches members, current war and war log from the API |
 | `generate_insights.py` | Writes `insights.json` with the same rules as the dashboard |
 | `track_members.py` | Compares members with `member_snapshot.json`, appends to `member_events.json` |
+| `track_war_days.py` | Saves each player's decks per day of the current war to `war_days.json` |
 | `index.html` | The dashboard (computes everything live from the JSON files) |
-| `.github/workflows/fetch.yml` | Runs the three scripts every hour and commits the data |
+| `.github/workflows/fetch.yml` | Runs the four scripts every hour and commits the data |
 
 The recommendation rules exist in both `generate_insights.py` and `index.html`.
 `tests/test_dashboard_parity.py` runs the same scenarios through both and fails

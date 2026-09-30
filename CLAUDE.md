@@ -21,12 +21,13 @@ To view the dashboard locally, serve the repo root over HTTP (e.g. `python -m ht
 
 ## Architecture
 
-The data flows one way. GitHub Actions (`.github/workflows/fetch.yml`) runs hourly. It runs `fetch_data.py`, then `generate_insights.py`, then `track_members.py`. It then commits the resulting JSON files straight to `main` as "Auto-update clan data and insights", which is why the git log is full of those commits.
+The data flows one way. GitHub Actions (`.github/workflows/fetch.yml`) runs hourly. It runs `fetch_data.py`, then `generate_insights.py`, `track_members.py` and `track_war_days.py`. It then commits the resulting JSON files straight to `main` as "Auto-update clan data and insights", which is why the git log is full of those commits.
 
 - `fetch_data.py` calls the API through the `proxy.royaleapi.dev` proxy, not the official API host. It writes `clan_members.json` (roster), `clan_data.json` (current river race) and `history_data.json` (river race log, **newest war first**, so index 0 is the latest finished war).
 - `generate_insights.py` turns those files into `insights.json`.
 - `track_members.py` keeps `member_snapshot.json` and appends joined/left/promoted/demoted events to `member_events.json`. It skips a run if the roster has shrunk to under half its previous size (`MIN_ROSTER_RATIO`), so an API hiccup does not look like a mass exodus. Events are capped at `MAX_EVENTS`.
-- `index.html` is a single ~2500-line file with inline CSS and JS. It does **not** read `insights.json`. It fetches `clan_members.json`, `history_data.json`, `clan_data.json` and `member_events.json` and recomputes everything in the browser. That lets the user change the criteria live.
+- `track_war_days.py` writes `war_days.json`: per war day and player, today's decks and the decks used before that day (`base`). The API has no per-day history, so this is the only source for past days. A day's final count is the next day's `base` minus its own, which stays exact even though the last hourly run of a day misses late battles. The file is reset when a new war starts.
+- `index.html` is a single ~2500-line file with inline CSS and JS. It does **not** read `insights.json`. It fetches `clan_members.json`, `history_data.json`, `clan_data.json`, `member_events.json` and `war_days.json` and recomputes everything in the browser. That lets the user change the criteria live.
 
 The JSON data files are generated output committed to the repo. Don't hand-edit them. Expect them to change under you when you `git pull`.
 

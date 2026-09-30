@@ -470,6 +470,11 @@
     }
     .war-day.done { color: #94a3b8; background: #0f172a; }
     .war-day.current { color: #0f172a; background: #38bdf8; border-color: #38bdf8; font-weight: 700; }
+    button.war-day { font: inherit; font-size: 0.8em; cursor: pointer; }
+    button.war-day:hover { border-color: #38bdf8; color: #e2e8f0; }
+    button.war-day:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
+    .war-day.selected { color: #0f172a; background: #7dd3fc; border-color: #7dd3fc; font-weight: 700; }
+    .war-day.current:not(.selected) { color: #38bdf8; background: #0f172a; }
     .war-group-title {
       color: #cbd5e1;
       font-size: 0.85em;
@@ -494,6 +499,7 @@
     }
     .war-chip small { color: #fbbf24; }
     .war-chip.none small { color: #fca5a5; }
+    .war-chip.full small { color: #4ade80; }
     .war-note {
       margin: 14px 0 0;
       color: #94a3b8;
@@ -1052,6 +1058,7 @@
 
     let combinedData = [];
     let currentWarInfo = { active: false, day: 0 };
+    let selectedWarDay = 0; // 0 = today, otherwise an earlier war day picked in the war panel
     let dashboardState = null;
     let currentSortColumn = 'role';
     let currentSortAsc = false;
@@ -1492,11 +1499,12 @@
 
     async function loadDashboard() {
       try {
-        const [membersRes, historyRes, warRes, eventsRes] = await Promise.all([
+        const [membersRes, historyRes, warRes, eventsRes, warDaysRes] = await Promise.all([
           fetch('clan_members.json'),
           fetch('history_data.json'),
           fetch('clan_data.json').catch(() => null),
-          fetch('member_events.json').catch(() => null)
+          fetch('member_events.json').catch(() => null),
+          fetch('war_days.json').catch(() => null)
         ]);
 
         const lastModHeader = membersRes.headers.get('last-modified');
@@ -1511,6 +1519,7 @@
         const historyData = await historyRes.json();
         const currentWar = warRes && warRes.ok ? await warRes.json().catch(() => null) : null;
         const events = eventsRes && eventsRes.ok ? await eventsRes.json().catch(() => null) : null;
+        const warDays = warDaysRes && warDaysRes.ok ? await warDaysRes.json().catch(() => null) : null;
 
         applyCriteriaToInputs();
 
@@ -1522,6 +1531,7 @@
           historyRaces,
           totalWeeks,
           currentWar,
+          warDays,
           events,
           clanWarTrophies: membersData.clanWarTrophies || 0
         };
@@ -1584,18 +1594,37 @@
       }
 
       const { day } = currentWarInfo;
+      if (selectedWarDay >= day || !getSavedWarDay(selectedWarDay)) selectedWarDay = 0;
+      const shownDay = selectedWarDay || day;
+
+      title.textContent = `Pågående krig – dag ${day} av ${WAR_DAY_NAMES.length}`;
+      daysEl.innerHTML = WAR_DAY_NAMES.map((name, i) => {
+        const d = i + 1;
+        const classes = `war-day ${d < day ? 'done' : (d === day ? 'current' : '')} ${d === shownDay ? 'selected' : ''}`;
+        if (d === day) {
+          return `<button type="button" class="${classes}" aria-pressed="${d === shownDay}" onclick="selectWarDay(0)" title="Visa idag">${name}</button>`;
+        }
+        if (d < day && getSavedWarDay(d)) {
+          return `<button type="button" class="${classes}" aria-pressed="${d === shownDay}" onclick="selectWarDay(${d})" title="Visa vilka som spelade på ${name}">${name}</button>`;
+        }
+        const title = d < day ? ' title="Ingen sparad data för den här dagen"' : '';
+        return `<span class="${classes}"${title}>${name}</span>`;
+      }).join('');
+
+      const statCard = (label, value) => `<div class="stat-card"><div class="label">${label}</div><div class="value">${value}</div></div>`;
+
+      if (selectedWarDay) {
+        renderPastWarDay(selectedWarDay, statCard, statsEl, listsEl, noteEl);
+        copyBtn.hidden = true;
+        return;
+      }
+
       const total = combinedData.length;
       const usedToday = combinedData.reduce((sum, m) => sum + m.warDecksToday, 0);
       const usedWar = combinedData.reduce((sum, m) => sum + m.warDecksUsed, 0);
       const finishedToday = combinedData.filter(m => m.warDecksToday >= DECKS_PER_DAY).length;
       const notPlayedToday = combinedData.filter(m => m.warDecksToday === 0).length;
 
-      title.textContent = `Pågående krig – dag ${day} av ${WAR_DAY_NAMES.length}`;
-      daysEl.innerHTML = WAR_DAY_NAMES.map((name, i) =>
-        `<span class="war-day ${i + 1 < day ? 'done' : (i + 1 === day ? 'current' : '')}">${name}</span>`
-      ).join('');
-
-      const statCard = (label, value) => `<div class="stat-card"><div class="label">${label}</div><div class="value">${value}</div></div>`;
       statsEl.innerHTML = [
         statCard('Decks idag', `${usedToday} / ${total * DECKS_PER_DAY}`),
         statCard('Decks i kriget', `${usedWar} / ${total * DECKS_PER_DAY * day}`),
@@ -1617,6 +1646,61 @@
 
       const afkLeft = combinedData.filter(m => m.afk && m.warDecksToday < DECKS_PER_DAY).length;
       noteEl.textContent = `Datan uppdateras varje timme.${afkLeft ? ` ${afkLeft} AFK-markerade spelare visas inte i listorna.` : ''}`;
+    }
+
+    // war_days.json is written hourly by track_war_days.py. Only trust it if it belongs to the war in progress.
+    function getSavedWarDay(d) {
+      const war = dashboardState?.currentWar;
+      const warDays = dashboardState?.warDays;
+      if (!d || !war || !warDays || !currentWarInfo.active) return null;
+      const warKey = `${war.sectionIndex || 0}:${Number(war.periodIndex) - currentWarInfo.day + 1}`;
+      return warDays.warKey === warKey ? warDays.days?.[String(d)] || null : null;
+    }
+
+    function selectWarDay(d) {
+      selectedWarDay = d;
+      renderWarPanel();
+    }
+
+    function renderPastWarDay(d, statCard, statsEl, listsEl, noteEl) {
+      const saved = getSavedWarDay(d).players || {};
+      const dayName = WAR_DAY_NAMES[d - 1];
+      // Members who were not in the clan that day have no saved entry and are left out.
+      const players = combinedData
+        .filter(m => saved[m.tag])
+        .map(m => ({ ...m, dayDecks: Math.min(DECKS_PER_DAY, Number(saved[m.tag].decks || 0)) }))
+        .sort((a, b) => a.dayDecks - b.dayDecks || a.name.localeCompare(b.name));
+      const notInClan = combinedData.length - players.length;
+      const used = players.reduce((sum, m) => sum + m.dayDecks, 0);
+      const finished = players.filter(m => m.dayDecks >= DECKS_PER_DAY);
+      const untouched = players.filter(m => m.dayDecks === 0);
+      const partial = players.filter(m => m.dayDecks > 0 && m.dayDecks < DECKS_PER_DAY);
+
+      statsEl.innerHTML = [
+        statCard(`Decks på ${dayName}`, `${used} / ${players.length * DECKS_PER_DAY}`),
+        statCard(`Klara på ${dayName}`, `${finished.length} / ${players.length}`),
+        statCard('Spelade inte alls', untouched.length),
+        statCard('Spelade några decks', partial.length)
+      ].join('');
+
+      const chip = m => {
+        const state = m.dayDecks === 0 ? 'none' : (m.dayDecks >= DECKS_PER_DAY ? 'full' : '');
+        return `<span class="war-chip ${state}">${escapeHtml(m.name)} <small>${m.dayDecks}/${DECKS_PER_DAY}</small></span>`;
+      };
+      const group = (heading, list) => {
+        const shown = list.filter(m => !m.afk);
+        return shown.length
+          ? `<div class="war-group-title">${heading} (${shown.length})</div><div class="war-chips">${shown.map(chip).join('')}</div>`
+          : '';
+      };
+      listsEl.innerHTML = group('Spelade inte alls', untouched)
+        + group('Spelade inte alla decks', partial)
+        + group('Spelade alla decks', finished);
+
+      const afkCount = players.filter(m => m.afk).length;
+      noteEl.textContent = `Visar ${dayName}.`
+        + (notInClan ? ` ${notInClan} av dagens medlemmar var inte med i klanen då och räknas inte.` : '')
+        + (afkCount ? ` ${afkCount} AFK-markerade spelare visas inte i listorna.` : '');
     }
 
     function copyWarPingList() {

@@ -2,6 +2,27 @@
   "trackingSince": "2026-09-19T15:58:31Z",
   "events": [
     {
+      "date": "2026-10-02T13:18:55Z",
+      "type": "joined",
+      "tag": "#200Q222J20",
+      "name": "paul",
+      "role": "member"
+    },
+    {
+      "date": "2026-10-02T13:18:55Z",
+      "type": "left",
+      "tag": "#9PJY9RYCU",
+      "name": "olle",
+      "role": "member"
+    },
+    {
+      "date": "2026-10-02T13:18:55Z",
+      "type": "left",
+      "tag": "#PRP2UG2LU",
+      "name": "pankake",
+      "role": "member"
+    },
+    {
       "date": "2026-09-30T22:41:30Z",
       "type": "demoted",
       "tag": "#20929PYR0",

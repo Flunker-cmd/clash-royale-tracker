@@ -1132,7 +1132,7 @@
       }
     },
     "3": {
-      "updated": "2026-10-03T19:34:27Z",
+      "updated": "2026-10-03T22:30:37Z",
       "players": {
         "#QR2L0": {
           "name": "55feeeeelix",
@@ -1469,6 +1469,11 @@
           "base": 1,
           "decks": 0
         },
+        "#LV0CJ2GJ8": {
+          "name": "ChaiAhmed",
+          "base": 0,
+          "decks": 1
+        },
         "#200Q222J20": {
           "name": "paul",
           "base": 3,
@@ -1514,15 +1519,15 @@
           "base": 3,
           "decks": 3
         },
-        "#QJ920VG2C": {
-          "name": "isak",
-          "base": 8,
-          "decks": 0
-        },
         "#2L8V08QLL": {
           "name": "Bossebus123",
           "base": 5,
           "decks": 4
+        },
+        "#QJ920VG2C": {
+          "name": "isak",
+          "base": 8,
+          "decks": 1
         },
         "#YGPJ9PP9Y": {
           "name": "kingmeng",
@@ -1532,11 +1537,6 @@
         "#VGPYCR0JG": {
           "name": "Rasse08;)",
           "base": 8,
-          "decks": 0
-        },
-        "#V8VP002JG": {
-          "name": "Jagsoverju",
-          "base": 7,
           "decks": 0
         },
         "#RJR22U09U": {
@@ -1574,11 +1574,6 @@
           "base": 8,
           "decks": 4
         },
-        "#PPJPY09GP": {
-          "name": "BjalkenGG",
-          "base": 8,
-          "decks": 0
-        },
         "#2JC8C9VVP": {
           "name": "iron m",
           "base": 8,
@@ -1597,6 +1592,11 @@
         "#20U2C9QLGG": {
           "name": "Wader",
           "base": 8,
+          "decks": 4
+        },
+        "#V8VP002JG": {
+          "name": "Jagsoverju",
+          "base": 7,
           "decks": 4
         },
         "#J2R9RRRG": {
@@ -1696,6 +1696,11 @@
         },
         "#8CVLPV9YR": {
           "name": "Piggelin",
+          "base": 8,
+          "decks": 4
+        },
+        "#PPJPY09GP": {
+          "name": "BjalkenGG",
           "base": 8,
           "decks": 4
         },

@@ -1132,7 +1132,7 @@
       }
     },
     "3": {
-      "updated": "2026-10-03T22:30:37Z",
+      "updated": "2026-10-04T08:55:32Z",
       "players": {
         "#QR2L0": {
           "name": "55feeeeelix",
@@ -1499,6 +1499,11 @@
           "base": 2,
           "decks": 0
         },
+        "#P2QPYYC02": {
+          "name": "mille",
+          "base": 0,
+          "decks": 4
+        },
         "#28JVPV9PL": {
           "name": "Mr.Dubb",
           "base": 4,
@@ -1524,20 +1529,15 @@
           "base": 5,
           "decks": 4
         },
-        "#QJ920VG2C": {
-          "name": "isak",
-          "base": 8,
-          "decks": 1
-        },
-        "#YGPJ9PP9Y": {
-          "name": "kingmeng",
-          "base": 8,
-          "decks": 0
-        },
         "#VGPYCR0JG": {
           "name": "Rasse08;)",
           "base": 8,
           "decks": 0
+        },
+        "#QJ920VG2C": {
+          "name": "isak",
+          "base": 8,
+          "decks": 2
         },
         "#RJR22U09U": {
           "name": "Ekman",
@@ -1548,11 +1548,6 @@
           "name": "wisely",
           "base": 7,
           "decks": 4
-        },
-        "#G0QP8P0VJ": {
-          "name": "IaddeI",
-          "base": 4,
-          "decks": 2
         },
         "#9PQPP2GVG": {
           "name": "Jobg",
@@ -1584,11 +1579,6 @@
           "base": 8,
           "decks": 4
         },
-        "#P0CV8LUY": {
-          "name": "hello its me",
-          "base": 8,
-          "decks": 0
-        },
         "#20U2C9QLGG": {
           "name": "Wader",
           "base": 8,
@@ -1597,6 +1587,16 @@
         "#V8VP002JG": {
           "name": "Jagsoverju",
           "base": 7,
+          "decks": 4
+        },
+        "#G0QP8P0VJ": {
+          "name": "IaddeI",
+          "base": 4,
+          "decks": 4
+        },
+        "#YGPJ9PP9Y": {
+          "name": "kingmeng",
+          "base": 8,
           "decks": 4
         },
         "#J2R9RRRG": {
@@ -1696,6 +1696,11 @@
         },
         "#8CVLPV9YR": {
           "name": "Piggelin",
+          "base": 8,
+          "decks": 4
+        },
+        "#P0CV8LUY": {
+          "name": "hello its me",
           "base": 8,
           "decks": 4
         },

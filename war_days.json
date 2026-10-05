@@ -1717,7 +1717,7 @@
       }
     },
     "4": {
-      "updated": "2026-10-04T22:03:45Z",
+      "updated": "2026-10-05T01:22:04Z",
       "players": {
         "#QR2L0": {
           "name": "55feeeeelix",
@@ -2104,11 +2104,6 @@
           "base": 4,
           "decks": 0
         },
-        "#CPCLGY0R": {
-          "name": "AMAMAMAMEOJ",
-          "base": 4,
-          "decks": 0
-        },
         "#CC9Q0Y8JP": {
           "name": "taobiduoihoc",
           "base": 5,
@@ -2117,16 +2112,6 @@
         "#2CQGQQJCL": {
           "name": "VALTEr",
           "base": 6,
-          "decks": 0
-        },
-        "#9PQPP2GVG": {
-          "name": "Jobg",
-          "base": 8,
-          "decks": 0
-        },
-        "#PPUUULVU2": {
-          "name": "Julia",
-          "base": 8,
           "decks": 0
         },
         "#2L8V08QLL": {
@@ -2142,6 +2127,11 @@
         "#VGPYCR0JG": {
           "name": "Rasse08;)",
           "base": 8,
+          "decks": 4
+        },
+        "#CPCLGY0R": {
+          "name": "AMAMAMAMEOJ",
+          "base": 4,
           "decks": 4
         },
         "#G0QP8P0VJ": {
@@ -2162,6 +2152,16 @@
         "#QJ920VG2C": {
           "name": "isak",
           "base": 11,
+          "decks": 4
+        },
+        "#9PQPP2GVG": {
+          "name": "Jobg",
+          "base": 8,
+          "decks": 4
+        },
+        "#PPUUULVU2": {
+          "name": "Julia",
+          "base": 8,
           "decks": 4
         },
         "#URUQ09LVG": {
@@ -2219,16 +2219,6 @@
           "base": 11,
           "decks": 3
         },
-        "#P0CV8LUY": {
-          "name": "hello its me",
-          "base": 12,
-          "decks": 1
-        },
-        "#8UPLQ90YQ": {
-          "name": "Viggen\\\\",
-          "base": 12,
-          "decks": 2
-        },
         "#VJ9GP8UJ8": {
           "name": "amj",
           "base": 12,
@@ -2284,6 +2274,11 @@
           "base": 12,
           "decks": 4
         },
+        "#8UPLQ90YQ": {
+          "name": "Viggen\\\\",
+          "base": 12,
+          "decks": 4
+        },
         "#98YUVC8": {
           "name": "Oskar :)",
           "base": 12,
@@ -2291,6 +2286,11 @@
         },
         "#2G9PV0LQ0": {
           "name": "Thabet",
+          "base": 12,
+          "decks": 4
+        },
+        "#P0CV8LUY": {
+          "name": "hello its me",
           "base": 12,
           "decks": 4
         },

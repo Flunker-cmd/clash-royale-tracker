@@ -1,31 +1,18 @@
 {
-  "generatedAt": "2026-10-05T07:50:48Z",
+  "generatedAt": "2026-10-05T12:04:18Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 49,
-    "activeWarriors": 32,
+    "activeMembers": 48,
+    "activeWarriors": 34,
     "totalWeeks": 10,
-    "avgClanFame": 1779,
-    "topPerformer": "Oskar :)",
+    "avgClanFame": 1958,
+    "topPerformer": "WilliR5",
     "topPerformerAvgDecks": 16.0
   },
   "promote": [],
   "review": [
     {
-      "name": "noodlefood",
-      "role": "elder",
-      "avgFame": 2033,
-      "latestWarFame": 1350,
-      "avgDecks": 15.2,
-      "donations": 0,
-      "donationsPerWar": 0,
-      "reason": "Elder demotion warning",
-      "details": [
-        "Fame 1350 < 1600 in 1 of 2 wars in a row"
-      ]
-    },
-    {
-      "name": "StripyAphid0",
+      "name": "paul",
       "role": "member",
       "avgFame": 300,
       "latestWarFame": 300,
@@ -36,12 +23,47 @@
       "details": [
         "Latest war fame 300 < 500"
       ]
+    },
+    {
+      "name": "ETM",
+      "role": "member",
+      "avgFame": 200,
+      "latestWarFame": 200,
+      "avgDecks": 1.0,
+      "donations": 0,
+      "donationsPerWar": 0,
+      "reason": "Candidate for kick",
+      "details": [
+        "Latest war fame 200 < 500"
+      ]
+    },
+    {
+      "name": "cHris",
+      "role": "member",
+      "avgFame": 0,
+      "latestWarFame": 0,
+      "avgDecks": 0.0,
+      "donations": 0,
+      "donationsPerWar": 0,
+      "reason": "Candidate for kick",
+      "details": [
+        "Latest war fame 0 < 500"
+      ]
     }
   ],
-  "inactive": [],
+  "inactive": [
+    {
+      "name": "cHris",
+      "activeWeeks": 1,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 18.6,
+      "reason": "No participation in the latest war"
+    }
+  ],
   "topPerformer": {
-    "name": "Oskar :)",
-    "avgFame": 2560,
+    "name": "WilliR5",
+    "avgFame": 2615,
     "avgDecks": 16.0,
     "role": "elder"
   }

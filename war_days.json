@@ -1717,7 +1717,7 @@
       }
     },
     "4": {
-      "updated": "2026-10-05T01:22:04Z",
+      "updated": "2026-10-05T07:50:48Z",
       "players": {
         "#QR2L0": {
           "name": "55feeeeelix",
@@ -2134,11 +2134,6 @@
           "base": 4,
           "decks": 4
         },
-        "#G0QP8P0VJ": {
-          "name": "IaddeI",
-          "base": 8,
-          "decks": 0
-        },
         "#RJR22U09U": {
           "name": "Ekman",
           "base": 10,
@@ -2179,11 +2174,6 @@
           "base": 12,
           "decks": 4
         },
-        "#8CVLPV9YR": {
-          "name": "Piggelin",
-          "base": 12,
-          "decks": 0
-        },
         "#CJLPGJ2CY": {
           "name": "BRUNO",
           "base": 12,
@@ -2222,6 +2212,11 @@
         "#VJ9GP8UJ8": {
           "name": "amj",
           "base": 12,
+          "decks": 4
+        },
+        "#G0QP8P0VJ": {
+          "name": "IaddeI",
+          "base": 8,
           "decks": 4
         },
         "#GYJVQYR": {
@@ -2286,6 +2281,11 @@
         },
         "#2G9PV0LQ0": {
           "name": "Thabet",
+          "base": 12,
+          "decks": 4
+        },
+        "#8CVLPV9YR": {
+          "name": "Piggelin",
           "base": 12,
           "decks": 4
         },

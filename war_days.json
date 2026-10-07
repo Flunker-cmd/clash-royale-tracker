@@ -2087,7 +2087,7 @@
         "#22UCU8URJ": {
           "name": "StripyAphid0",
           "base": 3,
-          "decks": 1
+          "decks": 4
         },
         "#P2QPYYC02": {
           "name": "mille",
@@ -2107,7 +2107,7 @@
         "#CC9Q0Y8JP": {
           "name": "taobiduoihoc",
           "base": 5,
-          "decks": 1
+          "decks": 2
         },
         "#2CQGQQJCL": {
           "name": "VALTEr",
@@ -2122,7 +2122,7 @@
         "#2JC8C9VVP": {
           "name": "iron m",
           "base": 12,
-          "decks": 0
+          "decks": 4
         },
         "#VGPYCR0JG": {
           "name": "Rasse08;)",
@@ -2311,5 +2311,7 @@
         }
       }
     }
-  }
+  },
+  "finished": true,
+  "seasonId": 136
 }

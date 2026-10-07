@@ -1818,7 +1818,7 @@
 
       statsEl.innerHTML = [
         statCard(`Decks på ${dayName}`, `${used} / ${players.length * DECKS_PER_DAY}`),
-        statCard(`Klara på ${dayName}`, `${finished.length} / ${players.length}`),
+        statCard('Spelade alla decks', `${finished.length} / ${players.length}`),
         statCard('Spelade inte alls', untouched.length),
         statCard('Spelade några decks', partial.length)
       ].join('');

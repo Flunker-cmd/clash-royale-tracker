@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from track_war_days import track, update_war_days, war_day
+from track_war_days import CLAN_TAG, finish_war, track, update_war_days, war_day
 
 NOW = "2026-09-19T12:00:00Z"
 
@@ -62,6 +62,59 @@ class UpdateWarDaysTests(unittest.TestCase):
         self.assertEqual(list(state["days"]["1"]["players"]), ["#B"])
 
 
+def history(participants, section=1, season=136, clan_tag=CLAN_TAG):
+    standings = [
+        {"clan": {"tag": "#OTHER", "participants": [participant("#A", 16, 0)]}},
+        {"clan": {"tag": clan_tag, "participants": participants}},
+    ]
+    return {"items": [{"seasonId": season, "sectionIndex": section, "standings": standings}]}
+
+
+def four_days(sunday_seen):
+    """A war tracked through all four days where the last run on Sunday saw `sunday_seen` decks."""
+    state = None
+    for day in range(4):
+        today = sunday_seen if day == 3 else 4
+        state = update_war_days(state, race(10 + day, [participant("#A", 4 * day + today, today)]), NOW)
+    return state
+
+
+class FinishWarTests(unittest.TestCase):
+    def test_sunday_count_comes_from_war_total(self):
+        # The last run on Sunday saw 1 deck, but the player played all 4 before the war ended.
+        state = finish_war(four_days(1), history([participant("#A", 16, 0)]))
+
+        self.assertEqual(state["days"]["4"]["players"]["#A"]["decks"], 4)
+        self.assertTrue(state["finished"])
+        self.assertEqual(state["seasonId"], 136)
+
+    def test_never_lowers_a_count_or_goes_above_four(self):
+        state = finish_war(four_days(3), history([participant("#A", 13, 0)]))
+        self.assertEqual(state["days"]["4"]["players"]["#A"]["decks"], 3)
+
+        state = finish_war(four_days(1), history([participant("#A", 30, 0)]))
+        self.assertEqual(state["days"]["4"]["players"]["#A"]["decks"], 4)
+
+    def test_player_missing_from_log_keeps_last_seen_count(self):
+        state = finish_war(four_days(2), history([participant("#B", 16, 0)]))
+
+        self.assertEqual(state["days"]["4"]["players"]["#A"]["decks"], 2)
+        self.assertTrue(state["finished"])
+
+    def test_log_of_another_war_changes_nothing(self):
+        state = four_days(1)
+        self.assertIsNone(finish_war(state, history([participant("#A", 16, 0)], section=2)))
+        self.assertIsNone(finish_war(state, {"items": []}))
+        self.assertIsNone(finish_war({"warKey": None, "days": {}}, history([])))
+
+    def test_war_without_a_saved_sunday_is_not_finished(self):
+        state = None
+        for day in range(3):
+            state = update_war_days(state, race(10 + day, [participant("#A", 4 * day + 4, 4)]), NOW)
+
+        self.assertIsNone(finish_war(state, history([participant("#A", 16, 0)])))
+
+
 class TrackTests(unittest.TestCase):
     def setUp(self):
         self._tmp = tempfile.TemporaryDirectory()
@@ -69,16 +122,31 @@ class TrackTests(unittest.TestCase):
         root = Path(self._tmp.name)
         self.race = root / "race.json"
         self.days = root / "days.json"
+        self.history = root / "history.json"
+        self.history.write_text(json.dumps({"items": []}), encoding="utf-8")
+
+    def run_track(self):
+        return track(str(self.race), str(self.days), str(self.history), now=NOW)
 
     def test_training_day_creates_empty_file_then_war_day_records(self):
         self.race.write_text(json.dumps(race(8, [], period_type="training")), encoding="utf-8")
-        self.assertEqual(track(str(self.race), str(self.days), now=NOW), 0)
+        self.assertEqual(self.run_track(), 0)
         self.assertEqual(json.loads(self.days.read_text(encoding="utf-8")), {"warKey": None, "days": {}})
 
         self.race.write_text(json.dumps(race(12, [participant("#A", 9, 1)])), encoding="utf-8")
-        self.assertEqual(track(str(self.race), str(self.days), now=NOW), 3)
+        self.assertEqual(self.run_track(), 3)
         saved = json.loads(self.days.read_text(encoding="utf-8"))
         self.assertEqual(saved["days"]["3"]["players"]["#A"]["base"], 8)
+
+    def test_training_day_after_war_finishes_saved_war(self):
+        self.days.write_text(json.dumps(four_days(1)), encoding="utf-8")
+        self.history.write_text(json.dumps(history([participant("#A", 16, 0)])), encoding="utf-8")
+        self.race.write_text(json.dumps(race(14, [], period_type="training")), encoding="utf-8")
+
+        self.assertEqual(self.run_track(), 0)
+        saved = json.loads(self.days.read_text(encoding="utf-8"))
+        self.assertTrue(saved["finished"])
+        self.assertEqual(saved["days"]["4"]["players"]["#A"]["decks"], 4)
 
 
 if __name__ == "__main__":

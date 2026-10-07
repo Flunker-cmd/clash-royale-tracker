@@ -1068,7 +1068,7 @@
 
     let combinedData = [];
     let currentWarInfo = { active: false, day: 0 };
-    let selectedWarDay = 0; // 0 = today, otherwise an earlier war day picked in the war panel
+    let selectedWarDay = 0; // 0 = today, otherwise a war day picked in the war panel (earlier day, or a day of the finished war)
     let dashboardState = null;
     let currentSortColumn = 'role';
     let currentSortAsc = false;
@@ -1632,16 +1632,34 @@
       const listsEl = document.getElementById('war-lists');
       const noteEl = document.getElementById('war-note');
       const copyBtn = document.getElementById('war-copy-btn');
+      const statCard = (label, value) => `<div class="stat-card"><div class="label">${label}</div><div class="value">${value}</div></div>`;
 
       if (!currentWarInfo.active) {
-        title.textContent = 'Pågående krig';
-        daysEl.innerHTML = '';
-        statsEl.innerHTML = '';
-        listsEl.innerHTML = '';
-        copyBtn.hidden = true;
-        noteEl.textContent = dashboardState.currentWar.periodType === 'training'
+        const idleNote = dashboardState.currentWar.periodType === 'training'
           ? 'Träningsdagar pågår. Kriget startar på torsdag.'
           : 'Inget krig pågår just nu.';
+        copyBtn.hidden = true;
+        if (!hasFinishedWarDays()) {
+          title.textContent = 'Pågående krig';
+          daysEl.innerHTML = '';
+          statsEl.innerHTML = '';
+          listsEl.innerHTML = '';
+          noteEl.textContent = idleNote;
+          return;
+        }
+
+        // Between wars, show the war that just ended, starting on its last day.
+        if (!getSavedWarDay(selectedWarDay)) selectedWarDay = WAR_DAY_NAMES.length;
+        title.textContent = 'Senaste kriget';
+        daysEl.innerHTML = WAR_DAY_NAMES.map((name, i) => {
+          const d = i + 1;
+          const classes = `war-day done ${d === selectedWarDay ? 'selected' : ''}`;
+          return getSavedWarDay(d)
+            ? `<button type="button" class="${classes}" aria-pressed="${d === selectedWarDay}" onclick="selectWarDay(${d})" title="Visa vilka som spelade på ${name}">${name}</button>`
+            : `<span class="${classes}" title="Ingen sparad data för den här dagen">${name}</span>`;
+        }).join('');
+        renderPastWarDay(selectedWarDay, statCard, statsEl, listsEl, noteEl);
+        noteEl.textContent = `${idleNote} ${noteEl.textContent}`;
         return;
       }
 
@@ -1662,8 +1680,6 @@
         const title = d < day ? ' title="Ingen sparad data för den här dagen"' : '';
         return `<span class="${classes}"${title}>${name}</span>`;
       }).join('');
-
-      const statCard = (label, value) => `<div class="stat-card"><div class="label">${label}</div><div class="value">${value}</div></div>`;
 
       if (selectedWarDay) {
         renderPastWarDay(selectedWarDay, statCard, statsEl, listsEl, noteEl);
@@ -1700,13 +1716,23 @@
       noteEl.textContent = `Datan uppdateras varje timme.${afkLeft ? ` ${afkLeft} AFK-markerade spelare visas inte i listorna.` : ''}`;
     }
 
-    // war_days.json is written hourly by track_war_days.py. Only trust it if it belongs to the war in progress.
+    // war_days.json is written hourly by track_war_days.py. Only trust it if it belongs to the war in progress,
+    // or, between wars, to the latest war in the river race log.
     function getSavedWarDay(d) {
       const war = dashboardState?.currentWar;
       const warDays = dashboardState?.warDays;
-      if (!d || !war || !warDays || !currentWarInfo.active) return null;
+      if (!d || !war || !warDays) return null;
+      if (!currentWarInfo.active) return hasFinishedWarDays() ? warDays.days?.[String(d)] || null : null;
       const warKey = `${war.sectionIndex || 0}:${Number(war.periodIndex) - currentWarInfo.day + 1}`;
       return warDays.warKey === warKey ? warDays.days?.[String(d)] || null : null;
+    }
+
+    // track_war_days.py marks the saved war finished once it has corrected the last day from the river race log.
+    function hasFinishedWarDays() {
+      const warDays = dashboardState?.warDays;
+      const latest = dashboardState?.historyRaces?.[0];
+      return Boolean(warDays?.finished && latest && warDays.seasonId === latest.seasonId
+        && String(warDays.warKey).split(':')[0] === String(latest.sectionIndex));
     }
 
     function selectWarDay(d) {

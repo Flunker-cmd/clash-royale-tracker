@@ -476,6 +476,7 @@
     button.war-day:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
     .war-day.selected { color: #0f172a; background: #7dd3fc; border-color: #7dd3fc; font-weight: 700; }
     .war-day.current:not(.selected) { color: #38bdf8; background: #0f172a; }
+    .war-day.summary { text-transform: none; }
     .war-group-title {
       color: #cbd5e1;
       font-size: 0.85em;
@@ -1068,7 +1069,8 @@
 
     let combinedData = [];
     let currentWarInfo = { active: false, day: 0 };
-    let selectedWarDay = 0; // 0 = today, otherwise a war day picked in the war panel (earlier day, or a day of the finished war)
+    const WHOLE_WAR = 'all';
+    let selectedWarDay = 0; // 0 = today, otherwise a war day picked in the war panel (earlier day, or a day of the finished war), or WHOLE_WAR
     let dashboardState = null;
     let currentSortColumn = 'role';
     let currentSortAsc = false;
@@ -1648,8 +1650,8 @@
           return;
         }
 
-        // Between wars, show the war that just ended, starting on its last day.
-        if (!getSavedWarDay(selectedWarDay)) selectedWarDay = WAR_DAY_NAMES.length;
+        // Between wars, show the war that just ended, starting with all days summed up.
+        if (selectedWarDay !== WHOLE_WAR && !getSavedWarDay(selectedWarDay)) selectedWarDay = WHOLE_WAR;
         title.textContent = 'Senaste kriget';
         daysEl.innerHTML = WAR_DAY_NAMES.map((name, i) => {
           const d = i + 1;
@@ -1657,8 +1659,12 @@
           return getSavedWarDay(d)
             ? `<button type="button" class="${classes}" aria-pressed="${d === selectedWarDay}" onclick="selectWarDay(${d})" title="Visa vilka som spelade på ${name}">${name}</button>`
             : `<span class="${classes}" title="Ingen sparad data för den här dagen">${name}</span>`;
-        }).join('');
-        renderPastWarDay(selectedWarDay, statCard, statsEl, listsEl, noteEl);
+        }).join('') + `<button type="button" class="war-day done summary ${selectedWarDay === WHOLE_WAR ? 'selected' : ''}" aria-pressed="${selectedWarDay === WHOLE_WAR}" onclick="selectWarDay('${WHOLE_WAR}')" title="Visa alla dagar i kriget sammanlagt">Hela kriget</button>`;
+        if (selectedWarDay === WHOLE_WAR) {
+          renderWholeWar(statCard, statsEl, listsEl, noteEl);
+        } else {
+          renderPastWarDay(selectedWarDay, statCard, statsEl, listsEl, noteEl);
+        }
         noteEl.textContent = `${idleNote} ${noteEl.textContent}`;
         return;
       }
@@ -1738,6 +1744,62 @@
     function selectWarDay(d) {
       selectedWarDay = d;
       renderWarPanel();
+    }
+
+    // Sums the saved days of the finished war. A player only counts for the days they have saved data for,
+    // so members who joined during the war are not blamed for days before they joined.
+    function renderWholeWar(statCard, statsEl, listsEl, noteEl) {
+      const days = WAR_DAY_NAMES.map((name, i) => getSavedWarDay(i + 1)?.players || null);
+      const players = combinedData
+        .map(m => {
+          const perDay = days.map(saved => saved?.[m.tag] ? Math.min(DECKS_PER_DAY, Number(saved[m.tag].decks || 0)) : null);
+          const played = perDay.filter(d => d !== null);
+          return {
+            ...m,
+            perDay,
+            warDecks: played.reduce((sum, d) => sum + d, 0),
+            maxDecks: played.length * DECKS_PER_DAY
+          };
+        })
+        .filter(m => m.maxDecks > 0)
+        .sort((a, b) => (a.warDecks - a.maxDecks) - (b.warDecks - b.maxDecks) || a.name.localeCompare(b.name));
+      const notInClan = combinedData.length - players.length;
+      const used = players.reduce((sum, m) => sum + m.warDecks, 0);
+      const possible = players.reduce((sum, m) => sum + m.maxDecks, 0);
+      const finished = players.filter(m => m.warDecks >= m.maxDecks);
+      const untouched = players.filter(m => m.warDecks === 0);
+      const partial = players.filter(m => m.warDecks > 0 && m.warDecks < m.maxDecks);
+
+      statsEl.innerHTML = [
+        statCard('Decks i kriget', `${used} / ${possible}`),
+        statCard('Spelade alla decks', `${finished.length} / ${players.length}`),
+        statCard('Spelade inte alls', untouched.length),
+        statCard('Missade några decks', partial.length)
+      ].join('');
+
+      const chip = m => {
+        const state = m.warDecks === 0 ? 'none' : (m.warDecks >= m.maxDecks ? 'full' : '');
+        // Days the player was not in the clan are shown as a dash.
+        const breakdown = m.warDecks > 0 && m.warDecks < m.maxDecks
+          ? ` · ${m.perDay.map(d => d === null ? '–' : d).join(' ')}`
+          : '';
+        const title = WAR_DAY_NAMES.map((name, i) => `${name}: ${m.perDay[i] === null ? 'inte med' : `${m.perDay[i]}/${DECKS_PER_DAY}`}`).join(', ');
+        return `<span class="war-chip ${state}" title="${escapeHtml(title)}">${escapeHtml(m.name)} <small>${m.warDecks}/${m.maxDecks}${breakdown}</small></span>`;
+      };
+      const group = (heading, list) => {
+        const shown = list.filter(m => !m.afk);
+        return shown.length
+          ? `<div class="war-group-title">${heading} (${shown.length})</div><div class="war-chips">${shown.map(chip).join('')}</div>`
+          : '';
+      };
+      listsEl.innerHTML = group('Spelade inte alls', untouched)
+        + group('Missade några decks (decks per dag)', partial)
+        + group('Spelade alla decks', finished);
+
+      const afkCount = players.filter(m => m.afk).length;
+      noteEl.textContent = 'Visar alla dagar i kriget.'
+        + (notInClan ? ` ${notInClan} av dagens medlemmar var inte med i klanen under kriget och räknas inte.` : '')
+        + (afkCount ? ` ${afkCount} AFK-markerade spelare visas inte i listorna.` : '');
     }
 
     function renderPastWarDay(d, statCard, statsEl, listsEl, noteEl) {

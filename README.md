@@ -44,8 +44,8 @@ data. Decks and donations are averages per participated war.
   still has decks left today (with a button that copies the list for the clan chat).
   Click an earlier day of the war to see who played all, some or none of their
   decks that day (saved hourly by `track_war_days.py`, so only days after it started running).
-  Between wars (training days) the panel shows the war that just ended, day by day,
-  until the next war starts.
+  Between wars (training days) the panel shows the war that just ended until the
+  next war starts: each day, or all days summed up per player ("Hela kriget").
 - **Clan trend**: war trophies, total fame, decks used and placement per finished
   war, with hover details and a table view.
 - **Member events**: who joined, left, was promoted or demoted (tracked from the

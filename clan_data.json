@@ -77,7 +77,7 @@
         "repairPoints": 0,
         "boatAttacks": 0,
         "decksUsed": 0,
-        "decksUsedToday": 0
+        "decksUsedToday": 1
       },
       {
         "tag": "#2L8V08QLL",
@@ -86,7 +86,7 @@
         "repairPoints": 0,
         "boatAttacks": 0,
         "decksUsed": 0,
-        "decksUsedToday": 2
+        "decksUsedToday": 3
       },
       {
         "tag": "#2JC8C9VVP",
@@ -566,7 +566,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 1
+          "decksUsedToday": 4
         },
         {
           "tag": "#VUL80V9C",
@@ -863,7 +863,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#2V2G8C8U",
@@ -1144,7 +1144,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 1
+          "decksUsedToday": 3
         },
         {
           "tag": "#G8UGJ2L8L",
@@ -1212,6 +1212,15 @@
         {
           "tag": "#9J0J9QG0C",
           "name": "abel",
+          "fame": 0,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 0,
+          "decksUsedToday": 0
+        },
+        {
+          "tag": "#9RLCG2PPL",
+          "name": "snoman",
           "fame": 0,
           "repairPoints": 0,
           "boatAttacks": 0,
@@ -1587,7 +1596,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#VGVLQY880",
@@ -1742,7 +1751,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 1
         },
         {
           "tag": "#2L8V08QLL",
@@ -1751,7 +1760,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 2
+          "decksUsedToday": 3
         },
         {
           "tag": "#2JC8C9VVP",
@@ -2185,7 +2194,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 1
         },
         {
           "tag": "#R0CVY9",
@@ -2329,7 +2338,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 1
         },
         {
           "tag": "#GULUJLV9U",
@@ -2347,7 +2356,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#U90VLG8JQ",
@@ -2428,11 +2437,20 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#VRQQCVQLV",
           "name": "Sayori167",
+          "fame": 0,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 0,
+          "decksUsedToday": 0
+        },
+        {
+          "tag": "#8Q2YVLJPG",
+          "name": "King Beethoven",
           "fame": 0,
           "repairPoints": 0,
           "boatAttacks": 0,

@@ -272,7 +272,7 @@
       }
     },
     "2": {
-      "updated": "2026-10-09T19:12:35Z",
+      "updated": "2026-10-09T23:38:58Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -337,36 +337,6 @@
         "#CPCLGY0R": {
           "name": "AMAMAMAMEOJ",
           "base": 4,
-          "decks": 0
-        },
-        "#QJ920VG2C": {
-          "name": "isak",
-          "base": 4,
-          "decks": 0
-        },
-        "#G0QP8P0VJ": {
-          "name": "IaddeI",
-          "base": 3,
-          "decks": 0
-        },
-        "#2JC8C9VVP": {
-          "name": "iron m",
-          "base": 4,
-          "decks": 0
-        },
-        "#RQPCRGUQU": {
-          "name": "Liv",
-          "base": 4,
-          "decks": 0
-        },
-        "#8CVLPV9YR": {
-          "name": "Piggelin",
-          "base": 4,
-          "decks": 0
-        },
-        "#2G9PV0LQ0": {
-          "name": "Thabet",
-          "base": 4,
           "decks": 1
         },
         "#GVJCC2V28": {
@@ -374,8 +344,8 @@
           "base": 0,
           "decks": 4
         },
-        "#20929PYR0": {
-          "name": "Reavy",
+        "#RQPCRGUQU": {
+          "name": "Liv",
           "base": 4,
           "decks": 1
         },
@@ -404,20 +374,25 @@
           "base": 4,
           "decks": 4
         },
-        "#VGPYCR0JG": {
-          "name": "Rasse08;)",
+        "#QJ920VG2C": {
+          "name": "isak",
           "base": 4,
-          "decks": 2
-        },
-        "#URUQ09LVG": {
-          "name": "wisely",
-          "base": 4,
-          "decks": 2
+          "decks": 4
         },
         "#YPCURPPY2": {
           "name": "BullyMeILLc|_|M",
           "base": 4,
           "decks": 3
+        },
+        "#2G9PV0LQ0": {
+          "name": "Thabet",
+          "base": 4,
+          "decks": 4
+        },
+        "#20929PYR0": {
+          "name": "Reavy",
+          "base": 4,
+          "decks": 4
         },
         "#PRVR9J9": {
           "name": "Limpan",
@@ -426,6 +401,11 @@
         },
         "#2L8V08QLL": {
           "name": "Bossebus123",
+          "base": 4,
+          "decks": 4
+        },
+        "#2JC8C9VVP": {
+          "name": "iron m",
           "base": 4,
           "decks": 4
         },
@@ -444,15 +424,15 @@
           "base": 4,
           "decks": 4
         },
-        "#V8VP002JG": {
-          "name": "Jagsoverju",
-          "base": 4,
-          "decks": 2
-        },
         "#UUGUL0JJR": {
           "name": "Padlarn",
           "base": 4,
           "decks": 3
+        },
+        "#URUQ09LVG": {
+          "name": "wisely",
+          "base": 4,
+          "decks": 4
         },
         "#8UPLQ90YQ": {
           "name": "Viggen\\\\",
@@ -464,8 +444,23 @@
           "base": 4,
           "decks": 4
         },
+        "#G0QP8P0VJ": {
+          "name": "IaddeI",
+          "base": 3,
+          "decks": 4
+        },
         "#CVYL9CR92": {
           "name": "A19",
+          "base": 4,
+          "decks": 4
+        },
+        "#8CVLPV9YR": {
+          "name": "Piggelin",
+          "base": 4,
+          "decks": 4
+        },
+        "#VGPYCR0JG": {
+          "name": "Rasse08;)",
           "base": 4,
           "decks": 4
         },
@@ -501,6 +496,11 @@
         },
         "#J98C09980": {
           "name": "noodlefood",
+          "base": 4,
+          "decks": 4
+        },
+        "#V8VP002JG": {
+          "name": "Jagsoverju",
           "base": 4,
           "decks": 4
         },

@@ -2,25 +2,15 @@
   "warKey": "0:3",
   "days": {
     "1": {
-      "updated": "2026-10-09T00:46:31Z",
+      "updated": "2026-10-09T06:54:31Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
           "base": 0,
           "decks": 0
         },
-        "#20929PYR0": {
-          "name": "Reavy",
-          "base": 0,
-          "decks": 0
-        },
         "#RJR22U09U": {
           "name": "Ekman",
-          "base": 0,
-          "decks": 0
-        },
-        "#2G9PV0LQ0": {
-          "name": "Thabet",
           "base": 0,
           "decks": 0
         },
@@ -124,11 +114,6 @@
           "base": 0,
           "decks": 3
         },
-        "#PPUUULVU2": {
-          "name": "Julia",
-          "base": 0,
-          "decks": 3
-        },
         "#J98C09980": {
           "name": "noodlefood",
           "base": 0,
@@ -151,6 +136,11 @@
         },
         "#V882JC088": {
           "name": "Teddaren",
+          "base": 0,
+          "decks": 4
+        },
+        "#2G9PV0LQ0": {
+          "name": "Thabet",
           "base": 0,
           "decks": 4
         },
@@ -196,6 +186,16 @@
         },
         "#20VYLRPCYG": {
           "name": "OG27",
+          "base": 0,
+          "decks": 4
+        },
+        "#PPUUULVU2": {
+          "name": "Julia",
+          "base": 0,
+          "decks": 4
+        },
+        "#20929PYR0": {
+          "name": "Reavy",
           "base": 0,
           "decks": 4
         },

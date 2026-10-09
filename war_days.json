@@ -2,15 +2,10 @@
   "warKey": "0:3",
   "days": {
     "1": {
-      "updated": "2026-10-08T20:18:39Z",
+      "updated": "2026-10-09T00:46:31Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
-          "base": 0,
-          "decks": 0
-        },
-        "#G0QP8P0VJ": {
-          "name": "IaddeI",
           "base": 0,
           "decks": 0
         },
@@ -59,18 +54,8 @@
           "base": 0,
           "decks": 0
         },
-        "#9PQPP2GVG": {
-          "name": "Jobg",
-          "base": 0,
-          "decks": 0
-        },
         "#CQCUPGGG": {
           "name": "Bjögga",
-          "base": 0,
-          "decks": 0
-        },
-        "#CPCLGY0R": {
-          "name": "AMAMAMAMEOJ",
           "base": 0,
           "decks": 0
         },
@@ -94,23 +79,8 @@
           "base": 0,
           "decks": 0
         },
-        "#PPUUULVU2": {
-          "name": "Julia",
-          "base": 0,
-          "decks": 0
-        },
-        "#J98C09980": {
-          "name": "noodlefood",
-          "base": 0,
-          "decks": 0
-        },
         "#20QJP08U28": {
           "name": "stupidmonkey",
-          "base": 0,
-          "decks": 0
-        },
-        "#QJ920VG2C": {
-          "name": "isak",
           "base": 0,
           "decks": 0
         },
@@ -133,6 +103,36 @@
           "name": "skogsankan",
           "base": 0,
           "decks": 4
+        },
+        "#9PQPP2GVG": {
+          "name": "Jobg",
+          "base": 0,
+          "decks": 4
+        },
+        "#CPCLGY0R": {
+          "name": "AMAMAMAMEOJ",
+          "base": 0,
+          "decks": 4
+        },
+        "#QJ920VG2C": {
+          "name": "isak",
+          "base": 0,
+          "decks": 4
+        },
+        "#G0QP8P0VJ": {
+          "name": "IaddeI",
+          "base": 0,
+          "decks": 3
+        },
+        "#PPUUULVU2": {
+          "name": "Julia",
+          "base": 0,
+          "decks": 3
+        },
+        "#J98C09980": {
+          "name": "noodlefood",
+          "base": 0,
+          "decks": 3
         },
         "#98YUVC8": {
           "name": "Oskar :)",

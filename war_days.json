@@ -542,7 +542,7 @@
       }
     },
     "3": {
-      "updated": "2026-10-10T23:02:38Z",
+      "updated": "2026-10-11T02:40:08Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -649,11 +649,6 @@
           "base": 8,
           "decks": 4
         },
-        "#VGPYCR0JG": {
-          "name": "Rasse08;)",
-          "base": 8,
-          "decks": 0
-        },
         "#GYJVQYR": {
           "name": "Adam",
           "base": 8,
@@ -693,11 +688,6 @@
           "name": "BRUNO",
           "base": 4,
           "decks": 4
-        },
-        "#UVJU8Q90V": {
-          "name": "WilliR5",
-          "base": 8,
-          "decks": 0
         },
         "#PRVR9J9": {
           "name": "Limpan",
@@ -753,6 +743,11 @@
           "name": "herman@:com",
           "base": 8,
           "decks": 3
+        },
+        "#VGPYCR0JG": {
+          "name": "Rasse08;)",
+          "base": 8,
+          "decks": 4
         },
         "#UUGUL0JJR": {
           "name": "Padlarn",
@@ -821,6 +816,11 @@
         },
         "#P0CV8LUY": {
           "name": "Gideon",
+          "base": 8,
+          "decks": 4
+        },
+        "#UVJU8Q90V": {
+          "name": "WilliR5",
           "base": 8,
           "decks": 4
         }

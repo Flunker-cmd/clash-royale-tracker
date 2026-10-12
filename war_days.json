@@ -832,7 +832,7 @@
       }
     },
     "4": {
-      "updated": "2026-10-11T20:40:26Z",
+      "updated": "2026-10-12T00:03:59Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -904,11 +904,6 @@
           "base": 4,
           "decks": 0
         },
-        "#9PQPP2GVG": {
-          "name": "Jobg",
-          "base": 8,
-          "decks": 0
-        },
         "#G0QP8P0VJ": {
           "name": "IaddeI",
           "base": 7,
@@ -926,6 +921,11 @@
         },
         "#GVJCC2V28": {
           "name": "Blondiee",
+          "base": 8,
+          "decks": 2
+        },
+        "#9PQPP2GVG": {
+          "name": "Jobg",
           "base": 8,
           "decks": 2
         },
@@ -954,11 +954,6 @@
           "base": 12,
           "decks": 4
         },
-        "#2L8V08QLL": {
-          "name": "Bossebus123",
-          "base": 12,
-          "decks": 2
-        },
         "#YPCURPPY2": {
           "name": "BullyMeILLc|_|M",
           "base": 11,
@@ -986,6 +981,11 @@
         },
         "#PRVR9J9": {
           "name": "Limpan",
+          "base": 12,
+          "decks": 4
+        },
+        "#2L8V08QLL": {
+          "name": "Bossebus123",
           "base": 12,
           "decks": 4
         },
@@ -1074,11 +1074,6 @@
           "base": 12,
           "decks": 4
         },
-        "#20VYLRPCYG": {
-          "name": "OG27",
-          "base": 12,
-          "decks": 3
-        },
         "#PPJPY09GP": {
           "name": "BjalkenGG",
           "base": 12,
@@ -1096,6 +1091,11 @@
         },
         "#CC0JPP0UL": {
           "name": "slinky",
+          "base": 12,
+          "decks": 4
+        },
+        "#20VYLRPCYG": {
+          "name": "OG27",
           "base": 12,
           "decks": 4
         },

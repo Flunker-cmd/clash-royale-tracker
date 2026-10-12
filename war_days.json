@@ -832,7 +832,7 @@
       }
     },
     "4": {
-      "updated": "2026-10-12T00:03:59Z",
+      "updated": "2026-10-12T06:42:15Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -999,11 +999,6 @@
           "base": 9,
           "decks": 4
         },
-        "#PPUUULVU2": {
-          "name": "Julia",
-          "base": 12,
-          "decks": 0
-        },
         "#2JC8C9VVP": {
           "name": "iron m",
           "base": 12,
@@ -1101,6 +1096,11 @@
         },
         "#8CVLPV9YR": {
           "name": "Piggelin",
+          "base": 12,
+          "decks": 4
+        },
+        "#PPUUULVU2": {
+          "name": "Julia",
           "base": 12,
           "decks": 4
         },

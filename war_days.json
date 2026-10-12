@@ -912,7 +912,7 @@
         "#RQPCRGUQU": {
           "name": "Liv",
           "base": 8,
-          "decks": 1
+          "decks": 2
         },
         "#R29Y0GJ0Q": {
           "name": "mlantz",
@@ -1121,5 +1121,7 @@
         }
       }
     }
-  }
+  },
+  "finished": true,
+  "seasonId": 137
 }

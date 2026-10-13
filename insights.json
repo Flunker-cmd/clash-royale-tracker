@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T04:19:33Z",
+  "generatedAt": "2026-10-13T12:16:50Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
     "activeMembers": 46,
@@ -9,21 +9,7 @@
     "topPerformer": "WilliR5",
     "topPerformerAvgDecks": 16.0
   },
-  "promote": [
-    {
-      "name": "A19",
-      "role": "member",
-      "avgFame": 2138,
-      "latestWarFame": 2250,
-      "avgDecks": 13.0,
-      "donations": 10,
-      "donationsPerWar": 2,
-      "reason": "Ready for Elder promotion",
-      "details": [
-        "Full wars in a row 3 >= 3"
-      ]
-    }
-  ],
+  "promote": [],
   "review": [
     {
       "name": "Hannes",
@@ -31,8 +17,8 @@
       "avgFame": 0,
       "latestWarFame": 0,
       "avgDecks": 0.0,
-      "donations": 10,
-      "donationsPerWar": 10,
+      "donations": 26,
+      "donationsPerWar": 26,
       "reason": "Candidate for kick",
       "details": [
         "Latest war fame 0 < 500"
@@ -71,7 +57,7 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 10.7,
+      "lastSeenHours": 1.7,
       "reason": "No participation in the latest war"
     },
     {
@@ -79,7 +65,7 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 13.3,
+      "lastSeenHours": 1.7,
       "reason": "No participation in the latest war"
     },
     {
@@ -87,7 +73,7 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 17.3,
+      "lastSeenHours": 1.6,
       "reason": "No participation in the latest war"
     }
   ],

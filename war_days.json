@@ -2,13 +2,8 @@
   "warKey": "1:10",
   "days": {
     "1": {
-      "updated": "2026-10-15T20:38:48Z",
+      "updated": "2026-10-15T23:23:08Z",
       "players": {
-        "#98YUVC8": {
-          "name": "Oskar :)",
-          "base": 0,
-          "decks": 0
-        },
         "#UG0LPCL": {
           "name": "FC GUNNER",
           "base": 0,
@@ -26,11 +21,6 @@
         },
         "#RJR22U09U": {
           "name": "Ekman",
-          "base": 0,
-          "decks": 0
-        },
-        "#2G9PV0LQ0": {
-          "name": "Thabet",
           "base": 0,
           "decks": 0
         },
@@ -99,11 +89,6 @@
           "base": 0,
           "decks": 0
         },
-        "#P0CV8LUY": {
-          "name": "Gideon",
-          "base": 0,
-          "decks": 0
-        },
         "#RV8YCJQRC": {
           "name": "YoKxroo",
           "base": 0,
@@ -131,11 +116,6 @@
         },
         "#PRRC2UCUJ": {
           "name": "Lobos-0908-",
-          "base": 0,
-          "decks": 0
-        },
-        "#VJ9GP8UJ8": {
-          "name": "amj",
           "base": 0,
           "decks": 0
         },
@@ -168,11 +148,6 @@
           "name": "Bossebus123",
           "base": 0,
           "decks": 2
-        },
-        "#VGPYCR0JG": {
-          "name": "Rasse08;)",
-          "base": 0,
-          "decks": 1
         },
         "#UUGUL0JJR": {
           "name": "Padlarn",
@@ -244,6 +219,11 @@
           "base": 0,
           "decks": 4
         },
+        "#2G9PV0LQ0": {
+          "name": "Thabet",
+          "base": 0,
+          "decks": 4
+        },
         "#PPJPY09GP": {
           "name": "BjalkenGG",
           "base": 0,
@@ -264,6 +244,11 @@
           "base": 0,
           "decks": 4
         },
+        "#VGPYCR0JG": {
+          "name": "Rasse08;)",
+          "base": 0,
+          "decks": 4
+        },
         "#Y0J98GRY9": {
           "name": "5%",
           "base": 0,
@@ -271,6 +256,11 @@
         },
         "#P2VVLPGUJ": {
           "name": "Gabro",
+          "base": 0,
+          "decks": 4
+        },
+        "#98YUVC8": {
+          "name": "Oskar :)",
           "base": 0,
           "decks": 4
         },
@@ -304,6 +294,11 @@
           "base": 0,
           "decks": 4
         },
+        "#P0CV8LUY": {
+          "name": "Gideon",
+          "base": 0,
+          "decks": 4
+        },
         "#CVGCRRCR2": {
           "name": "Nnea",
           "base": 0,
@@ -331,6 +326,11 @@
         },
         "#8VV8GGGPY": {
           "name": "Leo",
+          "base": 0,
+          "decks": 4
+        },
+        "#VJ9GP8UJ8": {
+          "name": "amj",
           "base": 0,
           "decks": 4
         }

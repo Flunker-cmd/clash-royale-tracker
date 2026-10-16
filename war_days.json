@@ -337,7 +337,7 @@
       }
     },
     "2": {
-      "updated": "2026-10-16T20:11:38Z",
+      "updated": "2026-10-16T23:05:44Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -419,11 +419,6 @@
           "base": 0,
           "decks": 0
         },
-        "#PPUUULVU2": {
-          "name": "Julia",
-          "base": 0,
-          "decks": 0
-        },
         "#PRRC2UCUJ": {
           "name": "Lobos-0908-",
           "base": 0,
@@ -469,18 +464,8 @@
           "base": 4,
           "decks": 0
         },
-        "#2L8V08QLL": {
-          "name": "Bossebus123",
-          "base": 3,
-          "decks": 1
-        },
         "#GVJCC2V28": {
           "name": "Blondiee",
-          "base": 4,
-          "decks": 0
-        },
-        "#R29Y0GJ0Q": {
-          "name": "mlantz",
           "base": 4,
           "decks": 0
         },
@@ -493,11 +478,6 @@
           "name": "Zer0",
           "base": 4,
           "decks": 2
-        },
-        "#VGPYCR0JG": {
-          "name": "Rasse08;)",
-          "base": 4,
-          "decks": 0
         },
         "#UUGUL0JJR": {
           "name": "Padlarn",
@@ -529,15 +509,15 @@
           "base": 0,
           "decks": 4
         },
-        "#9PQPP2GVG": {
-          "name": "Jobg",
-          "base": 4,
-          "decks": 0
-        },
         "#P0CV8LUY": {
           "name": "Gideon",
           "base": 4,
           "decks": 0
+        },
+        "#PPUUULVU2": {
+          "name": "Julia",
+          "base": 0,
+          "decks": 4
         },
         "#8UPLQ90YQ": {
           "name": "Viggen\\\\",
@@ -552,6 +532,11 @@
         "#UVJU8Q90V": {
           "name": "WilliR5",
           "base": 4,
+          "decks": 4
+        },
+        "#2L8V08QLL": {
+          "name": "Bossebus123",
+          "base": 3,
           "decks": 4
         },
         "#2JRJY2LQR": {
@@ -581,6 +566,11 @@
         },
         "#YPCURPPY2": {
           "name": "BullyMeILLc|_|M",
+          "base": 4,
+          "decks": 4
+        },
+        "#R29Y0GJ0Q": {
+          "name": "mlantz",
           "base": 4,
           "decks": 4
         },
@@ -624,6 +614,11 @@
           "base": 4,
           "decks": 4
         },
+        "#VGPYCR0JG": {
+          "name": "Rasse08;)",
+          "base": 4,
+          "decks": 4
+        },
         "#20U2C9QLGG": {
           "name": "Wader",
           "base": 4,
@@ -631,6 +626,11 @@
         },
         "#RUV8V8GVR": {
           "name": "MEGABAENIS",
+          "base": 4,
+          "decks": 4
+        },
+        "#9PQPP2GVG": {
+          "name": "Jobg",
           "base": 4,
           "decks": 4
         },

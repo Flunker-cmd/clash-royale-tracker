@@ -2800,15 +2800,6 @@
           "decksUsedToday": 0
         },
         {
-          "tag": "#ULPPQ2920",
-          "name": "Emerson Meta²",
-          "fame": 0,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 0,
-          "decksUsedToday": 0
-        },
-        {
           "tag": "#29RR8RUCP",
           "name": "gerudidestroibi",
           "fame": 0,
@@ -2883,15 +2874,6 @@
         {
           "tag": "#2LPPU9L28",
           "name": "Rei Junior",
-          "fame": 0,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 0,
-          "decksUsedToday": 0
-        },
-        {
-          "tag": "#G20UY2V0",
-          "name": "Paulo hunter",
           "fame": 0,
           "repairPoints": 0,
           "boatAttacks": 0,
@@ -3025,15 +3007,6 @@
           "decksUsedToday": 0
         },
         {
-          "tag": "#8Q2YVLJPG",
-          "name": "King Beethoven",
-          "fame": 0,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 0,
-          "decksUsedToday": 0
-        },
-        {
           "tag": "#PQ9VU0CLG",
           "name": "jvictorlima13",
           "fame": 0,
@@ -3088,17 +3061,17 @@
           "decksUsedToday": 0
         },
         {
-          "tag": "#PLRCGLJ",
-          "name": "Clasher",
-          "fame": 100,
+          "tag": "#R0CVY9",
+          "name": "Bruno",
+          "fame": 200,
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 1,
           "decksUsedToday": 1
         },
         {
-          "tag": "#R0CVY9",
-          "name": "Bruno",
+          "tag": "#G20UY2V0",
+          "name": "Paulo hunter",
           "fame": 200,
           "repairPoints": 0,
           "boatAttacks": 0,
@@ -3151,6 +3124,15 @@
           "decksUsedToday": 4
         },
         {
+          "tag": "#8Q2YVLJPG",
+          "name": "King Beethoven",
+          "fame": 400,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 2,
+          "decksUsedToday": 2
+        },
+        {
           "tag": "#YRY90UU8",
           "name": "JF",
           "fame": 400,
@@ -3187,9 +3169,27 @@
           "decksUsedToday": 4
         },
         {
+          "tag": "#PLRCGLJ",
+          "name": "Clasher",
+          "fame": 550,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 4,
+          "decksUsedToday": 4
+        },
+        {
           "tag": "#882RC9CVQ",
           "name": "AnderFlu",
           "fame": 600,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 4,
+          "decksUsedToday": 4
+        },
+        {
+          "tag": "#ULPPQ2920",
+          "name": "Emerson Meta²",
+          "fame": 650,
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 4,
@@ -3250,7 +3250,7 @@
           "decksUsedToday": 4
         }
       ],
-      "periodPoints": 9250,
+      "periodPoints": 10950,
       "clanScore": 3290
     }
   ],

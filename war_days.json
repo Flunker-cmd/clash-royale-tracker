@@ -672,7 +672,7 @@
       }
     },
     "3": {
-      "updated": "2026-10-17T21:49:57Z",
+      "updated": "2026-10-17T23:36:03Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -804,20 +804,10 @@
           "base": 4,
           "decks": 0
         },
-        "#8UPLQ90YQ": {
-          "name": "Viggen\\\\",
-          "base": 8,
-          "decks": 0
-        },
         "#LPUGJC2VV": {
           "name": "Hannes",
           "base": 4,
           "decks": 4
-        },
-        "#QJ920VG2C": {
-          "name": "isak",
-          "base": 8,
-          "decks": 0
         },
         "#GVJCC2V28": {
           "name": "Blondiee",
@@ -828,6 +818,11 @@
           "name": "A19",
           "base": 8,
           "decks": 0
+        },
+        "#8UPLQ90YQ": {
+          "name": "Viggen\\\\",
+          "base": 8,
+          "decks": 4
         },
         "#J2R9RRRG": {
           "name": "N3lson",
@@ -908,6 +903,11 @@
           "name": "OG27",
           "base": 8,
           "decks": 1
+        },
+        "#QJ920VG2C": {
+          "name": "isak",
+          "base": 8,
+          "decks": 4
         },
         "#UVJU8Q90V": {
           "name": "WilliR5",

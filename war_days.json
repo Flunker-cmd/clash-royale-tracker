@@ -672,7 +672,7 @@
       }
     },
     "3": {
-      "updated": "2026-10-17T19:47:28Z",
+      "updated": "2026-10-17T21:49:57Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -814,11 +814,6 @@
           "base": 4,
           "decks": 4
         },
-        "#2L8V08QLL": {
-          "name": "Bossebus123",
-          "base": 7,
-          "decks": 1
-        },
         "#QJ920VG2C": {
           "name": "isak",
           "base": 8,
@@ -829,18 +824,8 @@
           "base": 4,
           "decks": 4
         },
-        "#2UVCLJL2V": {
-          "name": "FlooterBooterYT",
-          "base": 8,
-          "decks": 0
-        },
         "#CVYL9CR92": {
           "name": "A19",
-          "base": 8,
-          "decks": 0
-        },
-        "#URUQ09LVG": {
-          "name": "wisely",
           "base": 8,
           "decks": 0
         },
@@ -848,11 +833,6 @@
           "name": "N3lson",
           "base": 8,
           "decks": 4
-        },
-        "#2G9PV0LQ0": {
-          "name": "Thabet",
-          "base": 8,
-          "decks": 0
         },
         "#PRVR9J9": {
           "name": "Limpan",
@@ -869,15 +849,15 @@
           "base": 8,
           "decks": 4
         },
-        "#9PQPP2GVG": {
-          "name": "Jobg",
-          "base": 8,
-          "decks": 0
-        },
         "#PPUUULVU2": {
           "name": "Julia",
           "base": 4,
           "decks": 4
+        },
+        "#2G9PV0LQ0": {
+          "name": "Thabet",
+          "base": 8,
+          "decks": 1
         },
         "#9RCR2QQQJ": {
           "name": "Zer0",
@@ -889,8 +869,18 @@
           "base": 8,
           "decks": 2
         },
+        "#2L8V08QLL": {
+          "name": "Bossebus123",
+          "base": 7,
+          "decks": 4
+        },
         "#2JRJY2LQR": {
           "name": "skogsankan",
+          "base": 8,
+          "decks": 4
+        },
+        "#2UVCLJL2V": {
+          "name": "FlooterBooterYT",
           "base": 8,
           "decks": 4
         },
@@ -949,8 +939,18 @@
           "base": 8,
           "decks": 4
         },
+        "#URUQ09LVG": {
+          "name": "wisely",
+          "base": 8,
+          "decks": 4
+        },
         "#20929PYR0": {
           "name": "Reavy",
+          "base": 8,
+          "decks": 4
+        },
+        "#9PQPP2GVG": {
+          "name": "Jobg",
           "base": 8,
           "decks": 4
         },

@@ -672,7 +672,7 @@
       }
     },
     "3": {
-      "updated": "2026-10-17T17:35:36Z",
+      "updated": "2026-10-17T19:47:28Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -782,7 +782,7 @@
         "#UQ80VQPYL": {
           "name": "69",
           "base": 3,
-          "decks": 0
+          "decks": 1
         },
         "#V0YLVL98Q": {
           "name": "Grxhn",
@@ -806,11 +806,6 @@
         },
         "#8UPLQ90YQ": {
           "name": "Viggen\\\\",
-          "base": 8,
-          "decks": 0
-        },
-        "#UVJU8Q90V": {
-          "name": "WilliR5",
           "base": 8,
           "decks": 0
         },
@@ -844,26 +839,6 @@
           "base": 8,
           "decks": 0
         },
-        "#VCYPG98JG": {
-          "name": "OGDUNEDAN",
-          "base": 8,
-          "decks": 0
-        },
-        "#UCCL9GC9R": {
-          "name": "Das Meer",
-          "base": 8,
-          "decks": 2
-        },
-        "#VGPYCR0JG": {
-          "name": "Rasse08;)",
-          "base": 8,
-          "decks": 0
-        },
-        "#UUGUL0JJR": {
-          "name": "Padlarn",
-          "base": 8,
-          "decks": 2
-        },
         "#URUQ09LVG": {
           "name": "wisely",
           "base": 8,
@@ -883,6 +858,11 @@
           "name": "Limpan",
           "base": 8,
           "decks": 2
+        },
+        "#VCYPG98JG": {
+          "name": "OGDUNEDAN",
+          "base": 8,
+          "decks": 1
         },
         "#CJLPGJ2CY": {
           "name": "BRUNO",
@@ -919,8 +899,18 @@
           "base": 8,
           "decks": 4
         },
+        "#UCCL9GC9R": {
+          "name": "Das Meer",
+          "base": 8,
+          "decks": 4
+        },
         "#PPJPY09GP": {
           "name": "BjalkenGG",
+          "base": 8,
+          "decks": 4
+        },
+        "#UUGUL0JJR": {
+          "name": "Padlarn",
           "base": 8,
           "decks": 4
         },
@@ -929,15 +919,20 @@
           "base": 8,
           "decks": 1
         },
-        "#2JC8C9VVP": {
-          "name": "iron m",
+        "#UVJU8Q90V": {
+          "name": "WilliR5",
           "base": 8,
-          "decks": 3
+          "decks": 4
         },
         "#8CVLPV9YR": {
           "name": "Piggelin",
           "base": 8,
           "decks": 0
+        },
+        "#2JC8C9VVP": {
+          "name": "iron m",
+          "base": 8,
+          "decks": 4
         },
         "#YPCURPPY2": {
           "name": "BullyMeILLc|_|M",
@@ -946,6 +941,11 @@
         },
         "#YGPJ9PP9Y": {
           "name": "kingmeng",
+          "base": 8,
+          "decks": 4
+        },
+        "#VGPYCR0JG": {
+          "name": "Rasse08;)",
           "base": 8,
           "decks": 4
         },

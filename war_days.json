@@ -337,7 +337,7 @@
       }
     },
     "2": {
-      "updated": "2026-10-16T23:05:44Z",
+      "updated": "2026-10-17T01:56:28Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -439,11 +439,6 @@
           "base": 0,
           "decks": 0
         },
-        "#CPCLGY0R": {
-          "name": "AMAMAMAMEOJ",
-          "base": 1,
-          "decks": 0
-        },
         "#LPUGJC2VV": {
           "name": "Hannes",
           "base": 4,
@@ -456,11 +451,6 @@
         },
         "#VPR880Y8C": {
           "name": "edvardo",
-          "base": 4,
-          "decks": 0
-        },
-        "#QJ920VG2C": {
-          "name": "isak",
           "base": 4,
           "decks": 0
         },
@@ -479,23 +469,18 @@
           "base": 4,
           "decks": 2
         },
+        "#CPCLGY0R": {
+          "name": "AMAMAMAMEOJ",
+          "base": 1,
+          "decks": 4
+        },
         "#UUGUL0JJR": {
           "name": "Padlarn",
           "base": 4,
           "decks": 1
         },
-        "#98YUVC8": {
-          "name": "Oskar :)",
-          "base": 4,
-          "decks": 0
-        },
         "#20929PYR0": {
           "name": "Reavy",
-          "base": 4,
-          "decks": 0
-        },
-        "#GYJVQYR": {
-          "name": "Adam",
           "base": 4,
           "decks": 0
         },
@@ -574,10 +559,10 @@
           "base": 4,
           "decks": 4
         },
-        "#URUQ09LVG": {
-          "name": "wisely",
+        "#QJ920VG2C": {
+          "name": "isak",
           "base": 4,
-          "decks": 2
+          "decks": 4
         },
         "#PRVR9J9": {
           "name": "Limpan",
@@ -591,6 +576,11 @@
         },
         "#2UVCLJL2V": {
           "name": "FlooterBooterYT",
+          "base": 4,
+          "decks": 4
+        },
+        "#GYJVQYR": {
+          "name": "Adam",
           "base": 4,
           "decks": 4
         },
@@ -619,6 +609,11 @@
           "base": 4,
           "decks": 4
         },
+        "#URUQ09LVG": {
+          "name": "wisely",
+          "base": 4,
+          "decks": 4
+        },
         "#20U2C9QLGG": {
           "name": "Wader",
           "base": 4,
@@ -626,6 +621,11 @@
         },
         "#RUV8V8GVR": {
           "name": "MEGABAENIS",
+          "base": 4,
+          "decks": 4
+        },
+        "#98YUVC8": {
+          "name": "Oskar :)",
           "base": 4,
           "decks": 4
         },

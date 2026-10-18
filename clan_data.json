@@ -296,15 +296,6 @@
         "decksUsedToday": 2
       },
       {
-        "tag": "#VCYPG98JG",
-        "name": "OGDUNEDAN",
-        "fame": 1400,
-        "repairPoints": 0,
-        "boatAttacks": 0,
-        "decksUsed": 9,
-        "decksUsedToday": 1
-      },
-      {
         "tag": "#CJLPGJ2CY",
         "name": "BRUNO",
         "fame": 1400,
@@ -413,15 +404,6 @@
         "decksUsedToday": 4
       },
       {
-        "tag": "#20VYLRPCYG",
-        "name": "OG27",
-        "fame": 1600,
-        "repairPoints": 0,
-        "boatAttacks": 0,
-        "decksUsed": 9,
-        "decksUsedToday": 1
-      },
-      {
         "tag": "#QJ920VG2C",
         "name": "isak",
         "fame": 1600,
@@ -447,6 +429,15 @@
         "boatAttacks": 0,
         "decksUsed": 8,
         "decksUsedToday": 0
+      },
+      {
+        "tag": "#VCYPG98JG",
+        "name": "OGDUNEDAN",
+        "fame": 1800,
+        "repairPoints": 0,
+        "boatAttacks": 0,
+        "decksUsed": 12,
+        "decksUsedToday": 4
       },
       {
         "tag": "#2JC8C9VVP",
@@ -566,6 +557,15 @@
         "decksUsedToday": 4
       },
       {
+        "tag": "#20VYLRPCYG",
+        "name": "OG27",
+        "fame": 2200,
+        "repairPoints": 0,
+        "boatAttacks": 0,
+        "decksUsed": 12,
+        "decksUsedToday": 4
+      },
+      {
         "tag": "#98YUVC8",
         "name": "Oskar :)",
         "fame": 2300,
@@ -620,7 +620,7 @@
         "decksUsedToday": 4
       }
     ],
-    "periodPoints": 23500,
+    "periodPoints": 24500,
     "clanScore": 3293
   },
   "clans": [
@@ -839,15 +839,6 @@
           "decksUsedToday": 0
         },
         {
-          "tag": "#V2LQQL0PV",
-          "name": "horus",
-          "fame": 850,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 7,
-          "decksUsedToday": 0
-        },
-        {
           "tag": "#GP08GV9YU",
           "name": "ElFamosoPEA7",
           "fame": 900,
@@ -920,13 +911,13 @@
           "decksUsedToday": 2
         },
         {
-          "tag": "#P2L2VQYCQ",
-          "name": "guns",
-          "fame": 1450,
+          "tag": "#V2LQQL0PV",
+          "name": "horus",
+          "fame": 1400,
           "repairPoints": 0,
           "boatAttacks": 0,
-          "decksUsed": 8,
-          "decksUsedToday": 0
+          "decksUsed": 11,
+          "decksUsedToday": 4
         },
         {
           "tag": "#G20PRQVR9",
@@ -936,15 +927,6 @@
           "boatAttacks": 0,
           "decksUsed": 12,
           "decksUsedToday": 4
-        },
-        {
-          "tag": "#JJCJG89L2",
-          "name": "Cassandre07",
-          "fame": 1500,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 8,
-          "decksUsedToday": 0
         },
         {
           "tag": "#UUGQRJG2P",
@@ -1181,6 +1163,15 @@
           "decksUsedToday": 4
         },
         {
+          "tag": "#JJCJG89L2",
+          "name": "Cassandre07",
+          "fame": 2100,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 12,
+          "decksUsedToday": 4
+        },
+        {
           "tag": "#U98GVUUQG",
           "name": "PtiNiko",
           "fame": 2150,
@@ -1193,6 +1184,15 @@
           "tag": "#89V2QCCUC",
           "name": "JoJoLeFoU72",
           "fame": 2200,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 12,
+          "decksUsedToday": 4
+        },
+        {
+          "tag": "#P2L2VQYCQ",
+          "name": "guns",
+          "fame": 2250,
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 12,
@@ -1217,7 +1217,7 @@
           "decksUsedToday": 4
         }
       ],
-      "periodPoints": 18300,
+      "periodPoints": 20250,
       "clanScore": 3305
     },
     {
@@ -1651,17 +1651,17 @@
           "decksUsedToday": 4
         },
         {
-          "tag": "#UY8GUCRRP",
-          "name": "Sotoker",
-          "fame": 1600,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 11,
-          "decksUsedToday": 3
-        },
-        {
           "tag": "#29YVCURUP",
           "name": "TheBaddestWitch",
+          "fame": 1700,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 12,
+          "decksUsedToday": 4
+        },
+        {
+          "tag": "#UY8GUCRRP",
+          "name": "Sotoker",
           "fame": 1700,
           "repairPoints": 0,
           "boatAttacks": 0,
@@ -1786,7 +1786,7 @@
           "decksUsedToday": 4
         }
       ],
-      "periodPoints": 11375,
+      "periodPoints": 11475,
       "clanScore": 3282
     },
     {
@@ -2555,15 +2555,6 @@
           "decksUsedToday": 2
         },
         {
-          "tag": "#VCYPG98JG",
-          "name": "OGDUNEDAN",
-          "fame": 1400,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 9,
-          "decksUsedToday": 1
-        },
-        {
           "tag": "#CJLPGJ2CY",
           "name": "BRUNO",
           "fame": 1400,
@@ -2672,15 +2663,6 @@
           "decksUsedToday": 4
         },
         {
-          "tag": "#20VYLRPCYG",
-          "name": "OG27",
-          "fame": 1600,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 9,
-          "decksUsedToday": 1
-        },
-        {
           "tag": "#QJ920VG2C",
           "name": "isak",
           "fame": 1600,
@@ -2706,6 +2688,15 @@
           "boatAttacks": 0,
           "decksUsed": 8,
           "decksUsedToday": 0
+        },
+        {
+          "tag": "#VCYPG98JG",
+          "name": "OGDUNEDAN",
+          "fame": 1800,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 12,
+          "decksUsedToday": 4
         },
         {
           "tag": "#2JC8C9VVP",
@@ -2825,6 +2816,15 @@
           "decksUsedToday": 4
         },
         {
+          "tag": "#20VYLRPCYG",
+          "name": "OG27",
+          "fame": 2200,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 12,
+          "decksUsedToday": 4
+        },
+        {
           "tag": "#98YUVC8",
           "name": "Oskar :)",
           "fame": 2300,
@@ -2879,7 +2879,7 @@
           "decksUsedToday": 4
         }
       ],
-      "periodPoints": 23500,
+      "periodPoints": 24500,
       "clanScore": 3293
     },
     {
@@ -3268,15 +3268,6 @@
           "decksUsedToday": 0
         },
         {
-          "tag": "#8GYVVL0LU",
-          "name": "Vasco da Gama",
-          "fame": 1350,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 8,
-          "decksUsedToday": 0
-        },
-        {
           "tag": "#RUGLLUCRR",
           "name": "Zacx",
           "fame": 1500,
@@ -3284,6 +3275,15 @@
           "boatAttacks": 0,
           "decksUsed": 8,
           "decksUsedToday": 0
+        },
+        {
+          "tag": "#8GYVVL0LU",
+          "name": "Vasco da Gama",
+          "fame": 1550,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 10,
+          "decksUsedToday": 2
         },
         {
           "tag": "#VLGQQV2",
@@ -3376,7 +3376,7 @@
           "decksUsedToday": 4
         }
       ],
-      "periodPoints": 9850,
+      "periodPoints": 10050,
       "clanScore": 3290
     }
   ],

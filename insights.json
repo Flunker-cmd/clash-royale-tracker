@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-18T18:20:34Z",
+  "generatedAt": "2026-10-18T21:09:11Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 47,
+    "activeMembers": 46,
     "activeWarriors": 33,
     "totalWeeks": 10,
-    "avgClanFame": 1906,
-    "topPerformer": "Oskar :)",
+    "avgClanFame": 1947,
+    "topPerformer": "MEGABAENIS",
     "topPerformerAvgDecks": 16.0
   },
   "promote": [],
@@ -22,19 +22,6 @@
       "reason": "Elder demotion warning",
       "details": [
         "Fame 0 < 1600 in 1 of 2 wars in a row"
-      ]
-    },
-    {
-      "name": "Hannes",
-      "role": "member",
-      "avgFame": 0,
-      "latestWarFame": 0,
-      "avgDecks": 0.0,
-      "donations": 60,
-      "donationsPerWar": 60,
-      "reason": "Candidate for kick",
-      "details": [
-        "Latest war fame 0 < 500"
       ]
     },
     {
@@ -66,19 +53,11 @@
   ],
   "inactive": [
     {
-      "name": "Hannes",
-      "activeWeeks": 1,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 8.8,
-      "reason": "No participation in the latest war"
-    },
-    {
       "name": "Grxhn",
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 24.3,
+      "lastSeenHours": 27.1,
       "reason": "No participation in the latest war"
     },
     {
@@ -86,7 +65,7 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 30.6,
+      "lastSeenHours": 33.4,
       "reason": "No participation in the latest war"
     },
     {
@@ -94,13 +73,13 @@
       "activeWeeks": 10,
       "totalWeeks": 10,
       "avgFame": 2040,
-      "lastSeenHours": 8.7,
+      "lastSeenHours": 11.5,
       "reason": "No participation in the latest war"
     }
   ],
   "topPerformer": {
-    "name": "Oskar :)",
-    "avgFame": 2635,
+    "name": "MEGABAENIS",
+    "avgFame": 2900,
     "avgDecks": 16.0,
     "role": "elder"
   }

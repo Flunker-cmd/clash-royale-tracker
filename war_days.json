@@ -672,7 +672,7 @@
       }
     },
     "3": {
-      "updated": "2026-10-18T01:55:39Z",
+      "updated": "2026-10-18T06:47:36Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -794,16 +794,6 @@
           "base": 4,
           "decks": 0
         },
-        "#CPCLGY0R": {
-          "name": "AMAMAMAMEOJ",
-          "base": 5,
-          "decks": 0
-        },
-        "#2QGGPPYCP": {
-          "name": "herman@:com",
-          "base": 4,
-          "decks": 0
-        },
         "#LPUGJC2VV": {
           "name": "Hannes",
           "base": 4,
@@ -814,10 +804,10 @@
           "base": 4,
           "decks": 4
         },
-        "#CVYL9CR92": {
-          "name": "A19",
-          "base": 8,
-          "decks": 0
+        "#CPCLGY0R": {
+          "name": "AMAMAMAMEOJ",
+          "base": 5,
+          "decks": 4
         },
         "#8UPLQ90YQ": {
           "name": "Viggen\\\\",
@@ -828,11 +818,6 @@
           "name": "N3lson",
           "base": 8,
           "decks": 4
-        },
-        "#PRVR9J9": {
-          "name": "Limpan",
-          "base": 8,
-          "decks": 2
         },
         "#CJLPGJ2CY": {
           "name": "BRUNO",
@@ -854,11 +839,6 @@
           "base": 8,
           "decks": 4
         },
-        "#GYJVQYR": {
-          "name": "Adam",
-          "base": 8,
-          "decks": 2
-        },
         "#2L8V08QLL": {
           "name": "Bossebus123",
           "base": 7,
@@ -867,6 +847,11 @@
         "#2JRJY2LQR": {
           "name": "skogsankan",
           "base": 8,
+          "decks": 4
+        },
+        "#2QGGPPYCP": {
+          "name": "herman@:com",
+          "base": 4,
           "decks": 4
         },
         "#2UVCLJL2V": {
@@ -899,15 +884,25 @@
           "base": 8,
           "decks": 4
         },
+        "#PRVR9J9": {
+          "name": "Limpan",
+          "base": 8,
+          "decks": 4
+        },
         "#UVJU8Q90V": {
           "name": "WilliR5",
           "base": 8,
           "decks": 4
         },
-        "#8CVLPV9YR": {
-          "name": "Piggelin",
+        "#GYJVQYR": {
+          "name": "Adam",
           "base": 8,
-          "decks": 0
+          "decks": 4
+        },
+        "#CVYL9CR92": {
+          "name": "A19",
+          "base": 8,
+          "decks": 4
         },
         "#VCYPG98JG": {
           "name": "OGDUNEDAN",
@@ -1011,6 +1006,11 @@
         },
         "#VJ9GP8UJ8": {
           "name": "amj",
+          "base": 8,
+          "decks": 4
+        },
+        "#8CVLPV9YR": {
+          "name": "Piggelin",
           "base": 8,
           "decks": 4
         }

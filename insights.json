@@ -1,43 +1,61 @@
 {
-  "generatedAt": "2026-10-19T08:13:14Z",
+  "generatedAt": "2026-10-19T15:58:23Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
     "activeMembers": 44,
-    "activeWarriors": 33,
+    "activeWarriors": 35,
     "totalWeeks": 10,
-    "avgClanFame": 2036,
+    "avgClanFame": 2224,
     "topPerformer": "Oskar :)",
     "topPerformerAvgDecks": 16.0
   },
-  "promote": [],
-  "review": [
+  "promote": [
     {
-      "name": "Bjögga",
-      "role": "elder",
-      "avgFame": 2040,
-      "latestWarFame": 0,
-      "avgDecks": 12.8,
-      "donations": 0,
-      "donationsPerWar": 0,
-      "reason": "Elder demotion warning",
+      "name": "amj",
+      "role": "member",
+      "avgFame": 2475,
+      "latestWarFame": 3200,
+      "avgDecks": 15.4,
+      "donations": 42,
+      "donationsPerWar": 4,
+      "reason": "Ready for Elder promotion",
       "details": [
-        "Fame 0 < 1600 in 1 of 2 wars in a row"
+        "Full wars in a row 3 >= 3"
+      ]
+    },
+    {
+      "name": "Das Meer",
+      "role": "member",
+      "avgFame": 2033,
+      "latestWarFame": 2000,
+      "avgDecks": 16.0,
+      "donations": 42,
+      "donationsPerWar": 14,
+      "reason": "Ready for Elder promotion",
+      "details": [
+        "Full wars in a row 3 >= 3"
       ]
     }
   ],
-  "inactive": [
+  "review": [
     {
-      "name": "Bjögga",
-      "activeWeeks": 10,
-      "totalWeeks": 10,
-      "avgFame": 2040,
-      "lastSeenHours": 22.5,
-      "reason": "No participation in the latest war"
+      "name": "noodlefood",
+      "role": "elder",
+      "avgFame": 1972,
+      "latestWarFame": 500,
+      "avgDecks": 14.0,
+      "donations": 28,
+      "donationsPerWar": 3,
+      "reason": "Elder demotion warning",
+      "details": [
+        "Fame 500 < 1600 in 1 of 2 wars in a row"
+      ]
     }
   ],
+  "inactive": [],
   "topPerformer": {
     "name": "Oskar :)",
-    "avgFame": 2635,
+    "avgFame": 2665,
     "avgDecks": 16.0,
     "role": "elder"
   }

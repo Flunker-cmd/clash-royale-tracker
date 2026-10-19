@@ -1017,7 +1017,7 @@
       }
     },
     "4": {
-      "updated": "2026-10-19T02:12:32Z",
+      "updated": "2026-10-19T08:13:14Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -1129,14 +1129,14 @@
           "base": 4,
           "decks": 0
         },
-        "#VPR880Y8C": {
-          "name": "edvardo",
-          "base": 4,
-          "decks": 0
-        },
         "#J98C09980": {
           "name": "noodlefood",
           "base": 0,
+          "decks": 4
+        },
+        "#VPR880Y8C": {
+          "name": "edvardo",
+          "base": 4,
           "decks": 3
         },
         "#LPUGJC2VV": {
@@ -1147,16 +1147,6 @@
         "#GVJCC2V28": {
           "name": "Blondiee",
           "base": 8,
-          "decks": 0
-        },
-        "#9RCR2QQQJ": {
-          "name": "Zer0",
-          "base": 12,
-          "decks": 0
-        },
-        "#PPJPY09GP": {
-          "name": "BjalkenGG",
-          "base": 12,
           "decks": 0
         },
         "#J2R9RRRG": {
@@ -1191,6 +1181,11 @@
         },
         "#2UVCLJL2V": {
           "name": "FlooterBooterYT",
+          "base": 12,
+          "decks": 4
+        },
+        "#9RCR2QQQJ": {
+          "name": "Zer0",
           "base": 12,
           "decks": 4
         },
@@ -1236,6 +1231,11 @@
         },
         "#YPCURPPY2": {
           "name": "BullyMeILLc|_|M",
+          "base": 12,
+          "decks": 4
+        },
+        "#PPJPY09GP": {
+          "name": "BjalkenGG",
           "base": 12,
           "decks": 4
         },

@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-19T02:12:32Z",
+  "generatedAt": "2026-10-19T08:13:14Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 46,
+    "activeMembers": 44,
     "activeWarriors": 33,
     "totalWeeks": 10,
-    "avgClanFame": 1947,
-    "topPerformer": "MEGABAENIS",
+    "avgClanFame": 2036,
+    "topPerformer": "Oskar :)",
     "topPerformerAvgDecks": 16.0
   },
   "promote": [],
@@ -23,63 +23,21 @@
       "details": [
         "Fame 0 < 1600 in 1 of 2 wars in a row"
       ]
-    },
-    {
-      "name": "Grxhn",
-      "role": "member",
-      "avgFame": 0,
-      "latestWarFame": 0,
-      "avgDecks": 0.0,
-      "donations": 0,
-      "donationsPerWar": 0,
-      "reason": "Candidate for kick",
-      "details": [
-        "Latest war fame 0 < 500"
-      ]
-    },
-    {
-      "name": "edvardo",
-      "role": "member",
-      "avgFame": 0,
-      "latestWarFame": 0,
-      "avgDecks": 0.0,
-      "donations": 0,
-      "donationsPerWar": 0,
-      "reason": "Candidate for kick",
-      "details": [
-        "Latest war fame 0 < 500"
-      ]
     }
   ],
   "inactive": [
-    {
-      "name": "Grxhn",
-      "activeWeeks": 1,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 32.2,
-      "reason": "No participation in the latest war"
-    },
-    {
-      "name": "edvardo",
-      "activeWeeks": 1,
-      "totalWeeks": 10,
-      "avgFame": 0,
-      "lastSeenHours": 38.5,
-      "reason": "No participation in the latest war"
-    },
     {
       "name": "Bjögga",
       "activeWeeks": 10,
       "totalWeeks": 10,
       "avgFame": 2040,
-      "lastSeenHours": 16.5,
+      "lastSeenHours": 22.5,
       "reason": "No participation in the latest war"
     }
   ],
   "topPerformer": {
-    "name": "MEGABAENIS",
-    "avgFame": 2900,
+    "name": "Oskar :)",
+    "avgFame": 2635,
     "avgDecks": 16.0,
     "role": "elder"
   }

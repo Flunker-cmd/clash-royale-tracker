@@ -893,15 +893,6 @@
           "decksUsedToday": 3
         },
         {
-          "tag": "#RG0PL8R0",
-          "name": "pacomax38",
-          "fame": 1600,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 12,
-          "decksUsedToday": 0
-        },
-        {
           "tag": "#VUL80V9C",
           "name": "the nathou",
           "fame": 1650,
@@ -972,15 +963,6 @@
           "boatAttacks": 0,
           "decksUsed": 16,
           "decksUsedToday": 4
-        },
-        {
-          "tag": "#JJCJG89L2",
-          "name": "Cassandre07",
-          "fame": 2100,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 12,
-          "decksUsedToday": 0
         },
         {
           "tag": "#YQJJ09900",
@@ -1100,6 +1082,15 @@
           "decksUsedToday": 4
         },
         {
+          "tag": "#RG0PL8R0",
+          "name": "pacomax38",
+          "fame": 2400,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 16,
+          "decksUsedToday": 4
+        },
+        {
           "tag": "#URYJQC0PL",
           "name": "☢️polo ☢️",
           "fame": 2450,
@@ -1199,6 +1190,15 @@
           "decksUsedToday": 4
         },
         {
+          "tag": "#JJCJG89L2",
+          "name": "Cassandre07",
+          "fame": 2800,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 16,
+          "decksUsedToday": 4
+        },
+        {
           "tag": "#LY88Y22RL",
           "name": "enzo381",
           "fame": 2900,
@@ -1235,7 +1235,7 @@
           "decksUsedToday": 4
         }
       ],
-      "periodPoints": 20600,
+      "periodPoints": 22100,
       "clanScore": 3305
     },
     {
@@ -1455,6 +1455,15 @@
         {
           "tag": "#GPUG2C0R",
           "name": "Paco Merla⚜️",
+          "fame": 0,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 0,
+          "decksUsedToday": 0
+        },
+        {
+          "tag": "#QJ9J0R0J",
+          "name": "toto",
           "fame": 0,
           "repairPoints": 0,
           "boatAttacks": 0,
@@ -3124,15 +3133,6 @@
           "decksUsedToday": 0
         },
         {
-          "tag": "#R0CVY9",
-          "name": "Bruno",
-          "fame": 200,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 1,
-          "decksUsedToday": 0
-        },
-        {
           "tag": "#VGYG9UJG8",
           "name": "MetanoiaEmerson",
           "fame": 200,
@@ -3160,6 +3160,15 @@
           "decksUsedToday": 0
         },
         {
+          "tag": "#R0CVY9",
+          "name": "Bruno",
+          "fame": 500,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 3,
+          "decksUsedToday": 2
+        },
+        {
           "tag": "#8UJQ9R9GG",
           "name": "Tsuum",
           "fame": 600,
@@ -3172,15 +3181,6 @@
           "tag": "#UY8CQV88Q",
           "name": "lnb",
           "fame": 650,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 4,
-          "decksUsedToday": 0
-        },
-        {
-          "tag": "#L2UYRLJCC",
-          "name": "kadu",
-          "fame": 800,
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 4,
@@ -3241,6 +3241,15 @@
           "decksUsedToday": 0
         },
         {
+          "tag": "#L2UYRLJCC",
+          "name": "kadu",
+          "fame": 1600,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 8,
+          "decksUsedToday": 4
+        },
+        {
           "tag": "#UV0U0JPVU",
           "name": "RuiSenna",
           "fame": 1650,
@@ -3266,15 +3275,6 @@
           "boatAttacks": 0,
           "decksUsed": 15,
           "decksUsedToday": 4
-        },
-        {
-          "tag": "#ULPPQ2920",
-          "name": "Emerson Meta²",
-          "fame": 2000,
-          "repairPoints": 0,
-          "boatAttacks": 0,
-          "decksUsed": 11,
-          "decksUsedToday": 0
         },
         {
           "tag": "#G20UY2V0",
@@ -3394,6 +3394,15 @@
           "decksUsedToday": 4
         },
         {
+          "tag": "#ULPPQ2920",
+          "name": "Emerson Meta²",
+          "fame": 2800,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 15,
+          "decksUsedToday": 4
+        },
+        {
           "tag": "#RUGLLUCRR",
           "name": "Zacx",
           "fame": 3100,
@@ -3403,7 +3412,7 @@
           "decksUsedToday": 4
         }
       ],
-      "periodPoints": 11200,
+      "periodPoints": 13100,
       "clanScore": 3290
     }
   ],

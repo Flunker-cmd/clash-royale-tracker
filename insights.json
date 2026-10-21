@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-21T17:44:19Z",
+  "generatedAt": "2026-10-21T20:58:47Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
-    "activeMembers": 44,
+    "activeMembers": 45,
     "activeWarriors": 34,
     "totalWeeks": 10,
-    "avgClanFame": 2204,
-    "topPerformer": "Oskar :)",
+    "avgClanFame": 2155,
+    "topPerformer": "WilliR5",
     "topPerformerAvgDecks": 16.0
   },
   "promote": [
@@ -50,12 +50,34 @@
       "details": [
         "Fame 500 < 1600 in 1 of 2 wars in a row"
       ]
+    },
+    {
+      "name": "BjalkenX",
+      "role": "member",
+      "avgFame": 0,
+      "latestWarFame": 0,
+      "avgDecks": 0.0,
+      "donations": 0,
+      "donationsPerWar": 0,
+      "reason": "Candidate for kick",
+      "details": [
+        "Latest war fame 0 < 500"
+      ]
     }
   ],
-  "inactive": [],
+  "inactive": [
+    {
+      "name": "BjalkenX",
+      "activeWeeks": 1,
+      "totalWeeks": 10,
+      "avgFame": 0,
+      "lastSeenHours": 0.4,
+      "reason": "No participation in the latest war"
+    }
+  ],
   "topPerformer": {
-    "name": "Oskar :)",
-    "avgFame": 2665,
+    "name": "WilliR5",
+    "avgFame": 2710,
     "avgDecks": 16.0,
     "role": "elder"
   }

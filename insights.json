@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-22T14:10:49Z",
+  "generatedAt": "2026-10-22T18:55:54Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
     "activeMembers": 44,
     "activeWarriors": 34,
     "totalWeeks": 10,
     "avgClanFame": 2164,
-    "topPerformer": "Oskar :)",
+    "topPerformer": "WilliR5",
     "topPerformerAvgDecks": 16.0
   },
   "promote": [
@@ -29,8 +29,8 @@
       "avgFame": 2033,
       "latestWarFame": 2000,
       "avgDecks": 16.0,
-      "donations": 172,
-      "donationsPerWar": 57,
+      "donations": 200,
+      "donationsPerWar": 67,
       "reason": "Ready for Elder promotion",
       "details": [
         "Full wars in a row 3 >= 3"
@@ -57,8 +57,8 @@
       "avgFame": 0,
       "latestWarFame": 0,
       "avgDecks": 0.0,
-      "donations": 40,
-      "donationsPerWar": 40,
+      "donations": 62,
+      "donationsPerWar": 62,
       "reason": "Candidate for kick",
       "details": [
         "Latest war fame 0 < 500"
@@ -71,13 +71,13 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 0.3,
+      "lastSeenHours": 1.3,
       "reason": "No participation in the latest war"
     }
   ],
   "topPerformer": {
-    "name": "Oskar :)",
-    "avgFame": 2665,
+    "name": "WilliR5",
+    "avgFame": 2710,
     "avgDecks": 16.0,
     "role": "elder"
   }

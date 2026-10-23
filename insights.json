@@ -1,28 +1,15 @@
 {
-  "generatedAt": "2026-10-23T21:47:38Z",
+  "generatedAt": "2026-10-23T22:43:15Z",
   "summary": {
     "clanTag": "#L0G0Y0JP",
     "activeMembers": 47,
     "activeWarriors": 34,
     "totalWeeks": 10,
     "avgClanFame": 2026,
-    "topPerformer": "MEGABAENIS",
+    "topPerformer": "WilliR5",
     "topPerformerAvgDecks": 16.0
   },
   "promote": [
-    {
-      "name": "amj",
-      "role": "member",
-      "avgFame": 2475,
-      "latestWarFame": 3200,
-      "avgDecks": 15.4,
-      "donations": 316,
-      "donationsPerWar": 32,
-      "reason": "Ready for Elder promotion",
-      "details": [
-        "Full wars in a row 3 >= 3"
-      ]
-    },
     {
       "name": "Das Meer",
       "role": "member",
@@ -71,13 +58,13 @@
       "activeWeeks": 1,
       "totalWeeks": 10,
       "avgFame": 0,
-      "lastSeenHours": 1.6,
+      "lastSeenHours": 2.6,
       "reason": "No participation in the latest war"
     }
   ],
   "topPerformer": {
-    "name": "MEGABAENIS",
-    "avgFame": 2925,
+    "name": "WilliR5",
+    "avgFame": 2710,
     "avgDecks": 16.0,
     "role": "elder"
   }

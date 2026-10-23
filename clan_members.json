@@ -4,7 +4,7 @@
   "type": "open",
   "description": "Vi kör Clan Wars, joina inte om du inte spelar CW torsdag till Söndag. vi är en Aktiv Klan! Code: RoyaleAPI",
   "badgeId": 16000062,
-  "clanScore": 130040,
+  "clanScore": 130035,
   "clanWarTrophies": 3303,
   "location": {
     "id": 57000225,
@@ -13,7 +13,7 @@
     "countryCode": "SE"
   },
   "requiredTrophies": 7000,
-  "donationsPerWeek": 7025,
+  "donationsPerWeek": 7033,
   "clanChestStatus": "inactive",
   "clanChestLevel": 1,
   "clanChestMaxLevel": 0,
@@ -32,7 +32,7 @@
         "rawName": "Arena_L18"
       },
       "clanRank": 1,
-      "previousClanRank": 10,
+      "previousClanRank": 7,
       "donations": 40,
       "donationsReceived": 280,
       "clanChestPoints": 0
@@ -50,7 +50,7 @@
         "rawName": "Arena_L18"
       },
       "clanRank": 2,
-      "previousClanRank": 2,
+      "previousClanRank": 8,
       "donations": 196,
       "donationsReceived": 0,
       "clanChestPoints": 0
@@ -68,7 +68,7 @@
         "rawName": "Arena_L18"
       },
       "clanRank": 3,
-      "previousClanRank": 6,
+      "previousClanRank": 2,
       "donations": 338,
       "donationsReceived": 0,
       "clanChestPoints": 0
@@ -86,7 +86,7 @@
         "rawName": "Arena_L18"
       },
       "clanRank": 4,
-      "previousClanRank": 4,
+      "previousClanRank": 9,
       "donations": 256,
       "donationsReceived": 240,
       "clanChestPoints": 0
@@ -104,7 +104,7 @@
         "rawName": "Arena_L18"
       },
       "clanRank": 5,
-      "previousClanRank": 8,
+      "previousClanRank": 6,
       "donations": 334,
       "donationsReceived": 240,
       "clanChestPoints": 0
@@ -122,7 +122,7 @@
         "rawName": "Arena_L18"
       },
       "clanRank": 6,
-      "previousClanRank": 5,
+      "previousClanRank": 1,
       "donations": 50,
       "donationsReceived": 0,
       "clanChestPoints": 0
@@ -140,7 +140,7 @@
         "rawName": "Arena_L18"
       },
       "clanRank": 7,
-      "previousClanRank": 7,
+      "previousClanRank": 11,
       "donations": 76,
       "donationsReceived": 80,
       "clanChestPoints": 0
@@ -158,7 +158,7 @@
         "rawName": "Arena_L18"
       },
       "clanRank": 8,
-      "previousClanRank": 3,
+      "previousClanRank": 5,
       "donations": 166,
       "donationsReceived": 240,
       "clanChestPoints": 0
@@ -176,7 +176,7 @@
         "rawName": "Arena_L18"
       },
       "clanRank": 9,
-      "previousClanRank": 1,
+      "previousClanRank": 10,
       "donations": 44,
       "donationsReceived": 240,
       "clanChestPoints": 0
@@ -212,7 +212,7 @@
         "rawName": "Arena_L18"
       },
       "clanRank": 11,
-      "previousClanRank": 11,
+      "previousClanRank": 3,
       "donations": 214,
       "donationsReceived": 40,
       "clanChestPoints": 0
@@ -230,7 +230,7 @@
         "rawName": "Arena_L18"
       },
       "clanRank": 12,
-      "previousClanRank": 9,
+      "previousClanRank": 4,
       "donations": 0,
       "donationsReceived": 0,
       "clanChestPoints": 0
@@ -275,7 +275,7 @@
       "tag": "#QJ920VG2C",
       "name": "isak",
       "role": "member",
-      "lastSeen": "20261022T203923.000Z",
+      "lastSeen": "20261022T224848.000Z",
       "expLevel": 0,
       "trophies": 13751,
       "arena": {
@@ -286,7 +286,7 @@
       "clanRank": 15,
       "previousClanRank": 15,
       "donations": 134,
-      "donationsReceived": 280,
+      "donationsReceived": 288,
       "clanChestPoints": 0
     },
     {
@@ -419,7 +419,7 @@
       "tag": "#P2VVLPGUJ",
       "name": "Gabro",
       "role": "elder",
-      "lastSeen": "20261022T143241.000Z",
+      "lastSeen": "20261022T223109.000Z",
       "expLevel": 0,
       "trophies": 12530,
       "arena": {
@@ -452,24 +452,6 @@
       "clanChestPoints": 0
     },
     {
-      "tag": "#V882JC088",
-      "name": "Teddaren",
-      "role": "elder",
-      "lastSeen": "20261022T213508.000Z",
-      "expLevel": 0,
-      "trophies": 12072,
-      "arena": {
-        "id": 54000141,
-        "name": "Magic Academy",
-        "rawName": "Arena_L15"
-      },
-      "clanRank": 25,
-      "previousClanRank": 26,
-      "donations": 140,
-      "donationsReceived": 215,
-      "clanChestPoints": 0
-    },
-    {
       "tag": "#PPJPY09GP",
       "name": "BjalkenGG",
       "role": "coLeader",
@@ -481,10 +463,28 @@
         "name": "Magic Academy",
         "rawName": "Arena_L15"
       },
-      "clanRank": 26,
+      "clanRank": 25,
       "previousClanRank": 25,
       "donations": 615,
       "donationsReceived": 400,
+      "clanChestPoints": 0
+    },
+    {
+      "tag": "#V882JC088",
+      "name": "Teddaren",
+      "role": "elder",
+      "lastSeen": "20261022T221124.000Z",
+      "expLevel": 0,
+      "trophies": 12014,
+      "arena": {
+        "id": 54000141,
+        "name": "Magic Academy",
+        "rawName": "Arena_L15"
+      },
+      "clanRank": 26,
+      "previousClanRank": 26,
+      "donations": 140,
+      "donationsReceived": 215,
       "clanChestPoints": 0
     },
     {
@@ -617,17 +617,17 @@
       "tag": "#2QL8VQRUP",
       "name": "The Viking",
       "role": "member",
-      "lastSeen": "20261022T203408.000Z",
+      "lastSeen": "20261022T225435.000Z",
       "expLevel": 0,
-      "trophies": 10560,
+      "trophies": 10589,
       "arena": {
         "id": 54000130,
         "name": "Royal Road",
         "rawName": "Arena_L12"
       },
       "clanRank": 34,
-      "previousClanRank": 35,
-      "donations": 29,
+      "previousClanRank": 34,
+      "donations": 37,
       "donationsReceived": 40,
       "clanChestPoints": 0
     },
@@ -644,7 +644,7 @@
         "rawName": "Arena_L11"
       },
       "clanRank": 35,
-      "previousClanRank": 36,
+      "previousClanRank": 35,
       "donations": 52,
       "donationsReceived": 80,
       "clanChestPoints": 0
@@ -662,7 +662,7 @@
         "rawName": "Arena_L11"
       },
       "clanRank": 36,
-      "previousClanRank": 37,
+      "previousClanRank": 36,
       "donations": 122,
       "donationsReceived": 112,
       "clanChestPoints": 0
@@ -680,7 +680,7 @@
         "rawName": "Arena_L11"
       },
       "clanRank": 37,
-      "previousClanRank": 38,
+      "previousClanRank": 37,
       "donations": 180,
       "donationsReceived": 280,
       "clanChestPoints": 0
@@ -698,7 +698,7 @@
         "rawName": "Arena_L11"
       },
       "clanRank": 38,
-      "previousClanRank": 39,
+      "previousClanRank": 38,
       "donations": 402,
       "donationsReceived": 280,
       "clanChestPoints": 0
@@ -716,7 +716,7 @@
         "rawName": "Arena_L10"
       },
       "clanRank": 39,
-      "previousClanRank": 41,
+      "previousClanRank": 40,
       "donations": 56,
       "donationsReceived": 0,
       "clanChestPoints": 0
@@ -734,7 +734,7 @@
         "rawName": "Arena_L10"
       },
       "clanRank": 40,
-      "previousClanRank": 40,
+      "previousClanRank": 39,
       "donations": 0,
       "donationsReceived": 0,
       "clanChestPoints": 0
@@ -770,7 +770,7 @@
         "rawName": "Arena_L8"
       },
       "clanRank": 42,
-      "previousClanRank": 42,
+      "previousClanRank": 41,
       "donations": 49,
       "donationsReceived": 160,
       "clanChestPoints": 0
@@ -788,7 +788,7 @@
         "rawName": "Arena13"
       },
       "clanRank": 43,
-      "previousClanRank": 43,
+      "previousClanRank": 42,
       "donations": 0,
       "donationsReceived": 0,
       "clanChestPoints": 0
@@ -806,7 +806,7 @@
         "rawName": "Arena9"
       },
       "clanRank": 44,
-      "previousClanRank": 44,
+      "previousClanRank": 43,
       "donations": 30,
       "donationsReceived": 210,
       "clanChestPoints": 0
@@ -824,7 +824,7 @@
         "rawName": "Arena6"
       },
       "clanRank": 45,
-      "previousClanRank": 45,
+      "previousClanRank": 44,
       "donations": 62,
       "donationsReceived": 60,
       "clanChestPoints": 0

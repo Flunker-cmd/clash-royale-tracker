@@ -40,8 +40,20 @@ data. Decks and donations are averages per participated war.
   phones each player becomes a card.
 - **Player detail**: click a name to see stats, fame and decks per war, and a
   checklist of every rule with its outcome, so a recommendation can be explained.
+- **River race** ("Flodkapplöpning"): every clan in the race as a boat sailing
+  towards the finish line at 10 000 fame, with today's medals and daily rank, our
+  result per earlier day of the war, and how far the boat would move if the day
+  ended now. Between wars it shows the final standings of the latest race.
+- **Opponents** ("Motståndet"): one card per other clan in the race with war
+  trophies, earlier meetings in the race log and who came out ahead, players and
+  decks compared with ours, their best player and a fun fact.
+- **War heroes** ("Krigets hjältar"): awards for the latest finished war (most
+  fame, longest full-war streak, biggest improvement, boat attacks, donations,
+  all 16 decks), plus the members one full war away from Elder and whether they
+  are on track in the war in progress. The player detail shows the same progress
+  towards Elder.
 - **War in progress**: which day it is, decks played today and in total, and who
-  still has decks left today (with a button that copies the list for the clan chat).
+  still has decks left today (with a button that copies the list for the clan chat; copy confirmations appear as toasts).
   Click an earlier day of the war to see who played all, some or none of their
   decks that day (saved hourly by `track_war_days.py`, so only days after it started running).
   Between wars (training days) the panel shows the war that just ended until the

@@ -717,7 +717,252 @@
     .md-check-outcome { grid-row: 1 / span 2; grid-column: 2; align-self: center; white-space: nowrap; }
     .md-check.is-off { color: #64748b; }
     .md-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 14px; }
+    .md-progress { margin: 0 0 10px; }
+    .md-progress-bar { display: flex; gap: 4px; margin: 6px 0; }
+    .md-progress-step { flex: 1; height: 8px; border-radius: 999px; background: #334155; }
+    .md-progress-step.is-done { background: #10b981; }
+    .md-progress-step.is-live { background: linear-gradient(90deg, #10b981 var(--fill, 0%), #334155 var(--fill, 0%)); box-shadow: 0 0 0 1px #34d399; }
     .mobile-only { display: none; }
+
+    .live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #7dd3fc;
+      font-size: 0.8em;
+      font-weight: 600;
+    }
+    .live-pill.is-live { background: rgba(239, 68, 68, 0.12); border-color: rgba(248, 113, 113, 0.45); color: #fecaca; }
+    .live-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+    .live-pill.is-live .live-dot { background: #ef4444; animation: live-pulse 1.6s ease-out infinite; }
+    @keyframes live-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+      100% { box-shadow: 0 0 0 9px rgba(239, 68, 68, 0); }
+    }
+
+    /* ---- Flodkapplöpning: one lane per clan, the boat sails towards the finish line */
+    .race-panel {
+      background: linear-gradient(180deg, #0b1f33, #111827 70%);
+      border: 1px solid #1e4a6b;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+    }
+    .race-panel .label {
+      color: #7dd3fc;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.76em;
+      font-weight: 700;
+    }
+    .race-headline { margin: 6px 0 0; color: #e2e8f0; font-size: 1.05em; font-weight: 600; }
+    .race-sub { margin: 4px 0 0; color: #94a3b8; font-size: 0.8em; }
+    .race-lanes { display: grid; gap: 10px; margin: 16px 0 0; padding: 0; list-style: none; }
+    .race-lane {
+      display: grid;
+      grid-template-columns: minmax(110px, 180px) 1fr minmax(96px, auto);
+      align-items: center;
+      gap: 12px;
+    }
+    .race-clan { min-width: 0; }
+    .race-clan-name { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; color: #e2e8f0; }
+    .race-clan-meta { display: block; color: #94a3b8; font-size: 0.75em; }
+    .race-lane.is-us .race-clan-name { color: #facc15; }
+    .race-river {
+      position: relative;
+      height: 38px;
+      border-radius: 8px;
+      background:
+        repeating-linear-gradient(100deg, rgba(255, 255, 255, 0.06) 0 2px, transparent 2px 22px),
+        linear-gradient(180deg, #0c4a6e, #075985 55%, #0c4a6e);
+      background-size: 44px 100%, 100% 100%;
+      animation: river-flow 3s linear infinite;
+      overflow: hidden;
+    }
+    .race-lane.is-us .race-river { box-shadow: 0 0 0 2px #facc15, 0 0 18px rgba(250, 204, 21, 0.18); }
+    @keyframes river-flow { to { background-position: -44px 0, 0 0; } }
+    .race-finish {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 10px;
+      background: repeating-conic-gradient(#f8fafc 0 25%, #0f172a 0 50%) 0 0 / 10px 10px;
+      opacity: 0.85;
+    }
+    .race-wake {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height: 6px;
+      width: calc((100% - 52px) * var(--p, 0) + 8px);
+      transform: translateY(2px);
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(224, 242, 254, 0.45));
+      transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .race-boat {
+      position: absolute;
+      top: 2px;
+      left: calc((100% - 52px) * var(--p, 0));
+      width: 42px;
+      height: 32px;
+      transition: left 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .race-boat svg { display: block; animation: boat-bob 2.4s ease-in-out infinite; }
+    .race-lane:nth-child(2n) .race-boat svg { animation-delay: -1.1s; }
+    @keyframes boat-bob {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-3px) rotate(2deg); }
+    }
+    .race-flag { position: absolute; top: 4px; right: 16px; font-size: 1.1em; }
+    .race-score { text-align: right; font-variant-numeric: tabular-nums; }
+    .race-score-value { display: block; font-weight: 700; color: #f8fafc; }
+    .race-score-meta { display: block; color: #94a3b8; font-size: 0.75em; }
+    .race-days { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .race-day {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      font-size: 0.8em;
+    }
+    .race-day strong { color: #f8fafc; }
+    .race-day.is-today { border-style: dashed; border-color: #38bdf8; }
+    @media (prefers-reduced-motion: reduce) {
+      .race-river, .race-boat svg, .live-pill.is-live .live-dot { animation: none; }
+      .race-boat, .race-wake { transition: none; }
+    }
+
+    /* ---- Krigets hjältar */
+    .awards-panel {
+      background: #111827;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+    }
+    .awards-panel .label {
+      color: #7dd3fc;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.76em;
+      font-weight: 700;
+    }
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .award-card {
+      position: relative;
+      padding: 14px 14px 12px 58px;
+      background: linear-gradient(135deg, #1e293b, #172033);
+      border: 1px solid #334155;
+      border-radius: 10px;
+      min-width: 0;
+    }
+    .award-icon {
+      position: absolute;
+      left: 12px;
+      top: 14px;
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(250, 204, 21, 0.12);
+      font-size: 1.25em;
+    }
+    .award-title { color: #94a3b8; font-size: 0.72em; letter-spacing: 0.06em; text-transform: uppercase; }
+    .award-winner { margin-top: 3px; color: #f8fafc; font-weight: 700; overflow-wrap: anywhere; }
+    .award-winner .name-link { font-weight: 700; }
+    .award-value { margin-top: 2px; color: #facc15; font-size: 0.85em; }
+    .awards-near { margin-top: 16px; }
+
+    .rivals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .rival-card {
+      padding: 14px;
+      background: linear-gradient(135deg, #1e293b, #172033);
+      border: 1px solid #334155;
+      border-radius: 10px;
+      min-width: 0;
+    }
+    .rival-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    .rival-name { margin: 0; font-size: 1.05em; color: #f8fafc; overflow-wrap: anywhere; }
+    .rival-trophies { color: #94a3b8; font-size: 0.78em; }
+    .rival-tag {
+      flex: none;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.68em;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .rival-tag.is-nemesis { background: rgba(239, 68, 68, 0.14); color: #fca5a5; }
+    .rival-tag.is-prey { background: rgba(16, 185, 129, 0.14); color: #6ee7b7; }
+    .rival-tag.is-even { background: rgba(250, 204, 21, 0.12); color: #fde047; }
+    .rival-tag.is-new { background: rgba(56, 189, 248, 0.12); color: #7dd3fc; }
+    .rival-stats { display: grid; gap: 4px; margin: 12px 0 0; font-size: 0.84em; }
+    .rival-stat { display: flex; justify-content: space-between; gap: 10px; }
+    .rival-stat dt { color: #94a3b8; }
+    .rival-stat dd { margin: 0; color: #e2e8f0; text-align: right; font-variant-numeric: tabular-nums; }
+    .rival-stat .vs { color: #64748b; font-size: 0.9em; }
+    .rival-stat .ahead { color: #4ade80; }
+    .rival-stat .behind { color: #fca5a5; }
+    .rival-fact {
+      margin: 12px 0 0;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: rgba(56, 189, 248, 0.08);
+      color: #cbd5e1;
+      font-size: 0.82em;
+      line-height: 1.45;
+    }
+    .awards-near .war-chip.on-track small { color: #4ade80; }
+    .awards-near .war-chip.off-track small { color: #fca5a5; }
+
+    .toast-stack {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 1000;
+      display: grid;
+      gap: 8px;
+      transform: translateX(-50%);
+      width: min(420px, calc(100vw - 32px));
+      pointer-events: none;
+    }
+    .toast {
+      padding: 12px 16px;
+      background: #0f172a;
+      border: 1px solid #10b981;
+      border-radius: 10px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      color: #f8fafc;
+      font-size: 0.9em;
+      animation: toast-in 0.25s ease-out;
+    }
+    .toast.is-error { border-color: #ef4444; }
+    .toast.is-leaving { opacity: 0; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s; }
+    @keyframes toast-in { from { opacity: 0; transform: translateY(12px); } }
 
     @media (max-width: 720px) {
       body { padding: 16px; }
@@ -725,7 +970,9 @@
       .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .stat-card { padding: 12px; }
       .stat-card .value { font-size: 1.2em; overflow-wrap: anywhere; }
-      .summary-card, .recommendation-panel, .criteria-panel, .war-panel, .trend-panel { padding: 14px; }
+      .summary-card, .recommendation-panel, .criteria-panel, .war-panel, .trend-panel, .race-panel, .awards-panel { padding: 14px; }
+      .race-lane { grid-template-columns: 1fr auto; gap: 4px 10px; }
+      .race-river { grid-column: 1 / -1; order: 3; }
       .toolbar, .controls { width: 100%; }
       .search-input { flex: 1 1 100%; min-width: 0; }
       #sort-select { flex: 1 1 calc(100% - 56px); min-width: 0; }
@@ -781,6 +1028,7 @@
         <h1 id="title">Ikea Clan Management Dashboard</h1>
         <p class="subtitle" id="subtitle">Laddar klanmedlemmar och krigshistorik...</p>
         <div class="last-updated" id="last-updated">Uppdaterar tidsstämpel...</div>
+        <div class="live-pill" id="live-pill" hidden><span class="live-dot"></span><span id="live-pill-text"></span></div>
       </div>
     </div>
 
@@ -832,6 +1080,20 @@
       <div id="recommendations-list" class="recommendation-list"></div>
     </div>
 
+    <div class="race-panel" id="race-panel" hidden>
+      <div class="label" id="race-title">Flodkapplöpning</div>
+      <p class="race-headline" id="race-headline"></p>
+      <p class="race-sub" id="race-sub"></p>
+      <ol class="race-lanes" id="race-lanes"></ol>
+      <div class="race-days" id="race-days"></div>
+    </div>
+
+    <div class="awards-panel" id="rivals-panel" hidden>
+      <div class="label">Motståndet</div>
+      <p class="trend-sub" id="rivals-sub"></p>
+      <div class="rivals-grid" id="rivals-grid"></div>
+    </div>
+
     <div class="war-panel" id="war-panel" hidden>
       <div class="war-panel-header">
         <div>
@@ -843,6 +1105,13 @@
       <div class="stats-grid" id="war-stats"></div>
       <div id="war-lists"></div>
       <p class="war-note" id="war-note"></p>
+    </div>
+
+    <div class="awards-panel" id="awards-panel" hidden>
+      <div class="label">Krigets hjältar</div>
+      <p class="trend-sub" id="awards-sub"></p>
+      <div class="awards-grid" id="awards-grid"></div>
+      <div class="awards-near" id="awards-near"></div>
     </div>
 
     <div class="trend-panel" id="trend-panel" hidden>
@@ -1549,6 +1818,12 @@
       updateSummaryAndRecommendations();
       renderWarPanel();
       renderTable();
+      try {
+        renderAwards();
+      } catch (panelError) {
+        console.error('Krigets hjältar kunde inte ritas', panelError);
+        document.getElementById('awards-panel').hidden = true;
+      }
     }
 
     async function loadDashboard() {
@@ -1592,6 +1867,13 @@
 
         applySharedSettings();
         rebuildCombinedData();
+        try {
+          renderLivePill();
+          renderRace();
+        } catch (panelError) {
+          console.error('Flodkapplöpningen kunde inte ritas', panelError);
+          document.getElementById('race-panel').hidden = true;
+        }
         try {
           renderTrend();
           renderEvents();
@@ -1849,12 +2131,7 @@
       const dayName = WAR_DAY_NAMES[currentWarInfo.day - 1];
       const lines = pending.map(m => `• ${m.name} (${DECKS_PER_DAY - m.warDecksToday} kvar)`);
       const text = `⚔️ Krigsdag ${currentWarInfo.day}/${WAR_DAY_NAMES.length} (${dayName}) – decks kvar idag:\n${lines.join('\n')}`;
-
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Listan kopierades!');
-      }).catch(() => {
-        alert('Kunde inte kopiera automatiskt. Kontrollera webbläsarens behörigheter.');
-      });
+      copyText(text, 'Listan kopierades!');
     }
 
     function renderWarCell(m) {
@@ -1868,6 +2145,414 @@
               <div class="timeline" role="img" aria-label="Idag: ${m.warDecksToday} av ${DECKS_PER_DAY} decks spelade">${dots}</div>
               <span class="loyalty-text">${m.warDecksUsed} / ${currentWarInfo.day * DECKS_PER_DAY} decks</span>
             </div>`;
+    }
+
+    // ---- Flodkapplöpning: the boats of the clans in the race sail towards the finish line at 10 000 fame.
+    // Colosseum week has no finish line, so its lanes are scaled to the leader instead.
+    const RACE_FINISH = 10000;
+
+    function ordinalSv(n) {
+      return `${n}:${n === 1 || n === 2 ? 'a' : 'e'}`;
+    }
+
+    // Unfinished clans have finishTime 19691231T235959.000Z.
+    function hasFinished(finishTime) {
+      return Number(/^(\d{4})/.exec(finishTime || '')?.[1] || 0) > 2000;
+    }
+
+    function boatSvg(isUs) {
+      const sail = isUs ? '#facc15' : '#e2e8f0';
+      const hull = isUs ? '#b45309' : '#64748b';
+      return `<svg viewBox="0 0 42 32" width="42" height="32" aria-hidden="true">`
+        + `<line x1="20" y1="3" x2="20" y2="23" stroke="#cbd5e1" stroke-width="1.6"/>`
+        + `<path d="M21.5 4 L35 21 H21.5 Z" fill="${sail}"/>`
+        + `<path d="M18.5 8 L8 21 H18.5 Z" fill="${sail}" opacity="0.75"/>`
+        + `<path d="M3 23 H40 L33 30 H5 Z" fill="${hull}"/>`
+        + `</svg>`;
+    }
+
+    // During a war the race comes from clan_data.json, between wars from the latest race in the log.
+    function getRaceData() {
+      const war = dashboardState?.currentWar;
+      if (war && currentWarInfo.active && war.clans?.length) {
+        const clans = war.clans.map(c => ({
+          tag: c.tag,
+          name: c.name,
+          trophies: Number(c.clanScore || 0),
+          participants: c.participants || [],
+          fame: Number(c.fame || 0),
+          today: Number(c.periodPoints || 0),
+          finished: hasFinished(c.finishTime),
+          finishTime: c.finishTime || ''
+        }));
+        // Today's rank by medals decides how far each boat moves at the end of the day.
+        [...clans].sort((a, b) => b.today - a.today).forEach((c, i) => { c.todayRank = i + 1; });
+        clans.sort((a, b) => (b.finished - a.finished)
+          || (a.finished && b.finished ? a.finishTime.localeCompare(b.finishTime) : 0)
+          || b.fame - a.fame);
+        clans.forEach((c, i) => { c.rank = i + 1; });
+        return { live: true, colosseum: war.periodType === 'colosseum', clans };
+      }
+
+      const latest = dashboardState?.historyRaces?.[0];
+      if (!latest?.standings?.length) return null;
+      const clans = latest.standings.map(s => ({
+        tag: s.clan.tag,
+        name: s.clan.name,
+        // clanScore in the log is the score before the war, see getTrendData.
+        trophies: Number(s.clan.clanScore || 0) + Number(s.trophyChange || 0),
+        participants: s.clan.participants || [],
+        fame: Number(s.clan.fame || 0),
+        rank: Number(s.rank || 0),
+        trophyChange: Number(s.trophyChange || 0),
+        finished: hasFinished(s.clan.finishTime)
+      })).sort((a, b) => a.rank - b.rank);
+      return { live: false, colosseum: Math.max(...clans.map(c => c.fame)) > RACE_FINISH, clans };
+    }
+
+    // The war's earlier days from periodLogs (the log covers the whole season so far), plus how far a boat
+    // moves for each daily rank, taken from the latest logged day.
+    function getRaceDays() {
+      const war = dashboardState?.currentWar;
+      const logs = war?.periodLogs || [];
+      const warStart = Number(war?.periodIndex) - currentWarInfo.day + 1;
+      const days = logs
+        .filter(log => log.periodIndex >= warStart && log.periodIndex < Number(war.periodIndex))
+        .map(log => {
+          const ours = (log.items || []).find(item => item.clan?.tag === CLAN_TAG);
+          return ours && {
+            day: log.periodIndex - warStart + 1,
+            rank: Number(ours.endOfDayRank) + 1,
+            progress: Number(ours.progressEarned || 0) + Number(ours.progressEarnedFromDefenses || 0)
+          };
+        })
+        .filter(Boolean)
+        .sort((a, b) => a.day - b.day);
+      const lastLog = logs.reduce((latest, log) => (!latest || log.periodIndex > latest.periodIndex ? log : latest), null);
+      const progressByRank = {};
+      (lastLog?.items || []).forEach(item => { progressByRank[Number(item.endOfDayRank) + 1] = Number(item.progressEarned || 0); });
+      return { days, progressByRank };
+    }
+
+    function renderRace() {
+      const panel = document.getElementById('race-panel');
+      const race = getRaceData();
+      const us = race?.clans.find(c => c.tag === CLAN_TAG);
+      if (!race || !us) {
+        panel.hidden = true;
+        return;
+      }
+      panel.hidden = false;
+
+      const scaleMax = race.colosseum ? Math.max(1, ...race.clans.map(c => c.fame)) : RACE_FINISH;
+      const leader = race.clans[0];
+      const runnerUp = race.clans[1];
+      const fmt = n => n.toLocaleString();
+      let headline;
+      if (us.finished) {
+        headline = `${us.name} har gått i mål som ${ordinalSv(us.rank)}! 🏁`;
+      } else if (race.live) {
+        headline = us.rank === 1
+          ? `${us.name} leder med ${fmt(us.fame - (runnerUp?.fame || 0))} fame före ${runnerUp?.name || 'de andra'}.`
+          : `${us.name} ligger ${ordinalSv(us.rank)}, ${fmt(leader.fame - us.fame)} fame bakom ${leader.name}.`;
+      } else {
+        headline = `${us.name} slutade ${ordinalSv(us.rank)} (${signed(us.trophyChange)} troféer).`;
+      }
+
+      const sub = [];
+      if (race.live) {
+        sub.push(`Dag ${currentWarInfo.day} av ${WAR_DAY_NAMES.length}`);
+        if (!race.colosseum && !us.finished) sub.push(`${fmt(Math.max(0, RACE_FINISH - us.fame))} fame kvar till mål`);
+        if (race.colosseum) sub.push('Colosseum: ingen mållinje, mest fame vinner');
+      } else {
+        const winner = race.clans.find(c => c.rank === 1);
+        if (winner && winner !== us) sub.push(`${winner.name} vann`);
+        if (!race.colosseum && !us.finished) sub.push(`${us.name} var ${fmt(RACE_FINISH - us.fame)} fame från mållinjen`);
+        sub.push(dashboardState.currentWar?.periodType === 'training' ? 'Nästa krig startar på torsdag' : 'Senaste avslutade kriget');
+      }
+
+      document.getElementById('race-title').textContent = race.live ? 'Flodkapplöpning – live' : 'Senaste flodkapplöpningen';
+      document.getElementById('race-headline').textContent = headline;
+      document.getElementById('race-sub').textContent = sub.join(' · ');
+
+      const lanes = document.getElementById('race-lanes');
+      lanes.setAttribute('aria-label', `Klanernas båtar, ${race.colosseum ? 'mest fame först' : `mållinje vid ${fmt(RACE_FINISH)} fame`}`);
+      lanes.innerHTML = race.clans.map(c => {
+        const share = Math.min(c.fame, scaleMax) / scaleMax;
+        const isUs = c.tag === CLAN_TAG;
+        const meta = race.live
+          ? (c.finished ? 'I mål' : `${fmt(c.today)} medaljer idag · ${ordinalSv(c.todayRank)}`)
+          : `${signed(c.trophyChange)} troféer`;
+        return `<li class="race-lane${isUs ? ' is-us' : ''}" data-share="${share.toFixed(4)}">
+            <div class="race-clan">
+              <span class="race-clan-name">${escapeHtml(c.name)}</span>
+              <span class="race-clan-meta">${ordinalSv(c.rank)} plats${c.finished ? ' · 🏁' : ''}</span>
+            </div>
+            <div class="race-river" role="img" aria-label="${escapeHtml(c.name)}: ${fmt(c.fame)} fame${c.finished ? ', i mål' : ''}">
+              <div class="race-wake"></div>
+              ${race.colosseum ? '' : '<div class="race-finish"></div>'}
+              <div class="race-boat">${boatSvg(isUs)}</div>
+            </div>
+            <div class="race-score">
+              <span class="race-score-value">${fmt(c.fame)}${race.colosseum ? '' : ` <small class="race-clan-meta" style="display:inline">/ ${fmt(RACE_FINISH)}</small>`}</span>
+              <span class="race-score-meta">${meta}</span>
+            </div>
+          </li>`;
+      }).join('');
+
+      // The boats start at the quay and sail out to their positions.
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        lanes.querySelectorAll('.race-lane').forEach(lane => lane.style.setProperty('--p', lane.dataset.share));
+      }));
+
+      try {
+        renderRivals(race);
+      } catch (panelError) {
+        console.error('Motståndet kunde inte ritas', panelError);
+        document.getElementById('rivals-panel').hidden = true;
+      }
+
+      const daysEl = document.getElementById('race-days');
+      if (!race.live) {
+        daysEl.innerHTML = '';
+        return;
+      }
+      const medal = rank => ['🥇', '🥈', '🥉'][rank - 1] || '';
+      const { days, progressByRank } = getRaceDays();
+      const chips = days.map(d => `<span class="race-day">${WAR_DAY_NAMES[d.day - 1]} ${medal(d.rank)} <strong>${ordinalSv(d.rank)}</strong> · +${fmt(d.progress)} fame</span>`);
+      if (!us.finished) {
+        const gain = progressByRank[us.todayRank];
+        chips.push(`<span class="race-day is-today" title="Placering på dagens medaljer, avgör hur långt båten seglar när dagen tar slut">${WAR_DAY_NAMES[currentWarInfo.day - 1]} ${medal(us.todayRank)} <strong>${ordinalSv(us.todayRank)} just nu</strong>${gain ? ` · +${fmt(gain)} om dagen slutade nu` : ''}</span>`);
+      }
+      daysEl.innerHTML = chips.join('');
+    }
+
+    // ---- Motståndet: facts about the other clans in the race, from their participants and the race log.
+    function getClanWarStats(participants) {
+      const played = participants.filter(p => Number(p.decksUsed || 0) > 0);
+      const star = participants.reduce((best, p) => (!best || Number(p.fame || 0) > Number(best.fame || 0) ? p : best), null);
+      return {
+        players: played.length,
+        decks: participants.reduce((sum, p) => sum + Number(p.decksUsed || 0), 0),
+        today: participants.reduce((sum, p) => sum + Number(p.decksUsedToday || 0), 0),
+        boatAttacks: participants.reduce((sum, p) => sum + Number(p.boatAttacks || 0), 0),
+        star: star && Number(star.fame || 0) > 0 ? { name: star.name, fame: Number(star.fame) } : null
+      };
+    }
+
+    // Earlier races in the log with both clans. Between wars the race shown is the latest one in the log,
+    // so it is left out here and only the races before it count as earlier meetings.
+    function getMeetings(tag, live) {
+      const races = (dashboardState?.historyRaces || []).slice(live ? 0 : 1);
+      return races.map(race => {
+        const ours = race.standings?.find(s => s.clan.tag === CLAN_TAG);
+        const theirs = race.standings?.find(s => s.clan.tag === tag);
+        return ours && theirs && {
+          weWon: Number(ours.rank) < Number(theirs.rank),
+          rank: Number(theirs.rank),
+          fame: Number(theirs.clan.fame || 0),
+          finished: hasFinished(theirs.clan.finishTime)
+        };
+      }).filter(Boolean);
+    }
+
+    function getRivalFact(rival, meetings, stats, ourStats) {
+      const fmt = n => n.toLocaleString();
+      const finishes = meetings.filter(m => m.finished).length;
+      if (meetings.length && finishes === meetings.length) {
+        return `🏁 Har gått i mål i ${meetings.length === 1 ? 'vårt enda tidigare möte' : `alla ${meetings.length} tidigare möten`}. Ta dem på allvar.`;
+      }
+      if (meetings[0]?.finished) {
+        return `🏁 Gick i mål i vårt senaste möte${meetings[0].weWon ? ', men vi kom ändå före' : ' och slog oss'}.`;
+      }
+      if (stats.star && stats.star.fame > 0 && ourStats.star && stats.star.fame > ourStats.star.fame) {
+        return `⭐ Deras ${stats.star.name} har mer fame än någon hos oss i kriget (${fmt(stats.star.fame)} mot ${fmt(ourStats.star.fame)}).`;
+      }
+      if (stats.boatAttacks > 0) {
+        return `⚓ Har attackerat båtar ${stats.boatAttacks} ${stats.boatAttacks === 1 ? 'gång' : 'gånger'} i kriget. Håll ett öga på försvaret.`;
+      }
+      if (meetings.length) {
+        const best = Math.min(...meetings.map(m => m.rank));
+        return `📈 Bästa placering i våra möten: ${ordinalSv(best)}, med som mest ${fmt(Math.max(...meetings.map(m => m.fame)))} fame.`;
+      }
+      if (ourStats.players && stats.players < ourStats.players / 2) {
+        return `😴 Bara ${stats.players} spelare har kört decks hittills, mindre än hälften så många som hos oss.`;
+      }
+      return '🤝 Första mötet i loggen. Ingen vet riktigt vad de går för.';
+    }
+
+    function renderRivals(race) {
+      const panel = document.getElementById('rivals-panel');
+      const us = race.clans.find(c => c.tag === CLAN_TAG);
+      const rivals = race.clans.filter(c => c.tag !== CLAN_TAG);
+      if (!us || !rivals.length) {
+        panel.hidden = true;
+        return;
+      }
+      panel.hidden = false;
+      const fmt = n => n.toLocaleString();
+      const ourStats = getClanWarStats(us.participants);
+      const logSize = (dashboardState.historyRaces || []).length - (race.live ? 0 : 1);
+      document.getElementById('rivals-sub').textContent = race.live
+        ? `Klanerna vi möter i det här kriget. Siffran inom parentes är ${us.name}s. Möten räknas bland de ${logSize} senaste krigen.`
+        : `Klanerna vi mötte i senaste kriget. Siffran inom parentes är ${us.name}s. Möten räknas bland de ${logSize} krigen innan.`;
+
+      // Shown as "theirs (ours)", green when we are ahead.
+      const versus = (theirs, ours, higherIsBetter = true) => {
+        const cls = theirs === ours ? '' : ((ours > theirs) === higherIsBetter ? 'ahead' : 'behind');
+        return `<span class="${cls}">${fmt(theirs)}</span> <span class="vs">(${fmt(ours)})</span>`;
+      };
+
+      document.getElementById('rivals-grid').innerHTML = rivals.map(rival => {
+        const stats = getClanWarStats(rival.participants);
+        const meetings = getMeetings(rival.tag, race.live);
+        const wins = meetings.filter(m => m.weWon).length;
+        const losses = meetings.length - wins;
+        let tag = { cls: 'is-new', text: 'Ny bekantskap' };
+        if (meetings.length && losses === meetings.length) tag = { cls: 'is-nemesis', text: meetings.length > 1 ? 'Ärkerival' : 'Slog oss sist' };
+        else if (meetings.length && wins === meetings.length) tag = { cls: 'is-prey', text: 'Vi har övertaget' };
+        else if (meetings.length) tag = { cls: 'is-even', text: 'Jämnt' };
+        const trophyDiff = rival.trophies - us.trophies;
+
+        const rows = [
+          ['Tidigare möten', meetings.length ? `${meetings.length} · ${wins}–${losses} till oss` : 'Inga'],
+          ['Spelare som kört decks', versus(stats.players, ourStats.players)],
+          ['Decks i kriget', versus(stats.decks, ourStats.decks)]
+        ];
+        if (race.live) rows.splice(2, 0, ['Decks idag', versus(stats.today, ourStats.today)]);
+        if (stats.star) rows.push(['Stjärnspelare', `${escapeHtml(stats.star.name)} · ${fmt(stats.star.fame)}`]);
+
+        return `<article class="rival-card">
+            <div class="rival-head">
+              <div>
+                <h3 class="rival-name">${escapeHtml(rival.name)}</h3>
+                <div class="rival-trophies">🏆 ${fmt(rival.trophies)} troféer · ${trophyDiff === 0 ? 'lika som oss' : `${fmt(Math.abs(trophyDiff))} ${trophyDiff > 0 ? 'över' : 'under'} oss`}</div>
+              </div>
+              <span class="rival-tag ${tag.cls}">${tag.text}</span>
+            </div>
+            <dl class="rival-stats">
+              ${rows.map(([label, value]) => `<div class="rival-stat"><dt>${label}</dt><dd>${value}</dd></div>`).join('')}
+            </dl>
+            <p class="rival-fact">${escapeHtml(getRivalFact(rival, meetings, stats, ourStats))}</p>
+          </article>`;
+      }).join('');
+    }
+
+    function renderLivePill() {
+      const pill = document.getElementById('live-pill');
+      const periodType = dashboardState?.currentWar?.periodType;
+      pill.classList.toggle('is-live', currentWarInfo.active);
+      if (currentWarInfo.active) {
+        document.getElementById('live-pill-text').textContent = `Krigsdag ${currentWarInfo.day} av ${WAR_DAY_NAMES.length} · ${WAR_DAY_NAMES[currentWarInfo.day - 1]}`;
+      } else if (periodType === 'training') {
+        document.getElementById('live-pill-text').textContent = 'Träningsdagar · kriget startar på torsdag';
+      }
+      pill.hidden = !currentWarInfo.active && periodType !== 'training';
+    }
+
+    // ---- Krigets hjältar: awards for the latest finished war, among the current members.
+    function getAwards() {
+      const standing = dashboardState?.historyRaces?.[0]?.standings?.find(s => s.clan.tag === CLAN_TAG);
+      if (!standing) return null;
+      const entries = new Map((standing.clan.participants || []).map(p => [p.tag, p]));
+      const inWar = combinedData.filter(m => m.inLatestWar);
+      const best = (list, read) => {
+        const scored = list.map(m => ({ m, v: read(m) })).filter(x => x.v !== null && x.v > 0);
+        if (!scored.length) return null;
+        const top = Math.max(...scored.map(x => x.v));
+        return { value: top, winners: scored.filter(x => x.v === top).map(x => x.m) };
+      };
+      const fullWar = inWar.filter(m => m.latestWarParticipation >= 16).length;
+
+      return [
+        { icon: '🏆', title: 'Mest fame', result: best(inWar, m => m.latestWarFame), text: v => `${v.toLocaleString()} fame` },
+        { icon: '🔥', title: 'Längst svit', result: best(combinedData, m => m.fullWarStreak), text: v => (v >= (dashboardState.totalWeeks || 0)
+          ? `Alla 16 decks i samtliga ${v} krig i loggen`
+          : `${v} krig i rad med alla 16 decks`) },
+        {
+          icon: '🚀',
+          title: 'Största lyftet',
+          result: best(inWar, m => (m.fameHistory[1] === null || m.fameHistory[1] === undefined ? null : m.fameHistory[0] - m.fameHistory[1])),
+          text: v => `${signed(v)} fame mot kriget innan`
+        },
+        { icon: '⚓', title: 'Flest båtattacker', result: best(inWar, m => Number(entries.get(m.tag)?.boatAttacks || 0)), text: v => `${v} attacker mot andras båtar` },
+        { icon: '🎁', title: 'Flest donationer', result: best(combinedData, m => m.donations), text: v => `${v.toLocaleString()} kort den här veckan` },
+        { icon: '💯', title: 'Alla 16 decks', summary: `${fullWar} spelare`, text: () => `av ${inWar.length} som var med i kriget` }
+      ].filter(a => a.result || a.summary);
+    }
+
+    function renderAwards() {
+      const panel = document.getElementById('awards-panel');
+      const awards = getAwards();
+      if (!awards?.length) {
+        panel.hidden = true;
+        return;
+      }
+      panel.hidden = false;
+
+      const latest = dashboardState.historyRaces[0];
+      document.getElementById('awards-sub').textContent = `Kriget som avslutades ${formatShortDate(parseRaceDate(latest.createdDate))}. Klicka på ett namn för detaljer.`;
+      const nameLink = m => `<button class="name-link" type="button" data-tag="${escapeHtml(m.tag)}" aria-haspopup="dialog">${escapeHtml(m.name)}</button>`;
+      document.getElementById('awards-grid').innerHTML = awards.map(a => {
+        let winner = escapeHtml(a.summary || '');
+        if (a.result) {
+          const shown = a.result.winners.slice(0, 3);
+          const more = a.result.winners.length - shown.length;
+          winner = shown.map(nameLink).join(', ') + (more > 0 ? ` <span class="race-clan-meta" style="display:inline">+${more} till</span>` : '');
+        }
+        return `<div class="award-card">
+            <div class="award-icon" aria-hidden="true">${a.icon}</div>
+            <div class="award-title">${a.title}</div>
+            <div class="award-winner">${winner}</div>
+            <div class="award-value">${escapeHtml(a.text(a.result?.value))}</div>
+          </div>`;
+      }).join('');
+
+      // Members one full war away from elder. During a war, show whether they are on track in it.
+      const nearEl = document.getElementById('awards-near');
+      const needed = Number(currentCriteria.promoteElderFullWars);
+      const near = isCriterionEnabled(currentCriteria, 'promoteElderFullWars') && needed > 1
+        ? combinedData.filter(m => m.role === 'member' && m.inLatestWar && !m.afk && m.fullWarStreak === needed - 1)
+        : [];
+      if (!near.length) {
+        nearEl.innerHTML = '';
+        return;
+      }
+      const target = currentWarInfo.day * DECKS_PER_DAY;
+      const chip = m => {
+        if (!currentWarInfo.active) return `<span class="war-chip">${nameLink(m)}</span>`;
+        const onTrack = m.warDecksUsed >= target;
+        return `<span class="war-chip ${onTrack ? 'on-track' : 'off-track'}">${nameLink(m)} <small>${onTrack ? '✓' : '✗'} ${m.warDecksUsed}/${target} decks</small></span>`;
+      };
+      const sorted = [...near].sort((a, b) => b.warDecksUsed - a.warDecksUsed || a.name.localeCompare(b.name));
+      nearEl.innerHTML = `<div class="war-group-title">Ett fullt krig kvar till elder (${near.length})${currentWarInfo.active ? ' · ✓ = alla decks hittills i pågående krig' : ''}</div>`
+        + `<div class="war-chips">${sorted.map(chip).join('')}</div>`;
+    }
+
+    // ---- Toasts instead of blocking alert() dialogs
+    function showToast(message, isError = false) {
+      let stack = document.getElementById('toast-stack');
+      if (!stack) {
+        stack = makeEl('div', 'toast-stack');
+        stack.id = 'toast-stack';
+        stack.setAttribute('role', 'status');
+        stack.setAttribute('aria-live', 'polite');
+        document.body.append(stack);
+      }
+      const toast = makeEl('div', `toast${isError ? ' is-error' : ''}`, message);
+      stack.append(toast);
+      setTimeout(() => {
+        toast.classList.add('is-leaving');
+        setTimeout(() => toast.remove(), 300);
+      }, 2800);
+    }
+
+    function copyText(text, successMessage) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(successMessage);
+      }).catch(() => {
+        showToast('Kunde inte kopiera automatiskt. Kontrollera webbläsarens behörigheter.', true);
+      });
     }
 
     // ---- Klantrend: one small line chart per metric, one point per finished war
@@ -2320,12 +3005,7 @@
       let text = `📋 Ikea-klanens sammanfattning:\n\n`;
       text += `Befordringskandidater:\n${promotes.length ? promotes.join('\n') : 'Inga'}\n\n`;
       text += `Kandidater för granskning/kick:\n${reviews.length ? reviews.join('\n') : 'Inga'}`;
-      
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Sammanfattningen kopierades!');
-      }).catch(() => {
-        alert('Kunde inte kopiera automatiskt. Kontrollera webbläsarens behörigheter.');
-      });
+      copyText(text, 'Sammanfattningen kopierades!');
     }
 
     function sortTable(column) {
@@ -2498,11 +3178,7 @@
     }
 
     function copyShareLink() {
-      navigator.clipboard.writeText(buildShareLink()).then(() => {
-        alert('Länken kopierades! Den öppnar sidan med dina inställningar och AFK-markeringar.');
-      }).catch(() => {
-        alert('Kunde inte kopiera automatiskt. Kontrollera webbläsarens behörigheter.');
-      });
+      copyText(buildShareLink(), 'Länken kopierades! Den öppnar sidan med dina inställningar och AFK-markeringar.');
     }
 
     // Applies AFK marks from a shared link, then clears the hash so a reload starts from defaults again.
@@ -2587,6 +3263,34 @@
       return { rows, footnote };
     }
 
+    // One step per full war needed for elder. The war in progress fills the next step deck by deck.
+    function buildPromotionProgress(member) {
+      const needed = Number(currentCriteria.promoteElderFullWars);
+      if (member.role !== 'member' || !member.inLatestWar || !isCriterionEnabled(currentCriteria, 'promoteElderFullWars') || !(needed > 0)) {
+        return null;
+      }
+      const done = Math.min(member.fullWarStreak, needed);
+      const warDecks = Math.min(16, member.warDecksUsed);
+      const bar = makeEl('div', 'md-progress-bar');
+      for (let i = 0; i < needed; i++) {
+        const step = makeEl('div', 'md-progress-step');
+        if (i < done) {
+          step.classList.add('is-done');
+        } else if (i === done && currentWarInfo.active) {
+          step.classList.add('is-live');
+          step.style.setProperty('--fill', `${Math.round((warDecks / 16) * 100)}%`);
+        }
+        bar.append(step);
+      }
+      let text = `Befordran till elder: ${done} av ${needed} fulla krig i rad`;
+      if (done < needed && currentWarInfo.active) text += ` · pågående krig ${warDecks}/16 decks`;
+      bar.setAttribute('role', 'img');
+      bar.setAttribute('aria-label', text);
+      const wrap = makeEl('div', 'md-progress');
+      wrap.append(makeEl('div', 'md-check-value', text), bar);
+      return wrap;
+    }
+
     function buildMemberDetail(member) {
       const body = makeEl('div', 'md-body');
 
@@ -2627,6 +3331,8 @@
       recoRow.append(makeEl('span', `badge ${member.recommendationClass}`, member.recommendationText));
       if (member.recommendationReason) recoRow.append(makeEl('span', '', member.recommendationReason));
       reco.append(recoRow);
+      const progress = buildPromotionProgress(member);
+      if (progress) reco.append(progress);
       const explained = explainMember(member, currentCriteria);
       if (explained.note) {
         reco.append(makeEl('p', 'md-muted', explained.note));
@@ -2726,10 +3432,10 @@
         });
       });
 
-      document.getElementById('member-table').addEventListener('click', e => {
+      ['member-table', 'awards-panel'].forEach(id => document.getElementById(id).addEventListener('click', e => {
         const link = e.target.closest?.('.name-link');
         if (link) openMemberDetail(link.dataset.tag);
-      });
+      }));
 
       const dialog = document.getElementById('member-dialog');
       dialog.addEventListener('click', e => {

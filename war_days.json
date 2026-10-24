@@ -372,7 +372,7 @@
       }
     },
     "2": {
-      "updated": "2026-10-24T01:13:25Z",
+      "updated": "2026-10-24T06:37:59Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -464,11 +464,6 @@
           "base": 0,
           "decks": 0
         },
-        "#CPCLGY0R": {
-          "name": "AMAMAMAMEOJ",
-          "base": 0,
-          "decks": 0
-        },
         "#202JUR8GR8": {
           "name": "Ivar10",
           "base": 0,
@@ -524,6 +519,11 @@
           "base": 0,
           "decks": 0
         },
+        "#CPCLGY0R": {
+          "name": "AMAMAMAMEOJ",
+          "base": 0,
+          "decks": 3
+        },
         "#Y0J98GRY9": {
           "name": "5%",
           "base": 4,
@@ -553,16 +553,6 @@
           "name": "The Viking",
           "base": 4,
           "decks": 4
-        },
-        "#2JC8C9VVP": {
-          "name": "iron m",
-          "base": 4,
-          "decks": 0
-        },
-        "#8CVLPV9YR": {
-          "name": "Piggelin",
-          "base": 4,
-          "decks": 0
         },
         "#9RCR2QQQJ": {
           "name": "Zer0",
@@ -714,6 +704,11 @@
           "base": 4,
           "decks": 4
         },
+        "#2JC8C9VVP": {
+          "name": "iron m",
+          "base": 4,
+          "decks": 4
+        },
         "#PPUUULVU2": {
           "name": "Julia",
           "base": 4,
@@ -746,6 +741,11 @@
         },
         "#RUV8V8GVR": {
           "name": "MEGABAENIS",
+          "base": 4,
+          "decks": 4
+        },
+        "#8CVLPV9YR": {
+          "name": "Piggelin",
           "base": 4,
           "decks": 4
         }

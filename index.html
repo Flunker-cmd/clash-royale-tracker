@@ -724,6 +724,27 @@
     .md-progress-step.is-live { background: linear-gradient(90deg, #10b981 var(--fill, 0%), #334155 var(--fill, 0%)); box-shadow: 0 0 0 1px #34d399; }
     .mobile-only { display: none; }
 
+    /* Collapsible panels: the panel's first .label is the toggle */
+    .panel-toggle { cursor: pointer; user-select: none; }
+    .panel-toggle::after { content: '▾'; display: inline-block; margin-left: 6px; transition: transform 0.15s; }
+    [data-collapsible].collapsed .panel-toggle::after { transform: rotate(-90deg); }
+    [data-collapsible].collapsed > :not(:first-child) { display: none; }
+    [data-collapsible].collapsed .label { margin-bottom: 0; }
+
+    /* Expand button on the phone player cards, hidden in the desktop table */
+    .member-table td.card-toggle-cell { display: none; }
+    .card-toggle {
+      width: 100%;
+      padding: 6px;
+      background: none;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      color: #94a3b8;
+      font: inherit;
+      font-size: 0.85em;
+      cursor: pointer;
+    }
+
     .live-pill {
       display: inline-flex;
       align-items: center;
@@ -1011,6 +1032,12 @@
       .member-table td:nth-child(10) { grid-column: 1 / -1; order: 2; }
       .member-table td:nth-child(2)::before, .member-table td:nth-child(10)::before { display: none; }
       .member-table td:nth-child(8), .member-table td:nth-child(9) { grid-column: 1 / -1; }
+      /* Collapsed card: name, action, role and the ongoing war. The rest shows on "Visa detaljer". */
+      .member-table td.card-toggle-cell { display: block; grid-column: 1 / -1; order: 4; }
+      .member-table td.card-toggle-cell::before { display: none; }
+      .member-table tr:not(.expanded) td:is(:nth-child(4), :nth-child(5), :nth-child(6), :nth-child(7), :nth-child(9)) { display: none; }
+      .member-table tr:not(.expanded) .afk-toggle { display: none; }
+      .member-table tr:not(.expanded) td:nth-child(8) { grid-column: auto; }
     }
 
     footer {
@@ -1075,12 +1102,12 @@
       <p class="summary-text" id="summary-text">Laddar klansammanfattning...</p>
     </div>
 
-    <div class="recommendation-panel" id="recommendations-panel">
+    <div class="recommendation-panel" id="recommendations-panel" data-collapsible="open">
       <div class="label">Viktigaste rekommendationerna</div>
       <div id="recommendations-list" class="recommendation-list"></div>
     </div>
 
-    <div class="race-panel" id="race-panel" hidden>
+    <div class="race-panel" id="race-panel" data-collapsible="phone-closed" hidden>
       <div class="label" id="race-title">Flodkapplöpning</div>
       <p class="race-headline" id="race-headline"></p>
       <p class="race-sub" id="race-sub"></p>
@@ -1088,13 +1115,13 @@
       <div class="race-days" id="race-days"></div>
     </div>
 
-    <div class="awards-panel" id="rivals-panel" hidden>
+    <div class="awards-panel" id="rivals-panel" data-collapsible="phone-closed" hidden>
       <div class="label">Motståndet</div>
       <p class="trend-sub" id="rivals-sub"></p>
       <div class="rivals-grid" id="rivals-grid"></div>
     </div>
 
-    <div class="war-panel" id="war-panel" hidden>
+    <div class="war-panel" id="war-panel" data-collapsible="open" hidden>
       <div class="war-panel-header">
         <div>
           <div class="label" id="war-title">Pågående krig</div>
@@ -1107,14 +1134,14 @@
       <p class="war-note" id="war-note"></p>
     </div>
 
-    <div class="awards-panel" id="awards-panel" hidden>
+    <div class="awards-panel" id="awards-panel" data-collapsible="phone-closed" hidden>
       <div class="label">Krigets hjältar</div>
       <p class="trend-sub" id="awards-sub"></p>
       <div class="awards-grid" id="awards-grid"></div>
       <div class="awards-near" id="awards-near"></div>
     </div>
 
-    <div class="trend-panel" id="trend-panel" hidden>
+    <div class="trend-panel" id="trend-panel" data-collapsible="phone-closed" hidden>
       <div class="label">Klantrend</div>
       <p class="trend-sub">Utveckling per avslutat krig</p>
       <div class="trend-filters">
@@ -1125,13 +1152,13 @@
       <div class="trend-table-wrap" id="trend-table-wrap" hidden></div>
     </div>
 
-    <div class="events-panel" id="events-panel" hidden>
+    <div class="events-panel" id="events-panel" data-collapsible="phone-closed" hidden>
       <div class="label">Medlemshändelser</div>
       <p class="events-note" id="events-note"></p>
       <ul class="events-list" id="events-list"></ul>
     </div>
 
-    <div class="criteria-panel">
+    <div class="criteria-panel" id="criteria-panel" data-collapsible="phone-closed">
       <div class="label">Kriterier för befordran</div>
       <div class="criteria-info">
         En medlem befordras till elder efter att ha använt alla 16 decks i vart och ett av de 3 senaste krigen (torsdag–söndag). Kick och degradering utgår från poäng (fame) i det senaste avslutade kriget: en medlem under 500 kickas. En elder under 1600 får en varning och degraderas till medlem om det händer 2 krig i rad (elder fungerar som ett extraliv). Co-leaders utses manuellt och får ingen rekommendation. Extra filter är avstängda som standard och kan slås på för att undersöka: för befordran måste alla aktiva villkor uppfyllas, för kick/degradering räcker det att ett av dem slår till. Decks och donationer räknas som snitt per krig. Ändringar gäller tills sidan laddas om. AFK-markerade spelare undantas.
@@ -1711,9 +1738,6 @@
         const avgDecks = activeWeeks > 0 ? Math.round((war.decks / activeWeeks) * 10) / 10 : 0;
 
         totalClanAvgFame += avgFame;
-        if (activeWeeks >= Math.ceil(totalWeeks / 2)) {
-          activeWarriorsCount++;
-        }
 
         let firstSeenIndex = -1;
         for (let i = totalWeeks - 1; i >= 0; i--) {
@@ -1752,6 +1776,12 @@
         const donationsPerWar = activeWeeks > 0 ? Math.round(donationsValue / activeWeeks) : 0;
         const afk = isAfk(m.tag);
         const warEntry = warParticipants.get(m.tag);
+        // Active = used decks in the current or the latest finished war. The API lists everyone in the clan
+        // as a participant, so being listed with 0 decks does not count.
+        const activeWarrior = Number(warEntry?.decksUsed || 0) > 0 || latestWarParticipation > 0;
+        if (activeWarrior) {
+          activeWarriorsCount++;
+        }
 
         const recommendation = getRecommendation({
           role: m.role,
@@ -1793,6 +1823,7 @@
           inLatestWar: inLatestWar,
           inactive: !afk && inLatestWar && latestWarParticipation === 0,
           tenureWeeks: tenureWeeks,
+          activeWarrior: activeWarrior,
           loyaltyRatio: loyaltyRatio,
           dotsHtml: dotsHtml,
           history: war.history,
@@ -2939,10 +2970,7 @@
       document.getElementById('insight-inactive').textContent = inactive.length;
       document.getElementById('insight-topfame').textContent = topPlayer ? `${topPlayer.avgDecks.toLocaleString()}` : '-';
 
-      const activeCount = combinedData.filter(member => {
-        const minWeeks = Math.max(1, Math.ceil((member.totalWeeks || 1) * 0.5));
-        return member.weeks >= minWeeks;
-      }).length;
+      const activeCount = combinedData.filter(member => member.activeWarrior).length;
       document.getElementById('summary-text').textContent =
         `Klanöversikt: ${activeCount} av ${combinedData.length} medlemmar är aktiva, ${promote.length} spelare kan befordras, ${review.length} behöver granskas och ${topPlayer ? topPlayer.name : 'okänd'} leder med ${topPlayer ? topPlayer.avgDecks.toLocaleString() : '0'} decks per krig i snitt.`;
 
@@ -3065,6 +3093,18 @@
       return visible;
     }
 
+    // Phone player cards the user has expanded. Kept across re-renders (sorting, filtering).
+    const expandedMembers = new Set();
+
+    function toggleMemberCard(button) {
+      const tag = button.dataset.tag;
+      const expanded = !expandedMembers.has(tag);
+      if (expanded) expandedMembers.add(tag); else expandedMembers.delete(tag);
+      button.closest('tr').classList.toggle('expanded', expanded);
+      button.setAttribute('aria-expanded', String(expanded));
+      button.textContent = expanded ? 'Dölj detaljer ▴' : 'Visa detaljer ▾';
+    }
+
     function renderTable() {
       const visible = getVisibleMembers();
 
@@ -3087,6 +3127,7 @@
 
       visible.forEach((m, index) => {
         const tr = document.createElement('tr');
+        const expanded = expandedMembers.has(m.tag);
         tr.innerHTML = `
           <td data-label="#">${index + 1}</td>
           <td data-label="Spelare">
@@ -3118,7 +3159,11 @@
             <span class="badge ${m.recommendationClass}">${m.recommendationText}</span>
             ${m.recommendationReason ? `<span class="reason-text">${escapeHtml(m.recommendationReason)}</span>` : ''}
           </td>
+          <td class="card-toggle-cell">
+            <button class="card-toggle" type="button" data-tag="${escapeHtml(m.tag)}" aria-expanded="${expanded}">${expanded ? 'Dölj detaljer ▴' : 'Visa detaljer ▾'}</button>
+          </td>
         `;
+        if (expanded) tr.className = 'expanded';
         tbody.appendChild(tr);
       });
     }
@@ -3435,6 +3480,8 @@
       ['member-table', 'awards-panel'].forEach(id => document.getElementById(id).addEventListener('click', e => {
         const link = e.target.closest?.('.name-link');
         if (link) openMemberDetail(link.dataset.tag);
+        const cardToggle = e.target.closest?.('.card-toggle');
+        if (cardToggle) toggleMemberCard(cardToggle);
       }));
 
       const dialog = document.getElementById('member-dialog');
@@ -3445,9 +3492,55 @@
       document.getElementById('criteria-share-btn').addEventListener('click', copyShareLink);
     }
 
+    // Panels collapse when their title is clicked. On phones the "phone-closed" ones start collapsed,
+    // and the user's own choice per panel is remembered in this browser.
+    const COLLAPSED_PANELS_KEY = 'clanCollapsedPanels';
+
+    function getCollapsedPanels() {
+      try {
+        return JSON.parse(localStorage.getItem(COLLAPSED_PANELS_KEY) || '{}');
+      } catch {
+        return {};
+      }
+    }
+
+    function bindPanelToggles() {
+      const isPhone = Boolean(window.matchMedia?.('(max-width: 720px)').matches);
+      const saved = getCollapsedPanels();
+      document.querySelectorAll('[data-collapsible]').forEach(panel => {
+        const toggle = panel.querySelector('.label');
+        if (!toggle) return;
+        const setCollapsed = collapsed => {
+          panel.classList.toggle('collapsed', collapsed);
+          toggle.setAttribute('aria-expanded', String(!collapsed));
+        };
+        const flip = () => {
+          const collapsed = !panel.classList.contains('collapsed');
+          setCollapsed(collapsed);
+          const state = getCollapsedPanels();
+          state[panel.id] = collapsed;
+          try {
+            localStorage.setItem(COLLAPSED_PANELS_KEY, JSON.stringify(state));
+          } catch {}
+        };
+        toggle.classList.add('panel-toggle');
+        toggle.setAttribute('role', 'button');
+        toggle.tabIndex = 0;
+        setCollapsed(panel.id in saved ? saved[panel.id] : isPhone && panel.dataset.collapsible === 'phone-closed');
+        toggle.addEventListener('click', flip);
+        toggle.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            flip();
+          }
+        });
+      });
+    }
+
     bindCriteriaActions();
     bindTrendActions();
     bindTableActions();
+    bindPanelToggles();
     loadDashboard();
   </script>
 </body>

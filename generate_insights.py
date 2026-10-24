@@ -1,5 +1,4 @@
 import json
-import math
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -135,7 +134,13 @@ def weak_war_streak(fame_history, limit):
     return streak
 
 
-def member_summary(member, war_stats, total_weeks):
+def current_war_decks(current_war):
+    """Decks used per tag in the ongoing river race (clan_data.json)."""
+    participants = ((current_war or {}).get("clan") or {}).get("participants") or []
+    return {p.get("tag"): int(p.get("decksUsed") or 0) for p in participants}
+
+
+def member_summary(member, war_stats, total_weeks, current_decks=None):
     tag = member.get("tag")
     war = war_stats.get(tag, {"fame": 0, "decks": 0, "weeks": 0, "history": [None] * total_weeks, "fameHistory": [None] * total_weeks})
     active_weeks = int(war.get("weeks") or 0)
@@ -171,6 +176,9 @@ def member_summary(member, war_stats, total_weeks):
         "avgDecks": avg_decks,
         "totalDecks": int(war.get("decks") or 0),
         "activeWeeks": active_weeks,
+        # Used decks in the current or the latest finished war. The API lists everyone in the clan
+        # as a participant, so being listed with 0 decks does not count.
+        "activeWarrior": (current_decks or {}).get(tag, 0) > 0 or latest_war_participation > 0,
         "latestWarParticipation": latest_war_participation,
         "fullWarStreak": full_war_streak(war.get("history") or []),
         "fameHistory": war.get("fameHistory") or [],
@@ -242,18 +250,22 @@ def evaluate_member(member, criteria):
     return None, []
 
 
-def generate_insights(members_path="clan_members.json", history_path="history_data.json", criteria=None):
+def generate_insights(members_path="clan_members.json", history_path="history_data.json", criteria=None, current_war_path=None):
     criteria = merge_criteria(criteria)
     members_file = Path(members_path)
     history_file = Path(history_path)
 
     members_data = json.loads(members_file.read_text(encoding="utf-8"))
     history_data = json.loads(history_file.read_text(encoding="utf-8"))
+    current_war = None
+    if current_war_path and Path(current_war_path).exists():
+        current_war = json.loads(Path(current_war_path).read_text(encoding="utf-8"))
 
     war_stats, total_weeks = get_war_stats(history_data)
     current_members = members_data.get("memberList", [])
+    current_decks = current_war_decks(current_war)
 
-    summaries = [member_summary(member, war_stats, total_weeks) for member in current_members]
+    summaries = [member_summary(member, war_stats, total_weeks, current_decks) for member in current_members]
 
     promote = []
     review = []
@@ -293,7 +305,7 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
                 "reason": "No participation in the latest war",
             })
 
-    active_warriors = sum(1 for member in summaries if member["activeWeeks"] >= max(1, math.ceil(total_weeks * 0.5)))
+    active_warriors = sum(1 for member in summaries if member["activeWarrior"])
     avg_clan_fame = round(sum(member["avgFame"] for member in summaries) / len(summaries)) if summaries else 0
     top_performer = max(summaries, key=lambda m: m["avgDecks"], default={"name": "N/A", "avgDecks": 0})
 
@@ -323,7 +335,7 @@ def generate_insights(members_path="clan_members.json", history_path="history_da
 
 
 if __name__ == "__main__":
-    output = generate_insights()
+    output = generate_insights(current_war_path="clan_data.json")
     output_path = Path("insights.json")
     output_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Insights generated: {output_path}")

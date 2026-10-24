@@ -13,7 +13,7 @@ python -m unittest discover -s tests -t .                          # all tests
 python -m unittest tests.test_track_members                        # one test file
 python -m unittest tests.test_track_members.<Class>.<test_name>    # one test
 python fetch_data.py         # needs CLASH_ROYALE_TOKEN in the environment
-python generate_insights.py  # reads clan_members.json + history_data.json, writes insights.json
+python generate_insights.py  # reads clan_members.json + history_data.json (+ clan_data.json), writes insights.json
 python track_members.py      # diffs clan_members.json against member_snapshot.json
 ```
 

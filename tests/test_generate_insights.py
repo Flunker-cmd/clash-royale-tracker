@@ -23,8 +23,9 @@ def war(*participants):
     }
 
 
-def run_insights(members, wars, criteria=None):
-    """members: list of (tag, name, role, donations). wars: newest war first."""
+def run_insights(members, wars, criteria=None, current_war=None):
+    """members: list of (tag, name, role, donations). wars: newest war first.
+    current_war: optional {tag: decksUsed} for the ongoing river race."""
     members_data = {
         "memberList": [
             {"tag": tag, "name": name, "role": role, "donations": donations}
@@ -36,7 +37,12 @@ def run_insights(members, wars, criteria=None):
         history_path = Path(tmpdir) / "history.json"
         members_path.write_text(json.dumps(members_data), encoding="utf-8")
         history_path.write_text(json.dumps({"items": wars}), encoding="utf-8")
-        return generate_insights(str(members_path), str(history_path), criteria=criteria)
+        current_war_path = None
+        if current_war is not None:
+            current_war_path = Path(tmpdir) / "current.json"
+            participants = [{"tag": tag, "decksUsed": decks} for tag, decks in current_war.items()]
+            current_war_path.write_text(json.dumps({"clan": {"participants": participants}}), encoding="utf-8")
+        return generate_insights(str(members_path), str(history_path), criteria=criteria, current_war_path=current_war_path)
 
 
 def names(items):
@@ -181,6 +187,19 @@ class DefaultRulesTests(unittest.TestCase):
 
         self.assertEqual(names(data["inactive"]), ["Bob"])
         self.assertEqual(data["review"][0]["reason"], "Candidate for kick")
+
+    def test_active_warriors_used_decks_in_the_current_or_latest_war(self):
+        members = [(tag, tag, "coLeader", 0) for tag in ("#LATEST", "#NOW", "#OLD", "#ZERO", "#NEW")]
+        # The API lists everyone in the clan as a participant, so being listed with 0 decks does not count.
+        wars = [
+            war(("#LATEST", 500, 4), ("#NOW", 0, 0), ("#OLD", 0, 0), ("#ZERO", 0, 0)),
+            war(("#LATEST", 2000, 16), ("#NOW", 2000, 16), ("#OLD", 2000, 16), ("#ZERO", 0, 0)),
+        ]
+        current = {"#LATEST": 0, "#NOW": 2, "#OLD": 0, "#ZERO": 0, "#NEW": 0}
+
+        self.assertEqual(run_insights(members, wars, current_war=current)["summary"]["activeWarriors"], 2)
+        # Without a current war only the latest finished war counts.
+        self.assertEqual(run_insights(members, wars)["summary"]["activeWarriors"], 1)
 
     def test_optional_criteria_are_off_by_default(self):
         for key in (

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A static dashboard (GitHub Pages) for the Clash Royale clan `#L0G0Y0JP`. There is no build step and no dependencies beyond the Python standard library. Node.js is optional, for one test.
+A static dashboard (GitHub Pages) for the Clash Royale clan `#L0G0Y0JP`. There is no build step and no dependencies beyond the Python standard library.
 
 ## Commands
 
@@ -13,7 +13,6 @@ python -m unittest discover -s tests -t .                          # all tests
 python -m unittest tests.test_track_members                        # one test file
 python -m unittest tests.test_track_members.<Class>.<test_name>    # one test
 python fetch_data.py         # needs CLASH_ROYALE_TOKEN in the environment
-python generate_insights.py  # reads clan_members.json + history_data.json (+ clan_data.json), writes insights.json
 python track_members.py      # diffs clan_members.json against member_snapshot.json
 ```
 
@@ -21,30 +20,18 @@ To view the dashboard locally, serve the repo root over HTTP (e.g. `python -m ht
 
 ## Architecture
 
-The data flows one way. GitHub Actions (`.github/workflows/fetch.yml`) runs hourly. It runs `fetch_data.py`, then `generate_insights.py`, `track_members.py` and `track_war_days.py`. It then commits the resulting JSON files straight to `main` as "Auto-update clan data and insights", which is why the git log is full of those commits.
+The data flows one way. GitHub Actions (`.github/workflows/fetch.yml`) runs hourly. It runs `fetch_data.py`, then `track_members.py` and `track_war_days.py`. It then commits the resulting JSON files straight to `main` as "Auto-update clan data" (older ones say "Auto-update clan data and insights"), which is why the git log is full of those commits. Each commit triggers a GitHub Pages deployment.
 
 - `fetch_data.py` calls the API through the `proxy.royaleapi.dev` proxy, not the official API host. It writes `clan_members.json` (roster), `clan_data.json` (current river race) and `history_data.json` (river race log, **newest war first**, so index 0 is the latest finished war).
-- `generate_insights.py` turns those files into `insights.json`.
 - `track_members.py` keeps `member_snapshot.json` and appends joined/left/promoted/demoted events to `member_events.json`. It skips a run if the roster has shrunk to under half its previous size (`MIN_ROSTER_RATIO`), so an API hiccup does not look like a mass exodus. Events are capped at `MAX_EVENTS`.
 - `track_war_days.py` writes `war_days.json`: per war day and player, today's decks and the decks used before that day (`base`). The API has no per-day history, so this is the only source for past days. A day's final count is the next day's `base` minus its own, which stays exact even though the last hourly run of a day misses late battles. The last day has no next day, so once the war is in `history_data.json` (`history[0]` with the same `sectionIndex`), `finish_war` sets the last day's count to the war's total `decksUsed` minus its `base` and marks the file `finished` with the `seasonId`. The dashboard shows a finished war between wars. The file is reset when a new war starts.
-- `index.html` is a single ~2500-line file with inline CSS and JS. It does **not** read `insights.json`. It fetches `clan_members.json`, `history_data.json`, `clan_data.json`, `member_events.json` and `war_days.json` and recomputes everything in the browser. That lets the user change the criteria live.
+- `index.html` is a single ~3500-line file with inline CSS and JS. It fetches `clan_members.json`, `history_data.json`, `clan_data.json`, `member_events.json` and `war_days.json` and computes everything in the browser, including the promote/kick/demote recommendations (`getRecommendation`, defaults in `defaultCriteria`). That lets the user change the criteria live. The README documents the rules and defaults, so update it when they change.
 
 The JSON data files are generated output committed to the repo. Don't hand-edit them. Expect them to change under you when you `git pull`.
 
-### The recommendation rules are duplicated
-
-The promote/kick/demote/low-activity rules exist twice: `evaluate_member` in `generate_insights.py` and `getRecommendation` in `index.html`. Change both together, and keep `DEFAULT_CRITERIA` in Python in sync with `defaultCriteria` in the HTML. The README documents the rules and defaults, so update it as well.
-
-`tests/test_dashboard_parity.py` guards this. It runs a grid of scenarios through both implementations and fails on any disagreement. To do this, `tests/dashboard_logic.js` extracts the `<script>` block from `index.html` (the regex `/<script>([\s\S]*)<\/script>/`) and runs it in a `vm` sandbox with a fake DOM. So:
-
-- `index.html` must keep a single plain `<script>` block, or the extraction breaks.
-- New top-level DOM access in that script needs a matching stub in `dashboard_logic.js`.
-- The parity test compares the dashboard's displayed Swedish text (`Befordra till elder`, `Kicka`, ...), so changing that wording means updating `DASHBOARD_TEXT` in the test.
-- The test is skipped if `node` is not on PATH.
-
 ### Rule semantics that are easy to get wrong
 
-- Kick is judged on the **latest finished war** (fame in `history[0]`), not on averages. Elder demotion needs fame below the limit in `demoteElderWeakWars` wars in a row (`weak_war_streak` / `getWeakWarStreak`). A shorter streak gives the `warning` action ("Varning"), which the dashboard keeps out of the review counts. Promotion is judged on the full-war streak: wars in a row, counting back from `history[0]`, with all 16 decks used (`full_war_streak` / `getFullWarStreak`). A war the player was not in breaks the streak. Averages are only used by the optional filters, which are off by default.
+- Kick is judged on the **latest finished war** (fame in `history[0]`), not on averages. Elder demotion needs fame below the limit in `demoteElderWeakWars` wars in a row (`getWeakWarStreak`). A shorter streak gives the `warning` action ("Varning"), which the dashboard keeps out of the review counts. Promotion is judged on the full-war streak: wars in a row, counting back from `history[0]`, with all 16 decks used (`getFullWarStreak`). A war the player was not in breaks the streak. Averages are only used by the optional filters, which are off by default.
 - Only `member` and `elder` are evaluated. Co-leaders and leaders get no recommendation. A member with no data for the latest war (`inLatestWar` false, e.g. newly joined) is skipped.
 - Kick/demote criteria trigger if **any** enabled one is hit. Promotion requires **all** enabled promotion criteria to be met.
 

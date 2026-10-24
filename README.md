@@ -70,20 +70,13 @@ data. Decks and donations are averages per participated war.
 | File | Purpose |
 |---|---|
 | `fetch_data.py` | Fetches members, current war and war log from the API |
-| `generate_insights.py` | Writes `insights.json` with the same rules as the dashboard |
 | `track_members.py` | Compares members with `member_snapshot.json`, appends to `member_events.json` |
 | `track_war_days.py` | Saves each player's decks per day of the current war to `war_days.json` |
-| `index.html` | The dashboard (computes everything live from the JSON files) |
-| `.github/workflows/fetch.yml` | Runs the four scripts every hour and commits the data |
-
-The recommendation rules exist in both `generate_insights.py` and `index.html`.
-`tests/test_dashboard_parity.py` runs the same scenarios through both and fails
-if they ever disagree.
+| `index.html` | The dashboard (computes everything live from the JSON files, including the recommendation rules) |
+| `.github/workflows/fetch.yml` | Runs the three scripts every hour and commits the data |
 
 ## Tests
 
 ```
 python -m unittest discover -s tests -t .
 ```
-
-The parity test needs Node.js and is skipped without it.

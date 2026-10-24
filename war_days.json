@@ -372,7 +372,7 @@
       }
     },
     "2": {
-      "updated": "2026-10-23T22:43:15Z",
+      "updated": "2026-10-24T01:13:25Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -544,11 +544,6 @@
           "base": 0,
           "decks": 4
         },
-        "#VGPYCR0JG": {
-          "name": "Rasse08;)",
-          "base": 4,
-          "decks": 1
-        },
         "#P0CV8LUY": {
           "name": "Gideon",
           "base": 0,
@@ -656,6 +651,11 @@
         },
         "#CJLPGJ2CY": {
           "name": "BRUNO",
+          "base": 4,
+          "decks": 4
+        },
+        "#VGPYCR0JG": {
+          "name": "Rasse08;)",
           "base": 4,
           "decks": 4
         },

@@ -1152,7 +1152,7 @@
       }
     },
     "4": {
-      "updated": "2026-10-25T17:56:43Z",
+      "updated": "2026-10-25T20:13:49Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -1299,10 +1299,10 @@
           "base": 0,
           "decks": 0
         },
-        "#29YR2U0VP": {
-          "name": "RONALD + RONALD",
-          "base": 4,
-          "decks": 0
+        "#UU9CYVR8C": {
+          "name": "G_6",
+          "base": 0,
+          "decks": 3
         },
         "#V2QJVPVRY": {
           "name": "Julius15",
@@ -1324,6 +1324,11 @@
           "base": 7,
           "decks": 0
         },
+        "#29YR2U0VP": {
+          "name": "RONALD + RONALD",
+          "base": 4,
+          "decks": 4
+        },
         "#RYY092PLU": {
           "name": "bagge",
           "base": 8,
@@ -1344,11 +1349,6 @@
           "base": 4,
           "decks": 4
         },
-        "#2JRJY2LQR": {
-          "name": "skogsankan",
-          "base": 12,
-          "decks": 0
-        },
         "#2QL8VQRUP": {
           "name": "The Viking",
           "base": 12,
@@ -1364,15 +1364,15 @@
           "base": 12,
           "decks": 4
         },
-        "#UUGUL0JJR": {
-          "name": "Padlarn",
-          "base": 12,
-          "decks": 0
-        },
         "#QJ920VG2C": {
           "name": "isak",
           "base": 12,
           "decks": 0
+        },
+        "#2JRJY2LQR": {
+          "name": "skogsankan",
+          "base": 12,
+          "decks": 4
         },
         "#9PQPP2GVG": {
           "name": "Jobg",
@@ -1429,20 +1429,10 @@
           "base": 12,
           "decks": 4
         },
-        "#PPUUULVU2": {
-          "name": "Julia",
-          "base": 12,
-          "decks": 0
-        },
         "#8CVLPV9YR": {
           "name": "Piggelin",
           "base": 12,
           "decks": 0
-        },
-        "#J2R9RRRG": {
-          "name": "N3lson",
-          "base": 12,
-          "decks": 2
         },
         "#PRVR9J9": {
           "name": "Limpan",
@@ -1469,6 +1459,11 @@
           "base": 12,
           "decks": 4
         },
+        "#J2R9RRRG": {
+          "name": "N3lson",
+          "base": 12,
+          "decks": 4
+        },
         "#2L8V08QLL": {
           "name": "Bossebus123",
           "base": 12,
@@ -1478,6 +1473,11 @@
           "name": "herman@:com",
           "base": 12,
           "decks": 0
+        },
+        "#UUGUL0JJR": {
+          "name": "Padlarn",
+          "base": 12,
+          "decks": 4
         },
         "#20CRLUGCP9": {
           "name": "BjalkenX",
@@ -1536,6 +1536,11 @@
         },
         "#PPJPY09GP": {
           "name": "BjalkenGG",
+          "base": 12,
+          "decks": 4
+        },
+        "#PPUUULVU2": {
+          "name": "Julia",
           "base": 12,
           "decks": 4
         },

@@ -752,7 +752,7 @@
       }
     },
     "3": {
-      "updated": "2026-10-25T00:39:11Z",
+      "updated": "2026-10-25T05:28:10Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -771,11 +771,6 @@
         },
         "#RJR22U09U": {
           "name": "Ekman",
-          "base": 0,
-          "decks": 0
-        },
-        "#29YR2U0VP": {
-          "name": "RONALD + RONALD",
           "base": 0,
           "decks": 0
         },
@@ -919,6 +914,11 @@
           "base": 0,
           "decks": 4
         },
+        "#29YR2U0VP": {
+          "name": "RONALD + RONALD",
+          "base": 0,
+          "decks": 4
+        },
         "#Y0J98GRY9": {
           "name": "5%",
           "base": 4,
@@ -932,7 +932,7 @@
         "#CPCLGY0R": {
           "name": "AMAMAMAMEOJ",
           "base": 3,
-          "decks": 2
+          "decks": 4
         },
         "#J98C09980": {
           "name": "noodlefood",
@@ -963,11 +963,6 @@
           "name": "Zer0",
           "base": 8,
           "decks": 4
-        },
-        "#98YUVC8": {
-          "name": "Oskar :)",
-          "base": 8,
-          "decks": 0
         },
         "#2JRJY2LQR": {
           "name": "skogsankan",
@@ -1003,11 +998,6 @@
           "name": "BjalkenX",
           "base": 8,
           "decks": 4
-        },
-        "#8CVLPV9YR": {
-          "name": "Piggelin",
-          "base": 8,
-          "decks": 0
         },
         "#UCCL9GC9R": {
           "name": "Das Meer",
@@ -1109,6 +1099,11 @@
           "base": 8,
           "decks": 4
         },
+        "#98YUVC8": {
+          "name": "Oskar :)",
+          "base": 8,
+          "decks": 4
+        },
         "#CVGCRRCR2": {
           "name": "Nnea",
           "base": 8,
@@ -1126,6 +1121,11 @@
         },
         "#PPUUULVU2": {
           "name": "Julia",
+          "base": 8,
+          "decks": 4
+        },
+        "#8CVLPV9YR": {
+          "name": "Piggelin",
           "base": 8,
           "decks": 4
         },

@@ -752,7 +752,7 @@
       }
     },
     "3": {
-      "updated": "2026-10-24T22:08:36Z",
+      "updated": "2026-10-25T00:39:11Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -919,11 +919,6 @@
           "base": 0,
           "decks": 4
         },
-        "#CPCLGY0R": {
-          "name": "AMAMAMAMEOJ",
-          "base": 3,
-          "decks": 0
-        },
         "#Y0J98GRY9": {
           "name": "5%",
           "base": 4,
@@ -934,15 +929,15 @@
           "base": 4,
           "decks": 0
         },
+        "#CPCLGY0R": {
+          "name": "AMAMAMAMEOJ",
+          "base": 3,
+          "decks": 2
+        },
         "#J98C09980": {
           "name": "noodlefood",
           "base": 4,
-          "decks": 0
-        },
-        "#9RCR2QQQJ": {
-          "name": "Zer0",
-          "base": 8,
-          "decks": 0
+          "decks": 4
         },
         "#YGPJ9PP9Y": {
           "name": "kingmeng",
@@ -964,13 +959,13 @@
           "base": 8,
           "decks": 4
         },
+        "#9RCR2QQQJ": {
+          "name": "Zer0",
+          "base": 8,
+          "decks": 4
+        },
         "#98YUVC8": {
           "name": "Oskar :)",
-          "base": 8,
-          "decks": 0
-        },
-        "#YPCURPPY2": {
-          "name": "BullyMeILLc|_|M",
           "base": 8,
           "decks": 0
         },
@@ -1101,6 +1096,11 @@
         },
         "#J2R9RRRG": {
           "name": "N3lson",
+          "base": 8,
+          "decks": 4
+        },
+        "#YPCURPPY2": {
+          "name": "BullyMeILLc|_|M",
           "base": 8,
           "decks": 4
         },

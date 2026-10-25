@@ -1152,7 +1152,7 @@
       }
     },
     "4": {
-      "updated": "2026-10-25T20:13:49Z",
+      "updated": "2026-10-25T22:53:55Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -1302,7 +1302,7 @@
         "#UU9CYVR8C": {
           "name": "G_6",
           "base": 0,
-          "decks": 3
+          "decks": 4
         },
         "#V2QJVPVRY": {
           "name": "Julius15",
@@ -1354,11 +1354,6 @@
           "base": 12,
           "decks": 4
         },
-        "#URUQ09LVG": {
-          "name": "wisely",
-          "base": 12,
-          "decks": 0
-        },
         "#9RCR2QQQJ": {
           "name": "Zer0",
           "base": 12,
@@ -1399,11 +1394,6 @@
           "base": 12,
           "decks": 4
         },
-        "#RUV8V8GVR": {
-          "name": "MEGABAENIS",
-          "base": 12,
-          "decks": 0
-        },
         "#8UPLQ90YQ": {
           "name": "Viggen\\\\",
           "base": 12,
@@ -1439,6 +1429,11 @@
           "base": 11,
           "decks": 4
         },
+        "#URUQ09LVG": {
+          "name": "wisely",
+          "base": 12,
+          "decks": 4
+        },
         "#P0CV8LUY": {
           "name": "Gideon",
           "base": 8,
@@ -1468,11 +1463,6 @@
           "name": "Bossebus123",
           "base": 12,
           "decks": 4
-        },
-        "#2QGGPPYCP": {
-          "name": "herman@:com",
-          "base": 12,
-          "decks": 0
         },
         "#UUGUL0JJR": {
           "name": "Padlarn",
@@ -1539,6 +1529,11 @@
           "base": 12,
           "decks": 4
         },
+        "#RUV8V8GVR": {
+          "name": "MEGABAENIS",
+          "base": 12,
+          "decks": 4
+        },
         "#PPUUULVU2": {
           "name": "Julia",
           "base": 12,
@@ -1551,6 +1546,11 @@
         },
         "#8VV8GGGPY": {
           "name": "Leo",
+          "base": 12,
+          "decks": 4
+        },
+        "#2QGGPPYCP": {
+          "name": "herman@:com",
           "base": 12,
           "decks": 4
         }

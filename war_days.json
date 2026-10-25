@@ -752,7 +752,7 @@
       }
     },
     "3": {
-      "updated": "2026-10-25T05:28:10Z",
+      "updated": "2026-10-25T08:52:35Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -899,11 +899,6 @@
           "base": 0,
           "decks": 0
         },
-        "#PJCJ929Q2": {
-          "name": "mastercheese",
-          "base": 0,
-          "decks": 2
-        },
         "#V2QJVPVRY": {
           "name": "Julius15",
           "base": 1,
@@ -924,14 +919,19 @@
           "base": 4,
           "decks": 0
         },
-        "#RYY092PLU": {
-          "name": "bagge",
-          "base": 4,
-          "decks": 0
+        "#PJCJ929Q2": {
+          "name": "mastercheese",
+          "base": 0,
+          "decks": 4
         },
         "#CPCLGY0R": {
           "name": "AMAMAMAMEOJ",
           "base": 3,
+          "decks": 4
+        },
+        "#RYY092PLU": {
+          "name": "bagge",
+          "base": 4,
           "decks": 4
         },
         "#J98C09980": {
@@ -949,11 +949,6 @@
           "base": 4,
           "decks": 3
         },
-        "#2G9PV0LQ0": {
-          "name": "Thabet",
-          "base": 8,
-          "decks": 0
-        },
         "#2QL8VQRUP": {
           "name": "The Viking",
           "base": 8,
@@ -969,24 +964,19 @@
           "base": 8,
           "decks": 4
         },
-        "#PRVR9J9": {
-          "name": "Limpan",
-          "base": 8,
-          "decks": 2
-        },
         "#GYJVQYR": {
           "name": "Adam",
           "base": 8,
           "decks": 4
         },
-        "#2JC8C9VVP": {
-          "name": "iron m",
-          "base": 8,
-          "decks": 0
-        },
         "#P0CV8LUY": {
           "name": "Gideon",
           "base": 4,
+          "decks": 4
+        },
+        "#2G9PV0LQ0": {
+          "name": "Thabet",
+          "base": 8,
           "decks": 4
         },
         "#CJLPGJ2CY": {
@@ -1008,6 +998,11 @@
           "name": "wisely",
           "base": 8,
           "decks": 4
+        },
+        "#PRVR9J9": {
+          "name": "Limpan",
+          "base": 8,
+          "decks": 3
         },
         "#2L8V08QLL": {
           "name": "Bossebus123",
@@ -1112,6 +1107,11 @@
         "#U2YJV2R2G": {
           "name": "Hejhadi1",
           "base": 6,
+          "decks": 4
+        },
+        "#2JC8C9VVP": {
+          "name": "iron m",
+          "base": 8,
           "decks": 4
         },
         "#PPJPY09GP": {

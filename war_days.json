@@ -1152,7 +1152,7 @@
       }
     },
     "4": {
-      "updated": "2026-10-26T00:49:41Z",
+      "updated": "2026-10-26T05:32:46Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -1319,11 +1319,6 @@
           "base": 4,
           "decks": 4
         },
-        "#CPCLGY0R": {
-          "name": "AMAMAMAMEOJ",
-          "base": 7,
-          "decks": 0
-        },
         "#29YR2U0VP": {
           "name": "RONALD + RONALD",
           "base": 4,
@@ -1333,6 +1328,11 @@
           "name": "bagge",
           "base": 8,
           "decks": 0
+        },
+        "#CPCLGY0R": {
+          "name": "AMAMAMAMEOJ",
+          "base": 7,
+          "decks": 2
         },
         "#YGPJ9PP9Y": {
           "name": "kingmeng",

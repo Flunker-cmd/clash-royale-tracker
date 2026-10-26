@@ -1152,7 +1152,7 @@
       }
     },
     "4": {
-      "updated": "2026-10-25T22:53:55Z",
+      "updated": "2026-10-26T00:49:41Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -1334,11 +1334,6 @@
           "base": 8,
           "decks": 0
         },
-        "#J98C09980": {
-          "name": "noodlefood",
-          "base": 8,
-          "decks": 0
-        },
         "#YGPJ9PP9Y": {
           "name": "kingmeng",
           "base": 8,
@@ -1374,10 +1369,10 @@
           "base": 7,
           "decks": 4
         },
-        "#VGPYCR0JG": {
-          "name": "Rasse08;)",
-          "base": 12,
-          "decks": 0
+        "#J98C09980": {
+          "name": "noodlefood",
+          "base": 8,
+          "decks": 4
         },
         "#20929PYR0": {
           "name": "Reavy",
@@ -1461,6 +1456,11 @@
         },
         "#2L8V08QLL": {
           "name": "Bossebus123",
+          "base": 12,
+          "decks": 4
+        },
+        "#VGPYCR0JG": {
+          "name": "Rasse08;)",
           "base": 12,
           "decks": 4
         },

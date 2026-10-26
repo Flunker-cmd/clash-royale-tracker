@@ -18,7 +18,9 @@ One war runs Thursday to Sunday, and a full war is all 16 decks used.
   demote to Member (Elder works as an extra life). One such war gives a warning.
   A war the player was not in the clan for does not count as weak.
 - Co-Leaders are appointed manually and never get a recommendation
-- Members with no data for the latest war (newly joined) are not evaluated
+- Members with no data for the latest war (newly joined) are not evaluated.
+  Neither are players who joined after the latest war ended, even if the war
+  log lists them from an earlier short stay in the clan.
 
 The dashboard always opens with these defaults.
 

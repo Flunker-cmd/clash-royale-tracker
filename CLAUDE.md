@@ -32,7 +32,7 @@ The JSON data files are generated output committed to the repo. Don't hand-edit 
 ### Rule semantics that are easy to get wrong
 
 - Kick is judged on the **latest finished war** (fame in `history[0]`), not on averages. Elder demotion needs fame below the limit in `demoteElderWeakWars` wars in a row (`getWeakWarStreak`). A shorter streak gives the `warning` action ("Varning"), which the dashboard keeps out of the review counts. Promotion is judged on the full-war streak: wars in a row, counting back from `history[0]`, with all 16 decks used (`getFullWarStreak`). A war the player was not in breaks the streak. Averages are only used by the optional filters, which are off by default.
-- Only `member` and `elder` are evaluated. Co-leaders and leaders get no recommendation. A member with no data for the latest war (`inLatestWar` false, e.g. newly joined) is skipped.
+- Only `member` and `elder` are evaluated. Co-leaders and leaders get no recommendation. A member with no data for the latest war (`inLatestWar` false, e.g. newly joined) is skipped. So is a member whose latest `joined` event in `member_events.json` is after `history[0].createdDate`: the war log can list a player from an earlier short stay (with 0 decks), and that war says nothing about how they play for the clan.
 - Kick/demote criteria trigger if **any** enabled one is hit. Promotion requires **all** enabled promotion criteria to be met.
 
 ## Conventions

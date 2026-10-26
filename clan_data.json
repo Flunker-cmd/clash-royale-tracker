@@ -122,7 +122,7 @@
         "repairPoints": 0,
         "boatAttacks": 0,
         "decksUsed": 0,
-        "decksUsedToday": 1
+        "decksUsedToday": 4
       },
       {
         "tag": "#2JC8C9VVP",
@@ -644,7 +644,7 @@
         "repairPoints": 0,
         "boatAttacks": 0,
         "decksUsed": 0,
-        "decksUsedToday": 0
+        "decksUsedToday": 4
       },
       {
         "tag": "#J98C09980",
@@ -680,7 +680,7 @@
         "repairPoints": 0,
         "boatAttacks": 0,
         "decksUsed": 0,
-        "decksUsedToday": 0
+        "decksUsedToday": 2
       },
       {
         "tag": "#P2VVLPGUJ",
@@ -689,7 +689,7 @@
         "repairPoints": 0,
         "boatAttacks": 0,
         "decksUsed": 0,
-        "decksUsedToday": 0
+        "decksUsedToday": 4
       },
       {
         "tag": "#8CVLPV9YR",
@@ -800,7 +800,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#J2YJ90GP0",
@@ -1025,7 +1025,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#UY0Y09V2C",
@@ -1097,7 +1097,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#RUPL29PJP",
@@ -1138,6 +1138,15 @@
         {
           "tag": "#YQYQ9JY0Y",
           "name": "Charbo",
+          "fame": 0,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 0,
+          "decksUsedToday": 0
+        },
+        {
+          "tag": "#C2R2V9PG2",
+          "name": "Glizizi",
           "fame": 0,
           "repairPoints": 0,
           "boatAttacks": 0,
@@ -1576,7 +1585,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#JJVJ8R9R",
@@ -2343,7 +2352,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 1
         },
         {
           "tag": "#2QUPG2JY",
@@ -2487,7 +2496,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 1
         },
         {
           "tag": "#CCYGJ2P",
@@ -2550,7 +2559,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 2
+          "decksUsedToday": 4
         },
         {
           "tag": "#CRJ2GPCRQ",
@@ -2568,7 +2577,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 1
         },
         {
           "tag": "#220GCQV8PU",
@@ -2577,7 +2586,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#LCLC2L9C",
@@ -2723,7 +2732,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 1
+          "decksUsedToday": 4
         },
         {
           "tag": "#2JC8C9VVP",
@@ -3245,7 +3254,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#J98C09980",
@@ -3281,7 +3290,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 2
         },
         {
           "tag": "#P2VVLPGUJ",
@@ -3290,7 +3299,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#8CVLPV9YR",

@@ -1332,12 +1332,12 @@
         "#CPCLGY0R": {
           "name": "AMAMAMAMEOJ",
           "base": 7,
-          "decks": 2
+          "decks": 4
         },
         "#YGPJ9PP9Y": {
           "name": "kingmeng",
           "base": 8,
-          "decks": 0
+          "decks": 3
         },
         "#PJCJ929Q2": {
           "name": "mastercheese",
@@ -1357,7 +1357,7 @@
         "#QJ920VG2C": {
           "name": "isak",
           "base": 12,
-          "decks": 0
+          "decks": 2
         },
         "#2JRJY2LQR": {
           "name": "skogsankan",
@@ -1397,12 +1397,12 @@
         "#2G9PV0LQ0": {
           "name": "Thabet",
           "base": 12,
-          "decks": 3
+          "decks": 4
         },
         "#2JC8C9VVP": {
           "name": "iron m",
           "base": 12,
-          "decks": 0
+          "decks": 4
         },
         "#UCCL9GC9R": {
           "name": "Das Meer",
@@ -1417,7 +1417,7 @@
         "#8CVLPV9YR": {
           "name": "Piggelin",
           "base": 12,
-          "decks": 0
+          "decks": 4
         },
         "#PRVR9J9": {
           "name": "Limpan",
@@ -1556,5 +1556,7 @@
         }
       }
     }
-  }
+  },
+  "finished": true,
+  "seasonId": 137
 }

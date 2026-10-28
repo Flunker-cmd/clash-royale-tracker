@@ -446,7 +446,7 @@
         "repairPoints": 0,
         "boatAttacks": 0,
         "decksUsed": 0,
-        "decksUsedToday": 0
+        "decksUsedToday": 1
       },
       {
         "tag": "#8VV8GGGPY",
@@ -563,7 +563,7 @@
         "repairPoints": 0,
         "boatAttacks": 0,
         "decksUsed": 0,
-        "decksUsedToday": 0
+        "decksUsedToday": 3
       },
       {
         "tag": "#V2QJVPVRY",
@@ -1061,7 +1061,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#UQVJG2Q08",
@@ -1259,7 +1259,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 4
         },
         {
           "tag": "#2V2G8C8U",
@@ -2586,7 +2586,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 1
+          "decksUsedToday": 4
         },
         {
           "tag": "#220GCQV8PU",
@@ -3065,7 +3065,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 1
         },
         {
           "tag": "#8VV8GGGPY",
@@ -3182,7 +3182,7 @@
           "repairPoints": 0,
           "boatAttacks": 0,
           "decksUsed": 0,
-          "decksUsedToday": 0
+          "decksUsedToday": 3
         },
         {
           "tag": "#V2QJVPVRY",
@@ -3374,6 +3374,15 @@
           "boatAttacks": 0,
           "decksUsed": 0,
           "decksUsedToday": 0
+        },
+        {
+          "tag": "#C2YVY9JVJ",
+          "name": "maldoso",
+          "fame": 0,
+          "repairPoints": 0,
+          "boatAttacks": 0,
+          "decksUsed": 0,
+          "decksUsedToday": 4
         },
         {
           "tag": "#ULPPQ2920",

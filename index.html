@@ -2560,7 +2560,9 @@
         const top = Math.max(...scored.map(x => x.v));
         return { value: top, winners: scored.filter(x => x.v === top).map(x => x.m) };
       };
-      const fullWar = inWar.filter(m => m.latestWarParticipation >= 16).length;
+      // Only members who were in the clan for the whole war could play all 16 decks for us.
+      const wholeWar = inWar.filter(m => m.latestWarPossibleDecks >= WAR_DAY_NAMES.length * DECKS_PER_DAY);
+      const fullWar = wholeWar.filter(m => m.latestWarParticipation >= 16).length;
 
       return [
         { icon: '🏆', title: 'Mest fame', result: best(inWar, m => m.latestWarFame), text: v => `${v.toLocaleString()} fame` },
@@ -2575,7 +2577,7 @@
         },
         { icon: '⚓', title: 'Flest båtattacker', result: best(inWar, m => Number(entries.get(m.tag)?.boatAttacks || 0)), text: v => `${v} attacker mot andras båtar` },
         { icon: '🎁', title: 'Flest donationer', result: best(combinedData, m => m.donations), text: v => `${v.toLocaleString()} kort den här veckan` },
-        { icon: '💯', title: 'Alla 16 decks', summary: `${fullWar} spelare`, text: () => `av ${inWar.length} som var med i kriget` }
+        { icon: '💯', title: 'Alla 16 decks', summary: `${fullWar} spelare`, text: () => `av ${wholeWar.length} som var med hela kriget` }
       ].filter(a => a.result || a.summary);
     }
 

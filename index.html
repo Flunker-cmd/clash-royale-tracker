@@ -940,6 +940,8 @@
     .rival-tag.is-prey { background: rgba(16, 185, 129, 0.14); color: #6ee7b7; }
     .rival-tag.is-even { background: rgba(250, 204, 21, 0.12); color: #fde047; }
     .rival-tag.is-new { background: rgba(56, 189, 248, 0.12); color: #7dd3fc; }
+    .rival-card.is-us { border-color: rgba(249, 115, 22, 0.55); }
+    .rival-tag.is-us { background: rgba(249, 115, 22, 0.16); color: #fdba74; }
     .rival-stats { display: grid; gap: 4px; margin: 12px 0 0; font-size: 0.84em; }
     .rival-stat { display: flex; justify-content: space-between; gap: 10px; }
     .rival-stat dt { color: #94a3b8; }
@@ -2424,11 +2426,10 @@
       };
     }
 
-    // Earlier races in the log with both clans. Between wars the race shown is the latest one in the log,
-    // so it is left out here and only the races before it count as earlier meetings.
-    function getMeetings(tag, live) {
-      const races = (dashboardState?.historyRaces || []).slice(live ? 0 : 1);
-      return races.map(race => {
+    // Races in the log with both clans, newest first. Between wars the race shown is the latest one in the
+    // log, so the latest meeting is the war shown.
+    function getMeetings(tag) {
+      return (dashboardState?.historyRaces || []).map(race => {
         const ours = race.standings?.find(s => s.clan.tag === CLAN_TAG);
         const theirs = race.standings?.find(s => s.clan.tag === tag);
         return ours && theirs && {
@@ -2444,7 +2445,7 @@
       const fmt = n => n.toLocaleString();
       const finishes = meetings.filter(m => m.finished).length;
       if (meetings.length && finishes === meetings.length) {
-        return `🏁 Har gått i mål i ${meetings.length === 1 ? 'vårt enda tidigare möte' : `alla ${meetings.length} tidigare möten`}. Ta dem på allvar.`;
+        return `🏁 Har gått i mål i ${meetings.length === 1 ? 'vårt enda möte' : `alla ${meetings.length} möten`}. Ta dem på allvar.`;
       }
       if (meetings[0]?.finished) {
         return `🏁 Gick i mål i vårt senaste möte${meetings[0].weWon ? ', men vi kom ändå före' : ' och slog oss'}.`;
@@ -2476,10 +2477,10 @@
       panel.hidden = false;
       const fmt = n => n.toLocaleString();
       const ourStats = getClanWarStats(us.participants);
-      const logSize = (dashboardState.historyRaces || []).length - (race.live ? 0 : 1);
+      const races = dashboardState.historyRaces || [];
       document.getElementById('rivals-sub').textContent = race.live
-        ? `Klanerna vi möter i det här kriget. Siffran inom parentes är ${us.name}s. Möten räknas bland de ${logSize} senaste krigen.`
-        : `Klanerna vi mötte i senaste kriget. Siffran inom parentes är ${us.name}s. Möten räknas bland de ${logSize} krigen innan.`;
+        ? `Klanerna vi möter i det här kriget, med ${us.name} först att jämföra med. Siffran inom parentes är vår. Möten räknas bland de ${races.length} senaste avslutade krigen.`
+        : `Klanerna vi mötte i senaste kriget, med ${us.name} först att jämföra med. Siffran inom parentes är vår. Möten räknas bland de ${races.length} senaste krigen, det här inräknat.`;
 
       // Shown as "theirs (ours)", green when we are ahead.
       const versus = (theirs, ours, higherIsBetter = true) => {
@@ -2487,9 +2488,39 @@
         return `<span class="${cls}">${fmt(theirs)}</span> <span class="vs">(${fmt(ours)})</span>`;
       };
 
-      document.getElementById('rivals-grid').innerHTML = rivals.map(rival => {
+      // Both card kinds share the stat rows, so ours lines up with the rivals' for comparison.
+      const statRows = (clan, stats, value) => {
+        const rows = [
+          ['Placering', `${ordinalSv(clan.rank)} · ${fmt(clan.fame)} fame`],
+          ['Spelare som kört decks', value(stats.players, ourStats.players)],
+          ['Decks i kriget', value(stats.decks, ourStats.decks)]
+        ];
+        if (race.live) rows.splice(2, 0, ['Decks idag', value(stats.today, ourStats.today)]);
+        if (stats.star) rows.push(['Stjärnspelare', `${escapeHtml(stats.star.name)} · ${fmt(stats.star.fame)}`]);
+        return rows;
+      };
+      const card = (clan, cls, subtitle, tag, rows, fact) => `<article class="rival-card${cls}">
+            <div class="rival-head">
+              <div>
+                <h3 class="rival-name">${escapeHtml(clan.name)}</h3>
+                <div class="rival-trophies">🏆 ${fmt(clan.trophies)} troféer${subtitle}</div>
+              </div>
+              <span class="rival-tag ${tag.cls}">${tag.text}</span>
+            </div>
+            <dl class="rival-stats">
+              ${rows.map(([label, value]) => `<div class="rival-stat"><dt>${label}</dt><dd>${value}</dd></div>`).join('')}
+            </dl>
+            <p class="rival-fact">${escapeHtml(fact)}</p>
+          </article>`;
+
+      const ourWins = races.filter(r => Number(r.standings?.find(s => s.clan.tag === CLAN_TAG)?.rank) === 1).length;
+      const ourCard = card(us, ' is-us', '', { cls: 'is-us', text: 'Vi' },
+        [['Vunna krig', `${ourWins} av ${races.length}`], ...statRows(us, ourStats, n => fmt(n))],
+        `⚓ Vi har attackerat båtar ${ourStats.boatAttacks} ${ourStats.boatAttacks === 1 ? 'gång' : 'gånger'} i kriget.`);
+
+      document.getElementById('rivals-grid').innerHTML = ourCard + rivals.map(rival => {
         const stats = getClanWarStats(rival.participants);
-        const meetings = getMeetings(rival.tag, race.live);
+        const meetings = getMeetings(rival.tag);
         const wins = meetings.filter(m => m.weWon).length;
         const losses = meetings.length - wins;
         let tag = { cls: 'is-new', text: 'Ny bekantskap' };
@@ -2497,28 +2528,11 @@
         else if (meetings.length && wins === meetings.length) tag = { cls: 'is-prey', text: 'Vi har övertaget' };
         else if (meetings.length) tag = { cls: 'is-even', text: 'Jämnt' };
         const trophyDiff = rival.trophies - us.trophies;
+        const subtitle = ` · ${trophyDiff === 0 ? 'lika som oss' : `${fmt(Math.abs(trophyDiff))} ${trophyDiff > 0 ? 'över' : 'under'} oss`}`;
 
-        const rows = [
-          ['Tidigare möten', meetings.length ? `${meetings.length} · ${wins}–${losses} till oss` : 'Inga'],
-          ['Spelare som kört decks', versus(stats.players, ourStats.players)],
-          ['Decks i kriget', versus(stats.decks, ourStats.decks)]
-        ];
-        if (race.live) rows.splice(2, 0, ['Decks idag', versus(stats.today, ourStats.today)]);
-        if (stats.star) rows.push(['Stjärnspelare', `${escapeHtml(stats.star.name)} · ${fmt(stats.star.fame)}`]);
-
-        return `<article class="rival-card">
-            <div class="rival-head">
-              <div>
-                <h3 class="rival-name">${escapeHtml(rival.name)}</h3>
-                <div class="rival-trophies">🏆 ${fmt(rival.trophies)} troféer · ${trophyDiff === 0 ? 'lika som oss' : `${fmt(Math.abs(trophyDiff))} ${trophyDiff > 0 ? 'över' : 'under'} oss`}</div>
-              </div>
-              <span class="rival-tag ${tag.cls}">${tag.text}</span>
-            </div>
-            <dl class="rival-stats">
-              ${rows.map(([label, value]) => `<div class="rival-stat"><dt>${label}</dt><dd>${value}</dd></div>`).join('')}
-            </dl>
-            <p class="rival-fact">${escapeHtml(getRivalFact(rival, meetings, stats, ourStats))}</p>
-          </article>`;
+        return card(rival, '', subtitle, tag,
+          [['Möten', meetings.length ? `${meetings.length} · ${wins}–${losses} till oss` : 'Inga'], ...statRows(rival, stats, versus)],
+          getRivalFact(rival, meetings, stats, ourStats));
       }).join('');
     }
 

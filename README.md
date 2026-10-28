@@ -51,8 +51,9 @@ data. Decks and donations are averages per participated war.
   towards the finish line at 10 000 fame, with today's medals and daily rank, our
   result per earlier day of the war, and how far the boat would move if the day
   ended now. Between wars it shows the final standings of the latest race.
-- **Opponents** ("Motståndet"): one card per other clan in the race with war
-  trophies, earlier meetings in the race log and who came out ahead, players and
+- **Opponents** ("Motståndet"): a card for our clan first, then one per other
+  clan in the race with war trophies, meetings in the race log (between wars
+  including the war just shown) and who came out ahead, placement, players and
   decks compared with ours, their best player and a fun fact.
 - **War heroes** ("Krigets hjältar"): awards for the latest finished war (most
   fame, longest full-war streak, biggest improvement, boat attacks, donations,

@@ -13,14 +13,19 @@ One war runs Thursday to Sunday, and a full war is all 16 decks used.
 - Member with a full war in each of the **3 latest finished wars**: promote to
   Elder. A war with fewer decks, or one the player was not in the clan for,
   breaks the streak. Fame does not matter for promotion.
-- Member with less than 500 fame in the **latest finished war**: kick
-- Elder with less than 1600 fame in each of the **2 latest finished wars**:
-  demote to Member (Elder works as an extra life). One such war gives a warning.
-  A war the player was not in the clan for does not count as weak.
+- Member who used less than 75% of their possible decks in the **latest
+  finished war** (fewer than 12 of 16): kick. Kick and demotion count decks
+  only; fame does not matter.
+- Elder who missed decks in each of the **2 latest finished wars**: demote to
+  Member (Elder works as an extra life). One such war gives a warning. A war the
+  player was not in the clan for does not count as weak.
+- A player who joined during the latest war only has to play the full days
+  after the day they joined (4 decks per day). The day they joined does not
+  count, since they may already have used their decks in another clan.
 - Co-Leaders are appointed manually and never get a recommendation
 - Members with no data for the latest war (newly joined) are not evaluated.
-  Neither are players who joined after the latest war ended, even if the war
-  log lists them from an earlier short stay in the clan.
+  Neither are players who joined on its last day or after it ended (the war log
+  may list them from an earlier short stay in the clan).
 
 The dashboard always opens with these defaults.
 

@@ -1160,7 +1160,7 @@
     <div class="criteria-panel" id="criteria-panel" data-collapsible="phone-closed">
       <div class="label">Kriterier för befordran</div>
       <div class="criteria-info">
-        En medlem befordras till elder efter att ha använt alla 16 decks i vart och ett av de 3 senaste krigen (torsdag–söndag). Kick och degradering utgår från poäng (fame) i det senaste avslutade kriget: en medlem under 500 kickas. En elder under 1600 får en varning och degraderas till medlem om det händer 2 krig i rad (elder fungerar som ett extraliv). Co-leaders utses manuellt och får ingen rekommendation. Extra filter är avstängda som standard och kan slås på för att undersöka: för befordran måste alla aktiva villkor uppfyllas, för kick/degradering räcker det att ett av dem slår till. Decks och donationer räknas som snitt per krig. Ändringar gäller tills sidan laddas om. AFK-markerade spelare undantas.
+        En medlem befordras till elder efter att ha använt alla 16 decks i vart och ett av de 3 senaste krigen (torsdag–söndag). Kick och degradering utgår från antal decks, inte poäng: en medlem som spelade under 75 % av sina möjliga decks i det senaste avslutade kriget (under 12 av 16) kickas. En elder som missade decks får en varning och degraderas till medlem om det händer 2 krig i rad (elder fungerar som ett extraliv). Den som gick med under kriget behöver bara ha spelat de hela dagarna efter dagen hen gick med. Co-leaders utses manuellt och får ingen rekommendation. Extra filter är avstängda som standard och kan slås på för att undersöka: för befordran måste alla aktiva villkor uppfyllas, för kick/degradering räcker det att ett av dem slår till. Decks och donationer räknas som snitt per krig. Ändringar gäller tills sidan laddas om. AFK-markerade spelare undantas.
       </div>
       <div class="criteria-sections">
         <div class="criteria-section">
@@ -1192,15 +1192,15 @@
           <div class="criteria-grid">
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-kickMemberLatestWarFameEnabled" type="checkbox"> Kicka medlem under</label>
+                <label class="criteria-toggle"><input id="criteria-kickMemberDeckShareEnabled" type="checkbox"> Kicka medlem, % av möjliga decks under</label>
               </div>
-              <input id="criteria-kickMemberLatestWarFame" type="number" min="0" step="100" value="500">
+              <input id="criteria-kickMemberDeckShare" type="number" min="0" max="100" step="5" value="75">
             </div>
             <div class="criteria-field">
               <div class="criteria-field-header">
-                <label class="criteria-toggle"><input id="criteria-demoteElderLatestWarFameEnabled" type="checkbox"> Degradera elder under</label>
+                <label class="criteria-toggle"><input id="criteria-demoteElderMissedDecksEnabled" type="checkbox"> Degradera elder, missade decks fler än</label>
               </div>
-              <input id="criteria-demoteElderLatestWarFame" type="number" min="0" step="100" value="1600">
+              <input id="criteria-demoteElderMissedDecks" type="number" min="0" max="16" step="1" value="0">
             </div>
             <div class="criteria-field">
               <div class="criteria-field-header">
@@ -1336,16 +1336,16 @@
       member: 1
     };
 
-    // Default rules: promotion needs full wars in a row, kick uses fame in the latest finished war,
-    // demotion needs low fame in several wars in a row.
+    // Default rules: promotion needs full wars in a row, kick uses the share of possible decks used in the
+    // latest finished war, demotion needs missed decks in several wars in a row. Only decks count, not fame.
     // Everything else is an optional filter.
     const defaultCriteria = {
-      kickMemberLatestWarFame: 500,
-      kickMemberLatestWarFameEnabled: true,
+      kickMemberDeckShare: 75,
+      kickMemberDeckShareEnabled: true,
       promoteElderFullWars: 3,
       promoteElderFullWarsEnabled: true,
-      demoteElderLatestWarFame: 1600,
-      demoteElderLatestWarFameEnabled: true,
+      demoteElderMissedDecks: 0,
+      demoteElderMissedDecksEnabled: true,
       demoteElderWeakWars: 2,
       promoteElderAvgDecks: 14,
       promoteElderAvgDecksEnabled: false,
@@ -1395,12 +1395,12 @@
 
     function getCriteriaInputs() {
       return {
-        kickMemberLatestWarFame: Number(document.getElementById('criteria-kickMemberLatestWarFame').value || defaultCriteria.kickMemberLatestWarFame),
-        kickMemberLatestWarFameEnabled: document.getElementById('criteria-kickMemberLatestWarFameEnabled').checked,
+        kickMemberDeckShare: Number(document.getElementById('criteria-kickMemberDeckShare').value || defaultCriteria.kickMemberDeckShare),
+        kickMemberDeckShareEnabled: document.getElementById('criteria-kickMemberDeckShareEnabled').checked,
         promoteElderFullWars: Number(document.getElementById('criteria-promoteElderFullWars').value || defaultCriteria.promoteElderFullWars),
         promoteElderFullWarsEnabled: document.getElementById('criteria-promoteElderFullWarsEnabled').checked,
-        demoteElderLatestWarFame: Number(document.getElementById('criteria-demoteElderLatestWarFame').value || defaultCriteria.demoteElderLatestWarFame),
-        demoteElderLatestWarFameEnabled: document.getElementById('criteria-demoteElderLatestWarFameEnabled').checked,
+        demoteElderMissedDecks: Number(document.getElementById('criteria-demoteElderMissedDecks').value || defaultCriteria.demoteElderMissedDecks),
+        demoteElderMissedDecksEnabled: document.getElementById('criteria-demoteElderMissedDecksEnabled').checked,
         demoteElderWeakWars: Number(document.getElementById('criteria-demoteElderWeakWars').value || defaultCriteria.demoteElderWeakWars),
         promoteElderAvgDecks: Number(document.getElementById('criteria-promoteElderAvgDecks').value || defaultCriteria.promoteElderAvgDecks),
         promoteElderAvgDecksEnabled: document.getElementById('criteria-promoteElderAvgDecksEnabled').checked,
@@ -1417,10 +1417,10 @@
 
     function updateCriteriaInputsState() {
       const toggles = [
-        ['criteria-kickMemberLatestWarFameEnabled', 'criteria-kickMemberLatestWarFame'],
+        ['criteria-kickMemberDeckShareEnabled', 'criteria-kickMemberDeckShare'],
         ['criteria-promoteElderFullWarsEnabled', 'criteria-promoteElderFullWars'],
-        ['criteria-demoteElderLatestWarFameEnabled', 'criteria-demoteElderLatestWarFame'],
-        ['criteria-demoteElderLatestWarFameEnabled', 'criteria-demoteElderWeakWars'],
+        ['criteria-demoteElderMissedDecksEnabled', 'criteria-demoteElderMissedDecks'],
+        ['criteria-demoteElderMissedDecksEnabled', 'criteria-demoteElderWeakWars'],
         ['criteria-promoteElderAvgDecksEnabled', 'criteria-promoteElderAvgDecks'],
         ['criteria-promoteElderDonationsEnabled', 'criteria-promoteElderDonations'],
         ['criteria-kickAvgDecksEnabled', 'criteria-kickAvgDecks'],
@@ -1512,31 +1512,46 @@
 
     // One set of checks feeds both the recommendation and the detail view's explanation.
     // Kick/demote criteria trigger on ANY enabled hit; promotion needs ALL enabled criteria met.
-    // An elder's fame check only hits after several weak wars in a row and warns before that.
+    // An elder's missed-decks check only hits after several weak wars in a row and warns before that.
     function getCriteriaChecks(member, criteria) {
       const isElder = member.role === 'elder';
-      const fameKey = isElder ? 'demoteElderLatestWarFame' : 'kickMemberLatestWarFame';
       const withState = check => {
         const enabled = isCriterionEnabled(criteria, check.key);
         const limit = Number(criteria[check.key]);
         return { ...check, enabled, limit };
       };
 
+      // `above` checks hit when the value is over the limit, the others when it is under.
+      // Members must use a share of their possible decks; elders keep the title by playing full wars.
+      const deckCheck = isElder
+        ? { key: 'demoteElderMissedDecks', label: 'Missade decks', value: member.latestWarMissedDecks, above: true }
+        : { key: 'kickMemberDeckShare', label: 'Andel decks (%)', value: member.latestWarDeckShare };
       const down = [
-        { key: fameKey, label: 'Krigspoäng', value: member.latestWarFame },
+        deckCheck,
         { key: 'kickAvgDecks', label: 'Decks/krig', value: member.avgDecks },
         { key: 'kickDonations', label: 'Donationer/krig', value: member.donationsPerWar }
-      ].map(withState).map(c => ({ ...c, hit: c.enabled && c.value < c.limit, warn: false, suffix: '', ruleSuffix: '' }));
+      ].map(withState).map(c => ({
+        ...c,
+        hit: c.enabled && (c.above ? c.value > c.limit : c.value < c.limit),
+        op: c.above ? '>' : '<',
+        ruleOp: c.above ? 'över' : 'under',
+        warn: false,
+        suffix: '',
+        ruleSuffix: ''
+      }));
 
+      const missed = down[0];
+      const details = [`${member.latestWarParticipation} av ${member.latestWarPossibleDecks} möjliga decks`];
+      if (member.latestWarPossibleDecks < 16) details.push('gick med under kriget');
       if (isElder) {
-        const fame = down[0];
         const needed = Number(criteria.demoteElderWeakWars);
-        const streak = getWeakWarStreak(member.fameHistory || [], fame.limit);
-        fame.hit = fame.enabled && streak >= needed;
-        fame.warn = fame.enabled && streak > 0 && !fame.hit;
-        fame.suffix = ` (${Math.min(streak, needed)} av ${needed} krig i rad)`;
-        fame.ruleSuffix = ` i ${needed} krig i rad`;
+        const streak = getWeakWarStreak(member.history || [], member.latestWarPossibleDecks, missed.limit);
+        missed.hit = missed.enabled && streak >= needed;
+        missed.warn = missed.enabled && streak > 0 && !missed.hit;
+        details.push(`${Math.min(streak, needed)} av ${needed} krig i rad`);
+        missed.ruleSuffix = ` i ${needed} krig i rad`;
       }
+      missed.suffix = ` (${details.join(', ')})`;
 
       const recent = withState({ key: 'recentParticipation', label: 'Decks i senaste kriget', value: member.latestWarParticipation });
       recent.limit = Number(criteria.recentParticipationThreshold);
@@ -1567,7 +1582,7 @@
 
       const { isElder, down, recent, up } = getCriteriaChecks(member, criteria);
 
-      const downReasons = down.filter(c => c.hit).map(c => `${c.label} ${c.value} < ${c.limit}${c.suffix}`);
+      const downReasons = down.filter(c => c.hit).map(c => `${c.label} ${c.value} ${c.op} ${c.limit}${c.suffix}`);
       if (downReasons.length) {
         return isElder
           ? { text: 'Degradera till medlem', weight: 1, className: 'review', reason: downReasons.join(', ') }
@@ -1576,7 +1591,7 @@
 
       const warning = down.find(c => c.warn);
       if (warning) {
-        return { text: 'Varning', weight: 2, className: 'warn', reason: `${warning.label} ${warning.value} < ${warning.limit}${warning.suffix}` };
+        return { text: 'Varning', weight: 2, className: 'warn', reason: `${warning.label} ${warning.value} ${warning.op} ${warning.limit}${warning.suffix}` };
       }
 
       if (recent.hit) {
@@ -1615,11 +1630,12 @@
       return streak;
     }
 
-    // Wars in a row, counting back from the latest, with fame below the limit.
-    function getWeakWarStreak(fameHistory, limit) {
+    // Wars in a row, counting back from the latest, with more missed decks than the limit.
+    // Only the latest war can have fewer possible decks (joined during it); earlier ones count as full.
+    function getWeakWarStreak(deckHistory, latestPossible, limit) {
       let streak = 0;
-      for (const fame of fameHistory) {
-        if (fame === null || fame >= limit) break;
+      for (const [i, decks] of deckHistory.entries()) {
+        if (decks === null || (i === 0 ? latestPossible : 16) - decks <= limit) break;
         streak++;
       }
       return streak;
@@ -1659,6 +1675,14 @@
         if (e.type === 'joined' && !joins.has(e.tag)) joins.set(e.tag, new Date(e.date));
       });
       return joins;
+    }
+
+    // Decks a player could play in a war that started at `warStart`, given when they (last) joined.
+    // The day they joined does not count, nor do days before it.
+    function getPossibleDecks(joined, warStart) {
+      if (!joined || !warStart || joined <= warStart) return WAR_DAY_NAMES.length * DECKS_PER_DAY;
+      const joinDay = Math.floor((joined - warStart) / (24 * 60 * 60 * 1000)) + 1;
+      return Math.max(0, WAR_DAY_NAMES.length - joinDay) * DECKS_PER_DAY;
     }
 
     function parseLastSeen(str) {
@@ -1706,6 +1730,8 @@
       const warParticipants = new Map((dashboardState.currentWar?.clan?.participants || []).map(p => [p.tag, p]));
       const warStats = {};
       const latestWarEnd = parseApiTime(historyRaces[0]?.createdDate);
+      // The battle days are the last days before the war ends (createdDate).
+      const latestWarStart = latestWarEnd && new Date(latestWarEnd.getTime() - WAR_DAY_NAMES.length * 24 * 60 * 60 * 1000);
       const latestJoins = getLatestJoins(dashboardState.events);
       let totalClanAvgFame = 0;
       let activeWarriorsCount = 0;
@@ -1744,10 +1770,16 @@
         const activeWeeks = war.weeks || 0;
         const latestWarParticipation = war.history?.length ? Number(war.history[0] || 0) : 0;
         const latestWarFame = war.fameHistory?.length ? Number(war.fameHistory[0] || 0) : 0;
-        // A player who (re)joined after the latest war ended can still be listed in it, e.g. with 0 decks
-        // from an earlier short stay, so that war says nothing about how they play for us.
-        const joinedAfterLatestWar = latestWarEnd !== null && latestJoins.get(m.tag) > latestWarEnd;
-        const inLatestWar = war.history.length > 0 && war.history[0] !== null && !joinedAfterLatestWar;
+        // A player who (re)joined during the latest war is only expected to play the full days after the day
+        // they joined: on that day they may already have used their decks in another clan. One who joined on
+        // the last day, or after the war (the war log can still list them from an earlier short stay), is
+        // expected nothing, so that war says nothing about how they play for us.
+        const latestWarPossibleDecks = getPossibleDecks(latestJoins.get(m.tag), latestWarStart);
+        const latestWarMissedDecks = Math.max(0, latestWarPossibleDecks - latestWarParticipation);
+        const latestWarDeckShare = latestWarPossibleDecks > 0
+          ? Math.min(100, Math.round((latestWarParticipation / latestWarPossibleDecks) * 100))
+          : 0;
+        const inLatestWar = war.history.length > 0 && war.history[0] !== null && latestWarPossibleDecks > 0;
         const fullWarStreak = getFullWarStreak(war.history);
         const avgFame = activeWeeks > 0 ? Math.round(war.fame / activeWeeks) : 0;
         const avgDecks = activeWeeks > 0 ? Math.round((war.decks / activeWeeks) * 10) / 10 : 0;
@@ -1807,8 +1839,11 @@
           weeks: activeWeeks,
           latestWarParticipation: latestWarParticipation,
           latestWarFame: latestWarFame,
+          latestWarPossibleDecks: latestWarPossibleDecks,
+          latestWarMissedDecks: latestWarMissedDecks,
+          latestWarDeckShare: latestWarDeckShare,
           fullWarStreak: fullWarStreak,
-          fameHistory: war.fameHistory,
+          history: war.history,
           inLatestWar: inLatestWar,
           afk: afk,
         }, currentCriteria);
@@ -1831,6 +1866,9 @@
           weeks: activeWeeks,
           latestWarParticipation: latestWarParticipation,
           latestWarFame: latestWarFame,
+          latestWarPossibleDecks: latestWarPossibleDecks,
+          latestWarMissedDecks: latestWarMissedDecks,
+          latestWarDeckShare: latestWarDeckShare,
           fullWarStreak: fullWarStreak,
           afk: afk,
           warDecksUsed: Number(warEntry?.decksUsed || 0),
@@ -3300,7 +3338,7 @@
       const action = isElder ? 'Degradera' : 'Kicka';
       const rows = down.map(c => ({
         enabled: c.enabled,
-        rule: `${action} om ${c.label.toLowerCase()} under ${c.limit}${c.ruleSuffix}`,
+        rule: `${action} om ${c.label.toLowerCase()} ${c.ruleOp} ${c.limit}${c.ruleSuffix}`,
         value: c.value,
         outcome: !c.enabled ? '– Av' : (c.hit ? '⚠ Slår till' : (c.warn ? `⚠ Varning${c.suffix}` : '✓ Slår inte till'))
       }));

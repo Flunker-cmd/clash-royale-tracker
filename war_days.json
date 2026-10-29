@@ -2,7 +2,7 @@
   "warKey": "3:24",
   "days": {
     "1": {
-      "updated": "2026-10-29T18:47:49Z",
+      "updated": "2026-10-29T22:09:26Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -26,11 +26,6 @@
         },
         "#20929PYR0": {
           "name": "Reavy",
-          "base": 0,
-          "decks": 0
-        },
-        "#2JC8C9VVP": {
-          "name": "iron m",
           "base": 0,
           "decks": 0
         },
@@ -89,11 +84,6 @@
           "base": 0,
           "decks": 0
         },
-        "#UCCL9GC9R": {
-          "name": "Das Meer",
-          "base": 0,
-          "decks": 0
-        },
         "#V0YLVL98Q": {
           "name": "Grxhn",
           "base": 0,
@@ -149,11 +139,6 @@
           "base": 0,
           "decks": 0
         },
-        "#URUQ09LVG": {
-          "name": "wisely",
-          "base": 0,
-          "decks": 0
-        },
         "#202JUR8GR8": {
           "name": "Ivar10",
           "base": 0,
@@ -189,11 +174,6 @@
           "base": 0,
           "decks": 0
         },
-        "#20VYLRPCYG": {
-          "name": "OG27",
-          "base": 0,
-          "decks": 0
-        },
         "#2UCGCC9V": {
           "name": "iQmanen",
           "base": 0,
@@ -224,11 +204,6 @@
           "base": 0,
           "decks": 0
         },
-        "#J2R9RRRG": {
-          "name": "N3lson",
-          "base": 0,
-          "decks": 0
-        },
         "#8CVLPV9YR": {
           "name": "Piggelin",
           "base": 0,
@@ -244,11 +219,6 @@
           "base": 0,
           "decks": 0
         },
-        "#U2YJV2R2G": {
-          "name": "Hejhadi1",
-          "base": 0,
-          "decks": 2
-        },
         "#PRVR9J9": {
           "name": "Limpan",
           "base": 0,
@@ -256,16 +226,6 @@
         },
         "#CUUUYP0LG": {
           "name": "561an",
-          "base": 0,
-          "decks": 2
-        },
-        "#CVYL9CR92": {
-          "name": "A19",
-          "base": 0,
-          "decks": 2
-        },
-        "#VCYPG98JG": {
-          "name": "OGDUNEDAN",
           "base": 0,
           "decks": 2
         },
@@ -284,8 +244,23 @@
           "base": 0,
           "decks": 4
         },
+        "#CVYL9CR92": {
+          "name": "A19",
+          "base": 0,
+          "decks": 4
+        },
         "#UVJU8Q90V": {
           "name": "WilliR5",
+          "base": 0,
+          "decks": 4
+        },
+        "#U2YJV2R2G": {
+          "name": "Hejhadi1",
+          "base": 0,
+          "decks": 4
+        },
+        "#VCYPG98JG": {
+          "name": "OGDUNEDAN",
           "base": 0,
           "decks": 4
         },
@@ -329,6 +304,11 @@
           "base": 0,
           "decks": 4
         },
+        "#20VYLRPCYG": {
+          "name": "OG27",
+          "base": 0,
+          "decks": 3
+        },
         "#VJ9GP8UJ8": {
           "name": "amj",
           "base": 0,
@@ -338,6 +318,21 @@
           "name": "slinky",
           "base": 0,
           "decks": 4
+        },
+        "#UCCL9GC9R": {
+          "name": "Das Meer",
+          "base": 0,
+          "decks": 4
+        },
+        "#2JC8C9VVP": {
+          "name": "iron m",
+          "base": 0,
+          "decks": 4
+        },
+        "#URUQ09LVG": {
+          "name": "wisely",
+          "base": 0,
+          "decks": 3
         },
         "#CVGCRRCR2": {
           "name": "Nnea",
@@ -396,6 +391,11 @@
         },
         "#PPUUULVU2": {
           "name": "Julia",
+          "base": 0,
+          "decks": 4
+        },
+        "#J2R9RRRG": {
+          "name": "N3lson",
           "base": 0,
           "decks": 4
         },

@@ -2,7 +2,7 @@
   "warKey": "3:24",
   "days": {
     "1": {
-      "updated": "2026-10-29T22:09:26Z",
+      "updated": "2026-10-30T02:14:33Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -31,11 +31,6 @@
         },
         "#RJR22U09U": {
           "name": "Ekman",
-          "base": 0,
-          "decks": 0
-        },
-        "#29YR2U0VP": {
-          "name": "RONALD + RONALD",
           "base": 0,
           "decks": 0
         },
@@ -129,16 +124,6 @@
           "base": 0,
           "decks": 0
         },
-        "#VGPYCR0JG": {
-          "name": "Rasse08;)",
-          "base": 0,
-          "decks": 0
-        },
-        "#CPCLGY0R": {
-          "name": "AMAMAMAMEOJ",
-          "base": 0,
-          "decks": 0
-        },
         "#202JUR8GR8": {
           "name": "Ivar10",
           "base": 0,
@@ -218,6 +203,16 @@
           "name": "Knoran",
           "base": 0,
           "decks": 0
+        },
+        "#29YR2U0VP": {
+          "name": "RONALD + RONALD",
+          "base": 0,
+          "decks": 1
+        },
+        "#CPCLGY0R": {
+          "name": "AMAMAMAMEOJ",
+          "base": 0,
+          "decks": 1
         },
         "#PRVR9J9": {
           "name": "Limpan",
@@ -304,11 +299,6 @@
           "base": 0,
           "decks": 4
         },
-        "#20VYLRPCYG": {
-          "name": "OG27",
-          "base": 0,
-          "decks": 3
-        },
         "#VJ9GP8UJ8": {
           "name": "amj",
           "base": 0,
@@ -329,11 +319,6 @@
           "base": 0,
           "decks": 4
         },
-        "#URUQ09LVG": {
-          "name": "wisely",
-          "base": 0,
-          "decks": 3
-        },
         "#CVGCRRCR2": {
           "name": "Nnea",
           "base": 0,
@@ -344,8 +329,18 @@
           "base": 0,
           "decks": 4
         },
+        "#VGPYCR0JG": {
+          "name": "Rasse08;)",
+          "base": 0,
+          "decks": 4
+        },
         "#RUV8V8GVR": {
           "name": "MEGABAENIS",
+          "base": 0,
+          "decks": 4
+        },
+        "#20VYLRPCYG": {
+          "name": "OG27",
           "base": 0,
           "decks": 4
         },
@@ -376,6 +371,11 @@
         },
         "#8VV8GGGPY": {
           "name": "Leo",
+          "base": 0,
+          "decks": 4
+        },
+        "#URUQ09LVG": {
+          "name": "wisely",
           "base": 0,
           "decks": 4
         },

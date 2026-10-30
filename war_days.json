@@ -2,7 +2,7 @@
   "warKey": "3:24",
   "days": {
     "1": {
-      "updated": "2026-10-30T02:14:33Z",
+      "updated": "2026-10-30T09:13:42Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -31,11 +31,6 @@
         },
         "#RJR22U09U": {
           "name": "Ekman",
-          "base": 0,
-          "decks": 0
-        },
-        "#2G9PV0LQ0": {
-          "name": "Thabet",
           "base": 0,
           "decks": 0
         },
@@ -189,11 +184,6 @@
           "base": 0,
           "decks": 0
         },
-        "#8CVLPV9YR": {
-          "name": "Piggelin",
-          "base": 0,
-          "decks": 0
-        },
         "#UQ80VQPYL": {
           "name": "69",
           "base": 0,
@@ -209,16 +199,6 @@
           "base": 0,
           "decks": 1
         },
-        "#CPCLGY0R": {
-          "name": "AMAMAMAMEOJ",
-          "base": 0,
-          "decks": 1
-        },
-        "#PRVR9J9": {
-          "name": "Limpan",
-          "base": 0,
-          "decks": 2
-        },
         "#CUUUYP0LG": {
           "name": "561an",
           "base": 0,
@@ -231,6 +211,11 @@
         },
         "#2JRJY2LQR": {
           "name": "skogsankan",
+          "base": 0,
+          "decks": 4
+        },
+        "#CPCLGY0R": {
+          "name": "AMAMAMAMEOJ",
           "base": 0,
           "decks": 4
         },
@@ -314,6 +299,11 @@
           "base": 0,
           "decks": 4
         },
+        "#PRVR9J9": {
+          "name": "Limpan",
+          "base": 0,
+          "decks": 4
+        },
         "#2JC8C9VVP": {
           "name": "iron m",
           "base": 0,
@@ -359,6 +349,11 @@
           "base": 0,
           "decks": 4
         },
+        "#2G9PV0LQ0": {
+          "name": "Thabet",
+          "base": 0,
+          "decks": 4
+        },
         "#2QGGPPYCP": {
           "name": "herman@:com",
           "base": 0,
@@ -401,6 +396,11 @@
         },
         "#P2VVLPGUJ": {
           "name": "Gabro",
+          "base": 0,
+          "decks": 4
+        },
+        "#8CVLPV9YR": {
+          "name": "Piggelin",
           "base": 0,
           "decks": 4
         },

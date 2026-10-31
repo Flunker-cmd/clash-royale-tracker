@@ -412,7 +412,7 @@
       }
     },
     "2": {
-      "updated": "2026-10-30T21:12:02Z",
+      "updated": "2026-10-31T01:11:30Z",
       "players": {
         "#UG0LPCL": {
           "name": "FC GUNNER",
@@ -431,11 +431,6 @@
         },
         "#G0QP8P0VJ": {
           "name": "IaddeI",
-          "base": 0,
-          "decks": 0
-        },
-        "#20929PYR0": {
-          "name": "Reavy",
           "base": 0,
           "decks": 0
         },
@@ -589,11 +584,6 @@
           "base": 0,
           "decks": 0
         },
-        "#29YR2U0VP": {
-          "name": "RONALD + RONALD",
-          "base": 1,
-          "decks": 0
-        },
         "#CUUUYP0LG": {
           "name": "561an",
           "base": 2,
@@ -614,18 +604,13 @@
           "base": 4,
           "decks": 0
         },
+        "#20929PYR0": {
+          "name": "Reavy",
+          "base": 0,
+          "decks": 3
+        },
         "#9PQPP2GVG": {
           "name": "Jobg",
-          "base": 4,
-          "decks": 0
-        },
-        "#CQCUPGGG": {
-          "name": "Bjögga",
-          "base": 4,
-          "decks": 0
-        },
-        "#20U2C9QLGG": {
-          "name": "Wader",
           "base": 4,
           "decks": 0
         },
@@ -639,15 +624,10 @@
           "base": 0,
           "decks": 4
         },
-        "#GYJVQYR": {
-          "name": "Adam",
-          "base": 4,
-          "decks": 0
-        },
-        "#VGPYCR0JG": {
-          "name": "Rasse08;)",
-          "base": 4,
-          "decks": 0
+        "#29YR2U0VP": {
+          "name": "RONALD + RONALD",
+          "base": 1,
+          "decks": 4
         },
         "#PJCJ929Q2": {
           "name": "mastercheese",
@@ -668,11 +648,6 @@
           "name": "skogsankan",
           "base": 4,
           "decks": 4
-        },
-        "#P0CV8LUY": {
-          "name": "Gideon",
-          "base": 4,
-          "decks": 1
         },
         "#8UPLQ90YQ": {
           "name": "Viggen\\\\",
@@ -706,6 +681,11 @@
         },
         "#UUGUL0JJR": {
           "name": "Padlarn",
+          "base": 4,
+          "decks": 4
+        },
+        "#20U2C9QLGG": {
+          "name": "Wader",
           "base": 4,
           "decks": 4
         },
@@ -744,6 +724,11 @@
           "base": 4,
           "decks": 4
         },
+        "#GYJVQYR": {
+          "name": "Adam",
+          "base": 4,
+          "decks": 4
+        },
         "#PPJPY09GP": {
           "name": "BjalkenGG",
           "base": 4,
@@ -751,6 +736,16 @@
         },
         "#2QGGPPYCP": {
           "name": "herman@:com",
+          "base": 4,
+          "decks": 4
+        },
+        "#CQCUPGGG": {
+          "name": "Bjögga",
+          "base": 4,
+          "decks": 4
+        },
+        "#P0CV8LUY": {
+          "name": "Gideon",
           "base": 4,
           "decks": 4
         },
@@ -766,6 +761,11 @@
         },
         "#8UC8L0PY0": {
           "name": "DonaldDuck69",
+          "base": 4,
+          "decks": 4
+        },
+        "#VGPYCR0JG": {
+          "name": "Rasse08;)",
           "base": 4,
           "decks": 4
         },
